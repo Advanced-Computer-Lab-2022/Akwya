@@ -7,9 +7,9 @@ import {getPosts} from './actions/posts';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import './App.css';
-import '/Users/farahwanas/Desktop/Akwya/client/src/components/Posts/Post/Post.css';
-import '/Users/farahwanas/Desktop/Akwya/client/src/components/Posts/Posts.css';
-import '/Users/farahwanas/Desktop/Akwya/client/src/components/Form/Form.css';
+import './components/Posts/Post/Post.css';
+import './components/Posts/Posts.css';
+import './components/Form/Form.css';
 
 
 import photo from './images/photo.jpeg';
