@@ -10,7 +10,11 @@ import './App.css';
 import './components/Posts/Post/Post.css';
 import './components/Posts/Posts.css';
 import './components/Form/Form.css';
+<<<<<<< HEAD
 //yaso
+=======
+
+>>>>>>> f1c8e1ac75233d3f1f502c4d2682451cb41bc4e4
 
 import photo from './images/photo.jpeg';
 
