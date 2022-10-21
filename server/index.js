@@ -20,14 +20,15 @@ redux-thunk for asynchronous actions using redux
 
 const app=express();
 
-app.use('/posts',postRoutes); //y3ni every route inside of the post routes is going to start with post
 
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
+app.use('/posts',postRoutes); //y3ni every route inside of the post routes is going to start with post
+
 
 const CONNECTION_URL= 'mongodb+srv://Akwya:AkwyaAwy@cluster0.7jaucfr.mongodb.net/?retryWrites=true&w=majority';
-const PORT= process.env.PORT || 4000;
+const PORT= process.env.PORT || 3000;
 
 mongoose.connect(CONNECTION_URL, {useNewURLParser: true, useUnifiedTopology: true})
     .then(()=>app.listen(PORT, ()=>console.log(`Server running on port: ${PORT}`)))
