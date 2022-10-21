@@ -10,7 +10,7 @@ import './App.css';
 import './components/Posts/Post/Post.css';
 import './components/Posts/Posts.css';
 import './components/Form/Form.css';
-//
+
 import photo from './images/photo.jpeg';
 
 const App = () => {

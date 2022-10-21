@@ -5,5 +5,5 @@ const Post =() =>{
         <h1 className="title" >POST</h1>
     );
 }
-
+//test
 export default Post;
