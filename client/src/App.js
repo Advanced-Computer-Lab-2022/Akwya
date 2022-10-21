@@ -11,8 +11,6 @@ import './components/Posts/Post/Post.css';
 import './components/Posts/Posts.css';
 import './components/Form/Form.css';
 
-//hey
-
 import photo from './images/photo.jpeg';
 
 const App = () => {
