@@ -7,9 +7,7 @@ import mongoose from 'mongoose'; //to create models for our posts
 import cors from 'cors'; //enables cross-regional requests
 
 import postRoutes from './routes/post.js';
-
- const express=require('express')
- const guestRoutes=require('./routes/workouts')
+import guestRoutes from './routes/guest.js';
 
 /*
 I installed kol el fo2 in server directory
@@ -25,37 +23,39 @@ redux-thunk for asynchronous actions using redux
 
 const app=express();
 
-
-
-
-
-
-
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 
 //middleware
+app.use(express.json())  //used for post w update yakhod el data di w y passes it to the request handler
 app.use((req,res,next)=>{
     console.log(req.path,req.method);
     next();
 });
 
+
+
+
+
+
+
 app.use('/posts',postRoutes); //y3ni every route inside of the post routes is going to start with post
 
-app.use('/api/guests',guestRoutes)
+app.use('/guest',guestRoutes);
 
 
 app.get('/farah',(req,res)=>{
     res.json({mssg:'Welcome fufu'})
 })
 
-const CONNECTION_URL= 'mongodb+srv://Akwya:AkwyaAwy@cluster0.7jaucfr.mongodb.net/?retryWrites=true&w=majority';
+
+//connect to db
 const PORT= process.env.PORT || 8000;
 
-mongoose.connect(CONNECTION_URL, {useNewURLParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONG_URI, {useNewURLParser: true, useUnifiedTopology: true})
     .then(()=>app.listen(PORT, ()=>console.log(`Server running on port: ${PORT}`)))
     .catch((error)=>console.log(error.message));
 
-// mongoose.set('useFindAndModify', false);    
+// mongoose.set('useFindAndModify', false);
 //apostrophe: `
