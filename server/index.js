@@ -8,7 +8,9 @@ import cors from 'cors'; //enables cross-regional requests
 
 import postRoutes from './routes/post.js';
 
- 
+ const express=require('express')
+ const guestRoutes=require('./routes/workouts')
+
 /*
 I installed kol el fo2 in server directory
 also installed nodemon=> so that we dont have to manually reset the server every time we make a change
@@ -40,6 +42,9 @@ app.use((req,res,next)=>{
 });
 
 app.use('/posts',postRoutes); //y3ni every route inside of the post routes is going to start with post
+
+app.use('/api/guests',guestRoutes)
+
 
 app.get('/farah',(req,res)=>{
     res.json({mssg:'Welcome fufu'})
