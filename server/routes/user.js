@@ -1,6 +1,6 @@
 import express from "express";
 // import user from "/Users/farahwanas/Desktop/Akwya/server/models/user.js";
-import userrr from '/Users/farahwanas/Desktop/Akwya/server/models/user.js';
+import userrr from '../models/user.js';
 const router =express.Router()
 // const userr=new user
 
