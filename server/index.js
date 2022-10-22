@@ -1,3 +1,6 @@
+import { config } from 'dotenv';
+config();
+
 import express from 'express'; //framework for creating the routing of applications
 import bodyParser from 'body-parser'; // enables us to send post requests
 import mongoose from 'mongoose'; //to create models for our posts
@@ -21,14 +24,29 @@ redux-thunk for asynchronous actions using redux
 const app=express();
 
 
+
+
+
+
+
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
+
+//middleware
+app.use((req,res,next)=>{
+    console.log(req.path,req.method);
+    next();
+});
+
 app.use('/posts',postRoutes); //y3ni every route inside of the post routes is going to start with post
 
+app.get('/farah',(req,res)=>{
+    res.json({mssg:'Welcome fufu'})
+})
 
 const CONNECTION_URL= 'mongodb+srv://Akwya:AkwyaAwy@cluster0.7jaucfr.mongodb.net/?retryWrites=true&w=majority';
-const PORT= process.env.PORT || 3000;
+const PORT= process.env.PORT || 8000;
 
 mongoose.connect(CONNECTION_URL, {useNewURLParser: true, useUnifiedTopology: true})
     .then(()=>app.listen(PORT, ()=>console.log(`Server running on port: ${PORT}`)))
