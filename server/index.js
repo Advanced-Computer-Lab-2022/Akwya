@@ -7,7 +7,9 @@ import mongoose from 'mongoose'; //to create models for our posts
 import cors from 'cors'; //enables cross-regional requests
 
 import postRoutes from './routes/post.js';
-import guestRoutes from './routes/guest.js';
+import userRoutes from './routes/user.js';
+import courseRoutes from './routes/course.js';
+
 
 /*
 I installed kol el fo2 in server directory
@@ -42,7 +44,9 @@ app.use((req,res,next)=>{
 
 app.use('/posts',postRoutes); //y3ni every route inside of the post routes is going to start with post
 
-app.use('/guest',guestRoutes);
+app.use('/user',userRoutes);
+
+app.use('/course',courseRoutes);
 
 
 app.get('/farah',(req,res)=>{
