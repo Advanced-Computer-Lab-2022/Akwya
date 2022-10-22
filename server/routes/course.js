@@ -49,7 +49,6 @@ res.status(200).json(newCourse)
         res.status(400).json({error: error.message})
     }
      
-    res.json({mssg:'post a new course'})
 
 })
 
