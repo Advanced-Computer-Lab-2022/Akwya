@@ -21,8 +21,11 @@ const AddAdminForm = () => {
 
     // if (!response.ok) {
     //   setError(json.error)
+    // alert("Error");
+
     // }
     // if (response.ok) {
+      alert("New Admin added!");
       setError(null)
       setUsername('')
       setPassword('')
@@ -40,6 +43,7 @@ const AddAdminForm = () => {
         type="text" 
         onChange={(e) => setUsername(e.target.value)} 
         value={username}
+        required
       />
         <br/>
       <label>Password:</label>
@@ -47,7 +51,7 @@ const AddAdminForm = () => {
         type="password" 
         onChange={(e) => setPassword(e.target.value)} 
         value={password}
-      />
+      required/>
         <br/>
       <button>Add New Admin</button>
       {error && <div className="error">{error}</div>}
