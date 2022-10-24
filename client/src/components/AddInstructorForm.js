@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import Swal from "sweetalert2";  
+import Swal from "sweetalert2";
 
 
-const AddAdminForm = () => {
+const AddInstructorForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -23,31 +23,35 @@ const AddAdminForm = () => {
 
     // if (!response.ok) {
     //   setError(json.error)
-    // alert("Error");
-
+    //   Swal.fire({
+    //       icon: 'error',
+    //       title: 'Try Again!',
+    //       text: 'Wrong email or password...',
+    //       confirmButtonColor: '#f27474',
+    //       confirmButtonText: 'OK'
+    //   })
     // }
     // if (response.ok) {
-      Swal.fire({
-        title: 'New Admin added!',
+    Swal.fire({
+        title: 'New Instructor added!',
         icon: 'success',
         confirmButtonColor: '#38a53e',
         confirmButtonText: 'OK'
-      }) 
-      // Swal.fire('New Admin added!')
-      setError(null)
-      setUsername('')
-      setPassword('')
-
-    //   console.log('new admin added:', json)
+      })  
+    // Swal.fire('New Instructor added!')
+    setError(null)
+    setUsername('')
+    setPassword('')
+      
     // }
 
   }
 
   return (
     <form className="create" onSubmit={handleSubmit}> 
-      <h3>Add a New Admin</h3>
+      <h3>Add a New Instructor</h3>
 
-      <label>Admin Username:</label>
+      <label>Instructor Username:</label>
       <input 
         type="text" 
         onChange={(e) => setUsername(e.target.value)} 
@@ -62,10 +66,10 @@ const AddAdminForm = () => {
         value={password}
       required/>
         <br/>
-      <button>Add New Admin</button>
+      <button>Add New Instructor</button>
       {error && <div className="error">{error}</div>}
     </form>
   )
 }
 
-export default AddAdminForm
+export default AddInstructorForm
