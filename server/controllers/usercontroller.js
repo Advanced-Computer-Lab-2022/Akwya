@@ -30,7 +30,6 @@ export const createUser= async(req,res) => {
     // res.json({mssg:'post a new guests'})
 
 }
-
         //get a single user
         export const getUser = async(req , res) => {
             const {id} =req.params
@@ -44,10 +43,6 @@ export const createUser= async(req,res) => {
             }
             res.status(200).json(userr)
         }
-
-
-
-
 
 
         //to delete a user
