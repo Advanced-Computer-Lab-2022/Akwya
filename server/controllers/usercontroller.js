@@ -1,11 +1,9 @@
 import user from '../models/user.js';
-import user from '../models/user.js'
-import user from '../models/user.js'
 
 
 
 
-export const getUser= async(req,res) => {
+export const getAllUser= async(req,res) => {
 
     try{  
         const user= await user.find();
@@ -16,21 +14,23 @@ export const getUser= async(req,res) => {
         res.status(400).json({message: error.message})
     }
 }
-    export const createUser= async(req,res) => {
-        const user=req.body;
-        const newUser= new user(user);
-        try{
-            await new user.save();
-            res.status(201).json(newUser)
-        }
-        catch(error){
-            res.status(409).json({message: error.message})
-        }
+export const createUser= async(req,res) => {
+    const {username,Fname,Lname,Email,password,gender,user_type,country}=req.body
 
+    
+    try {
+        const userr = await userrr.create({username,Fname,Lname,Email,password,gender,user_type,country});
+res.status(200).json(userr)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
+    res.json({mssg:'post a new guests'})
 
+}
 
         //get a single user
-        const getUser= async(req,res) => {
+export const getUser= async(req,res) => {
             const {usernamer} =req.params
 
             if(!mongogoose.Type.objectUsername.isvalid(usernamer)){
@@ -46,7 +46,7 @@ export const getUser= async(req,res) => {
 
 
         //to delete a user
-    const deleteUser = async(req , res) => {
+    export const deleteUser = async(req , res) => {
         const {username} =req.params
 
         if(!mongogoose.Type.objectUsername.isvalid(username)){
@@ -61,7 +61,7 @@ export const getUser= async(req,res) => {
 
 
     //update a user
-        const updateUser= async(req, res) => {
+    export  const updateUser= async(req, res) => {
         const {username} =req.params
 
         if(!mongogoose.Type.objectUsername.isvalid(username)){
@@ -76,6 +76,6 @@ export const getUser= async(req,res) => {
     res.status(200).json(user)
 }
 
-}
+
 
    

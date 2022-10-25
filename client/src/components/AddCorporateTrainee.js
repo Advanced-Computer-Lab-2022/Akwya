@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Swal from "sweetalert2";  
 
 
-const AddAdminForm = () => {
+const AddTraineeForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -28,7 +28,7 @@ const AddAdminForm = () => {
     // }
     // if (response.ok) {
       Swal.fire({
-        title: 'New Admin added!',
+        title: 'New Trainee added!',
         icon: 'success',
         confirmButtonColor: '#38a53e',
         confirmButtonText: 'OK'
@@ -45,9 +45,9 @@ const AddAdminForm = () => {
 
   return (
     <form className="create" onSubmit={handleSubmit}> 
-      <h3>Add a New Admin</h3>
+      <h3>Add a New Trainee</h3>
 
-      <label>Admin Username:</label>
+      <label>Trainee Username:</label>
       <input 
         type="text" 
         onChange={(e) => setUsername(e.target.value)} 
@@ -62,10 +62,10 @@ const AddAdminForm = () => {
         value={password}
       required/>
         <br/>
-      <button>Add New Admin</button>
+      <button>Add New Trainee</button>
       {error && <div className="error">{error}</div>}
     </form>
   )
 }
 
-export default AddAdminForm
+export default AddTraineeForm
