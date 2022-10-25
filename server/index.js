@@ -5,7 +5,7 @@ import cors from 'cors'; //enables cross-regional requests
 
 import postRoutes from './routes/post.js';
 
- 
+
 /*
 I installed kol el fo2 in server directory
 also installed nodemon=> so that we dont have to manually reset the server every time we make a change
@@ -16,23 +16,23 @@ moment library for working with time and date
 react-file-base64  used to convert images
 redux 
 redux-thunk for asynchronous actions using redux
-*/ 
+*/
 
-const app=express();
+const app = express();
 
 
-app.use(bodyParser.json({limit: "30mb", extended: true}));
-app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
-app.use('/posts',postRoutes); //y3ni every route inside of the post routes is going to start with post
+app.use('/posts', postRoutes); //y3ni every route inside of the post routes is going to start with post
 
 
-const CONNECTION_URL= 'mongodb+srv://Akwya:AkwyaAwy@cluster0.7jaucfr.mongodb.net/?retryWrites=true&w=majority';
-const PORT= process.env.PORT || 3000;
+const CONNECTION_URL = 'mongodb+srv://Akwya:AkwyaAwy@cluster0.7jaucfr.mongodb.net/?retryWrites=true&w=majority';
+const PORT = process.env.PORT || 9000;
 
-mongoose.connect(CONNECTION_URL, {useNewURLParser: true, useUnifiedTopology: true})
-    .then(()=>app.listen(PORT, ()=>console.log(`Server running on port: ${PORT}`)))
-    .catch((error)=>console.log(error.message));
+mongoose.connect(CONNECTION_URL, { useNewURLParser: true, useUnifiedTopology: true })
+    .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
+    .catch((error) => console.log(error.message));
 
 // mongoose.set('useFindAndModify', false);    
 //apostrophe: `
