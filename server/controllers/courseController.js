@@ -44,6 +44,7 @@ const getCourses = async (req, res) => {
 
 //get all courses
 const viewCourses = async (req, res) => {
+
     // const allcourses = await course.find({},{projection:{title:1 , totalHours : 1, ratings:1}})
     const allcourses = await course.find({}).select('title totalHours rating')
 
@@ -92,8 +93,27 @@ const filterCourses = async (req, res) => {
 }
 
 
+const searchCourse = async (req, res) => {
+
+    try {
+        const findname = req.params.title;
+        const objs = await course.find({$or:[{title:{ $regex:'.*'+findname+'.*'} }, {subject:{ $regex:'.*'+findname+'.*'} }, {instructor:{ $regex:'.*'+findname+'.*'} } ] });
+
+                res.json(objs)
+
+console.log(findname)
+    } catch (error) {
+        res.json({message: error});   
+        // console.log(findname)
+
+
+    }
+}
+
+
+
 
 
 
 //export
-export { createCourse, getCourses, getACourse, deleteCourse,filterCourses, viewCourses }
+export { createCourse, getCourses, getACourse, deleteCourse,filterCourses, viewCourses,searchCourse }
