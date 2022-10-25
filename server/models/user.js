@@ -3,25 +3,25 @@ import mongoose from 'mongoose';
 
 
 
-const userSchema =mongoose.Schema({
+const userSchema = mongoose.Schema({
     username: String,
     Fname: String,
     Lname: String,
-    Email:String,
-    password:String, 
-    gender:String, 
-    user_type:String, 
-    country:String 
-    
+    Email: String,
+    password: String,
+    gender: String,
+    user_type: String,
+    country: String
 
-    
-},{timestamps:true}
+
+
+}, { timestamps: true }
 )
 
-;
+    ;
 // module.exports = mongoose.model('user',userSchema);
 
 
-const user = mongoose.model('user',userSchema);
+const user = mongoose.model('user', userSchema);
 
 export default user;
