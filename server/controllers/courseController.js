@@ -42,6 +42,16 @@ const getCourses = async (req, res) => {
 }
 
 
+//get all courses
+const viewCourses = async (req, res) => {
+    // const allcourses = await course.find({},{projection:{title:1 , totalHours : 1, ratings:1}})
+    const allcourses = await course.find({}).select('title totalHours rating')
+
+    res.status(200).json(allcourses)
+
+}
+										
+
 
 //get a course
 const getACourse = async (req, res) => {
@@ -71,8 +81,19 @@ const deleteCourse = async (req, res) => {
 }
 
 
+//filter course fr10
+
+
+const filterCourses = async (req, res) => {
+    const allcourses = await course.find({price: {$gt: 5, $lt:10}}).sort({ createdAt: -1 })
+
+
+    res.status(200).json(allcourses)
+}
+
+
 
 
 
 //export
-export { createCourse, getCourses, getACourse, deleteCourse }
+export { createCourse, getCourses, getACourse, deleteCourse,filterCourses, viewCourses }
