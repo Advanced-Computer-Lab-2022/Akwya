@@ -1,48 +1,42 @@
 import course from "../models/course.js";
 
 
-//create course
-const createCourse = async (req,res) =>{
-    const {title,
-        subject,
-        totalHours,
+//create course fr23
+const createCourse = async (req, res) => {
+    const { title,
+        subtitles,
         price,
-        rating,
-        review,
-        subtitle, 
-        summary, 
-        excercises, 
-        youtubeVideo, 
-        promotion, 
-        promotionDuration, 
-        progress}=req.body
+        summary,
+        // subject,
+        // instructor,
+        // totalHours,
+        // ratings,
+        // reviews,
+        // promotion,
+        // promotionExpiry,
+        // previewVideo
+        // certificate
+    } = req.body
 
-    
+
     try {
-        const newCourse = await course.create({title,
-            subject,
-            totalHours,
+        const newCourse = await course.create({
+            title,
+            subtitles,
             price,
-            rating,
-            review,
-            subtitle, 
-            summary, 
-            excercises, 
-            youtubeVideo, 
-            promotion, 
-            promotionDuration, 
-            progress});
-res.status(200).json(newCourse)
+            summary
+        });
+        res.status(200).json(newCourse)
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(400).json({ error: error.message })
     }
 }
 
 
 
 //get all courses
-const getCourses = async (req,res)=> {
-    const allcourses = await course.find({}).sort({createdAt: -1})
+const getCourses = async (req, res) => {
+    const allcourses = await course.find({}).sort({ createdAt: -1 })
 
     res.status(200).json(allcourses)
 }
@@ -50,13 +44,13 @@ const getCourses = async (req,res)=> {
 
 
 //get a course
-const getACourse = async (req,res) => {
-    const{id} = req.params
+const getACourse = async (req, res) => {
+    const { id } = req.params
 
     const ACourse = await course.findById(id)
 
-    if (!ACourse){
-        return res.status(404).json({error:" No such Course"})
+    if (!ACourse) {
+        return res.status(404).json({ error: " No such Course" })
 
     }
     res.status(200).json(ACourse)
@@ -64,15 +58,15 @@ const getACourse = async (req,res) => {
 
 
 //delete a course
-const deleteCourse = async (req,res) => {
-    const{id} = req.params
+const deleteCourse = async (req, res) => {
+    const { id } = req.params
 
     const badCourse = await course.findById(id)
-    if (!badCourse){
-        return res.status(404).json({error:" No such Course"})
+    if (!badCourse) {
+        return res.status(404).json({ error: " No such Course" })
 
     }
-    const badCourse2 = await course.findOneAndDelete({id})
+    const badCourse2 = await course.findOneAndDelete({ id })
     res.status(200).json(badCourse)
 }
 
@@ -81,4 +75,4 @@ const deleteCourse = async (req,res) => {
 
 
 //export
-export  { createCourse, getCourses, getACourse, deleteCourse}
+export { createCourse, getCourses, getACourse, deleteCourse }
