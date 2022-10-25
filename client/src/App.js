@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
-import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import { getPosts } from './actions/posts';
+// pages & components
+import Home from './pages/Home'
+import Navbar from './components/Navbar'
+import Admin from './pages/Admin';
+import User from './pages/User';
 
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
@@ -14,39 +16,37 @@ import './components/Form/Form.css';
 import photo from './images/photo.jpeg';
 
 const App = () => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getPosts());
-    }, [dispatch]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
 
 
-    return (
+  return (
 
 
-        <Container maxwidth="lg">
-            <AppBar className="appBar" position="static" color="inherit">
-                <Typography className="headings" variant="h2" align="left" >Online Learning System</Typography>
-                <img classname="img" src={photo} alt="A Photo" height="60" />
-            </AppBar>
+    <Container maxwidth="lg">
+      <AppBar className="appBar" position="static" color="inherit">
+        <Typography className="headings" variant="h2" align="left" >Online Learning System</Typography>
+        <img classname="img" src={photo} alt="A Photo" height="60" />
+      </AppBar>
 
-            <Grow in>
-                <Container>
-                    <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-                        <Grid item xs={12} sm={7}>
-                            <Posts />
-                        </Grid>
-
-                        <Grid item xs={12} sm={4}>
-                            <Form />
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Grow>
-
-
+      <Grow in>
+        <Container>
+          <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+            <Grid item xs={12} sm={7}>
+              <Posts />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Form />
+            </Grid>
+          </Grid>
         </Container>
-    );
+      </Grow>
+
+
 }
 
-export default App;
+      export default App;
+
