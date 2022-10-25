@@ -3,17 +3,22 @@ import express from "express";
 import course from '../models/course.js';
 const router =express.Router()
 // const userr=new user
-import { createCourse, getCourses , getACourse }from '../controllers/courseController.js'
+import { createCourse, getCourses , getACourse ,filterCourses, viewCourses}from '../controllers/courseController.js'
 import { deleteCourse } from "../controllers/courseController.js";
 
 
 
 
-router.get('/', getCourses)
+router.get('/getCourses', getCourses)
+
+router.get('/filter', filterCourses)
 
 router.get('/:id',getACourse)
 
 router.post('/',createCourse)
+
+router.get('/',viewCourses)
+
 
 router.delete('/:id',deleteCourse)
 
