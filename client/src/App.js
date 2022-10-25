@@ -44,9 +44,11 @@ const App = () => {
           </Grid>
         </Container>
       </Grow>
+    </Container>
+  )
 
 
 }
 
-      export default App;
+export default App;
 
