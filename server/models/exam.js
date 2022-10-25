@@ -1,18 +1,18 @@
 import mongoose from 'mongoose';
 //mongoose allows us to have some sort of uniformity: each post have to have these things
-const examSchema =mongoose.Schema({
-    instructorID:number,
-courseID:number,
-questions:{question:string,answer1:string,answer2:string,answer3:string,answer4:string},
-answers:{answer:number}
+const examSchema = mongoose.Schema({
+    instructorID: Number,
+    courseID: Number,
+    questions: [{ question: String, answer1: String, answer2: String, answer3: String, answer4: String }],
+    answers: [{ answer: Number }]
 
-   
-},{timestamps:true}
+
+}, { timestamps: true }
 )
 
-;
+    ;
 
-const exam =  mongoose.model('Exam',examSchema);
+const exam = mongoose.model('Exam', examSchema);
 
 export default exam;
 
