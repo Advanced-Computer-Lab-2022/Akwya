@@ -3,63 +3,19 @@ import express from "express";
 import course from '../models/course.js';
 const router =express.Router()
 // const userr=new user
-
-router.get('/',(req,res)=>{
-    res.json({mssg:'Get all courses'})
-
-})
-
-router.get('/:id',(req,res)=>{
-    res.json({mssg:'Get a single guests'})
-
-})
-
-router.post('/',async(req,res)=>{
-    const {title,
-        subject,
-        totalHours,
-        price,
-        rating,
-        review,
-        subtitle, 
-        summary, 
-        excercises, 
-        youtubeVideo, 
-        promotion, 
-        promotionDuration, 
-        progress}=req.body
-
-    
-    try {
-        const newCourse = await course.create({title,
-            subject,
-            totalHours,
-            price,
-            rating,
-            review,
-            subtitle, 
-            summary, 
-            excercises, 
-            youtubeVideo, 
-            promotion, 
-            promotionDuration, 
-            progress});
-res.status(200).json(newCourse)
-    } catch (error) {
-        res.status(400).json({error: error.message})
-    }
-     
-
-})
+import { createCourse, getCourses , getACourse }from '../controllers/courseController.js'
+import { deleteCourse } from "../controllers/courseController.js";
 
 
- 
 
 
-router.delete('/:id',(req,res)=>{
-    res.json({mssg:'delete a guest'})
+router.get('/', getCourses)
 
-})
+router.get('/:id',getACourse)
+
+router.post('/',createCourse)
+
+router.delete('/:id',deleteCourse)
 
 router.patch('/:id',(req,res)=>{
     res.json({mssg:'update a guest'})
