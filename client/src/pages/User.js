@@ -10,7 +10,7 @@ const User = () => {
           <h2>Go to Home Page</h2>
         </Link>
 
-        <OutlinedCard/>
+        
         <DataFetching/>
          
       </div>
