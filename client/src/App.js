@@ -22,17 +22,17 @@ function App() {
         <Navbar />
         <div className="pages">
           <Routes>
-            <Route 
-              path="/" 
-              element={<Home />} 
+            <Route
+              path="/"
+              element={<Home />}
             />
-            <Route 
-              path="/admin" 
-              element={<Admin />} 
+            <Route
+              path="/admin"
+              element={<Admin />}
             />
-            <Route 
-              path="/user" 
-              element={<User />} 
+            <Route
+              path="/user"
+              element={<User />}
             />
           </Routes>
         </div>
@@ -43,4 +43,3 @@ function App() {
 }
 
 export default App;
-

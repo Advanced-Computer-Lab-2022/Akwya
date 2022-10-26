@@ -22,18 +22,18 @@ moment library for working with time and date
 react-file-base64  used to convert images
 redux 
 redux-thunk for asynchronous actions using redux
-*/ 
+*/
 
-const app=express();
+const app = express();
 
-app.use(bodyParser.json({limit: "30mb", extended: true}));
-app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 //middleware
 app.use(express.json())  //used for post w update yakhod el data di w y passes it to the request handler
-app.use((req,res,next)=>{
-    console.log(req.path,req.method);
+app.use((req, res, next) => {
+    console.log(req.path, req.method);
     next();
 });
 
@@ -43,26 +43,26 @@ app.use((req,res,next)=>{
 
 
 
-app.use('/posts',postRoutes); //y3ni every route inside of the post routes is going to start with post
+app.use('/posts', postRoutes); //y3ni every route inside of the post routes is going to start with post
 
-app.use('/user',userRoutes);
+app.use('/user', userRoutes);
 
-app.use('/course',courseRoutes);
+app.use('/course', courseRoutes);
 
 app.use('/admin',adminRoutes);
 
 
-app.get('/farah',(req,res)=>{
-    res.json({mssg:'Welcome fufu'})
+app.get('/farah', (req, res) => {
+    res.json({ mssg: 'Welcome fufu' })
 })
 
 
 //connect to db
-const PORT= process.env.PORT || 8000;
+const PORT = process.env.PORT || 8000;
 
-mongoose.connect(process.env.MONG_URI, {useNewURLParser: true, useUnifiedTopology: true})
-    .then(()=>app.listen(PORT, ()=>console.log(`Server running on port: ${PORT}`)))
-    .catch((error)=>console.log(error.message));
+mongoose.connect(process.env.MONG_URI, { useNewURLParser: true, useUnifiedTopology: true })
+    .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
+    .catch((error) => console.log(error.message));
 
 // mongoose.set('useFindAndModify', false);
 //apostrophe: `

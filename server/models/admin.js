@@ -10,13 +10,15 @@ const adminSchema =mongoose.Schema({
     email:String,
 
 
-   
-},{timestamps:true}
+
+
+}, { timestamps: true }
 )
 
-;
+    ;
 
 const admin =  mongoose.model('admin',adminSchema);
+
 
 export default admin;
 
