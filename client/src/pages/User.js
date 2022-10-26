@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-
+import OutlinedCard from '../components/DisplayCourses'
+import DataFetching from '../DataFetching'
 const User = () => {
 
     return (
@@ -8,6 +9,10 @@ const User = () => {
         <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>
+
+        
+        <DataFetching/>
+         
       </div>
     )
   }
