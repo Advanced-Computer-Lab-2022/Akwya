@@ -9,6 +9,7 @@ import cors from 'cors'; //enables cross-regional requests
 import postRoutes from './routes/post.js';
 import userRoutes from './routes/user.js';
 import courseRoutes from './routes/course.js';
+import adminRoutes from './routes/admin.js';
 
 
 /*
@@ -47,6 +48,8 @@ app.use('/posts', postRoutes); //y3ni every route inside of the post routes is g
 app.use('/user', userRoutes);
 
 app.use('/course', courseRoutes);
+
+app.use('/admin',adminRoutes);
 
 
 app.get('/farah', (req, res) => {

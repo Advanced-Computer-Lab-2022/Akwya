@@ -1,21 +1,28 @@
 import express from "express";
-// import user from "/Users/farahwanas/Desktop/Akwya/server/models/user.js";
-import course from '../models/course.js';
 const router =express.Router()
-// const userr=new user
-import { createCourse, getCourses , getACourse }from '../controllers/courseController.js'
-import { deleteCourse } from "../controllers/courseController.js";
+import { createCourse, getCourses ,viewACourse ,filterCoursesByPrice, viewCourses, searchCourse, viewCoursesPrices,filterCoursesOnSubjAndRating,deleteCourse }from '../controllers/courseController.js'
 
+router.get('/viewCourseDeets',viewCourses)
 
+router.get('/viewCoursePrices',viewCoursesPrices)
 
+router.get('/filterCoursesOnSubjAndRating/:id/:title',filterCoursesOnSubjAndRating)
+
+router.get('/filterCoursesByPrice/:x/:y', filterCoursesByPrice)
 
 router.get('/', getCourses)
 
-router.get('/:id',getACourse)
+router.get('/search/:title',searchCourse)
+
+router.get('/viewACourse/:titlee',viewACourse)
 
 router.post('/',createCourse)
 
+// router.get('/',viewCourses)
+
+
 router.delete('/:id',deleteCourse)
+
 
 router.patch('/:id',(req,res)=>{
     res.json({mssg:'update a guest'})
