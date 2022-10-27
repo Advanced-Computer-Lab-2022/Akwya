@@ -1,9 +1,14 @@
 import mongoose from 'mongoose';
 //mongoose allows us to have some sort of uniformity: each post have to have these things
-const adminSchema = mongoose.Schema({
-    username: String,
-    password: String,
-    email: String
+
+
+
+const adminSchema =mongoose.Schema({
+
+    username:String,
+    password:String,
+    email:String,
+
 
 
 
@@ -12,7 +17,8 @@ const adminSchema = mongoose.Schema({
 
     ;
 
-const admin = mongoose.model('Admin', adminSchema);
+const admin =  mongoose.model('admin',adminSchema);
+
 
 export default admin;
 
