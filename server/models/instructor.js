@@ -20,6 +20,9 @@ const instructorSchema = mongoose.Schema({
 
 const instructor = mongoose.model('Instructor', instructorSchema);
 
+
+
+
 export default instructor;
 
 
