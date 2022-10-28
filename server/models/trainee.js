@@ -17,10 +17,10 @@ const traineeSchema = mongoose.Schema({
 }, { timestamps: true }
 
 )
-
+ 
     ;
 
-const trainee = mongoose.model('Trainee', traineeSchema);
+const trainee = mongoose.model('trainee', traineeSchema);
 
 export default trainee;
 

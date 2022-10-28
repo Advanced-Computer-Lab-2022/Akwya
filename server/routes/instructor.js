@@ -1,9 +1,12 @@
 import express from "express";
 import { viewCoursesPrices } from "../controllers/courseController.js";
 const router =express.Router()
-import { viewCoursesI , viewCoursesPricesI, filterCoursesOnSubjAndRatingI , filterCoursesByPriceI ,searchCourseI , viewACourseI , viewCoursestitleI , filterCoursesByInstructorI , createCourseI } from'../controllers/instructorController.js'
+import {getInstructors, viewCoursesI , viewCoursesPricesI, filterCoursesOnSubjAndRatingI , filterCoursesByPriceI ,searchCourseI , viewACourseI , viewCoursestitleI , filterCoursesByInstructorI , createCourseI } from'../controllers/instructorController.js'
 
 router.get('/',viewCoursesI)
+
+router.get('/getInstructors',getInstructors)
+
 
 router.get('/viewCoursesPrices',viewCoursesPricesI)
 
