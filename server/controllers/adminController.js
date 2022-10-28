@@ -5,9 +5,12 @@ import instructor from "../models/instructor.js"
 
 
  export const createAdmin= async(req,res) => {
+    console.log("tmm")
+
     const {username,password,email}=req.body
 
     try {
+        console.log("tmm")
         const newadmin = await admin.create({username,password,email});
         newadmin.save();
         res.status(200).json(newadmin)
