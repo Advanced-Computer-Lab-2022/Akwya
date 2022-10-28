@@ -1,6 +1,19 @@
 //import instructor from '../models/instructor.js';
 import instructor from "../models/instructor.js"
+import course from "../models/course.js"
 
+
+//view all the titles of the courses available including the total hours of the course and course rating
+const getInstructors = async (req, res) => {
+    try{
+        const instructors= await instructor.find({});
+        res.status(200).json(instructors)
+    }
+
+    catch(error){
+        res.status(400).json({message: error.message})
+    }
+}
 
 //view all the titles of the courses available including the total hours of the course and course rating
 const viewCoursesI = async (req, res) => {
@@ -115,30 +128,23 @@ const createCourseI = async (req, res) => {
         subtitles,
         price,
         summary,
-        // subject,
-        // instructor,
-        // totalHours,
-        ratings,
-        // reviews,
-        // promotion,
-        // promotionExpiry,
-        // previewVideo
-        // certificate
+      
     } = req.body
 
 
     try {
-        const newCourse = await instructor.create({
+        const newCourse = await course.create({
             title,
             subtitles,
             price,
             summary,
-            ratings
         });
         res.status(200).json(newCourse)
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
+
+    console.log("tmm")
 }
 
 //search for a course given by him/her based on course title or subject or instructor
@@ -159,4 +165,4 @@ const createCourseI = async (req, res) => {
 
 
 
-export {viewCoursesI , viewCoursesPricesI ,filterCoursesOnSubjAndRatingI , filterCoursesByPriceI , searchCourseI ,viewACourseI , viewCoursestitleI , filterCoursesByInstructorI , createCourseI } 
+export {getInstructors,viewCoursesI , viewCoursesPricesI ,filterCoursesOnSubjAndRatingI , filterCoursesByPriceI , searchCourseI ,viewACourseI , viewCoursestitleI , filterCoursesByInstructorI , createCourseI } 
