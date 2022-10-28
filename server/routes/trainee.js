@@ -2,7 +2,7 @@ import express from "express";
 const router =express.Router()
 
 
-import {getTrainee} from "../controllers/adminController.js"
+import {getTrainee} from "../controllers/traineeController.js"
 
 
 router.get('/',getTrainee)
