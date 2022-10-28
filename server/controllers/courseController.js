@@ -14,7 +14,7 @@ const viewCoursesPrices = async (req, res) => {
 
     const coursesPrices = await course.find({}).select('title price')
 
-    res.status(200).json(allcourses)
+    res.status(200).json(coursesPrices)
 
 }
 
@@ -85,7 +85,7 @@ const viewCoursestitle = async (req, res) => {
 
 }
 
-
+//filter the courses given by him/her based on a subject or price
 const filterCoursesByInstructor = async (req, res) => {
 
     try {
