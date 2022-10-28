@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-//mongoose allows us to have some sort of uniformity: each post have to have these things
 
 const traineeSchema = mongoose.Schema({
     username: String,
@@ -17,11 +16,9 @@ const traineeSchema = mongoose.Schema({
 }, { timestamps: true }
 
 )
-
+ 
     ;
 
-const trainee = mongoose.model('Trainee', traineeSchema);
+const trainee = mongoose.model('trainee', traineeSchema);
 
 export default trainee;
-
-

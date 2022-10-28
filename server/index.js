@@ -11,6 +11,7 @@ import userRoutes from './routes/user.js';
 import courseRoutes from './routes/course.js';
 import adminRoutes from './routes/admin.js';
 import instructorRoutes from './routes/instructor.js';
+import traineeRoutes from './routes/trainee.js';
 
 
 /*
@@ -53,6 +54,8 @@ app.use('/course', courseRoutes);
 app.use('/admin',adminRoutes);
 
 app.use('/instructor', instructorRoutes);
+
+app.use('/trainee', traineeRoutes);
 
 
 app.get('/farah', (req, res) => {
