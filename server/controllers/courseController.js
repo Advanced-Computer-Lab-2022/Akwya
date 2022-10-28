@@ -145,7 +145,7 @@ const createCourse = async (req, res) => {
 
 //get all courses
 const getCourses = async (req, res) => {
-    const allcourses = await course.find({title:{ $regex:'.*'+'O'+'.*'} }).sort({ createdAt: -1 })
+    const allcourses = await course.find({}).sort({ createdAt: -1 })
 
     res.status(200).json(allcourses)
 }									

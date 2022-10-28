@@ -18,7 +18,7 @@ const CreateACourse = () => {
     const course = {title, subtitles, price, summary}
     
 
-    const respnse= await fetch('/instructor/createCourse', {
+    const respnse= await fetch('/course/', {
         method: 'POST',
         body: JSON.stringify(course) ,
         headers: {
@@ -35,7 +35,7 @@ const CreateACourse = () => {
     if(respnse.ok){
         console.log("new course added")
         Swal.fire({
-            title: 'New Instructor added!',
+            title: 'New Course added!',
             icon: 'success',
             confirmButtonColor: '#38a53e',
             confirmButtonText: 'OK'
