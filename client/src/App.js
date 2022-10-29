@@ -36,7 +36,7 @@ function App() {
               element={<User />}
             />
             <Route
-              path="/instructor"
+              path="/instructor/:id"
               element={<Instructor />}
             />
           </Routes>
