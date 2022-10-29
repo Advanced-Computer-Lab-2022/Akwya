@@ -19,7 +19,7 @@ return(
     <div>
         <h1>Explore Courses</h1>
         <ul>
-            {courses.map(course => <li key={course.id}>Title: {course.title} Price: {course.price} Total Hours: {course.totalHours} Rating: {course.ratings}</li>)}
+            {courses.map(course => <li key={course.id}>Title: {course.title} Price: {course.price} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
            
         </ul>
     </div>
