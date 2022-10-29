@@ -6,7 +6,6 @@ import bodyParser from 'body-parser'; // enables us to send post requests
 import mongoose from 'mongoose'; //to create models for our posts
 import cors from 'cors'; //enables cross-regional requests
 
-import postRoutes from './routes/post.js';
 import userRoutes from './routes/user.js';
 import courseRoutes from './routes/course.js';
 import adminRoutes from './routes/admin.js';
@@ -45,9 +44,8 @@ app.use((req, res, next) => {
 
 
 
-app.use('/posts', postRoutes); //y3ni every route inside of the post routes is going to start with post
 
-app.use('/user', userRoutes);
+app.use('/user', userRoutes); //y3ni every route inside of the userRoutes is going to start with /user
 
 app.use('/course', courseRoutes);
 
