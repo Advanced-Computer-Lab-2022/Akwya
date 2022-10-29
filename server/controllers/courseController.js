@@ -148,7 +148,7 @@ const createCourse = async (req, res) => {
 
 
     // const allcourses = await course.find({},{projection:{title:1 , totalHours : 1, ratings:1}})
-    const allcourses = await course.find({}).select('title price totalHours ratings')
+    // const allcourses = await course.find({}).select('title price totalHours ratings')
 
 
 //get all courses
