@@ -109,10 +109,11 @@ const createCourse = async (req, res) => {
         subtitles,
         price,
         summary,
-        // subject,
+        subject,
         // instructor,
-        // totalHours,
-        ratings,
+        totalHours,
+
+        rating,
         // reviews,
         // promotion,
         // promotionExpiry,
@@ -127,7 +128,10 @@ const createCourse = async (req, res) => {
             subtitles,
             price,
             summary,
-            ratings
+            subject,
+            totalHours,
+
+            rating
         });
         res.status(200).json(newCourse)
     } catch (error) {
@@ -141,6 +145,9 @@ const createCourse = async (req, res) => {
 
 
 
+
+    // const allcourses = await course.find({},{projection:{title:1 , totalHours : 1, ratings:1}})
+    // const allcourses = await course.find({}).select('title price totalHours ratings')
 
 
 //get all courses
