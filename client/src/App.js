@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import Admin from './pages/Admin';
 import User from './pages/User';
+import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
 
 import React from 'react';  
@@ -34,6 +35,10 @@ function App() {
             <Route
               path="/user"
               element={<User />}
+            />
+            <Route
+              path="/userCorporate"
+              element={<UserCorporate />}
             />
             <Route
               path="/instructor"

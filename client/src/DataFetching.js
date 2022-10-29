@@ -1,3 +1,5 @@
+// this data fetching is for the indiviudal trainee
+
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
 
