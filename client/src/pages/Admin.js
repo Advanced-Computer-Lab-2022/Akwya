@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import AddAdminForm from '../components/AddAdminForm'
-import AddTraineeForm from '../components/AddCorporateTrainee'
-import AddInstructorForm from '../components/AddInstructorForm'
+import AddAdmin from '../components/Admin/AddAdmin'
+import AddTrainee from '../components/Admin/AddCorporateTrainee'
+import AddInstructor from '../components/Admin/AddInstructor'
 
 
 const Admin = () => {
@@ -12,9 +12,9 @@ const Admin = () => {
         <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>
-        <AddAdminForm />
-        <AddInstructorForm />
-        <AddTraineeForm />
+        <AddAdmin />
+        <AddInstructor />
+        <AddTrainee />
       </div>
     )
   }
