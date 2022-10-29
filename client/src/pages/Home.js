@@ -11,7 +11,11 @@ const Home = () => {
       <Link to="/user">
           <h2>Go to User Page</h2>
         </Link>
+      <Link to="/instructor">
+          <h2>Go to Instructor Page</h2>
+        </Link>
     </div>
+    
     
   )
 }
