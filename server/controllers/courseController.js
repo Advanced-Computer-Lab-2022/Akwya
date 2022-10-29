@@ -109,8 +109,7 @@ const createCourse = async (req, res) => {
         subtitles,
         price,
         summary,
-        subject,
-        // instructor,
+        
         totalHours,
 
         ratings,
@@ -120,8 +119,8 @@ const createCourse = async (req, res) => {
         // previewVideo
         // certificate
     } = req.body
-    const instructor =req.params.id
-    console.log(instructor)
+     const instructor = req.params.id
+
 
     try {
         const newCourse = await course.create({
@@ -129,7 +128,8 @@ const createCourse = async (req, res) => {
             subtitles,
             price,
             summary,
-            subject,
+            
+            instructor,
             totalHours,
 
             ratings

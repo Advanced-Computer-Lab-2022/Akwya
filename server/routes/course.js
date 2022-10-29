@@ -16,7 +16,7 @@ router.get('/search/:title',searchCourse)
 
 router.get('/viewACourse/:titlee',viewACourse)
 
-router.post('/',createCourse)
+router.post('/:id',createCourse)
 
 // router.get('/',viewCourses)
 
