@@ -4,50 +4,47 @@ import Swal from "sweetalert2";
 
 //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
 const SearchACourse = () => {
-    console.log("here")
-
   const [search, setSearch] = useState(``);
   const [error, setError] = useState(null)
+  const [courses,setCourses] = useState([])
 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-
-    // const searchh = {search}
-    // body: JSON.stringify(course) ,
-
     
     const id = window.location.href.split('/').at(4);
     console.log(id)
-        const respnse= await fetch('localhost:9000/instructor/search/635c4eadbfebce1319c0b708/omar', {
-        method: 'GET'//,
-        // headers: {
-        //     'Content-Type' : 'application/json'
-        // }
+    console.log(search)
+
+    const response= await fetch('http://localhost:9000/instructor/search/'+id+'/'+search, {
+        method: 'GET'
     })
       
   
-    const json= await respnse.json()
+    const json= await response.json()
 
-    if(!respnse.ok){
+    if(!response.ok){
         setError(json.error)
     }
-    if(respnse.ok){
-        console.log("Your Search is here")
+    if(response.ok){
+        
+        setCourses(json)
 
-        Swal.fire({
-            title: 'Your Search is here!',
-            icon: 'success',
-            confirmButtonColor: '#38a53e',
-            confirmButtonText: 'OK'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              window.location.reload();
-            }
-          })  
-        setError(null)
-        setSearch('')
+        console.log("Your Search is here")
+        console.log(json)
+
+        // Swal.fire({
+        //     title: 'Your Search is here!',
+        //     icon: 'success',
+        //     confirmButtonColor: '#38a53e',
+        //     confirmButtonText: 'OK'
+        //   }).then((result) => {
+        //     if (result.isConfirmed) {
+        //       window.location.reload();
+        //     }
+        //   })  
+        // setError(null)
+        // setSearch('')
         
 
     } 
@@ -55,19 +52,25 @@ const SearchACourse = () => {
 
 
   return (
-    <form className="searchhh" onSubmit={handleSubmit}> 
+    <form className="search" onSubmit={handleSubmit}> 
 
     <label>Search in my Courses:</label>
     <input
       type='text'
-      className='search'
       onChange={e => setSearch(e.target.value)}
       placeholder='Search...'
+      value={search}
+
     />
     <button>Search</button>
       {error && <div className="error">{error}</div>}
-    </form>
-)
-}
 
-export default SearchACourse
+
+      <ul>
+      {courses.map(course => <li key={course.id}>Title: {course.title}  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+      </ul>
+
+    </form>
+  )}
+
+  export default SearchACourse 
