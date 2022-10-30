@@ -98,8 +98,7 @@ const viewACourseI = async (req, res) => {
 
 //view all the titles of the courses given by him/her
 const viewCoursestitleI = async (req, res) => {
-    const { instructorr } = req.params
-    const Coursestitles = await instructor.find({instructor:{$eq:instructorr}}).select('title')
+    const Coursestitles = await course.find({instructor:{$eq:req.params.id}}).select('title')
 
     res.status(200).json(Coursestitles)
 
@@ -147,6 +146,21 @@ const createCourseI = async (req, res) => {
     console.log("tmm")
 }
 
+
+//delete all instructors
+const deleteAllInstructors = async (req, res) => {
+
+    const badCourse2 = await instructor.deleteMany()
+    res.status(200).json("deleted all instructors")
+}
+
+
+
+
+
+
+
+
 //search for a course given by him/her based on course title or subject or instructor
 // const searchCoursee = async (req, res) => {
 
@@ -165,4 +179,4 @@ const createCourseI = async (req, res) => {
 
 
 
-export {getInstructors,viewCoursesI , viewCoursesPricesI ,filterCoursesOnSubjAndRatingI , filterCoursesByPriceI , searchCourseI ,viewACourseI , viewCoursestitleI , filterCoursesByInstructorI , createCourseI } 
+export {getInstructors,viewCoursesI , viewCoursesPricesI ,filterCoursesOnSubjAndRatingI , filterCoursesByPriceI , searchCourseI ,viewACourseI , viewCoursestitleI , filterCoursesByInstructorI , createCourseI, deleteAllInstructors } 
