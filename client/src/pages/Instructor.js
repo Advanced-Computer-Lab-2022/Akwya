@@ -2,6 +2,8 @@ import { useEffect,useState } from 'react'
 import { Link } from 'react-router-dom'
 import viewMyCourses from '../components/MyCourses.js'
 import CreateACourse from '../components/Instructor/CreateCourse.js'
+import DataFetching from '../DataFetching'
+
 
 
 const Instructor = () => {
@@ -25,6 +27,8 @@ const Instructor = () => {
         <CreateACourse/>
 
      </div>
+     <DataFetching/>
+
      </div>
 
     

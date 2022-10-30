@@ -112,7 +112,7 @@ const createCourse = async (req, res) => {
         
         totalHours,
 
-        ratings,
+        rating,
         // reviews,
         // promotion,
         // promotionExpiry,
@@ -132,7 +132,7 @@ const createCourse = async (req, res) => {
             instructor,
             totalHours,
 
-            ratings
+            rating
         });
         res.status(200).json(newCourse)
     } catch (error) {
