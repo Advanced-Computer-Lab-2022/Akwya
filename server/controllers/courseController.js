@@ -36,7 +36,7 @@ try {
 
 //filter the courses based on price (price can be FREE)
 const filterCoursesByPrice = async (req, res) => {
-    const {x,y} = req.params;
+    const {x,y} = req.body;
     const allcourses = await course.find({price: {$gt: x, $lt:y}}).sort({ createdAt: -1 })
 
 
@@ -109,8 +109,7 @@ const createCourse = async (req, res) => {
         subtitles,
         price,
         summary,
-        subject,
-        // instructor,
+        
         totalHours,
 
         rating,
@@ -120,6 +119,7 @@ const createCourse = async (req, res) => {
         // previewVideo
         // certificate
     } = req.body
+     const instructor = req.params.id
 
 
     try {
@@ -128,7 +128,8 @@ const createCourse = async (req, res) => {
             subtitles,
             price,
             summary,
-            subject,
+            
+            instructor,
             totalHours,
 
             rating
@@ -186,8 +187,14 @@ const deleteCourse = async (req, res) => {
 }
 
 
+//delete all courses
+const deleteAllCourses = async (req, res) => {
+
+    const badCourse2 = await course.deleteMany()
+    res.status(200).json("deleted all course")
+}
 
 
 
 //export
-export { createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating }
+export { createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses }

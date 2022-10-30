@@ -13,22 +13,26 @@ const CreateACourse = () => {
   const [totalHours, setTotalHours] = useState('')
   const [rating, setRating] = useState(0)
   const [error, setError] = useState(null)
+  const [id, setId] = useState('')
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const course = {title, subtitles, price, summary,totalHours,rating:0}
-    
 
-    const respnse= await fetch('/course/', {
+    const course = {title, subtitles, price, summary,totalHours,rating:0}
+
+    
+    const id = window.location.href
+    const respnse= await fetch(id, {
         method: 'POST',
         body: JSON.stringify(course) ,
         headers: {
             'Content-Type' : 'application/json'
         }
     })
-
-    console.log("hhh")
+      
+  
     const json= await respnse.json()
 
     if(!respnse.ok){

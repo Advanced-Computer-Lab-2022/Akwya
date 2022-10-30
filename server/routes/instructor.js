@@ -1,7 +1,7 @@
 import express from "express";
-import { viewCoursesPrices } from "../controllers/courseController.js";
+import { createCourse, viewCoursesPrices } from "../controllers/courseController.js";
 const router =express.Router()
-import {getInstructors, viewCoursesI , viewCoursesPricesI, filterCoursesOnSubjAndRatingI , filterCoursesByPriceI ,searchCourseI , viewACourseI , viewCoursestitleI , filterCoursesByInstructorI , createCourseI } from'../controllers/instructorController.js'
+import {getInstructors, viewCoursesI , viewCoursesPricesI, filterCoursesOnSubjAndRatingI , filterCoursesByPriceI ,searchCourseI , viewACourseI , viewCoursestitleI , filterCoursesByInstructorI , createCourseI, deleteAllInstructors } from'../controllers/instructorController.js'
 
 router.get('/',viewCoursesI)
 
@@ -25,7 +25,10 @@ router.get('/viewACourse', viewCoursestitleI )
 router.get('/filterCoursesByInstructor/:instructorr:]/:subjectt/:pricee',filterCoursesByInstructorI )
 
 
-router.post('/createCourse', createCourseI )
+router.post('/:id', createCourse )
+
+router.delete('/', deleteAllInstructors )
+
 
 
 //router.get('/searchCourse/:title',searchCoursee)

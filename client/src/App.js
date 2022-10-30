@@ -37,11 +37,12 @@ function App() {
               element={<User />}
             />
             <Route
+
               path="/userCorporate"
               element={<UserCorporate />}
             />
             <Route
-              path="/instructor"
+              path="/instructor/:id"
               element={<Instructor />}
             />
           </Routes>
