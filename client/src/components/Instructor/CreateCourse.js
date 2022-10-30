@@ -10,23 +10,29 @@ const CreateACourse = () => {
   const [subtitles, setSubtitles] = useState('')
   const [price, setPrice] = useState('')
   const [summary, setSummary] = useState('')
+  const [totalHours, setTotalHours] = useState('')
+  const [rating, setRating] = useState(0)
   const [error, setError] = useState(null)
+  const [id, setId] = useState('')
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const course = {title, subtitles, price, summary}
-    
 
-    const respnse= await fetch('/course/', {
+    const course = {title, subtitles, price, summary,totalHours,rating:0}
+
+    
+    const id = window.location.href
+    const respnse= await fetch(id, {
         method: 'POST',
         body: JSON.stringify(course) ,
         headers: {
             'Content-Type' : 'application/json'
         }
     })
-
-    console.log("hhh")
+      
+  
     const json= await respnse.json()
 
     if(!respnse.ok){
@@ -39,12 +45,18 @@ const CreateACourse = () => {
             icon: 'success',
             confirmButtonColor: '#38a53e',
             confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
           })  
         setError(null)
         setTitle('')
         setSubtitles('')
         setPrice('')
         setSummary('')
+        setTotalHours('')
+        
 
     } 
 }
@@ -64,7 +76,7 @@ const CreateACourse = () => {
         <br/>
       <label>Subtitles:</label>
       <input 
-        type="subtitles" 
+        type="text" 
         onChange={(e) => setSubtitles(e.target.value)} 
         value={subtitles}
       required/>
@@ -73,7 +85,7 @@ const CreateACourse = () => {
         <br/>
       <label>Price:</label>
       <input 
-        type="price" 
+        type="number" 
         onChange={(e) => setPrice(e.target.value)} 
         value={price}
       required/>
@@ -82,12 +94,19 @@ const CreateACourse = () => {
         <br/>
       <label>Summary:</label>
       <input 
-        type="summary" 
+        type="text" 
         onChange={(e) => setSummary(e.target.value)} 
         value={summary}
       required/>
         <br/>
 
+        <label>Total Hours:</label>
+      <input 
+        type="number" 
+        onChange={(e) => setTotalHours(e.target.value)} 
+        value={totalHours}
+      required/>
+        <br/>
 
       <button>Add New Course</button>
       {error && <div className="error">{error}</div>}

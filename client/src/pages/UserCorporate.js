@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
+import DisplayCourses from '../components/DisplayCourses'
 import DataFetching from '../DataFetching'
-import FilterFetching from '../components/user/FilterFetching'
 const User = () => {
 
     return (
@@ -11,8 +11,7 @@ const User = () => {
         </Link>
 
         
-        <DataFetching/>
-        <FilterFetching/>
+        <DisplayCourses/>
          
       </div>
     )

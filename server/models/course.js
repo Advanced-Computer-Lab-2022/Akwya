@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import instructor from './instructor.js';
 //mongoose allows us to have some sort of uniformity: each post have to have these things
 const courseSchema = mongoose.Schema({
 
@@ -7,9 +8,9 @@ const courseSchema = mongoose.Schema({
     price: Number,
     summary: String,
     subject: String,
-    instructor: String,
+    instructor: {type:mongoose.Types.ObjectId, ref: instructor},
     totalHours: Number,
-    ratings: Number,// [{ actualRating: Number, ratings: [{ rate: Number, ownerName: String, ownerID: Number }] }],
+    rating: Number,// [{ actualRating: Number, ratings: [{ rate: Number, ownerName: String, ownerID: Number }] }],
     // reviews: [{ review: { comment: String, ownerName: String, ownerID: Number } }],
     promotion: Number,
     promotionExpiry: Date
