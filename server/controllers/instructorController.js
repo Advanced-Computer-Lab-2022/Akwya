@@ -63,12 +63,10 @@ const filterCoursesByPriceI = async (req, res) => {
 }
 //search for a course based on course title or subject or instructor
 const searchCourseI = async (req, res) => {
-
-console.log("amdrerdtrdh")
     try {
         const search = req.params.search;
         
-        const objs = await instructor.find({$and:[{_id:{$eq:req.params.id}},{$or:[{username:{ $regex:'.*'+search+'.*'} }, {subject:{ $regex:'.*'+search+'.*'} }, {instructor:{ $regex:'.*'+search+'.*'} } ] }]});
+        const objs = await instructor.find({$and:[{_id:{$eq:req.params.id}},{$or:[{title:{ $regex:'.*'+search+'.*'} }, {subject:{ $regex:'.*'+search+'.*'} }, {instructor:{ $regex:'.*'+search+'.*'} } ] }]});
 
                 res.json(objs)
 
