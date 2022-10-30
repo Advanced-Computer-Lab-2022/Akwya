@@ -2,7 +2,7 @@ import { useEffect,useState } from 'react'
 import { Link } from 'react-router-dom'
 import viewMyCourses from '../components/MyCourses.js'
 import CreateACourse from '../components/Instructor/CreateCourse.js'
-
+import FilterCourse from '../components/Instructor/FilterCourses.js'
 
 const Instructor = () => {
 
@@ -23,6 +23,7 @@ const Instructor = () => {
         </div>
         {/* <viewMyCourses/> */}
         <CreateACourse/>
+        <FilterCourse/>
 
      </div>
      </div>
