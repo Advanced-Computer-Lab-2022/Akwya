@@ -27,15 +27,7 @@ return(
            
 
         </ul>
-        <h2> Filter By Price </h2>
-        <form className='filter'>
-        <input type="checkbox" handleChange={FilterFetching} id="range1" name="range1" value="range1"/>
-    <label for="range1"> 0-3000</label><br/>
-<input type="checkbox" id="range2" name="range2" value="range2"/>
-<label for="range2"> 3000-6000</label><br/>
-<input type="checkbox" id="range3" name="range3" value="range3"/>
-<label for="range3"> 6000+</label><br></br>
-</form>
+        
 
     </div>
 )
