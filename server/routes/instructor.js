@@ -16,7 +16,7 @@ router.get('/filterCoursesOnSubjAndRating/:id/:title',filterCoursesOnSubjAndRati
 //router.get('/filterCoursesByPrice/:x/:y', filterCoursesByPrice)
 router.get('/filterCoursesByPrice/:x/:y',  filterCoursesByPriceI)
 
-router.get('/search/:title',searchCourseI)
+router.get('/search/:id/:search',searchCourseI)
 
 router.get('/viewACourse/:titlee', viewACourseI)
 
