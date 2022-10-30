@@ -98,8 +98,7 @@ const viewACourseI = async (req, res) => {
 
 //view all the titles of the courses given by him/her
 const viewCoursestitleI = async (req, res) => {
-    const { instructorr } = req.params
-    const Coursestitles = await instructor.find({instructor:{$eq:instructorr}}).select('title')
+    const Coursestitles = await course.find({instructor:{$eq:req.params.id}}).select('title')
 
     res.status(200).json(Coursestitles)
 

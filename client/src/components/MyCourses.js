@@ -1,31 +1,33 @@
-// import react, {useState, useEffect} from 'react'
-// import axios from 'axios'
-// import instructor from '../../../server/models/instructor'
+import react, {useState, useEffect} from 'react'
+import axios from 'axios'
 
-// function viewMyCourses() {
-// const [courses,setCourses] = useState([])
+function ViewMyCourses() {
+const [courses,setCourses] = useState([])
 
-// useEffect(()=>{
-//     axios
-//     .get('http://localhost:9000/instructor/viewCoursestitleI')
-//     .then( res => {
-//         console.log(res)
-//         setCourses(res.data)
-//     })
-//     .catch(err=>{console.log(err)})
-// },[])
+const id = window.location.href.split('/').at(4);
 
 
-// return(
-//     <div>
-//         <h1>View My courses</h1>
-//         <ul>
-//             {courses.map(course => <li key={instructor.id}>Title: {course.title}</li>)}
+useEffect(()=>{
+    axios
+    .get('http://localhost:9000/instructor/viewCoursestitleI/'+id)
+    .then( res => {
+        console.log(res)
+        setCourses(res.data)
+    })
+    .catch(err=>{console.log(err)})
+},[])
+
+
+return(
+    <div>
+        <h1>View My courses</h1>
+        <ul>
+            {courses.map(course => <li key={course.id}>Title: {course.title}</li>)}
            
-//         </ul>
-//     </div>
-// )
-// }
+        </ul>
+    </div>
+)
+}
 
-// export default viewMyCourses 
+export default ViewMyCourses 
 

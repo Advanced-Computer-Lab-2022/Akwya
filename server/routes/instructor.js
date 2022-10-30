@@ -20,7 +20,7 @@ router.get('/search/:title',searchCourseI)
 
 router.get('/viewACourse/:titlee', viewACourseI)
 
-router.get('/viewACourse', viewCoursestitleI )
+router.get('/viewCoursestitleI/:id', viewCoursestitleI )
 
 router.get('/filterCoursesByInstructor/:instructorr:]/:subjectt/:pricee',filterCoursesByInstructorI )
 
