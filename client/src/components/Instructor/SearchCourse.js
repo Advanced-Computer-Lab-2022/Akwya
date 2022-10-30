@@ -16,6 +16,7 @@ const SearchACourse = () => {
     console.log(id)
     console.log(search)
 
+
     const response= await fetch('http://localhost:9000/instructor/search/'+id+'/'+search, {
         method: 'GET'
     })
@@ -23,12 +24,16 @@ const SearchACourse = () => {
   
     const json= await response.json()
 
+
     if(!response.ok){
         setError(json.error)
+
+        
     }
     if(response.ok){
         
         setCourses(json)
+        
 
         console.log("Your Search is here")
         console.log(json)
@@ -38,13 +43,9 @@ const SearchACourse = () => {
         //     icon: 'success',
         //     confirmButtonColor: '#38a53e',
         //     confirmButtonText: 'OK'
-        //   }).then((result) => {
-        //     if (result.isConfirmed) {
-        //       window.location.reload();
-        //     }
-        //   })  
-        // setError(null)
-        // setSearch('')
+        //   })
+        setError(null)
+        setSearch('')
         
 
     } 
@@ -60,6 +61,7 @@ const SearchACourse = () => {
       onChange={e => setSearch(e.target.value)}
       placeholder='Search...'
       value={search}
+      required
 
     />
     <button>Search</button>

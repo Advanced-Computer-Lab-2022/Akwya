@@ -66,7 +66,7 @@ const searchCourseI = async (req, res) => {
     try {
         const search = req.params.search;
         
-        const objs = await instructor.find({$and:[{_id:{$eq:req.params.id}},{$or:[{title:{ $regex:'.*'+search+'.*'} }, {subject:{ $regex:'.*'+search+'.*'} }, {instructor:{ $regex:'.*'+search+'.*'} } ] }]});
+        const objs = await course.find({$and:[{instructor:{$eq:req.params.id}},{$or:[{title:{ $regex:'.*'+search+'.*'} }, {subject:{ $regex:'.*'+search+'.*'} } ] }]});
 
                 res.json(objs)
 
