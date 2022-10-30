@@ -1,7 +1,7 @@
 import express from "express";
 import { createCourse, viewCoursesPrices } from "../controllers/courseController.js";
 const router =express.Router()
-import {getInstructors, viewCoursesI , viewCoursesPricesI, filterCoursesOnSubjAndRatingI , filterCoursesByPriceI ,searchCourseI , viewACourseI , viewCoursestitleI , filterCoursesByInstructorI , createCourseI, deleteAllInstructors } from'../controllers/instructorController.js'
+import {getInstructors, viewCoursesI , viewCoursesPricesI, filterCoursesOnSubjAndRatingI  ,searchCourseI , viewACourseI , viewCoursestitleI  , deleteAllInstructors,filterCoursesByPriceI, filterCoursesBySubjectI } from'../controllers/instructorController.js'
 
 router.get('/',viewCoursesI)
 
@@ -13,16 +13,15 @@ router.get('/viewCoursesPrices',viewCoursesPricesI)
 router.get('/filterCoursesOnSubjAndRating/:id/:title',filterCoursesOnSubjAndRatingI)
 
 
-//router.get('/filterCoursesByPrice/:x/:y', filterCoursesByPrice)
-router.get('/filterCoursesByPrice/:x/:y',  filterCoursesByPriceI)
-
 router.get('/search/:title',searchCourseI)
 
 router.get('/viewACourse/:titlee', viewACourseI)
 
 router.get('/viewCoursestitleI/:id', viewCoursestitleI )
 
-router.get('/filterCoursesByInstructor/:instructorr:]/:subjectt/:pricee',filterCoursesByInstructorI )
+router.get('/filterMyCoursesByPrice/:id',filterCoursesByPriceI)
+
+router.get('/filterMyCoursesBySubject/:id',filterCoursesBySubjectI)
 
 
 router.post('/:id', createCourse )

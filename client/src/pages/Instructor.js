@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import ViewMyCourses from '../components/MyCourses.js'
 import CreateACourse from '../components/Instructor/CreateCourse.js'
 import DataFetching from '../DataFetching'
+import FilterFetching from '../components/user/FilterFetching.js'
+import FilterFetchingI from '../components/Instructor/FilterFetchingI.js'
+import FilterFetchingISubject from '../components/Instructor/FilterFetchingISubject.js'
 
 
 
@@ -24,11 +27,14 @@ const Instructor = () => {
         
         </div>
         <ViewMyCourses/>
+        <FilterFetchingI/>
+        <FilterFetchingISubject/>
+
         <CreateACourse/>
 
      </div>
      <DataFetching/>
-
+     <FilterFetching/>
      </div>
 
     

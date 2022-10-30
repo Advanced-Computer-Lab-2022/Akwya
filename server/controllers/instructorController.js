@@ -53,14 +53,8 @@ const filterCoursesOnSubjAndRatingI = async (req, res) => {
 
 
 
-//filter the courses based on price (price can be FREE)
-const filterCoursesByPriceI = async (req, res) => {
-    const {x,y} = req.params;
-    const allcourses = await instructor.find({price: {$gt: x, $lt:y}}).sort({ createdAt: -1 })
 
 
-    res.status(200).json(allcourses)
-}
 //search for a course based on course title or subject or instructor
 const searchCourseI = async (req, res) => {
 
@@ -104,21 +98,29 @@ const viewCoursestitleI = async (req, res) => {
 
 }
 
-//filter the courses given by him/her based on a subject or price
-const filterCoursesByInstructorI = async (req, res) => {
+//filter the courses given by him/her based on a subject
+const filterCoursesBySubjectI = async (req, res) => {
+    
+    const Coursestitles = await course.find({$and:[{instructor:{$eq:req.params.id}},{subject:req.query.subject}]})
 
-    try {
-        const {instructorr,subjectt,pricee} = req.params;
-        const objs = await instructor.find({$or:[{instructor:{ $eq: instructorr} }, {subject:{$eq: subjectt} },{price:{$eq: pricee} }] });
-    
-        res.json(objs)
-    
-    } catch (error) {
-        res.json({message: error});   
-    
-    
+    res.status(200).json(Coursestitles)
+
+}
+
+
+
+//filter the courses given by him/her based on price
+const filterCoursesByPriceI = async (req, res) => {
+    let range={}
+    if(req.query.price)
+    {
+        range= {price:req.query.price.split(',')}
     }
-    }
+    const Coursestitles = await course.find({$and:[{instructor:{$eq:req.params.id}},{price: {$gt: range.price[0], $lt:range.price[1]}}]})
+
+    res.status(200).json(Coursestitles)
+
+}
 
   //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
 
@@ -179,4 +181,4 @@ const deleteAllInstructors = async (req, res) => {
 
 
 
-export {getInstructors,viewCoursesI , viewCoursesPricesI ,filterCoursesOnSubjAndRatingI , filterCoursesByPriceI , searchCourseI ,viewACourseI , viewCoursestitleI , filterCoursesByInstructorI , createCourseI, deleteAllInstructors } 
+export {getInstructors,viewCoursesI , viewCoursesPricesI ,filterCoursesOnSubjAndRatingI , filterCoursesByPriceI , searchCourseI ,viewACourseI , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI } 
