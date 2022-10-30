@@ -45,6 +45,10 @@ const CreateACourse = () => {
             icon: 'success',
             confirmButtonColor: '#38a53e',
             confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
           })  
         setError(null)
         setTitle('')
