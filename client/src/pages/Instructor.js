@@ -4,6 +4,14 @@ import ViewMyCourses from '../components/MyCourses.js'
 import CreateACourse from '../components/Instructor/CreateCourse.js'
 import SearchACourse from '../components/Instructor/SearchCourse.js'
 import DataFetching from '../DataFetching'
+import FilterFetching from '../components/user/FilterFetching.js'
+import FilterFetchingI from '../components/Instructor/FilterFetchingI.js'
+import FilterFetchingISubject from '../components/Instructor/FilterFetchingISubject.js'
+
+import UserSearchCourse from '../components/user/UserSearchCourse'
+
+import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject.js'
+
 
 
 
@@ -26,11 +34,17 @@ const Instructor = () => {
         </div>
         <SearchACourse/>
         <ViewMyCourses/>
+        <FilterFetchingI/>
+        <FilterFetchingISubject/>
+        <FilterByRatingAndSubject/>
+
         <CreateACourse/>
 
      </div>
+     <br/>
+     <UserSearchCourse/>
      <DataFetching/>
-
+     <FilterFetching/>
      </div>
 
     

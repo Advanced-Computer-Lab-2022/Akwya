@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 
 
 //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
-const SearchACourse = () => {
+const UserSearchCourse = () => {
   const [search, setSearch] = useState(``);
   const [error, setError] = useState(null)
   const [courses,setCourses] = useState([])
@@ -17,7 +17,7 @@ const SearchACourse = () => {
     console.log(search)
 
 
-    const response= await fetch('http://localhost:9000/instructor/search/'+id+'/'+search, {
+    const response= await fetch('http://localhost:9000/course/search/'+search, {
         method: 'GET'
     })
       
@@ -55,7 +55,7 @@ const SearchACourse = () => {
   return (
     <form className="search" onSubmit={handleSubmit}> 
 
-    <label>Search in my Courses:</label>
+    <label>Search in All Courses:</label>
     <input
       type='text'
       onChange={e => setSearch(e.target.value)}
@@ -75,4 +75,4 @@ const SearchACourse = () => {
     </form>
   )}
 
-  export default SearchACourse 
+  export default UserSearchCourse 

@@ -36,8 +36,13 @@ try {
 
 //filter the courses based on price (price can be FREE)
 const filterCoursesByPrice = async (req, res) => {
-    const {x,y} = req.body;
-    const allcourses = await course.find({price: {$gt: x, $lt:y}}).sort({ createdAt: -1 })
+    let range={}
+    if(req.query.price)
+    {
+        range= {price:req.query.price.split(',')}
+        console.log(range.price[0])
+    }
+    const allcourses = await course.find({price: {$gt: range.price[0], $lt:range.price[1]}}).sort({ createdAt: -1 })
 
 
     res.status(200).json(allcourses)
@@ -47,21 +52,16 @@ const filterCoursesByPrice = async (req, res) => {
 //search for a course based on course title or subject or instructor
 
 const searchCourse = async (req, res) => {
-
     try {
-        const findname = req.params.title;
-        const objs = await course.find({$or:[{title:{ $regex:'.*'+findname+'.*'} }, {subject:{ $regex:'.*'+findname+'.*'} }, {instructor:{ $regex:'.*'+findname+'.*'} } ] });
+        const search = req.params.search;
+        
+        const objs = await course.find({$or:[{title:{ $regex:'.*'+search+'.*'} }, {subject:{ $regex:'.*'+search+'.*'} } ] });
 
                 res.json(objs)
 
     } catch (error) {
-        res.json({message: error});   
-        // console.log(findname)
-
-
+        res.json({message: error}); }
     }
-}
-
 //"choose a course from the results and view (but not open) its details including course subtitles, excercises , total hours of each subtitle, total hours of the course and price (including % discount if applicable) according to the country selected"
 
 const viewACourse = async (req, res) => {
@@ -109,7 +109,7 @@ const createCourse = async (req, res) => {
         subtitles,
         price,
         summary,
-        
+        subject,
         totalHours,
 
         rating,
@@ -128,7 +128,7 @@ const createCourse = async (req, res) => {
             subtitles,
             price,
             summary,
-            
+            subject,
             instructor,
             totalHours,
 
