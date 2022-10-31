@@ -8,17 +8,18 @@ import User from './pages/User';
 import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
-import HandleCurrency from './Country'
+
 import React from 'react';  
 import CountryDropdown from 'country-dropdown-with-flags-for-react';  
 
+let GlobalCountry = "United Kingdom";
 
 function App() {
 
   return (
     <div className="App">
 
-      <CountryDropdown  id="UNIQUE_ID" className='YOUR_CSS_CLASS' preferredCountries={['gb', 'us','eg']}  value="" handleChange={e => HandleCurrency(e)}></CountryDropdown>   
+      <CountryDropdown  id="UNIQUE_ID" className='YOUR_CSS_CLASS' preferredCountries={['gb', 'us','eg']}  value="" handleChange={e => GlobalCountry = e.target.value}></CountryDropdown>   
 
 
       <BrowserRouter>

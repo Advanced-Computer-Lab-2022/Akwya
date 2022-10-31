@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const { exchangeRates } = require('exchange-rates-api');
 
-const HandleCurrency = async (e) => {
+const HandleCurrency = async () => {
 
     const [courses,setCourses] = useState([])
 

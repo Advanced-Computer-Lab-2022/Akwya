@@ -3,8 +3,8 @@
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
 import FilterFetching from './components/user/FilterFetching'
-
-function DataFetching() {
+import GlobalCountry from './App.js'
+async function DataFetching() {
 const [courses,setCourses] = useState([])
 
 useEffect(()=>{
@@ -16,6 +16,8 @@ useEffect(()=>{
     })
     .catch(err=>{console.log(err)})
 },[])
+const { exchangeRates } = require('exchange-rates-api');
+const rate = await exchangeRates().latest().symbols('USD').fetch();   
 
 
 return(
@@ -23,7 +25,7 @@ return(
         <h1>Explore Courses</h1>
         <ul>
 
-            {courses.map(course => <li key={course.id}>Title: {course.title} Price: {course.price} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+            {courses.map(course => <li key={course.id}>Title: {course.title} Price: {(course.price * rate)} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
            
 
         </ul>
