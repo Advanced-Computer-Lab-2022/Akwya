@@ -67,7 +67,7 @@ const searchCourse = async (req, res) => {
     }
 }
 
-//"choose a course from the results and view (but not open) its details including course subtitles, excercises , total hours of each subtitle, total hours of the course and price (including % discount if applicable) according to the country selected"
+//choose a course from the results and view (but not open) its details including course subtitles, excercises , total hours of each subtitle, total hours of the course and price (including % discount if applicable) according to the country selected
 
 const viewACourse = async (req, res) => {
 

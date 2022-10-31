@@ -1,34 +1,36 @@
-//ELSHAGHAAALL
+
 
 
 import { useState, useEffect } from 'react';
 import Swal from "sweetalert2";
-import axios from 'axios';
-//import course from '../../../../server/models/course';
+//import axios from 'axios';
+
 
 //choose a course from the results and view (but not open) its details including course subtitles, excercises , total hours of each subtitle, total hours of the course and price 
 //(including % discount if applicable) according to the country selected
 
 const ChooseACourse = () => {
   const [courses,setCourses] = useState([])
-  //const [choose, setChoose] = useState(``);
+  //const [title,setTitle] = useState('')
   
-    
-   
-   
-   //const handleSubmit=??
-    
+
     //BACKEND FUNCTION  viewACourse/:titlee  
 
     const handleSubmit = async (e) => {
-      
-
+     
+ 
     e.preventDefault()
 
-    const id = window.location.href.split('/').at(4);
+    const title = window.location.href.split('/').at(4);
+    //console.log(title)
+    //'?subject='+subject
+    
 
-    const response= await fetch('http://localhost:9000/instructor/viewACourse/'+id, {
-        method: 'GET'
+    const response= await fetch('http://localhost:9000/instructor/viewACourse'+'/'+title, {
+      method: 'GET',
+      headers: {
+          'Content-Type' : 'application/json'
+      }
     })
 
 
@@ -36,21 +38,19 @@ const ChooseACourse = () => {
 
 
     if(response.ok){
-        
-        setCourses(json)
-        
+      console.log(json) 
+      setCourses(json)
+      //setTitle('')
 
         console.log("AYTEENNN")
-        console.log(json)
+        
 
-        
-        //setChoose('')
-        
+
 
     } 
-}
-    
+     //setTitle('')
 
+}
     
 
     return (
@@ -67,11 +67,6 @@ const ChooseACourse = () => {
   
       </form>
     )}
-
-          
-    
-           
-  
 
 
 
