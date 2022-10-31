@@ -25,16 +25,28 @@ const filterCoursesBySubjectI = async (req, res) => {
 
 //filter the courses given by him/her based on price
 const filterCoursesByPriceI = async (req, res) => {
+
     let range={}
     if(req.query.price)
     {
         range= {price:req.query.price.split(',')}
-    }
+    
     const Coursestitles = await course.find({$and:[{instructor:{$eq:req.params.id}},{price: {$gt: range.price[0], $lt:range.price[1]}}]})
 
     res.status(200).json(Coursestitles)
 
 }
+//search for a course based on course title or subject or instructor
+const searchCourseI = async (req, res) => {
+    try {
+        const search = req.params.search;
+        
+        const objs = await course.find({$and:[{instructor:{$eq:req.params.id}},{$or:[{title:{ $regex:'.*'+search+'.*'} }, {subject:{ $regex:'.*'+search+'.*'} } ] }]});
+
+                res.json(objs)
+
+    } catch (error) {
+        res.json({message: error}); }
 
   //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
 
