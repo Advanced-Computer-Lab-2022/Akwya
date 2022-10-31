@@ -12,7 +12,7 @@ router.get('/filterCoursesByPrice', filterCoursesByPrice)
 
 router.get('/', getCourses)
 
-router.get('/search/:title',searchCourse)
+router.get('/search/:search',searchCourse)
 
 router.get('/viewACourse/:titlee',viewACourse)
 
