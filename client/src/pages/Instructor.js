@@ -4,6 +4,7 @@ import ViewMyCourses from '../components/MyCourses.js'
 import CreateACourse from '../components/Instructor/CreateCourse.js'
 import SearchACourse from '../components/Instructor/SearchCourse.js'
 import DataFetching from '../DataFetching'
+import ChooseACourse from '../components/Instructor/ChooseCourse'
 
 
 
@@ -25,13 +26,20 @@ const Instructor = () => {
         
         </div>
         <SearchACourse/>
+          
         <ViewMyCourses/>
         <CreateACourse/>
+       
 
      </div>
      <DataFetching/>
+     
+     
+     
+    
 
      </div>
+
 
     
   )}
