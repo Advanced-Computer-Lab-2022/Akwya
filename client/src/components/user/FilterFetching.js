@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 // let priceQuery='?price='
-function FilterFetching(){
+function FilterFetching(props){
 
 const [courses,setCourses] = useState([])
 const [LB,setLB] = useState(0)
@@ -42,6 +42,22 @@ if(respnse.ok){
 //     .catch(err=>{console.log(err)})
 // },[])
 
+let rate = 2;
+let currency = 'GBP'
+switch(props.country) {
+    case 'United States':
+      rate = 1.1;
+      currency = 'USD';
+      break;
+    case 'Egypt (‫مصر‬‎)':
+    // case 'Egypt':
+      rate=20;
+      currency = 'EGP';
+      break;
+    default:
+      // rate = 3;
+  }
+
 return(
     <div>
     <h3> Filter All Courses By Price </h3>
@@ -72,7 +88,7 @@ return(
 
 
 
-{courses.map(course => <li key={course.id}>Title: {course.title} Price: {course.price} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+{courses.map(course => <li key={course.id}>Title: {course.title} Price: {(Math.round(course.price * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
 
         
     </div>

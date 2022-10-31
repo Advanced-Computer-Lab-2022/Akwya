@@ -5,7 +5,7 @@ import axios from 'axios'
 import FilterFetching from './components/user/FilterFetching'
 import GlobalCountry from './App.js'
 //async
-function DataFetching() {
+function DataFetching(props) {
 const [courses,setCourses] = useState([])
 
 useEffect(()=>{
@@ -20,27 +20,30 @@ useEffect(()=>{
 
 // const { exchangeRates } = require('exchange-rates-api');
 // const rate = await exchangeRates().latest().symbols('USD').fetch(); 
-let rate = 2;
 // console.log(GlobalCountry);
+  let rate = 2;
+  let currency = 'GBP'
+  switch(props.country) {
+      case 'United States':
+        rate = 1.1;
+        currency = 'USD';
+        break;
+      case 'Egypt (‫مصر‬‎)':
+      // case 'Egypt':
+        rate=20;
+        currency = 'EGP';
+        break;
+      default:
+        // rate = 3;
+    }
+  
 
-switch(GlobalCountry) {
-    case 'United States':
-      rate = 1.1;
-      break;
-    // case 'Egypt (‫مصر‬‎)':
-    case 'Egypt':
-      rate=20;
-      break;
-    default:
-      // code block
-      rate = 2;
-  }
 return(
     <div>
         <h1>Explore Courses</h1>
         <ul>
 
-            {courses.map(course => <li key={course.id}>Title: {course.title} Price: {course.price * rate} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+            {courses.map(course => <li key={course.id}>Title: {course.title} Price: {(Math.round(course.price * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
            
 
         </ul>
