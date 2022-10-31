@@ -6,7 +6,7 @@ import UserSearchCourse from '../components/user/UserSearchCourse'
 
 import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject'
 
-const User = () => {
+const User = (props) => {
 
     return (
       <div className="user">
@@ -17,9 +17,9 @@ const User = () => {
 
         <UserSearchCourse/>
         
-        <DataFetching/>
-        <FilterFetching/>
-        <FilterByRatingAndSubject/>
+        <DataFetching country={props.country}/>
+        <FilterFetching country={props.country}/>
+        <FilterByRatingAndSubject country={props.country}/>
          
       </div>
     )
