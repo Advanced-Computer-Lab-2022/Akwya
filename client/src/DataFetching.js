@@ -3,7 +3,8 @@
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
 import FilterFetching from './components/user/FilterFetching'
-
+import GlobalCountry from './App.js'
+//async
 function DataFetching() {
 const [courses,setCourses] = useState([])
 
@@ -17,13 +18,29 @@ useEffect(()=>{
     .catch(err=>{console.log(err)})
 },[])
 
+// const { exchangeRates } = require('exchange-rates-api');
+// const rate = await exchangeRates().latest().symbols('USD').fetch(); 
+let rate = 2;
+// console.log(GlobalCountry);
 
+switch(GlobalCountry) {
+    case 'United States':
+      rate = 1.1;
+      break;
+    // case 'Egypt (‫مصر‬‎)':
+    case 'Egypt':
+      rate=20;
+      break;
+    default:
+      // code block
+      rate = 2;
+  }
 return(
     <div>
         <h1>Explore Courses</h1>
         <ul>
 
-            {courses.map(course => <li key={course.id}>Title: {course.title} Price: {course.price} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+            {courses.map(course => <li key={course.id}>Title: {course.title} Price: {course.price * rate} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
            
 
         </ul>
