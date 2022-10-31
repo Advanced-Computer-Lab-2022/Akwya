@@ -7,7 +7,11 @@ import DataFetching from '../DataFetching'
 import FilterFetching from '../components/user/FilterFetching.js'
 import FilterFetchingI from '../components/Instructor/FilterFetchingI.js'
 import FilterFetchingISubject from '../components/Instructor/FilterFetchingISubject.js'
+
 import UserSearchCourse from '../components/user/UserSearchCourse'
+
+import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject.js'
+
 
 
 
@@ -32,6 +36,7 @@ const Instructor = () => {
         <ViewMyCourses/>
         <FilterFetchingI/>
         <FilterFetchingISubject/>
+        <FilterByRatingAndSubject/>
 
         <CreateACourse/>
 
