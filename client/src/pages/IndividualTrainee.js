@@ -1,21 +1,24 @@
 import { Link } from 'react-router-dom'
-import DisplayCourses from '../components/DisplayCourses'
-import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject'
-import DataFetching from '../DataFetching'
+import DataFetching from '../components/DataFetching.js'
+import FilterFetching from '../components/user/FilterFetching'
+
 import UserSearchCourse from '../components/user/UserSearchCourse'
+
+import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject'
 
 const User = () => {
 
     return (
-      <div className="user">
+      <div className="individualTrainee">
         <h2>User Page</h2>
         <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>
 
         <UserSearchCourse/>
-
-        <DisplayCourses/>
+        
+        <DataFetching/>
+        <FilterFetching/>
         <FilterByRatingAndSubject/>
          
       </div>

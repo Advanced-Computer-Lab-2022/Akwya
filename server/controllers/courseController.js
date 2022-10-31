@@ -66,8 +66,10 @@ const searchCourse = async (req, res) => {
 
 const viewACourse = async (req, res) => {
 
-    const { titlee } = req.params
-    const objs = await course.find({title:{$eq:titlee} });
+    const { x } = req.params
+    console.log(x)
+    const objs = await course.find({_id:x});
+    console.log(objs)
 
     if (!objs) {
         return res.status(404).json({ error: " No such Course" })
@@ -159,7 +161,7 @@ const getCourses = async (req, res) => {
 }									
 
 
-//get a course
+//get a course by iddddddd
 const getACourse = async (req, res) => {
     const { id } = req.params
 
@@ -197,4 +199,4 @@ const deleteAllCourses = async (req, res) => {
 
 
 //export
-export { createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses }
+export { getACourse,createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses }

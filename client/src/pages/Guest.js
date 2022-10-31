@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import DataFetching from '../DataFetching'
-import UserSearchCourse from '../components/user/UserSearchCourse'
+import DataFetching from '../components/DataFetching.js'
+import UserSearchCourse from '../components/user/UserSearchCourse.js'
 
 const User = () => {
 

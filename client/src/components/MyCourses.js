@@ -1,5 +1,6 @@
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
+import ChooseACourse from '../components/user/ChooseCourse.js'
 
 function ViewMyCourses() {
 const [courses,setCourses] = useState([])
@@ -22,9 +23,13 @@ return(
     <div>
         <h1>View My courses</h1>
         <ul>
-            {courses.map(course => <li key={course.id}>Title: {course.title}</li>)}
-           
+            {courses.map(course => <li key={course.id}>Title: {course.title}   <ChooseACourse call parentfunction={() => ChooseACourse(course.id)}/>
+      
+        </li>
+            )}
+
         </ul>
+
     </div>
 )
 }

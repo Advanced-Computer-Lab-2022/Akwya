@@ -2,7 +2,7 @@
 
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
-import FilterFetching from './components/user/FilterFetching'
+import ChooseACourse from '../components/user/ChooseCourse.js'
 
 function DataFetching() {
 const [courses,setCourses] = useState([])
@@ -21,12 +21,15 @@ useEffect(()=>{
 return(
     <div>
         <h1>Explore Courses</h1>
-        <ul>
 
-            {courses.map(course => <li key={course.id}>Title: {course.title} Price: {course.price} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
-           
+        <ul>
+            {courses.map(course => <li key={course.id}>Title: {course.title}  Price: {course.price} Total Hours: {course.totalHours} Rating: {course.rating} <ChooseACourse call parentfunction={() => ChooseACourse(course.id)}/>
+        </li>
+            )}
 
         </ul>
+
+       
         
 
     </div>
