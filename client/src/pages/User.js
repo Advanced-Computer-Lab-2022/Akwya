@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
 import DataFetching from '../DataFetching'
 import FilterFetching from '../components/user/FilterFetching'
+
+import UserSearchCourse from '../components/user/UserSearchCourse'
+
 import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject'
+
 const User = () => {
 
     return (
@@ -11,6 +15,7 @@ const User = () => {
           <h2>Go to Home Page</h2>
         </Link>
 
+        <UserSearchCourse/>
         
         <DataFetching/>
         <FilterFetching/>

@@ -48,7 +48,10 @@ const searchCourseI = async (req, res) => {
                 res.json(objs)
 
     } catch (error) {
-        res.json({message: error}); }}
+
+        res.json({message: error}); }
+    }
+
 
   //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
 
@@ -106,4 +109,5 @@ const filterCoursesByRatingAndSubject = async (req, res) => {
 }
 
 
-export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI, filterCoursesByRatingAndSubject } 
+export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI, filterCoursesByRatingAndSubject, searchCourseI } 
+
