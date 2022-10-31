@@ -5,7 +5,9 @@ import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import Admin from './pages/Admin';
 import User from './pages/User';
+import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
+import Guest from './pages/Guest'
 
 import React from 'react';  
 import CountryDropdown from 'country-dropdown-with-flags-for-react';  
@@ -36,8 +38,17 @@ function App() {
               element={<User />}
             />
             <Route
-              path="/instructor"
+
+              path="/userCorporate"
+              element={<UserCorporate />}
+            />
+            <Route
+              path="/instructor/:id"
               element={<Instructor />}
+            />
+            <Route
+              path="/guest"
+              element={<Guest />}
             />
           </Routes>
         </div>

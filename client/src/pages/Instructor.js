@@ -1,7 +1,13 @@
 import { useEffect,useState } from 'react'
 import { Link } from 'react-router-dom'
-import viewMyCourses from '../components/MyCourses.js'
+import ViewMyCourses from '../components/MyCourses.js'
 import CreateACourse from '../components/Instructor/CreateCourse.js'
+import SearchACourse from '../components/Instructor/SearchCourse.js'
+import DataFetching from '../DataFetching'
+import FilterFetching from '../components/user/FilterFetching.js'
+import FilterFetchingI from '../components/Instructor/FilterFetchingI.js'
+import FilterFetchingISubject from '../components/Instructor/FilterFetchingISubject.js'
+
 
 
 const Instructor = () => {
@@ -21,10 +27,16 @@ const Instructor = () => {
       <div className="courses">
         
         </div>
-        {/* <viewMyCourses/> */}
+        <SearchACourse/>
+        <ViewMyCourses/>
+        <FilterFetchingI/>
+        <FilterFetchingISubject/>
+
         <CreateACourse/>
 
      </div>
+     <DataFetching/>
+     <FilterFetching/>
      </div>
 
     

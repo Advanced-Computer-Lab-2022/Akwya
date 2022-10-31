@@ -1,5 +1,8 @@
+// this data fetching is for the indiviudal trainee
+
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
+import FilterFetching from './components/user/FilterFetching'
 
 function DataFetching() {
 const [courses,setCourses] = useState([])
@@ -19,9 +22,13 @@ return(
     <div>
         <h1>Explore Courses</h1>
         <ul>
+
             {courses.map(course => <li key={course.id}>Title: {course.title} Price: {course.price} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
            
+
         </ul>
+        
+
     </div>
 )
 }

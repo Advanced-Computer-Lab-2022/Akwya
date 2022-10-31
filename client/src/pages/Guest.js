@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom'
+import DisplayCourses from '../components/DisplayCourses'
 import DataFetching from '../DataFetching'
-import FilterFetching from '../components/user/FilterFetching'
 const User = () => {
 
     return (
-      <div className="user">
-        <h2>User Page</h2>
+      <div className="guest">
+        <h2>Guest Page</h2>
         <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>
 
         
-        <DataFetching/>
-        <FilterFetching/>
+        <DisplayCourses/>
          
       </div>
     )
