@@ -7,6 +7,7 @@ import Admin from './pages/Admin';
 import User from './pages/User';
 import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
+import Guest from './pages/Guest'
 
 import React from 'react';  
 import CountryDropdown from 'country-dropdown-with-flags-for-react';  
@@ -44,6 +45,10 @@ function App() {
             <Route
               path="/instructor/:id"
               element={<Instructor />}
+            />
+            <Route
+              path="/guest"
+              element={<Guest />}
             />
           </Routes>
         </div>

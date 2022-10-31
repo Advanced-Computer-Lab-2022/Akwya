@@ -36,6 +36,7 @@ const filterCoursesByPriceI = async (req, res) => {
     res.status(200).json(Coursestitles)
 
 }
+}
 //search for a course based on course title or subject or instructor
 const searchCourseI = async (req, res) => {
     try {
@@ -47,6 +48,7 @@ const searchCourseI = async (req, res) => {
 
     } catch (error) {
         res.json({message: error}); }
+    }
 
   //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
 
