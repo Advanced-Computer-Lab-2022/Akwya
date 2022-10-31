@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 // let priceQuery='?price='
-function FilterFetching(props){
+function FilterFetchingI(props){
 
 const [courses,setCourses] = useState([])
 const [LB,setLB] = useState(0)
@@ -11,8 +11,9 @@ const [UB,setUB] = useState(1000000)
 
 const handleSubmit = async (e) => {
     e.preventDefault()
+    const id = window.location.href.split('/').at(4);
 
-const respnse= await fetch('http://localhost:9000/course/filterCoursesByPrice?price='+LB+','+UB, {
+const respnse= await fetch('http://localhost:9000/instructor/filterMyCoursesByPrice/'+id +'?price='+LB+','+UB, {
     method: 'GET',
     headers: {
         'Content-Type' : 'application/json'
@@ -24,24 +25,12 @@ if(!respnse.ok){
     console.log(json.error)
 }
 if(respnse.ok){
-    console.log("new admin added")
     setCourses(json)
      
     }
     setUB=(100000)
     setLB=(0)
 }
-// useEffect(()=>{
-//     axios
-//     .get('http://localhost:9000/course/filterCoursesByPrice'+"?price=3000,9000")
-//     .then( res => {
-//         console.log(res)
-//         console.log("testing")
-//         setCourses(res.data)
-//     })
-//     .catch(err=>{console.log(err)})
-// },[])
-
 let rate = 1;
 let currency = 'GBP'
 switch(props.country) {
@@ -60,7 +49,7 @@ switch(props.country) {
 
 return(
     <div>
-    <h3> Filter All Courses By Price </h3>
+    <h3> Filter My Courses By Price </h3>
 
     <form className="filter" onSubmit={handleSubmit}> 
       <h3>Filter Ranges</h3>
@@ -100,4 +89,4 @@ return(
 
 
 
-export default FilterFetching 
+export default FilterFetchingI 

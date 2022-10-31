@@ -3,16 +3,16 @@ import axios from 'axios'
 
 
 // let priceQuery='?price='
-function FilterFetching(props){
+function FilterByRatingAndSubject(props){
 
 const [courses,setCourses] = useState([])
-const [LB,setLB] = useState(0)
-const [UB,setUB] = useState(1000000)
+const [subject,setSubject] = useState('')
+const [rating,setRating] = useState(0)
 
 const handleSubmit = async (e) => {
     e.preventDefault()
 
-const respnse= await fetch('http://localhost:9000/course/filterCoursesByPrice?price='+LB+','+UB, {
+const respnse= await fetch('http://localhost:9000/instructor/filterCoursesByRatingAndSubject?subjectAndRating='+subject+','+rating, {
     method: 'GET',
     headers: {
         'Content-Type' : 'application/json'
@@ -24,24 +24,13 @@ if(!respnse.ok){
     console.log(json.error)
 }
 if(respnse.ok){
-    console.log("new admin added")
+   console.log(json)
     setCourses(json)
      
     }
-    setUB=(100000)
-    setLB=(0)
+    setSubject('')
+    setRating(0)
 }
-// useEffect(()=>{
-//     axios
-//     .get('http://localhost:9000/course/filterCoursesByPrice'+"?price=3000,9000")
-//     .then( res => {
-//         console.log(res)
-//         console.log("testing")
-//         setCourses(res.data)
-//     })
-//     .catch(err=>{console.log(err)})
-// },[])
-
 let rate = 1;
 let currency = 'GBP'
 switch(props.country) {
@@ -60,27 +49,26 @@ switch(props.country) {
 
 return(
     <div>
-    <h3> Filter All Courses By Price </h3>
+    <h3> Filter My Courses By Rating and Subject </h3>
 
     <form className="filter" onSubmit={handleSubmit}> 
-      <h3>Filter Ranges</h3>
 
-      <label>Lower bound</label>
+      <label>Subject</label>
       <input 
-        type="number" 
-        onChange={(e) => setLB(e.target.value)} 
-        value={LB}
-        required
+        type="text" 
+        onChange={(e) => setSubject(e.target.value)} 
+        value={subject}
+        
       />
-        <br/>
-      <label>Upper Bound</label>
+       
+       <label>Rating</label>
       <input 
-        type="number" 
-        onChange={(e) => setUB(e.target.value)} 
-        value={UB}
-      required/>
-        <br/>
-
+        type="Number" 
+        onChange={(e) => setRating(e.target.value)} 
+        value={rating}
+        
+      />
+       
 
       <button>view results</button>
     </form>
@@ -100,4 +88,4 @@ return(
 
 
 
-export default FilterFetching 
+export default FilterByRatingAndSubject 

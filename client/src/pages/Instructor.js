@@ -4,11 +4,16 @@ import ViewMyCourses from '../components/MyCourses.js'
 import CreateACourse from '../components/Instructor/CreateCourse.js'
 import SearchACourse from '../components/Instructor/SearchCourse.js'
 import DataFetching from '../DataFetching'
-import ChooseACourse from '../components/Instructor/ChooseCourse'
+
+
+import UserSearchCourse from '../components/user/UserSearchCourse'
+
+import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject.js'
 
 
 
-const Instructor = () => {
+
+const Instructor = (props) => {
 
  
   return (
@@ -28,15 +33,14 @@ const Instructor = () => {
         <SearchACourse/>
           
         <ViewMyCourses/>
+        <FilterFetchingI  country={props.country}/>
+        <FilterFetchingISubject  country={props.country}/>
+        <FilterByRatingAndSubject  country={props.country}/>
+
         <CreateACourse/>
        
 
      </div>
-     <DataFetching/>
-     
-     
-     
-    
 
      </div>
 

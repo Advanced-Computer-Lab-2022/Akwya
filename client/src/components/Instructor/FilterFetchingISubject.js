@@ -3,16 +3,17 @@ import axios from 'axios'
 
 
 // let priceQuery='?price='
-function FilterFetching(props){
+function FilterFetchingISubject(props){
 
 const [courses,setCourses] = useState([])
-const [LB,setLB] = useState(0)
-const [UB,setUB] = useState(1000000)
+const [subject,setSubject] = useState('')
+
 
 const handleSubmit = async (e) => {
     e.preventDefault()
+    const id = window.location.href.split('/').at(4);
 
-const respnse= await fetch('http://localhost:9000/course/filterCoursesByPrice?price='+LB+','+UB, {
+const respnse= await fetch('http://localhost:9000/instructor/filterMyCoursesBySubject/'+id +'?subject='+subject, {
     method: 'GET',
     headers: {
         'Content-Type' : 'application/json'
@@ -24,24 +25,12 @@ if(!respnse.ok){
     console.log(json.error)
 }
 if(respnse.ok){
-    console.log("new admin added")
+   console.log(json)
     setCourses(json)
      
     }
-    setUB=(100000)
-    setLB=(0)
+    setSubject('')
 }
-// useEffect(()=>{
-//     axios
-//     .get('http://localhost:9000/course/filterCoursesByPrice'+"?price=3000,9000")
-//     .then( res => {
-//         console.log(res)
-//         console.log("testing")
-//         setCourses(res.data)
-//     })
-//     .catch(err=>{console.log(err)})
-// },[])
-
 let rate = 1;
 let currency = 'GBP'
 switch(props.country) {
@@ -60,26 +49,18 @@ switch(props.country) {
 
 return(
     <div>
-    <h3> Filter All Courses By Price </h3>
+    <h3> Filter My Courses By Subject </h3>
 
     <form className="filter" onSubmit={handleSubmit}> 
-      <h3>Filter Ranges</h3>
 
-      <label>Lower bound</label>
+      <label>Subject</label>
       <input 
-        type="number" 
-        onChange={(e) => setLB(e.target.value)} 
-        value={LB}
+        type="text" 
+        onChange={(e) => setSubject(e.target.value)} 
+        value={subject}
         required
       />
-        <br/>
-      <label>Upper Bound</label>
-      <input 
-        type="number" 
-        onChange={(e) => setUB(e.target.value)} 
-        value={UB}
-      required/>
-        <br/>
+       
 
 
       <button>view results</button>
@@ -100,4 +81,4 @@ return(
 
 
 
-export default FilterFetching 
+export default FilterFetchingISubject 
