@@ -109,7 +109,7 @@ const createCourse = async (req, res) => {
         subtitles,
         price,
         summary,
-        
+        subject,
         totalHours,
 
         rating,
@@ -128,7 +128,7 @@ const createCourse = async (req, res) => {
             subtitles,
             price,
             summary,
-            
+            subject,
             instructor,
             totalHours,
 
