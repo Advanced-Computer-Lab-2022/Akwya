@@ -90,4 +90,4 @@ const deleteAllInstructors = async (req, res) => {
 
 
 
-export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI } 
+export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,searchCourseI } 

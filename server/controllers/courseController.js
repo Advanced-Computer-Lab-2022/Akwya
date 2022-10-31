@@ -52,21 +52,16 @@ const filterCoursesByPrice = async (req, res) => {
 //search for a course based on course title or subject or instructor
 
 const searchCourse = async (req, res) => {
-
     try {
-        const findname = req.params.title;
-        const objs = await course.find({$or:[{title:{ $regex:'.*'+findname+'.*'} }, {subject:{ $regex:'.*'+findname+'.*'} }, {instructor:{ $regex:'.*'+findname+'.*'} } ] });
+        const search = req.params.search;
+        
+        const objs = await course.find({$or:[{title:{ $regex:'.*'+search+'.*'} }, {subject:{ $regex:'.*'+search+'.*'} } ] });
 
                 res.json(objs)
 
     } catch (error) {
-        res.json({message: error});   
-        // console.log(findname)
-
-
+        res.json({message: error}); }
     }
-}
-
 //"choose a course from the results and view (but not open) its details including course subtitles, excercises , total hours of each subtitle, total hours of the course and price (including % discount if applicable) according to the country selected"
 
 const viewACourse = async (req, res) => {
