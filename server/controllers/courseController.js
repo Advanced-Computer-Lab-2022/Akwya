@@ -36,8 +36,13 @@ try {
 
 //filter the courses based on price (price can be FREE)
 const filterCoursesByPrice = async (req, res) => {
-    const {x,y} = req.body;
-    const allcourses = await course.find({price: {$gt: x, $lt:y}}).sort({ createdAt: -1 })
+    let range={}
+    if(req.query.price)
+    {
+        range= {price:req.query.price.split(',')}
+        console.log(range.price[0])
+    }
+    const allcourses = await course.find({price: {$gt: range.price[0], $lt:range.price[1]}}).sort({ createdAt: -1 })
 
 
     res.status(200).json(allcourses)
