@@ -10,6 +10,7 @@ const CreateACourse = () => {
   const [price, setPrice] = useState('')
   const [summary, setSummary] = useState('')
   const [totalHours, setTotalHours] = useState('')
+  const [subject, setSubject] = useState('')
   const [rating, setRating] = useState(0)
   const [error, setError] = useState(null)
   const [id, setId] = useState('')
@@ -19,7 +20,7 @@ const CreateACourse = () => {
     e.preventDefault()
 
 
-    const course = {title, subtitles, price, summary,totalHours,rating:0}
+    const course = {title, subtitles, price, summary,totalHours,rating:0,subject}
 
     
     const id = window.location.href
@@ -55,6 +56,7 @@ const CreateACourse = () => {
         setPrice('')
         setSummary('')
         setTotalHours('')
+        setSubject('')
         
 
     } 
@@ -81,7 +83,6 @@ const CreateACourse = () => {
       required/>
         <br/>
 
-        <br/>
       <label>Price:</label>
       <input 
         type="number" 
@@ -90,7 +91,6 @@ const CreateACourse = () => {
       required/>
         <br/>
 
-        <br/>
       <label>Summary:</label>
       <input 
         type="text" 
@@ -104,6 +104,14 @@ const CreateACourse = () => {
         type="number" 
         onChange={(e) => setTotalHours(e.target.value)} 
         value={totalHours}
+      required/>
+        <br/>
+
+        <label>Subject:</label>
+      <input 
+        type="text" 
+        onChange={(e) => setSubject(e.target.value)} 
+        value={subject}
       required/>
         <br/>
 
