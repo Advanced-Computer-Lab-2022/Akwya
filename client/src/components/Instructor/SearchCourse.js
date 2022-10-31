@@ -68,7 +68,7 @@ const SearchACourse = () => {
       {error && <div className="error">{error}</div>}
 
 
-      <ul>
+      <ul> 
       {courses.map(course => <li key={course.id}>Title: {course.title}  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
       </ul>
 
