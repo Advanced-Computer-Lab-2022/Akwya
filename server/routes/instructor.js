@@ -1,21 +1,9 @@
 import express from "express";
-import { createCourse, viewCoursesPrices } from "../controllers/courseController.js";
+import { createCourse } from "../controllers/courseController.js";
 const router =express.Router()
-import {getInstructors, viewCoursesI , viewCoursesPricesI, filterCoursesOnSubjAndRatingI  ,searchCourseI , viewACourseI , viewCoursestitleI  , deleteAllInstructors,filterCoursesByPriceI, filterCoursesBySubjectI } from'../controllers/instructorController.js'
-
-router.get('/',viewCoursesI)
-
-router.get('/getInstructors',getInstructors)
+import { viewCoursestitleI  , deleteAllInstructors,filterCoursesByPriceI, filterCoursesBySubjectI } from'../controllers/instructorController.js'
 
 
-router.get('/viewCoursesPrices',viewCoursesPricesI)
-
-router.get('/filterCoursesOnSubjAndRating/:id/:title',filterCoursesOnSubjAndRatingI)
-
-
-router.get('/search/:title',searchCourseI)
-
-router.get('/viewACourse/:titlee', viewACourseI)
 
 router.get('/viewCoursestitleI/:id', viewCoursestitleI )
 
