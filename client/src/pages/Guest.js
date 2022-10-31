@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import DataFetching from '../DataFetching'
 import UserSearchCourse from '../components/user/UserSearchCourse'
 
-const User = () => {
+const User = (props) => {
 
     return (
       <div className="guest">
@@ -13,7 +13,7 @@ const User = () => {
         <UserSearchCourse/>
 
         
-        <DataFetching/>
+        <DataFetching country={props.country}/>
          
       </div>
     )
