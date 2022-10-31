@@ -1,6 +1,7 @@
 //import instructor from '../models/instructor.js';
 import instructor from "../models/instructor.js"
 import course from "../models/course.js"
+import e from "express"
 
 
 
@@ -47,8 +48,10 @@ const searchCourseI = async (req, res) => {
                 res.json(objs)
 
     } catch (error) {
+
         res.json({message: error}); }
     }
+
 
   //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
 
@@ -86,8 +89,25 @@ const deleteAllInstructors = async (req, res) => {
 
 
 
+//filter by rating
+const filterCoursesByRatingAndSubject = async (req, res) => {
+    let range={}
+    let Coursestitles={}
+    if(req.query.subjectAndRating)
+    {
+        range= {subjectAndRating:req.query.subjectAndRating.split(',')}}
+
+    if(range.subjectAndRating[0]==''){
+         Coursestitles = await course.find({rating:range.subjectAndRating[1]})
+    
+}
+    else{
+         Coursestitles = await course.find({$and:[{rating:range.subjectAndRating[1]},{subject: range.subjectAndRating[0]}]})
+    }
+    res.status(200).json(Coursestitles)
+
+}
 
 
+export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI, filterCoursesByRatingAndSubject, searchCourseI } 
 
-
-export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,searchCourseI } 

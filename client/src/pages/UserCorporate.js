@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import DisplayCourses from '../components/DisplayCourses'
+import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject'
 import DataFetching from '../DataFetching'
 import UserSearchCourse from '../components/user/UserSearchCourse'
 
@@ -15,6 +16,7 @@ const User = () => {
         <UserSearchCourse/>
 
         <DisplayCourses/>
+        <FilterByRatingAndSubject/>
          
       </div>
     )
