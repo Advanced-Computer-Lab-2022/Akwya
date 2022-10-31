@@ -31,16 +31,16 @@ if(respnse.ok){
     setSubject('')
     setRating(0)
 }
-let rate = 2;
+let rate = 1;
 let currency = 'GBP'
 switch(props.country) {
     case 'United States':
-      rate = 1.1;
+      rate = 1.15;
       currency = 'USD';
       break;
     case 'Egypt (‫مصر‬‎)':
     // case 'Egypt':
-      rate=20;
+      rate=27.85;
       currency = 'EGP';
       break;
     default:

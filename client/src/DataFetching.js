@@ -8,6 +8,24 @@ import GlobalCountry from './App.js'
 function DataFetching(props) {
 const [courses,setCourses] = useState([])
 
+// const currAPI = 'e5S8BPucZd5LyU2ojp34DR5mUOXZhvEC'
+// var myHeaders = new Headers();
+// myHeaders.append("apikey", "{currAPI}");
+
+// let to = 'JPY'
+// let from = 'GBP'
+// let amount = 700
+// var requestOptions = {
+//   method: 'GET',
+//   redirect: 'follow',
+//   headers: myHeaders
+// };
+
+// fetch("https://api.apilayer.com/exchangerates_data/convert?to={to}&from={from}&amount={amount}", requestOptions)
+//   .then(response => response.text())
+//   .then(result => console.log(result))
+//   .catch(error => console.log('error', error));
+
 useEffect(()=>{
     axios
     .get('http://localhost:9000/course/')
@@ -21,16 +39,16 @@ useEffect(()=>{
 // const { exchangeRates } = require('exchange-rates-api');
 // const rate = await exchangeRates().latest().symbols('USD').fetch(); 
 // console.log(GlobalCountry);
-  let rate = 2;
+  let rate = 1;
   let currency = 'GBP'
   switch(props.country) {
       case 'United States':
-        rate = 1.1;
+        rate = 1.15;
         currency = 'USD';
         break;
       case 'Egypt (‫مصر‬‎)':
       // case 'Egypt':
-        rate=20;
+        rate=27.85;
         currency = 'EGP';
         break;
       default:
