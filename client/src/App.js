@@ -11,6 +11,8 @@ import Guest from './pages/Guest'
 
 import React from 'react';  
 import CountryDropdown from 'country-dropdown-with-flags-for-react';  
+import Course from './pages/Course';
+import CourseI from './pages/CourseI';
 
 
 function App() {
@@ -49,6 +51,22 @@ function App() {
             <Route
               path="/guest"
               element={<Guest />}
+            />
+            <Route
+              path="/guest/:id"
+              element={<Course />}
+            />
+            <Route
+              path="/user/:id"
+              element={<Course />}
+            />
+            <Route
+              path="/userCorporate/:id"
+              element={<Course />}
+            />
+            <Route
+              path="/instructor/:id/:id"
+              element={<CourseI />}
             />
           </Routes>
         </div>
