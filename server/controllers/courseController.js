@@ -67,7 +67,7 @@ const searchCourse = async (req, res) => {
 const viewACourse = async (req, res) => {
 
     const { titlee } = req.params
-    const objs = await course.find({title:{$eq:titlee} });
+    const objs = await course.find({_id:{$eq:titlee} });
 
     if (!objs) {
         return res.status(404).json({ error: " No such Course" })

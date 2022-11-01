@@ -3,6 +3,9 @@
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
 import FilterFetching from './components/user/FilterFetching'
+import { Link } from 'react-router-dom'
+
+
 import GlobalCountry from './App.js'
 //async
 function DataFetching(props) {
@@ -61,7 +64,8 @@ return(
         <h1>Explore Courses</h1>
         <ul>
 
-            {courses.map(course => <li key={course.id}>Title: {course.title} Price: {(Math.round(course.price * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+        {courses.map(course => <li key={course.id}>Title: <Link to={{pathname:course._id}}><h2>{course.title}</h2></Link> Price: {(Math.round(course.price * rate) + ' ' + currency)}  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+
            
 
         </ul>

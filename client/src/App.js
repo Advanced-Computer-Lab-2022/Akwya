@@ -13,6 +13,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
 import CountryDropdown from 'country-dropdown-with-flags-for-react';  
+import Course from './pages/Course';
+import CourseI from './pages/CourseI';
 
 let GlobalCountry = 'United Kingdom';
 
@@ -71,6 +73,22 @@ function App() {
             <Route
               path="/guest"
               element={<Guest country={country}/>}
+            />
+            <Route
+              path="/guest/:id"
+              element={<Course />}
+            />
+            <Route
+              path="/user/:id"
+              element={<Course />}
+            />
+            <Route
+              path="/userCorporate/:id"
+              element={<Course />}
+            />
+            <Route
+              path="/instructor/:id/:id"
+              element={<CourseI />}
             />
           </Routes>
         </div>
