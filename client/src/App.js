@@ -76,19 +76,19 @@ function App() {
             />
             <Route
               path="/guest/:id"
-              element={<Course />}
+              element={<Course country={country}/>}
             />
             <Route
               path="/user/:id"
-              element={<Course />}
+              element={<Course country={country}/>}
             />
             <Route
               path="/userCorporate/:id"
-              element={<Course />}
+              element={<Course country={country}/>}
             />
             <Route
               path="/instructor/:id/:id"
-              element={<CourseI />}
+              element={<CourseI country={country}/>}
             />
           </Routes>
         </div>
