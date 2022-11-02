@@ -64,7 +64,7 @@ return(
         <h1>Explore Courses</h1>
         <ul>
 
-        {courses.map(course => <li key={course.id}>Title: <Link to={{pathname:course._id}}><h2>{course.title}</h2></Link> Price: {(Math.round(course.price * rate) + ' ' + currency)}  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+        {courses.map(course => <li key={course._id}>Title: <Link to={{pathname:course._id}}><h2>{course.title}</h2></Link> Price: {(Math.round(course.price * rate) + ' ' + currency)}  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
 
            
 

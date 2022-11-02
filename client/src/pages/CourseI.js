@@ -3,7 +3,7 @@ import DataFetching from '../DataFetching'
 import UserSearchCourse from '../components/user/UserSearchCourse'
 import MyCourseI from '../components/Instructor/GetASingleCourse'
 
-const Course = () => {
+const Course = (props) => {
 
     return (
       <div className="guest">
@@ -12,7 +12,7 @@ const Course = () => {
           <h2>Go to Home Page</h2>
         </Link>
 
-        <MyCourseI />
+        <MyCourseI country={props.country}/>
 
          
       </div>
