@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
 import DataFetching from '../DataFetching'
+import FilterFetching from '../components/user/FilterFetching'
+
 import UserSearchCourse from '../components/user/UserSearchCourse'
+
+import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject'
 
 const User = (props) => {
 
@@ -14,7 +18,8 @@ const User = (props) => {
 
         
         <DataFetching country={props.country}/>
-         
+        <FilterFetching country={props.country}/>
+        <FilterByRatingAndSubject country={props.country}/>         
       </div>
     )
   }

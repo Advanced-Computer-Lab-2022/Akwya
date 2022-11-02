@@ -42,7 +42,7 @@ const Instructor = (props) => {
 
      </div>
      <br/>
-     <UserSearchCourse/>
+     <UserSearchCourse country={props.country}/>
      <DataFetching country={props.country}/>
      <FilterFetching  country={props.country}/>
      </div>

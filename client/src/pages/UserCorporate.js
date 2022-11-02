@@ -3,6 +3,7 @@ import DisplayCourses from '../components/DisplayCourses'
 import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject'
 import DataFetching from '../DataFetching'
 import UserSearchCourse from '../components/user/UserSearchCourse'
+import SearchCourseCorporate from '../components/user/SearchCourseCorporate'
 
 const User = () => {
 
@@ -13,7 +14,7 @@ const User = () => {
           <h2>Go to Home Page</h2>
         </Link>
 
-        <UserSearchCourse/>
+        <SearchCourseCorporate/>
 
         <DisplayCourses/>
         <FilterByRatingAndSubject/>
