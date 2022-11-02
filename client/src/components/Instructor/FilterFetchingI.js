@@ -1,5 +1,7 @@
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+
 
 
 // let priceQuery='?price='
@@ -77,7 +79,7 @@ return(
 
 
 
-{courses.map(course => <li key={course._id}>Title: {course.title} Price: {(Math.round(course.price * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+{courses.map(course => <li key={course._id}><Link to={{pathname:course._id}}><h2>{course.title}</h2></Link> Price: {(Math.round(course.price * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
 
         
     </div>
