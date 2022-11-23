@@ -15,7 +15,7 @@ import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAnd
 
 
 
-const Instructor = () => {
+const Instructor = (props) => {
 
  
   return (
@@ -34,17 +34,17 @@ const Instructor = () => {
         </div>
         <SearchACourse/>
         <ViewMyCourses/>
-        <FilterFetchingI/>
-        <FilterFetchingISubject/>
-        <FilterByRatingAndSubject/>
+        <FilterFetchingI  country={props.country}/>
+        <FilterFetchingISubject  country={props.country}/>
+        <FilterByRatingAndSubject  country={props.country}/>
 
         <CreateACourse/>
 
      </div>
      <br/>
-     <UserSearchCourse/>
-     <DataFetching/>
-     <FilterFetching/>
+     <UserSearchCourse country={props.country}/>
+     <DataFetching country={props.country}/>
+     <FilterFetching  country={props.country}/>
      </div>
 
     

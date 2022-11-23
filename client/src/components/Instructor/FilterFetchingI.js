@@ -1,9 +1,11 @@
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+
 
 
 // let priceQuery='?price='
-function FilterFetchingI(){
+function FilterFetchingI(props){
 
 const [courses,setCourses] = useState([])
 const [LB,setLB] = useState(0)
@@ -31,6 +33,21 @@ if(respnse.ok){
     setUB=(100000)
     setLB=(0)
 }
+let rate = 1;
+let currency = 'GBP'
+switch(props.country) {
+    case 'United States':
+      rate = 1.15;
+      currency = 'USD';
+      break;
+    case 'Egypt (‫مصر‬‎)':
+    // case 'Egypt':
+      rate=27.85;
+      currency = 'EGP';
+      break;
+    default:
+      // rate = 3;
+  }
 
 return(
     <div>
@@ -62,7 +79,7 @@ return(
 
 
 
-{courses.map(course => <li key={course.id}>Title: {course.title} Price: {course.price} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+{courses.map(course => <li key={course._id}><Link to={{pathname:course._id}}><h2>{course.title}</h2></Link> Price: {(Math.round(course.price * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
 
         
     </div>

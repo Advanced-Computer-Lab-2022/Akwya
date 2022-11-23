@@ -1,9 +1,11 @@
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+
 
 
 // let priceQuery='?price='
-function FilterByRatingAndSubject(){
+function FilterByRatingAndSubject(props){
 
 const [courses,setCourses] = useState([])
 const [subject,setSubject] = useState('')
@@ -31,6 +33,21 @@ if(respnse.ok){
     setSubject('')
     setRating(0)
 }
+let rate = 1;
+let currency = 'GBP'
+switch(props.country) {
+    case 'United States':
+      rate = 1.15;
+      currency = 'USD';
+      break;
+    case 'Egypt (‫مصر‬‎)':
+    // case 'Egypt':
+      rate=27.85;
+      currency = 'EGP';
+      break;
+    default:
+      // rate = 3;
+  }
 
 return(
     <div>
@@ -61,7 +78,7 @@ return(
 
 
 
-{courses.map(course => <li key={course.id}>Title: {course.title} Price: {course.price} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+{courses.map(course => <li key={course._id}><Link to={{pathname:course._id}}><h2>{course.title}</h2></Link> Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
 
         
     </div>

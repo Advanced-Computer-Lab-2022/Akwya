@@ -2,8 +2,9 @@ import { useState } from 'react'
 import Swal from "sweetalert2";
 
 
+
 //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
-const SearchACourse = () => {
+const SearchCourseCorporate = () => {
   const [search, setSearch] = useState(``);
   const [error, setError] = useState(null)
   const [courses,setCourses] = useState([])
@@ -17,7 +18,7 @@ const SearchACourse = () => {
     console.log(search)
 
 
-    const response= await fetch('http://localhost:9000/instructor/search/'+id+'/'+search, {
+    const response= await fetch('http://localhost:9000/course/search/'+search, {
         method: 'GET'
     })
       
@@ -55,7 +56,7 @@ const SearchACourse = () => {
   return (
     <form className="search" onSubmit={handleSubmit}> 
 
-    <label>Search in my Courses:</label>
+    <label>Search in All Courses:</label>
     <input
       type='text'
       onChange={e => setSearch(e.target.value)}
@@ -69,10 +70,10 @@ const SearchACourse = () => {
 
 
       <ul>
-      {courses.map(course => <li key={course._id}>Title: {course.title}  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+      {courses.map(course => <li key={course._id}> Title: {course.title} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
       </ul>
 
     </form>
   )}
 
-  export default SearchACourse 
+  export default SearchCourseCorporate 
