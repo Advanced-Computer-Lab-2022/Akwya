@@ -1,72 +1,35 @@
-
-// import * as React from 'react';
-// import Box from '@mui/material/Box';
-// import Card from '@mui/material/Card';
-// import card from '../DataFetching';
-
-// const bull = (
-//   <Box
-//     component="span"
-//     sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-//   >
-//     •
-//   </Box>
-// );
-
-// // const card = (
-// //   <React.Fragment>
-// //     <CardContent>
-  
-// //       <Typography variant="h5" component="div">
-// //       <DataFetching/>
-// //       </Typography>
-// //       <Typography sx={{ mb: 1.5 }} color="text.secondary">
-// //         CSEN704
-// //       </Typography>
-// //       <Typography variant="body2">
-// //         Price: 20LE  -hard coded
-// //         <br />
-// //         Subject: Computer Science
-// //       </Typography>
-// //     </CardContent>
-// //     <CardActions>
-// //       <Button size="small">learn More</Button>
-// //     </CardActions>
-// //   </React.Fragment>
-// // );
-
-// export default function OutlinedCard() {
-//   return (
-//     <Box sx={{ minWidth: 275 }}>
-//       <Card variant="outlined">{card}</Card>
-//     </Box>
-//   );
-// }
-
-// // const DisplayCourses = ()=> {
-
-// //     const Coursenames = ['Course 1', 'Course 2', 'Course 3']
-
-// //     return (
-// //       <div>
-// //        Explore Courses
-// //         <ul>
-// //           {Coursenames.map((Coursename) => (
-// //             <li>{Coursename}</li>
-// //           ))}
-// //         </ul>
-// //       </div>
-// //     );
-// // }
-// // export default DisplayCourses
+// this data fetching is for the indiviudal trainee
 
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Button from '@mui/material/Button';
+import Table from '@mui/material/Table';
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';  
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 
-function DataFetching() {
+//async
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+ 
+function DisplayCourses() {
 const [courses,setCourses] = useState([])
+
 
 useEffect(()=>{
     axios
@@ -78,17 +41,58 @@ useEffect(()=>{
     .catch(err=>{console.log(err)})
 },[])
 
+  
 
 return(
     <div>
         <h1>Explore Courses</h1>
-        <ul>
-            {courses.map(course => <li key={course._id}>Title: {course.title}  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+        
+        <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell align="center">Title</StyledTableCell>
+            <StyledTableCell align="center">Total hours</StyledTableCell>
+            <StyledTableCell align="center">Rating</StyledTableCell>
+
+
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {courses.map((course) => (
+            <TableRow
+            hover
+            sx={{
+                "&:hover":{
+                cursor: "pointer",
+                backgroundColor: "#f5f5f5",
+                width: "100%"
+                }
+            }}
            
-        </ul>
-    </div>
+              >
+              <TableCell align="center"><Link to={{pathname:course._id}}><h2>{course.title}</h2></Link></TableCell>
+              <TableCell align="center">{course.totalHours}</TableCell>
+              <TableCell align="center">{course.rating}</TableCell>
+
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+          
+        </div>
+                
+       // {courses.map(course => <li key={course._id}>Title: <Link to={{pathname:course._id}}><h2>{course.title}</h2></Link> Price: {(Math.round(course.price * rate) + ' ' + currency)}  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+
+           
+
+        
+        
+
+   
 )
 }
 
-export default DataFetching 
+export default DisplayCourses 
 

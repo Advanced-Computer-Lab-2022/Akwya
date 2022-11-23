@@ -15,7 +15,6 @@ const User = () => {
         </Link>
 
         <SearchCourseCorporate/>
-
         <DisplayCourses/>
         <FilterByRatingAndSubject/>
          
