@@ -2,6 +2,7 @@
 import instructor from "../models/instructor.js"
 import course from "../models/course.js"
 import e from "express"
+import video from "../models/videos.js"
 
 
 
@@ -109,5 +110,39 @@ const filterCoursesByRatingAndSubject = async (req, res) => {
 }
 
 
-export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI, filterCoursesByRatingAndSubject, searchCourseI } 
+const addVideo = async (req, res) => {
+    const { title,
+        url,
+        summary,
+        totalHours
+    } = req.body;
+
+const courseID = req.params.courseID
+
+    try {
+        const newVideo = await video.create({
+            title,
+            url,
+            courseID,
+            summary,
+            totalHours,
+        });
+        res.status(200).json(newVideo)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+
+    console.log("tmm")
+}
+
+const viewVideos = async (req, res) => {
+    const Coursestitles = await video.find({courseID:{$eq:req.params.courseID}})
+
+    res.status(200).json(Coursestitles)
+
+}
+
+
+export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos} 
 
