@@ -29,6 +29,10 @@ const Instructor = (props) => {
           <h2>Go to Home Page</h2>
         </Link>
        <h1>Hello Instructor</h1>
+
+       <Link to="/ViewProfileInstructor">
+          <h3>View My Profile</h3>
+       </Link>
       <div className="courses">
         
         </div>
