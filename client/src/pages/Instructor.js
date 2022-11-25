@@ -7,6 +7,7 @@ import DataFetching from '../DataFetching'
 import FilterFetching from '../components/user/FilterFetching.js'
 import FilterFetchingI from '../components/Instructor/FilterFetchingI.js'
 import FilterFetchingISubject from '../components/Instructor/FilterFetchingISubject.js'
+import CreateAQuiz from '../components/Instructor/CreateAQuiz.js'
 
 import UserSearchCourse from '../components/user/UserSearchCourse'
 
@@ -39,13 +40,23 @@ const Instructor = (props) => {
         <FilterByRatingAndSubject  country={props.country}/>
 
         <CreateACourse/>
+        <CreateAQuiz/>
+
 
      </div>
      <br/>
      <UserSearchCourse country={props.country}/>
      <DataFetching country={props.country}/>
      <FilterFetching  country={props.country}/>
+     
+
+     
      </div>
+
+
+
+
+     
 
     
   )}
