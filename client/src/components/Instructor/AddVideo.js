@@ -1,5 +1,6 @@
-import { useState } from 'react'
 import Swal from "sweetalert2";
+import react, {useState, useEffect} from 'react'
+import axios from 'axios'
 
 
 //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
@@ -11,6 +12,22 @@ const AddVideo = () => {
   const [totalHours, setTotalHours] = useState(0)
 
   const [error, setError] = useState(null)
+
+
+  const [instructor,setInstructor] = useState([])
+    
+  const ID = window.location.href.split('/').at(5);
+  const instructorID = window.location.href.split('/').at(4);
+
+  useEffect(()=>{
+    axios
+    .get(`http://localhost:9000/instructor/CanViewVideos/${ID}/${instructorID}`)
+    .then( res => {
+        console.log(res)
+        setInstructor(res.data)
+    })
+    .catch(err=>{console.log(err)})
+},[])
 
 
   const handleSubmit = async (e) => {
@@ -31,6 +48,8 @@ const AddVideo = () => {
       
   
     const json= await respnse.json()
+
+    
 
     if(!respnse.ok){
         setError(json.error)
@@ -55,6 +74,12 @@ const AddVideo = () => {
     } 
 }
 
+if(JSON.stringify(instructor).length==2){
+    // console.log(JSON.stringify(instructor).length+" instructor ");
+    // console.log(instructorID+" instructor id from url");
+    
+    return;
+}
 
   return (
     <form className="create" onSubmit={handleSubmit}> 

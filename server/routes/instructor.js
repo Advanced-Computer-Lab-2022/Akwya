@@ -1,7 +1,7 @@
 import express from "express";
 import { createCourse } from "../controllers/courseController.js";
 const router =express.Router()
-import { searchCourseI, viewCoursestitleI  , deleteAllInstructors,filterCoursesByPriceI, filterCoursesBySubjectI, filterCoursesByRatingAndSubject, addVideo ,viewVideos,viewEmail ,editEmail} from'../controllers/instructorController.js'
+import { searchCourseI, viewCoursestitleI  , deleteAllInstructors,filterCoursesByPriceI, filterCoursesBySubjectI, filterCoursesByRatingAndSubject, addVideo ,viewVideos,viewEmail ,editEmail, CanViewVideos} from'../controllers/instructorController.js'
 
 
 router.get('/viewCoursestitleI/:id', viewCoursestitleI )
@@ -23,6 +23,8 @@ router.delete('/', deleteAllInstructors )
 router.post('/addVideo/:courseID', addVideo )
 
 router.get('/viewVideos/:courseID', viewVideos )
+
+router.get('/CanViewVideos/:courseID/:instructorID', CanViewVideos )
 
 router.get('/viewEmail/:id', viewEmail )
 

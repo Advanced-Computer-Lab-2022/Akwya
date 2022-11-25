@@ -3,11 +3,11 @@
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
 
-function ViewVideos(props) {
+function ViewVideos() {
 const [videos,setVideos] = useState([])
 
 const ID = window.location.href.split('/').at(5);
-console.log(ID)
+// console.log(ID)
 useEffect(()=>{
     axios
     .get(`http://localhost:9000/instructor/viewVideos/${ID}`)
@@ -18,21 +18,7 @@ useEffect(()=>{
     .catch(err=>{console.log(err)})
 },[])
 
-let rate = 1;
-let currency = 'GBP'
-switch(props.country) {
-    case 'United States':
-      rate = 1.15;
-      currency = 'USD';
-      break;
-    case 'Egypt (‫مصر‬‎)':
-    // case 'Egypt':
-      rate=27.85;
-      currency = 'EGP';
-      break;
-    default:
-      // rate = 3;
-  }
+
 
 return(
     <div>

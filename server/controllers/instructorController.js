@@ -140,7 +140,14 @@ const viewVideos = async (req, res) => {
 
     res.status(200).json(Coursestitles)
 
-} //const coursesPrices = await course.find({}).select('title price')
+}
+
+
+const CanViewVideos = async (req, res) => {
+    const Coursestitles = await course.find({$and:[{_id:{$eq:req.params.courseID}},{instructor:{$eq:req.params.instructorID}}]})
+    res.status(200).json(Coursestitles)
+
+}//const coursesPrices = await course.find({}).select('title price')
 // const  instructorId = req.body.id
 
 const viewEmail = async (req, res) => {
@@ -191,5 +198,5 @@ const editEmail = async (req, res) => {
 
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
-    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail} 
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos} 
 
