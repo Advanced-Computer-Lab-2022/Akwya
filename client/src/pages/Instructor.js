@@ -32,6 +32,10 @@ const Instructor = (props) => {
        <h1>Hello Instructor</h1>
       <div className="courses">
         
+      <Link to="/instructor/635c4eadbfebce1319c0b708/Quiz">
+          <h2>Create A Quiz</h2>
+        </Link>
+
         </div>
         <SearchACourse/>
         <ViewMyCourses/>
