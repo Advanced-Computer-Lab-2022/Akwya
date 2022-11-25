@@ -179,10 +179,26 @@ const editEmail = async (req, res) => {
    
 
 
-   
-
-
 }
+
+
+const editBio = async (req, res) => {
+ 
+   
+    try {
+  
+        const newInstructor = await instructor.findOneAndUpdate({_id:req.params.id},{minibiography:req.query.minibiography},{
+         new: true}  );
+        res.status(200).json(newInstructor)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
+    
+ 
+ 
+ }
+
 
 
 
@@ -191,5 +207,5 @@ const editEmail = async (req, res) => {
 
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
-    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail} 
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail ,editBio } 
 

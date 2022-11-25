@@ -26,7 +26,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
   const { useState } = require("react");
 
-  const ViewEmail = () => { 
+  const EditBio = () => { 
 
 
     const params = new URLSearchParams(window.location.search);
@@ -35,10 +35,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     console.log(instructorId);
 
     const [instructors,setInstructors] = useState([]);
+    const [ minibiography,setMinibiography] = useState('');
 
 
-    const getEmail =  async () => {
-        await axios.get(`http://localhost:9000/instructor/viewEmail/`+instructorId).then(
+    const edit =  async () => {
+        await axios.get(`http://localhost:9000/instructor/editBio/`+instructorId +'?minibiography='+ minibiography ).then(
        (res) => { 
            const instructors = res.data
            console.log(instructors)
@@ -51,24 +52,36 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 return(
 
 
-    <div className="View Email">
-        <h3>viewProfile</h3>
+    <div className="Edit bio">
+
+
+<label>Enter Your Biography:</label>
+      <input 
+        type="text" 
+        id="bio"
+        onChange={(e) => setMinibiography(e.target.value)} 
+        value={ minibiography}
+        required
+      />
+        
         
                 <Box sx={{marginBottom: 2}}>
                 <Button variant="contained"
-                onClick={getEmail}
+                onClick={edit}
                 margin="normal"
                 padding="normal"
-                >View My Email</Button> 
+                >Update Your Minibiography</Button> 
                 
                 </Box>
+
+
+    
+    
             
          <div> 
-                   
+        { minibiography}
          <div> 
-                  {instructors.map((inst) => (
-                  <div > <p>{inst.email}</p></div>
-                    ))}
+                  
                   
        </div>
 
@@ -83,7 +96,7 @@ return(
 
 
   }
-  export default  ViewEmail;
+  export default  EditBio;
 
 
 

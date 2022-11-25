@@ -196,5 +196,27 @@ const deleteAllCourses = async (req, res) => {
 
 
 
+const courseDiscount = async (req, res) => {
+    try{
+
+        // const newInstructor = await instructor.findOneAndUpdate({_id:req.params.id},{minibiography:req.query.minibiography},{
+         //new: true}  );
+         
+        
+        const discount=await course.findOneAndUpdate({_id:req.params.id},{promotion:req.query.promotion},{new: true}  )
+
+      //const date=await course.findOneAndUpdate({_id:req.params.id},{promotionExpiry:req.query.promotionExpiry},{new: true}  )
+
+        res.status(200).json(discount)
+        //res.status(200).json(date)
+
+    }
+    catch (error) {
+    res.status(400).json({error: error.message})
+}
+ }
+
+
+
 //export
-export { createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses }
+export { createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }

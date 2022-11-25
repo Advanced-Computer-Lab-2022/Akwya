@@ -33,6 +33,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     // const instructorId = params.get('id');
     const courseId = params.get('id');
 
+    console.log(courseId)
+
     
 
     const [instructors,setInstructors] = useState([]);
@@ -44,7 +46,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
        (res) => { 
            const instructors = res.data
            console.log(instructors)
-           setInstructors(instructors)
+           setPromotion(promotion)
            
        }
         );
@@ -56,12 +58,12 @@ return(
     <div className="Dicount">
 
 
-<label>Enter Your Biography:</label>
+<label>Enter Discount Percentage:</label>
       <input 
         type="text" 
         id="bio"
-        onChange={(e) => setMinibiography(e.target.value)} 
-        value={ minibiography}
+        onChange={(e) => setPromotion(e.target.value)} 
+        value={ setPromotion}
         required
       />
         
@@ -71,7 +73,7 @@ return(
                 onClick={edit}
                 margin="normal"
                 padding="normal"
-                >Update Your Minibiography</Button> 
+                >Add discount for the course</Button> 
                 
                 </Box>
 
@@ -80,7 +82,7 @@ return(
     
             
          <div> 
-        { minibiography}
+        { promotion}
          <div> 
                   
                   
