@@ -9,12 +9,18 @@ import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
 
+
+
+
+import ViewProfileInstructor from './pages/ViewProfileInstructor';
+
 import React, { useState, useEffect } from 'react';  
 import axios from 'axios'
 
 import CountryDropdown from 'country-dropdown-with-flags-for-react';  
 import Course from './pages/Course';
 import CourseI from './pages/CourseI';
+
 
 let GlobalCountry = 'United Kingdom';
 
@@ -89,6 +95,10 @@ function App() {
             <Route
               path="/instructor/:id/:id"
               element={<CourseI country={country}/>}
+            />
+            <Route
+              path="/ViewProfileInstructor/:id"
+              element={<ViewProfileInstructor country={country}/>}
             />
           </Routes>
         </div>

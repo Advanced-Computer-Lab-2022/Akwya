@@ -140,9 +140,56 @@ const viewVideos = async (req, res) => {
 
     res.status(200).json(Coursestitles)
 
+} //const coursesPrices = await course.find({}).select('title price')
+// const  instructorId = req.body.id
+
+const viewEmail = async (req, res) => {
+    
+
+    try{
+       
+        const view = await instructor.find({_id:{$eq:req.params.id}}).select('email')
+        
+        console.log(view)
+
+        res.status(200).json(view)
+    }
+    catch( error ){
+        res.status(400).json({error: error.message})
+        console.log("aytenn")
+
+    }
+
+
+
+}
+
+const editEmail = async (req, res) => {
+ 
+   
+   try {
+ 
+       const newInstructor = await instructor.findOneAndUpdate({_id:req.params.id},{email:req.query.email},{
+        new: true}  );
+       res.status(200).json(newInstructor)
+   } catch (error) {
+       res.status(400).json({error: error.message})
+   }
+    
+   
+
+
+   
+
+
 }
 
 
+
+
+
+
+
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
-    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos} 
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail} 
 
