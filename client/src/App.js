@@ -15,6 +15,7 @@ import axios from 'axios'
 import CountryDropdown from 'country-dropdown-with-flags-for-react';  
 import Course from './pages/Course';
 import CourseI from './pages/CourseI';
+import CreateAQuiz from './components/CreateAQuiz/CreateAQuiz.js';
 
 let GlobalCountry = 'United Kingdom';
 
@@ -89,6 +90,11 @@ function App() {
             <Route
               path="/instructor/:id/:id"
               element={<CourseI country={country}/>}
+            />
+
+            <Route
+              path="/Quiz"
+              component={CreateAQuiz}
             />
           </Routes>
         </div>

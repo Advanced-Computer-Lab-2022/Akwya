@@ -12,6 +12,7 @@ import adminRoutes from './routes/admin.js';
 import instructorRoutes from './routes/instructor.js';
 import traineeRoutes from './routes/trainee.js';
 
+import quizRoutes from './routes/quizzes.js';
 
 /*
 I installed kol el fo2 in server directory
@@ -55,6 +56,7 @@ app.use('/instructor', instructorRoutes);
 
 app.use('/trainee', traineeRoutes);
 
+app.use('/quizzes', quizRoutes);
 
 app.get('/farah', (req, res) => {
     res.json({ mssg: 'Welcome fufu' })
