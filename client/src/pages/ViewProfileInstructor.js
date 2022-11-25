@@ -1,77 +1,28 @@
-import { getListItemAvatarUtilityClass } from '@mui/material';
-import { useState } from 'react'
-import Swal from "sweetalert2";
+import { useEffect,useState } from 'react'
+import { Link } from 'react-router-dom'
 
+import DataFetching from '../DataFetching'
+import  ViewEmail from '../components/Instructor/ViewEmail.js'
+import  EditEmail from '../components/Instructor/EditEmail.js'
 
+const ViewProfileInstructor = (props) => {
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
+    return (
+      <div className="view profile">
+        <h2>MY PROFILE</h2>
 
-  const { useState } = require("react");
+        <Link to="/instructor/6380fada0e91fe67a1baf48a">
+          <h2>Go to instructor</h2>
+        </Link>
 
-  const InstructorPage = () => { 
-
-
-    const params = new URLSearchParams(window.location.search);
-    const instructorId = params.get('instructorId');
-    console.log(instructorId);
-
-    const [instructors,setInstructors] = useState([]);
-
-
-    const GetEmail =  async () => {
-        await axios.get('http://localhost:9000/instructor/viewemail').then(
-       (res) => { 
-           const instructors = res.data
-           console.log(instructors)
-           setInstructors(instructors)
-           
-       }
-        );
-      
-    }
-return(
-
-
-    <div className="View Email">
-        <h3>viewProfile</h3>
+        <ViewEmail/>
+        <EditEmail/>
+       
         
-                <Box sx={{marginBottom: 2}}>
-                <Button variant="contained"
-                onClick={getBlogs}
-                margin="normal"
-                padding="normal"
-                >Add Email</Button> 
-                
-                </Box>
-            
-         <div> 
-            {instructors.map((instructor) => (
-                <div>
-                  <div >{instructor.GetEmail}</div>
-                  
-                </div>
-              ))}
-       </div>
-
-
-       </div>
-
-)
-   
-
-
+        
+         
+      </div>
+    )
   }
-  export default GetEmail;
-
-
-
-
-
+  
+  export default ViewProfileInstructor;

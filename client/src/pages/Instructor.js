@@ -30,7 +30,7 @@ const Instructor = (props) => {
         </Link>
        <h1>Hello Instructor</h1>
 
-       <Link to="/ViewProfileInstructor">
+       <Link to="/ViewProfileInstructor/6380fada0e91fe67a1baf48a">
           <h3>View My Profile</h3>
        </Link>
       <div className="courses">
@@ -43,6 +43,7 @@ const Instructor = (props) => {
         <FilterByRatingAndSubject  country={props.country}/>
 
         <CreateACourse/>
+       
 
      </div>
      <br/>
