@@ -52,8 +52,8 @@ updateAnswer = (e, i) => {
 
 saveQuestion = () => {
     let question = {
-        answers: this.state.answers, 
-        correctAnswer: this.state.correctAnswer, 
+        answers: this.state.answers,
+        correctAnswer: this.state.answers[this.state.correctAnswer], 
         questionName: this.state.questionName}
 
         this.setState({
@@ -80,15 +80,14 @@ saveQuiz = () => {
 
 
         answers: this.state.answers, 
-        correctAnswer: this.state.correctAnswer, 
+        
+        correctAnswer: this.state.answers[this.state.correctAnswer], 
         questionName: this.state.questionName}
 
 
 
-// useEffect(()=>{
 
     axios.post('/Quiz/create', {quizz}).then(res=>{
-        //console.log(res.data);
         Swal.fire({
             title: 'New Quiz added!',
             icon: 'success',
@@ -103,17 +102,8 @@ saveQuiz = () => {
         console.error(er);
     })
 
-// },[])
         
 }
-
-
-
-
-
-
-
-
 
 
 render(){
@@ -133,10 +123,10 @@ return (
                     <option key={idx} value={cat}>{cat}</option>
                 ))}
             </select>
-            <div className="checkbox">
+            {/* <div className="checkbox">
                 <span>Must be logged in to take</span>
                 <input checked={this.state.mustBeSignedin} onChange={this.selectPrivate} type="checkbox" placeholder="Must be logged in to take"/>
-            </div>
+            </div> */}
     {this.state.questions.map((ques,idx)=>(
         <div className="question" key={idx}>
             <div>{ques.questionName}</div>
@@ -144,7 +134,10 @@ return (
             <div>Number of Answers:{ques.answers.length}</div>
             <span className='btn delete' onClick={()=>this.removeQuestion(ques)}>delete</span>
         </div>
-    ))}
+    ))
+    }
+
+    
 
     <div className="questions">
             <div className='add-question' onClick={()=>this.setState({addQuestion: true})}>Add Question</div>
@@ -159,13 +152,40 @@ return (
     {
         this.state.answers.map((ans,idx)=>(
             <div className='answer-form' key={idx}>
-                <input type='radio' value={this.state.ans} onChange={e=>this.setState({correctAnswer:ans})} name="answer"/>
-                <input className="input" type="text" placeholder="Answer" value={this.state.answers[idx]} onChange={e=>this.updateAnswer(e,idx)}/>
+                {/* <input type='radio' value={this.state.ans} onChange={e=>this.setState({correctAnswer:ans})} name="answer"/> */}
+                {/* <input className="input" type="text" placeholder="Answer" value={this.state.answers[idx]} onChange={e=>this.updateAnswer(e,idx)}/> */}
         </div>
 
         ))}
 
-        <div className='add-answer' onClick={this.addAnswer}>Add Answer</div>
+        <div>
+                <input type='radio' value={"0"} onChange={e=>{this.setState({correctAnswer:e.target.value});console.log(e.target.value);}} name="answer"/>
+                <input className="input" type="text" placeholder="Answer" value={this.state.answers[0]} onChange={e=>this.updateAnswer(e,0)}/>
+        </div>     
+        
+        <div>
+                <input type='radio' value={"1"} onChange={e=>{this.setState({correctAnswer:e.target.value});console.log(e.target.value);}} name="answer"/>                
+                <input className="input" type="text" placeholder="Answer" value={this.state.answers[1]} onChange={e=>this.updateAnswer(e,1)}/>
+        </div>   
+
+        <div>       
+                <input type='radio' value={"2"} onChange={e=>{this.setState({correctAnswer:e.target.value});console.log(e.target.value);}} name="answer"/>
+                <input className="input" type="text" placeholder="Answer" value={this.state.answers[2]} onChange={e=>this.updateAnswer(e,2)}/>
+        </div>
+
+        <div>
+                <input type='radio' value={"3"} onChange={e=>{this.setState({correctAnswer:e.target.value});console.log(e.target.value);}}name="answer"/>
+                <input className="input" type="text" placeholder="Answer" value={this.state.answers[3]} onChange={e=>this.updateAnswer(e,3)}/>
+        </div>
+       
+
+
+
+        
+
+
+
+        {/* <div className='add-answer' onClick={this.addAnswer}>Add Answer</div> */}
         <div className='btn-wrapper'>
             <div className='btn' onClick={()=>this.setState({addQuestion:false})}>close </div>
             <div className='btn' onClick={()=>this.saveQuestion()}>Save</div>
