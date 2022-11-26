@@ -6,6 +6,7 @@ import axios from 'axios'
 //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
 const AddVideo = () => {
 
+  const [previewVideo, setPreview] = useState('')
   const [url, setURL] = useState('')
   const [title, setTitle] = useState('')
   const [summary, setSummary] = useState('')
@@ -74,6 +75,47 @@ const AddVideo = () => {
     } 
 }
 
+const handleSubmit2 = async (e) => {
+    e.preventDefault()
+
+
+    
+    const id = window.location.href.split('/').at(5);
+    const respnse= await fetch(`http://localhost:9000/instructor/addPreview/${id}`, {
+        method: 'POST',
+        body: JSON.stringify({previewVideo}) ,
+        headers: {
+            'Content-Type' : 'application/json'
+        }
+    })
+      
+  
+    const json= await respnse.json()
+
+    if(!respnse.ok){
+        setError(json.error)
+    }
+    if(respnse.ok){
+        console.log("new video added")
+        Swal.fire({
+            title: 'New Preview Video added!',
+            icon: 'success',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          })  
+        setError(null)
+        setPreview('')
+
+        
+
+    } 
+}
+
+
 if(JSON.stringify(instructor).length==2){
     // console.log(JSON.stringify(instructor).length+" instructor ");
     // console.log(instructorID+" instructor id from url");
@@ -82,7 +124,23 @@ if(JSON.stringify(instructor).length==2){
 }
 
   return (
-    <form className="create" onSubmit={handleSubmit}> 
+    <div>
+    <form className="create" onSubmit={handleSubmit2}> 
+      <h3>Add a New Preview Video</h3>
+
+      <label>URL:</label>
+      <input 
+        type="text" 
+        onChange={(e) => setPreview(e.target.value)} 
+        value={previewVideo}
+      required/>
+        <br/>
+
+      <button>Add New Preview Video</button>
+      {error && <div className="error">{error}</div>}
+    </form>
+    
+<form className="create" onSubmit={handleSubmit}> 
       <h3>Add a New Video</h3>
 
       <label>Video Subtitle:</label>
@@ -120,6 +178,7 @@ if(JSON.stringify(instructor).length==2){
       <button>Add New Video</button>
       {error && <div className="error">{error}</div>}
     </form>
+    </div>
 )
 }
 

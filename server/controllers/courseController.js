@@ -121,7 +121,7 @@ const createCourse = async (req, res) => {
     } = req.body
      const instructor = req.params.id
 
-
+    const previewVideo = ""
     try {
         const newCourse = await course.create({
             title,
@@ -132,7 +132,8 @@ const createCourse = async (req, res) => {
             instructor,
             totalHours,
 
-            rating
+            rating,
+            previewVideo
         });
         res.status(200).json(newCourse)
     } catch (error) {

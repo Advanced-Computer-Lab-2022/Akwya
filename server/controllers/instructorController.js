@@ -135,6 +135,22 @@ const courseID = req.params.courseID
     console.log("tmm")
 }
 
+const addPreview = async (req, res) => {
+    const { previewVideo } = req.body;
+
+const courseID = req.params.courseID
+
+    try {
+        const newVideo = await course.findOneAndUpdate({_id:req.params.courseID},{previewVideo:previewVideo},{
+            new: true}  );
+        res.status(200).json(newVideo)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+
+    console.log("tmm")
+}
+
 const viewVideos = async (req, res) => {
     const Coursestitles = await video.find({courseID:{$eq:req.params.courseID}})
 
@@ -142,6 +158,12 @@ const viewVideos = async (req, res) => {
 
 }
 
+const viewPreview = async (req, res) => {
+    const Coursestitles = await course.find({_id:{$eq:req.params.courseID}}).select('previewVideo')
+
+    res.status(200).json(Coursestitles)
+
+}
 
 const CanViewVideos = async (req, res) => {
     const Coursestitles = await course.find({$and:[{_id:{$eq:req.params.courseID}},{instructor:{$eq:req.params.instructorID}}]})
@@ -198,5 +220,5 @@ const editEmail = async (req, res) => {
 
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
-    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos} 
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos, addPreview, viewPreview} 
 
