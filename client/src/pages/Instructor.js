@@ -11,6 +11,7 @@ import FilterFetchingISubject from '../components/Instructor/FilterFetchingISubj
 import UserSearchCourse from '../components/user/UserSearchCourse'
 
 import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject.js'
+import ChangePassword from '../components/Instructor/ChangePassword.js'
 
 
 
@@ -29,7 +30,7 @@ const Instructor = (props) => {
           <h2>Go to Home Page</h2>
         </Link>
        <h1>Hello Instructor</h1>
-
+      <ChangePassword/>
        <Link to="/ViewProfileInstructor/6380fada0e91fe67a1baf48a">
           <h3>View My Profile</h3>
        </Link>

@@ -212,7 +212,19 @@ const editEmail = async (req, res) => {
 
 
 }
-
+const changePassword= async (req, res) => {
+ 
+   
+    try {
+        
+        const change = await instructor.findOneAndUpdate({_id:req.params.id},{password:req.query.password},{
+         new: true}  );
+        res.status(200).json(change)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+    
 
 
 
@@ -220,5 +232,5 @@ const editEmail = async (req, res) => {
 
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
-    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos, addPreview, viewPreview} 
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos, addPreview, viewPreview, changePassword} 
 
