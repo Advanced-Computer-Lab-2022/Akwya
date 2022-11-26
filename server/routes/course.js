@@ -35,6 +35,6 @@ router.patch('/:id',(req,res)=>{
 })
 
 
-router.get('/courseDiscount',courseDiscount)
+router.get('/courseDiscount/:id',courseDiscount)
 
 export default router;

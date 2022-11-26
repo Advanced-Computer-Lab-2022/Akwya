@@ -114,13 +114,15 @@ const createCourse = async (req, res) => {
 
         rating,
         // reviews,
-        // promotion,
-        // promotionExpiry,
+        //  promotion,
+        //  promotionExpiry,
         // previewVideo
         // certificate
     } = req.body
      const instructor = req.params.id
 
+    const promotion=0;
+    const promotionExpiry="";
 
     try {
         const newCourse = await course.create({
@@ -131,6 +133,9 @@ const createCourse = async (req, res) => {
             subject,
             instructor,
             totalHours,
+            promotion,
+            promotionExpiry,
+
 
             rating
         });
@@ -199,16 +204,14 @@ const deleteAllCourses = async (req, res) => {
 const courseDiscount = async (req, res) => {
     try{
 
-        // const newInstructor = await instructor.findOneAndUpdate({_id:req.params.id},{minibiography:req.query.minibiography},{
-         //new: true}  );
-         
-        
+      
         const discount=await course.findOneAndUpdate({_id:req.params.id},{promotion:req.query.promotion},{new: true}  )
 
       //const date=await course.findOneAndUpdate({_id:req.params.id},{promotionExpiry:req.query.promotionExpiry},{new: true}  )
 
         res.status(200).json(discount)
         //res.status(200).json(date)
+       
 
     }
     catch (error) {

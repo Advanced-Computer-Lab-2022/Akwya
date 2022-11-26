@@ -36,7 +36,7 @@ router.get('/editBio/:id', editBio )
 
 
 
-//router.get('/searchCourse/:title',searchCoursee)
+
 
 
 export default router;

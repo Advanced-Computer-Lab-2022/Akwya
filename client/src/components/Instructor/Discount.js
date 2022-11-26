@@ -31,23 +31,30 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
     const params = new URLSearchParams(window.location.search);
     // const instructorId = params.get('id');
-    const courseId = params.get('id');
+    //const courseId = params.get('id');
+    const courseId = window.location.href.split('/').at(4);
 
     console.log(courseId)
+    
 
     
 
     const [instructors,setInstructors] = useState([]);
     const [ promotion,setPromotion] = useState(0);
+    
 
 
     const edit =  async () => {
-        await axios.get(`http://localhost:9000/instructor/courseDiscount/`+courseId +'?promotion='+ promotion ).then(
+        await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotion='+ promotion ).then(
        (res) => { 
-           const instructors = res.data
-           console.log(instructors)
-           setPromotion(promotion)
-           
+            const price=courseId.price
+            console.log(courseId)
+
+           console.log("yasmine")
+          //  setInstructors(res.data)
+          //  console.log(instructors)
+          //  setPromotion(promotion)
+
        }
         );
       
@@ -63,7 +70,7 @@ return(
         type="text" 
         id="bio"
         onChange={(e) => setPromotion(e.target.value)} 
-        value={ setPromotion}
+        value={promotion}
         required
       />
         
@@ -82,11 +89,7 @@ return(
     
             
          <div> 
-        { promotion}
-         <div> 
-                  
-                  
-       </div>
+       
 
                   
        </div>
