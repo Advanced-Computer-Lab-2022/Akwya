@@ -30,8 +30,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 
     const params = new URLSearchParams(window.location.search);
-    // const instructorId = params.get('id');
-    //const courseId = params.get('id');
+    
     const courseId = window.location.href.split('/').at(4);
 
     console.log(courseId)
@@ -41,24 +40,63 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
     const [instructors,setInstructors] = useState([]);
     const [ promotion,setPromotion] = useState(0);
+    const [price ,setPrice]=useState(0);
+   
+    const [promotionExpiry,setPromotionExpiry] = useState('');
+    //promotionExpiry
+    //+'?promotionExpiry=' +promotionExpiry 
     
 
 
     const edit =  async () => {
         await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotion='+ promotion ).then(
        (res) => { 
-            const price=courseId.price
+           
             console.log(courseId)
+            
+            console.log(res.data['price'])
+            setPrice(res.data['price'])
+            
+            console.log(promotion)
+           
+
+            const newPrice=res.data['price']-(res.data['price']*(promotion/100))
+            
+            setPrice(newPrice)
+            console.log(newPrice)
+            
+            
 
            console.log("yasmine")
-          //  setInstructors(res.data)
-          //  console.log(instructors)
-          //  setPromotion(promotion)
-
+         
        }
         );
-      
+     
+
     }
+
+    const date =  async () => {
+      await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotionExpiry='+ promotionExpiry ).then(
+     (res) => { 
+
+      // setPrice(res.data['price'])
+       const promotionExpiry = res.data['promotionExpiry']
+      console.log(promotionExpiry)
+      
+       
+          
+
+     }
+      );
+   
+
+  }
+
+
+
+
+
+
 return(
 
 
@@ -84,6 +122,26 @@ return(
                 
                 </Box>
 
+       <label>Discount valid till:</label>    
+
+                <input 
+        type="text" 
+        id="xx"
+        onChange={(e) =>setPromotionExpiry(e.target.value)} 
+        value={promotionExpiry}
+        required
+      />
+        
+        
+                <Box sx={{marginBottom: 2}}>
+                <Button variant="contained"
+                onClick={date}
+                margin="normal"
+                padding="normal"
+                >confirm </Button> 
+                
+                </Box>       
+
 
     
     
@@ -93,6 +151,7 @@ return(
 
                   
        </div>
+       {promotionExpiry}
 
 
        </div>
