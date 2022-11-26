@@ -14,7 +14,7 @@ const Home = () => {
         <Link to="/userCorporate">
           <h2>Go to Corporate Trainee Page</h2>
         </Link>
-      <Link to="/instructor/635c4eadbfebce1319c0b708">
+      <Link to="/instructor/6380fada0e91fe67a1baf48a">
           <h2>Go to Instructor Page</h2>
         </Link>
         <Link to="/guest">

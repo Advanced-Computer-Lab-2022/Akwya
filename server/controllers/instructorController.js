@@ -135,6 +135,22 @@ const courseID = req.params.courseID
     console.log("tmm")
 }
 
+const addPreview = async (req, res) => {
+    const { previewVideo } = req.body;
+
+const courseID = req.params.courseID
+
+    try {
+        const newVideo = await course.findOneAndUpdate({_id:req.params.courseID},{previewVideo:previewVideo},{
+            new: true}  );
+        res.status(200).json(newVideo)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+
+    console.log("tmm")
+}
+
 const viewVideos = async (req, res) => {
     const Coursestitles = await video.find({courseID:{$eq:req.params.courseID}})
 
@@ -142,7 +158,67 @@ const viewVideos = async (req, res) => {
 
 }
 
+const viewPreview = async (req, res) => {
+    const Coursestitles = await course.find({_id:{$eq:req.params.courseID}}).select('previewVideo')
+
+    res.status(200).json(Coursestitles)
+
+}
+
+const CanViewVideos = async (req, res) => {
+    const Coursestitles = await course.find({$and:[{_id:{$eq:req.params.courseID}},{instructor:{$eq:req.params.instructorID}}]})
+    res.status(200).json(Coursestitles)
+
+}//const coursesPrices = await course.find({}).select('title price')
+// const  instructorId = req.body.id
+
+const viewEmail = async (req, res) => {
+    
+
+    try{
+       
+        const view = await instructor.find({_id:{$eq:req.params.id}}).select('email')
+        
+        console.log(view)
+
+        res.status(200).json(view)
+    }
+    catch( error ){
+        res.status(400).json({error: error.message})
+        console.log("aytenn")
+
+    }
+
+
+
+}
+
+const editEmail = async (req, res) => {
+ 
+   
+   try {
+ 
+       const newInstructor = await instructor.findOneAndUpdate({_id:req.params.id},{email:req.query.email},{
+        new: true}  );
+       res.status(200).json(newInstructor)
+   } catch (error) {
+       res.status(400).json({error: error.message})
+   }
+    
+   
+
+
+   
+
+
+}
+
+
+
+
+
+
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
-    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos} 
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos, addPreview, viewPreview} 
 
