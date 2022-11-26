@@ -1,5 +1,6 @@
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 function ViewMyCourses() {
 const [courses,setCourses] = useState([])
@@ -22,7 +23,7 @@ return(
     <div>
         <h1>View My courses</h1>
         <ul>
-            {courses.map(course => <li key={course._id}>Title: {course.title}</li>)}
+            {courses.map(course => <li key={course._id}>Title: <Link to={{pathname:course._id}}><h2>{course.title}</h2></Link></li>)}
            
         </ul>
     </div>
