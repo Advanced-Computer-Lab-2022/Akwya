@@ -1,10 +1,11 @@
 import express from "express";
-import Quizzes from "../models/Quiz.js"
+import { createQuiz } from "../controllers/quizController.js";
 
 // const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
+router.post('/create',createQuiz);
 
 
 

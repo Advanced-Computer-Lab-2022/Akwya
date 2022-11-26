@@ -1,21 +1,17 @@
-// import Sidebar from'../Sidebar/Sidebar';
 
-// import MyCourse from '../components/user/GetASingleCourse'
-// import './index.css';
-
-// import '../styles/CreateQuiz.css';
  import './CreateAQuiz.css'
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import QuizDialog from '../Dialog/QuizDialog.js';
 import axios from 'axios';
 import { Checkbox } from '@mui/material';
+import Swal from "sweetalert2";
+
+
 export default class CreateAQuiz extends React.Component {
 constructor (props) {
 super (props);
 this.state ={
-categories: ('Math',
-'Science', 'Technology', 'Sports', 'History', 'Misc'),
+categories: ['Math', 'Science', 'Technology', 'Sports', 'History', 'Misc'],
 categoryVal: 'Math', 
 mustBeSignedin: false, 
 questions: [],
@@ -45,9 +41,9 @@ addAnswer = () => {
         answers: this.state.answers.concat ('')
     })
 }
-updateAnswer = (e,i) => {
+updateAnswer = (e, i) => {
         let newArr = Object.assign([], this.state.answers);
-        newArr [i] = e.target.value;
+        newArr[i] = e.target.value;
         this.setState({
             answers: newArr
     })
@@ -71,12 +67,12 @@ saveQuestion = () => {
 
 removeQuestion = () => {
     this.setState ({
-        question: this.state.questions.filter(ques=>ques.questionName!=ques.questionName)
+        questions: this.state.questions.filter(ques=>ques.questionName!==ques.questionName)
     })
 }
 
 saveQuiz = () => {
-    let quiz = {
+    let quizz = {
         mustBeSignedIn:this.state.mustBeSignedin,
         name:this.state.name,
         questions: this.state.questions,
@@ -87,12 +83,38 @@ saveQuiz = () => {
         correctAnswer: this.state.correctAnswer, 
         questionName: this.state.questionName}
 
-        axios.post('api/quizzes/create', {quiz}).then(res=>{
-            console.log(res.data);
-        }).catch(er=>{
-            console.error(er);
-        })
+
+
+// useEffect(()=>{
+
+    axios.post('/Quiz/create', {quizz}).then(res=>{
+        //console.log(res.data);
+        Swal.fire({
+            title: 'New Quiz added!',
+            icon: 'success',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          })
+    }).catch(er=>{
+        console.error(er);
+    })
+
+// },[])
+        
 }
+
+
+
+
+
+
+
+
+
 
 render(){
 return (
@@ -113,12 +135,12 @@ return (
             </select>
             <div className="checkbox">
                 <span>Must be logged in to take</span>
-                <input checked={this.btn.mustBeSignedIn} onChange={this.selectPrivate} type="checkbox" placeholder="Must be logged in to take"/>
+                <input checked={this.state.mustBeSignedin} onChange={this.selectPrivate} type="checkbox" placeholder="Must be logged in to take"/>
             </div>
-    {this.state.question.map((ques,idx)=>(
-        <div className='question' key={idx}>
+    {this.state.questions.map((ques,idx)=>(
+        <div className="question" key={idx}>
             <div>{ques.questionName}</div>
-            <div>correct Answer:{ques.correctAnswer}</div>
+            <div>Correct Answer:{ques.correctAnswer}</div>
             <div>Number of Answers:{ques.answers.length}</div>
             <span className='btn delete' onClick={()=>this.removeQuestion(ques)}>delete</span>
         </div>
@@ -138,16 +160,15 @@ return (
         this.state.answers.map((ans,idx)=>(
             <div className='answer-form' key={idx}>
                 <input type='radio' value={this.state.ans} onChange={e=>this.setState({correctAnswer:ans})} name="answer"/>
-                <input className='input' type="text" placeholder="Answer" value={this.state.answers[idx]} onChange={e=>this.updateAnswer({e,idx})}/>
+                <input className="input" type="text" placeholder="Answer" value={this.state.answers[idx]} onChange={e=>this.updateAnswer(e,idx)}/>
         </div>
 
-        ))
-    }
+        ))}
 
         <div className='add-answer' onClick={this.addAnswer}>Add Answer</div>
         <div className='btn-wrapper'>
             <div className='btn' onClick={()=>this.setState({addQuestion:false})}>close </div>
-            <div className='btn' onClick={()=>this.saveQuiz()}>Save</div>
+            <div className='btn' onClick={()=>this.saveQuestion()}>Save</div>
         </div>
 
         </div>

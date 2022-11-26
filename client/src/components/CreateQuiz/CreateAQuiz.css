@@ -56,7 +56,7 @@
     }
 
 .create-quiz-wrapper .btn-wrapper .btn { 
-    color: white;
+    color: black;
     border-radius: 10px !important;
 }
 
@@ -67,7 +67,7 @@
 .create-quiz-wrapper .question {
     display: flex;
     position: relative;
-    background-color: #eff0f1;
+    background-color: #1babdb;
     padding: 12px;
     width: 90%;
     box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
@@ -83,11 +83,11 @@
     right: 20px;
     background-color: Ored;
     border-radius: 10px !important;
-    color: white;
+    color: black;
     padding: 8px;
     top: 5px;
 }
 .create-quiz-wrapper .save-quiz {
     border-radius: 10px;
-    color:white
+    color:black
 }

@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-//mongoose allows us to have some sort of uniformity: each post have to have these things
 
 
 
@@ -43,7 +42,7 @@ const QuizSchema = mongoose.Schema({
 // module.exports = mongoose.model('user',userSchema);
 
 
-const quiz = mongoose.model('Quizzes', QuizSchema);
+const quiz = mongoose.model('quiz', QuizSchema);
 
 export default quiz;
 

@@ -4,7 +4,7 @@ constructor (props){
     super (props);
 
 }
-hidescreen = () =>{
+hideScreen = () =>{
     document.getElementsByTagName('html')[0].style='hidden';
 }
 showScreen = () =>{
@@ -14,7 +14,7 @@ showScreen = () =>{
 
 render() {
     let theChild = undefined;
-    if(this.props.model== true) {
+    if(this.props.model=== true) {
         this.hideScreen();
     } 
     else {
