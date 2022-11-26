@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Swal from "sweetalert2";
+import { Link } from 'react-router-dom'
 
 
 //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
@@ -69,7 +70,7 @@ const SearchACourse = () => {
 
 
       <ul>
-      {courses.map(course => <li key={course._id}>Title: {course.title}  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+      {courses.map(course => <li key={course._id}>Title: <Link to={{pathname:course._id}}><h2>{course.title}</h2></Link>  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
       </ul>
 
     </form>
