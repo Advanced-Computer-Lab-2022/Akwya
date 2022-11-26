@@ -105,14 +105,11 @@ saveQuiz = () => {
         
 }
 
-
 render(){
 return (
    
     <div className="create-quiz-wrapper">
-        <div>
-            {/* <Sidebar/> */}
-        </div>
+        
 <div className='main'>
     <div className='header'>Create a Quiz</div>
 <div className='form card'>
@@ -123,10 +120,7 @@ return (
                     <option key={idx} value={cat}>{cat}</option>
                 ))}
             </select>
-            {/* <div className="checkbox">
-                <span>Must be logged in to take</span>
-                <input checked={this.state.mustBeSignedin} onChange={this.selectPrivate} type="checkbox" placeholder="Must be logged in to take"/>
-            </div> */}
+            
     {this.state.questions.map((ques,idx)=>(
         <div className="question" key={idx}>
             <div>{ques.questionName}</div>
@@ -149,14 +143,7 @@ return (
 <div className='new-question-form'>
     <input className='input' placeholder='Question' value={this.state.questionName} onChange={e=>this.setState({questionName: e.target.value})}/>
     <div>Answers</div>
-    {
-        this.state.answers.map((ans,idx)=>(
-            <div className='answer-form' key={idx}>
-                {/* <input type='radio' value={this.state.ans} onChange={e=>this.setState({correctAnswer:ans})} name="answer"/> */}
-                {/* <input className="input" type="text" placeholder="Answer" value={this.state.answers[idx]} onChange={e=>this.updateAnswer(e,idx)}/> */}
-        </div>
-
-        ))}
+    
 
         <div>
                 <input type='radio' value={"0"} onChange={e=>{this.setState({correctAnswer:e.target.value});console.log(e.target.value);}} name="answer"/>
@@ -179,13 +166,6 @@ return (
         </div>
        
 
-
-
-        
-
-
-
-        {/* <div className='add-answer' onClick={this.addAnswer}>Add Answer</div> */}
         <div className='btn-wrapper'>
             <div className='btn' onClick={()=>this.setState({addQuestion:false})}>close </div>
             <div className='btn' onClick={()=>this.saveQuestion()}>Save</div>
