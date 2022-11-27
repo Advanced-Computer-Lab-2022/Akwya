@@ -13,5 +13,19 @@ const createQuiz =  (req, res) => {
 
 
 
+const getQuiz = async (req, res) => {
+    try {
+        
+        const objs = await quiz.find({courseid:{$eq:req.params.id}})
 
-export{createQuiz}
+                res.json(objs)
+
+    } catch (error) {
+
+        res.json({message: error}); }
+    }
+
+
+
+
+export{createQuiz,getQuiz}

@@ -16,6 +16,9 @@ const Course = (props) => {
         <MyCourse country={props.country}/>
         <UserViewVideos/>
 
+        <Link to="/user/638250c37086affba07f21fd/TakeQuiz">
+          <h2>Take A Quiz</h2>
+        </Link>
 
          
       </div>

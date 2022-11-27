@@ -7,6 +7,11 @@ import ViewVideos from '../components/Instructor/ViewVideos'
 
 const Course = (props) => {
 
+
+const _idInstructor = window.location.href.split('/').at(4);
+const _idCourse = window.location.href.split('/').at(5);
+
+
     return (
       <div className="guest">
         <h2>Course Page</h2>
@@ -17,6 +22,8 @@ const Course = (props) => {
         <MyCourseI country={props.country}/>
         <AddVideo/>
         <ViewVideos/>
+        
+        
          
       </div>
     )

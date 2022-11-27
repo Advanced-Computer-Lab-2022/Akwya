@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import course from './course.js';
+import instructor from './instructor.js';
 
 
 
@@ -6,6 +8,18 @@ const QuizSchema = mongoose.Schema({
         mustBeSignedIn: {
         type: Boolean, 
         default: false
+        }, 
+        instructorID:{
+            type:mongoose.Types.ObjectId, 
+            ref: instructor,
+            require:true
+
+        }, 
+        courseid:{
+            type:mongoose.Types.ObjectId, 
+            ref: course,
+            require:true
+
         }, 
         name: {
         type: String, 
@@ -16,7 +30,8 @@ const QuizSchema = mongoose.Schema({
         contains: {
         answers: {type: Array}, 
         correctAnswer: String, 
-        questionName: String
+        questionName: String,
+        chosenAnswer: String
         }
         }],
         category: {
@@ -33,7 +48,7 @@ const QuizSchema = mongoose.Schema({
         }
 
 
-
+ 
 
     }, {timestamps: true}
     );
