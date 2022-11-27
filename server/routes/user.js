@@ -15,6 +15,5 @@ router.delete('/:id',deleteUser)
 
 router.patch('/:id',updateUser)
 
-router.patch('/:id/rateCourse',rateCourse)
 
 export default router;
