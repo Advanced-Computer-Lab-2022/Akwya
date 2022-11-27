@@ -74,6 +74,7 @@ removeQuestion = () => {
 }
 
 saveQuiz = () => {
+
     let quizz = {
 
         instructorID:window.location.href.split('/').at(4),
@@ -87,7 +88,26 @@ saveQuiz = () => {
         answers: this.state.answers, 
         
         correctAnswer: this.state.answers[this.state.correctAnswer], 
-        questionName: this.state.questionName}
+        questionName: this.state.questionName
+    }
+
+    if( quizz.questionName==='' ||quizz.answers.length!==4 ||quizz.correctAnswer===''){
+        Swal.fire({
+            title: 'Missing Input!',
+            icon: 'error',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#380000'
+
+            
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          })
+
+    }
+
 
 
 
