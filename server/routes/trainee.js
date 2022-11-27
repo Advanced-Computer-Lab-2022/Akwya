@@ -2,8 +2,10 @@ import express from "express";
 const router =express.Router()
 
 
-import {getTrainee,registerCourse,isRegistered,dropCourse} from "../controllers/traineeController.js"
 
+import {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse} from "../controllers/traineeController.js"
+
+router.patch('/:id/rateCourse',rateCourse)
 
 router.get('/',getTrainee)
 
