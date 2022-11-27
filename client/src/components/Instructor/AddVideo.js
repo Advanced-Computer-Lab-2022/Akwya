@@ -1,10 +1,14 @@
 import Swal from "sweetalert2";
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
-
+import { Link } from "react-router-dom";
 
 //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
-const AddVideo = () => {
+const AddVideo = () => { 
+
+
+const _idInstructor = window.location.href.split('/').at(4);
+const _idCourse = window.location.href.split('/').at(5);
 
   const [previewVideo, setPreview] = useState('')
   const [url, setURL] = useState('')
@@ -178,7 +182,15 @@ if(JSON.stringify(instructor).length==2){
       <button>Add New Video</button>
       {error && <div className="error">{error}</div>}
     </form>
+
+    <Link to={{pathname:"/instructor/"+_idInstructor+"/"+_idCourse+"/Quiz"}}>
+            <h2>Create A Quiz</h2>
+          </Link>
+
     </div>
+
+
+
 )
 }
 

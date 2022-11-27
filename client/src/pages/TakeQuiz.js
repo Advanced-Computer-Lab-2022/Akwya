@@ -1,13 +1,13 @@
 import { useEffect,useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import CreateAQuiz from '../components/CreateQuiz/CreateAQuiz.js'
+import TakeAQuiz from '../components/TakeAQuiz/TakeAQuiz.js'
 
 
 
 
 
-const Quiz = (props) => {
+const TakeQuiz = (props) => {
 
  
   return (
@@ -15,14 +15,15 @@ const Quiz = (props) => {
     
     <div>   
 
-    <div className="createQuiz">
-    <h2>Quiz Page</h2>
+<div className="takeQuiz">
+    <h2>Quiz Time</h2>
       <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>
 
         
-        <CreateAQuiz/>
+        <TakeAQuiz/>
+
 
 
      </div>
@@ -39,4 +40,4 @@ const Quiz = (props) => {
     
   )}
   
-  export default Quiz
+  export default TakeQuiz
