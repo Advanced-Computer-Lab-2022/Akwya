@@ -6,14 +6,7 @@ import Swal from "sweetalert2";
 const CreateACourse = () => {
 
   const [title, setTitle] = useState('')
-  const [subtitles, setSubtitles] = useState('')
-  const [price, setPrice] = useState('')
-  const [summary, setSummary] = useState('')
-  const [totalHours, setTotalHours] = useState('')
-  const [subject, setSubject] = useState('')
-  const [rating, setRating] = useState(0)
-  const [error, setError] = useState(null)
-  const [id, setId] = useState('')
+ 
 
 
   const handleSubmit = async (e) => {

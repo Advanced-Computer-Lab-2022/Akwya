@@ -8,6 +8,11 @@ import ViewCourseRating from '../components/Instructor/ViewCourseRating'
 
 const Course = (props) => {
 
+
+const _idInstructor = window.location.href.split('/').at(4);
+const _idCourse = window.location.href.split('/').at(5);
+
+
     return (
       <div className="guest">
         <h2>Course Page</h2>
@@ -20,6 +25,7 @@ const Course = (props) => {
         <ViewVideos/>
 
         <ViewCourseRating/>
+
 
          
       </div>

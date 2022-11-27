@@ -33,18 +33,6 @@ const Instructor = (props) => {
        <Link to="/ViewProfileInstructor/6380fada0e91fe67a1baf48a">
           <h3>View My Profile</h3>
        </Link>
-      <div className="courses">
-
-      
-        </div>
-
-
-
-         
-       <Link to= "/CreateAQuiz?id=635c4eadbfebce1319c0b708">
-          <h2>Create A Quiz</h2>
-        </Link>
-
 
         <SearchACourse/>
         <ViewMyCourses/>
@@ -55,12 +43,25 @@ const Instructor = (props) => {
         <CreateACourse/>
        
 
+
      </div>
      <br/>
      <UserSearchCourse country={props.country}/>
      <DataFetching country={props.country}/>
      <FilterFetching  country={props.country}/>
+     
+     <div className="quiz">
+        
+        
+  
+          </div>
+     
      </div>
+
+
+
+
+     
 
     
   )}
