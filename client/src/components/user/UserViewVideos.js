@@ -3,7 +3,7 @@
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Swal from "sweetalert2";
-
+import { Link } from 'react-router-dom';
 function UserViewVideos() {
 const [videos,setVideos] = useState([])
 const [preview,setPreview] = useState([])
@@ -171,7 +171,13 @@ return(
             
 
         </ul>
+
         
+        
+
+        <Link to={{pathname:"/user/"+CourseID+"/TakeQuiz"}}>
+            <h2>Take A Quiz</h2>
+          </Link>
 
     </div>
 )
