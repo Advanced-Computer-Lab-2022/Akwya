@@ -53,7 +53,7 @@ return(
                         {quiz.questions[idx].answers.map((ans,idxx)=>(
                         <div>
                          <input type='radio' value={idxx} onChange={e=>{this.setState({chosenAnswer:e.target.value})}} name="answer"/>
-                          Answer: {ans[idxx]}
+                          Answer: {ans}
                         
                         </div>
 
