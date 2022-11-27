@@ -48,17 +48,17 @@ return(
                     <div className="question" key={idx}>
                         <div>Question:{ques.questionName}</div>
                         
-                        <div className="answers">
+                        <form className="answers">
 
                         {quiz.questions[idx].answers.map((ans,idxx)=>(
                         <div>
                          <input type='radio' value={idxx} onChange={e=>{this.setState({chosenAnswer:e.target.value})}} name="answer"/>
-                          Answer: {ans[idxx]}
+                          Answer: {ans}
                         
                         </div>
 
                         ))}
-                        </div>
+                        </form>
 
                     </div>
                     
