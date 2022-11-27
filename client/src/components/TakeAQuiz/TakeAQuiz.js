@@ -48,7 +48,7 @@ return(
                     <div className="question" key={idx}>
                         <div>Question:{ques.questionName}</div>
                         
-                        <div className="answers">
+                        <form className="answers">
 
                         {quiz.questions[idx].answers.map((ans,idxx)=>(
                         <div>
@@ -58,7 +58,7 @@ return(
                         </div>
 
                         ))}
-                        </div>
+                        </form>
 
                     </div>
                     
