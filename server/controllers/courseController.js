@@ -133,6 +133,7 @@ const createCourse = async (req, res) => {
             totalHours,
 
             rating,
+            noOfRatings,
             previewVideo
         });
         res.status(200).json(newCourse)
@@ -194,7 +195,6 @@ const deleteAllCourses = async (req, res) => {
     const badCourse2 = await course.deleteMany()
     res.status(200).json("deleted all course")
 }
-
 
 
 //export

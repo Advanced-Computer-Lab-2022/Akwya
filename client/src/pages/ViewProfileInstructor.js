@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import DataFetching from '../DataFetching'
 import  ViewEmail from '../components/Instructor/ViewEmail.js'
 import  EditEmail from '../components/Instructor/EditEmail.js'
+import ViewRating from '../components/Instructor/ViewRating'
 
 const ViewProfileInstructor = (props) => {
 
@@ -17,6 +18,8 @@ const ViewProfileInstructor = (props) => {
 
         <ViewEmail/>
         <EditEmail/>
+
+        <ViewRating/>
        
         
         

@@ -207,8 +207,30 @@ const editEmail = async (req, res) => {
     
    
 
-
    
+
+
+}
+
+
+
+const ViewRating = async (req, res) => {
+    
+
+    try{
+       
+        const view = await instructor.find({_id:{$eq:req.params.id}}).select('ratings')
+        
+        console.log(view)
+
+        res.status(200).json(view)
+    }
+    catch( error ){
+        res.status(400).json({error: error.message})
+       
+
+    }
+
 
 
 }
@@ -217,8 +239,6 @@ const editEmail = async (req, res) => {
 
 
 
-
-
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
-    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos, addPreview, viewPreview} 
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos, addPreview, viewPreview, ViewRating} 
 
