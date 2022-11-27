@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import DataFetching from '../DataFetching'
 import UserSearchCourse from '../components/user/UserSearchCourse'
 import MyCourse from '../components/user/GetASingleCourse'
+import ViewCourseRating from '../components/Instructor/ViewCourseRating'
+import RateAndReviewCourse from '../components/user/RateAndReviewCourse'
 
 const Course = (props) => {
 
@@ -13,8 +15,8 @@ const Course = (props) => {
         </Link>
 
         <MyCourse country={props.country}/>
+        <RateAndReviewCourse/>
 
-         
       </div>
     )
   }

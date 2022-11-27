@@ -1,13 +1,28 @@
 import trainee from "../models/trainee.js"
 import course from "../models/course.js";
 
+export const viewRate = async (req, res) => {
+ 
+   
+    try {
+
+
+        const newCourse = await course.updateOne({_id:req.params.id},{$push:{noOfRatings:{rate:req.query.rating}}});
+        res.status(200).json(newCourse)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
+}
+
+
 export const rateCourse = async (req, res) => {
  
    
     try {
-  
-        const newCourse = await course.findOneAndUpdate({_id:req.params.id},{rating: (5*noOfRatings+req.query.rating)/(noOfRatings+1)},{
-         new: true}  );
+
+
+        const newCourse = await course.updateOne({_id:req.params.id},{$push:{noOfRatings:{rate:req.query.rating,review:req.query.review}}});
         res.status(200).json(newCourse)
     } catch (error) {
         res.status(400).json({error: error.message})

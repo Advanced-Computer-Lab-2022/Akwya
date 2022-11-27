@@ -10,6 +10,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import react, {useEffect} from 'react'
+
 
 
 
@@ -26,7 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
   const { useState } = require("react");
 
-  const ViewRating = () => { 
+  const ViewCourseRating = () => { 
 
 
     const params = new URLSearchParams(window.location.search);
@@ -34,22 +36,48 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     const instructorId = '6380fada0e91fe67a1baf48a';
     console.log(instructorId);
 
-    const [rating,setRating] = useState(0);
-    const [review,setReview] = useState("");
-    const [instructors,setInstructors] = useState([]);
 
-    const CourseID  = window.location.href.split('/').at(4);
+    const [RateAndReview,setRateAndReview] = useState([]);
+
+    const CourseID  = window.location.href.split('/').at(5);
+
+
+  const [instructor,setInstructor] = useState([])
+    
+  const ID = window.location.href.split('/').at(5);
+  const instructorID = window.location.href.split('/').at(4);
+
+  useEffect(()=>{
+    axios
+    .get(`http://localhost:9000/instructor/CanViewVideos/${ID}/${instructorID}`)
+    .then( res => {
+        console.log(res)
+        setInstructor(res.data)
+    })
+    .catch(err=>{console.log(err)})
+},[])
+
+
+
 
     const getRatings =  async () => {
-        await axios.get(`http://localhost:9000/trainee/${CourseID}/rateCourse?rating=${rating}&review=${review}`).then(
+        await axios.get(`http://localhost:9000/instructor/getRatings/${CourseID}`).then(
        (res) => { 
-           const instructors = res.data
-           console.log(instructors)
-           setInstructors(instructors)
+           const RateAndReview = res.data
+           console.log(RateAndReview)
+           setRateAndReview(RateAndReview)
            
        }
         );
       
+    }
+
+
+    if(JSON.stringify(instructor).length==2){
+        // console.log(JSON.stringify(instructor).length+" instructor ");
+        // console.log(instructorID+" instructor id from url");
+        
+        return;
     }
 return(
 
@@ -62,15 +90,15 @@ return(
                 onClick={getRatings}
                 margin="normal"
                 padding="normal"
-                >View My Ratings</Button> 
+                >View Course Ratings & Reviews</Button> 
                 
                 </Box>
             
          <div> 
                    
          <div> 
-                  {instructors.map((inst) => (
-                  <div > <p>{inst.Ratings}</p></div>
+                  {RateAndReview.map((inst) => (
+                  <div > <p>{inst.noOfRatings.map((instt) => (<div><p>Rating: {instt.rate}, Review: {instt.review}</p></div>))}</p></div>
                     ))}
                   
        </div>
@@ -86,7 +114,7 @@ return(
 
 
   }
-  export default  ViewRating;
+  export default  ViewCourseRating;
 
 
 

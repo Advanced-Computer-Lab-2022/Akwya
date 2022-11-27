@@ -232,7 +232,23 @@ const ViewRating = async (req, res) => {
     }
 
 
+    
 
+
+}
+
+
+ const getRatings = async (req, res) => {
+ 
+   
+    try {
+
+        const newCourse = await course.find({_id:req.params.id}).select('noOfRatings');
+        res.status(200).json(newCourse)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
 }
 
 
@@ -240,5 +256,6 @@ const ViewRating = async (req, res) => {
 
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
-    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos, addPreview, viewPreview, ViewRating} 
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos, addPreview,
+     viewPreview, ViewRating,getRatings} 
 

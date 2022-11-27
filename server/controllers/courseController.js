@@ -122,7 +122,7 @@ const createCourse = async (req, res) => {
      const instructor = req.params.id
 
     const previewVideo = ""
-    const noOfRatings=0
+    const noOfRatings=[]
     try {
         const newCourse = await course.create({
             title,

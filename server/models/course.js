@@ -11,7 +11,7 @@ const courseSchema = mongoose.Schema({
     instructor: {type:mongoose.Types.ObjectId, ref: instructor},
     totalHours: Number,
     rating: Number,
-    noOfRatings: Number,// [{ actualRating: Number, ratings: [{ rate: Number, ownerName: String, ownerID: Number }] }],
+    noOfRatings: [{rate:Number,review:String}],// [{ actualRating: Number, ratings: [{ rate: Number, ownerName: String, ownerID: Number }] }],
     // reviews: [{ review: { comment: String, ownerName: String, ownerID: Number } }],
     promotion: Number,
     promotionExpiry: Date,
