@@ -211,7 +211,19 @@ const editEmail = async (req, res) => {
 
 
 }
-
+const changePassword= async (req, res) => {
+ 
+   
+    try {
+        
+        const change = await instructor.findOneAndUpdate({_id:req.params.id},{password:req.query.password},{
+         new: true}  );
+        res.status(200).json(change)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+    
 
 
 const ViewRating = async (req, res) => {
@@ -229,13 +241,28 @@ const ViewRating = async (req, res) => {
         res.status(400).json({error: error.message})
        
 
-    }
-
-
     
+    }}
 
 
-}
+ 
+const editBio = async (req, res) => {
+ 
+   
+    try {
+  
+        const newInstructor = await instructor.findOneAndUpdate({_id:req.params.id},{minibiography:req.query.minibiography},{
+         new: true}  );
+        res.status(200).json(newInstructor)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
+    
+ 
+ 
+ }
+
 
 
  const getRatings = async (req, res) => {
@@ -256,6 +283,5 @@ const ViewRating = async (req, res) => {
 
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
-    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos, addPreview,
-     viewPreview, ViewRating,getRatings} 
-
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
+    viewPreview, ViewRating, getRatings,changePassword }

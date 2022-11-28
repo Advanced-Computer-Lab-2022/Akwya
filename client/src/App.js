@@ -12,6 +12,7 @@ import Guest from './pages/Guest'
 
 
 
+
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
 
 import React, { useState, useEffect } from 'react';  
@@ -117,7 +118,12 @@ function App() {
               path="/ViewProfileInstructor/:id"
               element={<ViewProfileInstructor country={country}/>}
             />
+
+
           </Routes>
+
+
+
         </div>
       </BrowserRouter>
     </div>
