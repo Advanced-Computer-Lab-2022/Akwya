@@ -2,11 +2,12 @@ import express from "express";
 const router =express.Router()
 
 
-import {getTrainee} from "../controllers/traineeController.js"
+import {getTrainee, changePassword} from "../controllers/traineeController.js"
 
 
 router.get('/',getTrainee)
 
 
+router.get('/changePassword/:id',changePassword)
 
 export default router;

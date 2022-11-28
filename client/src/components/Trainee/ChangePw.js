@@ -2,15 +2,9 @@
 import axios from 'axios';
 // import react, {useState, useEffect} from 'react'
 import Button from '@mui/material/Button';
-import Table from '@mui/material/Table';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';  
-import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -25,22 +19,20 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
   const { useState } = require("react");
 
-  const ChangePassword = () => { 
+  const ChangePw = () => { 
 
     const params = new URLSearchParams(window.location.search);
-    // const instructorId = '635e92ced2e6e342febedd2d';
-    //EL SAH:
-    const instructorId = window.location.href.split('/').at(4);
+    // const traineeId = '635e92ced2e6e342febedd2d';
+    const traineeId = window.location.href.split('/').at(4);
 
-    console.log(instructorId);
+    console.log(traineeId);
 
     const [password,setPassword] = useState('');
     const [oldPassword,setOldPassword] = useState('');
     const [hide,setHide] = useState(true);
-
     
     const checkOld =  async () => {
-      await axios.get(`http://localhost:9000/instructor/changePassword/`+instructorId+'?oldpassword='+oldPassword).then(
+      await axios.get(`http://localhost:9000/trainee/changePassword/`+traineeId+'?oldpassword='+oldPassword).then(
           (res) => {             
               if(res.data['password'] == oldPassword) {
                 setHide(true)
@@ -54,7 +46,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
          
     }
     const change = async () => {
-      await axios.get(`http://localhost:9000/instructor/changePassword/`+instructorId +'?password='+password).then(
+      await axios.get(`http://localhost:9000/trainee/changePassword/`+traineeId +'?password='+password).then(
        (res) => { 
         console.log('changed pw')           
        }
@@ -83,7 +75,7 @@ return(
         value={password}
         required
       />
-      
+        
                 <Box sx={{marginBottom: 2}}>
                 <Button variant="contained"
                 onClick={checkOld}
@@ -94,17 +86,9 @@ return(
                 </Box>
                 <div hidden={hide}><h5>Old password is incorrect</h5></div>
 
+
        </div>
 
 )
-   
-
-
 }
-  export default ChangePassword;
-
-
-
-
-
-
+  export default ChangePw;
