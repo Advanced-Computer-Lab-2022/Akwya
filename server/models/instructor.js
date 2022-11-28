@@ -6,8 +6,7 @@ const instructorSchema = mongoose.Schema({
     password: String,
     email: String,
     courses: [{ courseid: Number }],
-    ratings: [{ rate: Number, ownerName: String, ownerID: Number }],
-    reviews: [{ comment: String, ownerName: String, ownerID: Number }],
+    ratings: [{ rate: Number, review: String, ownerName: String, ownerID: Number }],
     country: String,
     minibiography: String
 
