@@ -20,7 +20,9 @@ questions: [],
 addQuestion: false, 
 questionName:'',
 answers: [], 
-correctAnswer:''
+correctAnswer:'',
+chosenAnswer:''
+
 } 
 } 
 
@@ -56,14 +58,18 @@ saveQuestion = () => {
     let question = {
         answers: this.state.answers,
         correctAnswer: this.state.answers[this.state.correctAnswer], 
-        questionName: this.state.questionName}
+        questionName: this.state.questionName,
+        chosenAnswer:''
+    }
 
         this.setState({
         questions: this.state.questions.concat(question),
         addQuestion: false, 
         questionName:'',
         answers: [], 
-        correctAnswer:''
+        correctAnswer:'',
+        chosenAnswer:'h'
+
         });
 }
 
@@ -83,6 +89,7 @@ saveQuiz = () => {
         name:this.state.name,
         questions: this.state.questions,
         category: this.state.categoryVal,
+        chosenAnswer:'',
 
 
         answers: this.state.answers, 

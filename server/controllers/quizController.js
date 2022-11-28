@@ -26,6 +26,39 @@ const getQuiz = async (req, res) => {
     }
 
 
+const setChosenAnswer1 = async (req, res) => {
+        try {
+            
+            const { i,
+                chosenAnswer
+        
+            } = req.body
+            const Coursestitles = await trainee.find({$and:[{_id:{$eq:req.params.traineeID}},{courses:{$elemMatch:{courseid:req.params.courseID}}}]})
+
+            
+                    res.json(objs)
+    
+        } catch (error) {
+    
+            res.json({message: error}); }
+        }   
 
 
-export{createQuiz,getQuiz}
+const setChosenAnswer = async (req, res) => {
+ 
+   
+            try {
+          
+                const newInstructor = await quiz.findOneAndUpdate({_id:req.params.id},{email:req.query.email},{
+                 new: true}  );
+                res.status(200).json(newInstructor)
+            } catch (error) {
+                res.status(400).json({error: error.message})
+            }
+            
+         }       
+
+
+
+
+export{createQuiz,getQuiz,setChosenAnswer}
