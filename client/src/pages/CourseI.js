@@ -5,6 +5,7 @@ import MyCourseI from '../components/Instructor/GetASingleCourse'
 import AddVideo from '../components/Instructor/AddVideo'
 import ViewVideos from '../components/Instructor/ViewVideos'
 import ViewCourseRating from '../components/Instructor/ViewCourseRating'
+import Discount from '../components/Instructor/Discount'
 
 const Course = (props) => {
 
@@ -19,6 +20,7 @@ const _idCourse = window.location.href.split('/').at(5);
         <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>
+        <Discount/>
 
         <MyCourseI country={props.country}/>
         <AddVideo/>
