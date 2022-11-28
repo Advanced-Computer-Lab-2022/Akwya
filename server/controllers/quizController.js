@@ -26,17 +26,16 @@ const getQuiz = async (req, res) => {
     }
 
 
-const setChosenAnswer1 = async (req, res) => {
+const submitQuiz = async (req, res) => {
         try {
             
-            const { i,
-                chosenAnswer
-        
-            } = req.body
-            const Coursestitles = await trainee.find({$and:[{_id:{$eq:req.params.traineeID}},{courses:{$elemMatch:{courseid:req.params.courseID}}}]})
+            const {updatedQuiz} = req.body
+            console.log(JSON.stringify(updatedQuiz))
+            const updateQuiz = await quiz.findOneAndUpdate({_id:"6384b22433ae8ee9cda3b3aa"},{questions:updatedQuiz},{
+                new: true}  );
 
             
-                    res.json(objs)
+                    res.json(updateQuiz)
     
         } catch (error) {
     
@@ -61,4 +60,4 @@ const setChosenAnswer = async (req, res) => {
 
 
 
-export{createQuiz,getQuiz,setChosenAnswer}
+export{createQuiz,getQuiz,setChosenAnswer,submitQuiz}

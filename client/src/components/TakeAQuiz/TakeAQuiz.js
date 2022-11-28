@@ -33,7 +33,8 @@ function TakeAQuiz() {
     },[])
 
 
-    const handleQuestionSubmit = async () => {
+    const handleQuestionSubmit = async (e) => {
+      e.preventDefault()
  
       const feinElAnswer = [quizIndex,questionIndex,chosenAnswers]
       console.log(feinElAnswer)
@@ -51,24 +52,27 @@ function TakeAQuiz() {
         
     
     
-          //   await axios.post('/TakeQuiz/submitChosen',{feinElAnswer} ).then(
-          //  (res) => { 
-          //      console.log("tmm")
+            await axios.post('http://localhost:9000/Quiz/TakeQuiz/submitQuiz',{tempquizzes} ).then(
+           (res) => { 
+               console.log("tmm")
                
-          //  }
-          //   );
-          
+           }
+            );
+            console.log("hena el quizzes "+JSON.stringify(tempquizzes));
+
         
 
     }
 
+    let tempquizzes = Quizzes;
+    console.log("hena el quizzes "+JSON.stringify(JSON.parse(tempquizzes)));
 
 
 return(
   <div>
       <h1>Take Quiz</h1>
       <ul>
-          {Quizzes.map(quiz => <li key={quiz._id} > 
+      {tempquizzes.map(quiz => <li key={quiz._id}>
             
             <div id="myDIV" className="quiz name" >
             <div >Quiz Name: {quiz.name}</div>
@@ -77,7 +81,7 @@ return(
 
             {/* <form id="myForm" className="question" style={{display: this.state.ShowIt ? 'block' : 'none' }}> */}
 
-            <form id="myForm" className="question">
+            <form id="myForm" className="question" onSubmit={handleQuestionSubmit}>
               
                 {
                   
@@ -92,8 +96,16 @@ return(
 
                         {quiz.questions[idx].answers.map((ans,idxx)=>(
                         <div>
-                          <input type='radio' value={quiz.questions[idx].answers[idxx]} onChange={e=>{quiz.questions[idx].chosenAnswer=e.target.value;console.log(e.target.value);}}  name="answer"/>
-                         
+                           {/* <input type='radio' value={ans} onChange={e=>{setQuizzes(quizModel.Create({name:quiz.name,
+                            questions:{correctAnswer:quiz.questions[idx].correctAnswer,
+                            chosenAnswer:e.target.value,answers:{0:quiz.questions[idx].answers[0],
+                            1:quiz.questions[idx].answers[1],
+                            2:quiz.questions[idx].answers[2],
+                            3:quiz.questions[idx].answers[3]}}}))}} name="answer"/>
+                          Answer: {ans} {idxx}   */}
+
+                         <input type='radio' value={ans} onChange={e=>{tempquizzes.questions[idx].chosenAnswer=e.target.value;console.log(tempquizzes.questions[idx].chosenAnswer )}} name="answer"/>
+                          Answer: {ans} {idxx}                         
 
                           {'   '+ ans}
                         
@@ -107,7 +119,7 @@ return(
                     
                 ))
                 }
-                  <button onClick={()=>handleQuestionSubmit()} >Submit</button>
+                  <button>Submit</button>
 
 
                 
