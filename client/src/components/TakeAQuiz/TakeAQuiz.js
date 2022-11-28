@@ -35,6 +35,9 @@ function TakeAQuiz() {
 
 
     const handleQuestionSubmit = async (quizIndex) => {
+      
+
+      setShow(false);
       // e.preventDefault()
  
       // Swal.fire({
@@ -101,7 +104,7 @@ return(
 
             {/* <form id="myForm" className="question" style={{display: this.state.ShowIt ? 'block' : 'none' }}> */}
 
-            <form id="myForm" className="question" onSubmit={(e)=>{
+            <form id="myForm" className="question" style={{display: ShowIt ? 'block' : 'none' }} onSubmit={(e)=>{
               e.preventDefault();
               handleQuestionSubmit(quizIndex)}}>
               
