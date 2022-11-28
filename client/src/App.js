@@ -8,7 +8,7 @@ import User from './pages/User';
 import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
-import  InstructorCourse from './pages/InstructorCourse';
+
 
 
 
@@ -119,10 +119,7 @@ function App() {
               element={<ViewProfileInstructor country={country}/>}
             />
 
-<Route
-              path="/InstructorCourse/:id"
-              element={<InstructorCourse country={country}/>}
-            />
+
           </Routes>
 
 
