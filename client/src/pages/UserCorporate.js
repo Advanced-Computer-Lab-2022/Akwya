@@ -4,6 +4,7 @@ import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAnd
 import DataFetching from '../DataFetching'
 import UserSearchCourse from '../components/user/UserSearchCourse'
 import SearchCourseCorporate from '../components/user/SearchCourseCorporate'
+import ChangePw from '../components/Trainee/ChangePw'
 
 const User = () => {
 
@@ -13,6 +14,7 @@ const User = () => {
         <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>
+        <ChangePw/>
 
         <SearchCourseCorporate/>
         <DisplayCourses/>

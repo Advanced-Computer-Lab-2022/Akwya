@@ -11,6 +11,7 @@ import FilterFetchingISubject from '../components/Instructor/FilterFetchingISubj
 import UserSearchCourse from '../components/user/UserSearchCourse'
 
 import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject.js'
+import ChangePassword from '../components/Instructor/ChangePassword.js'
 
 
 
@@ -29,13 +30,12 @@ const Instructor = (props) => {
           <h2>Go to Home Page</h2>
         </Link>
        <h1>Hello Instructor</h1>
+      <ChangePassword/>
+       <Link to="/ViewProfileInstructor/6380fada0e91fe67a1baf48a">
 
-       <Link to="/ViewProfileInstructor/6381101753d48ea316365f94">
           <h3>View My Profile</h3>
        </Link>
-      <div className="courses">
-        
-        </div>
+
         <SearchACourse/>
         <ViewMyCourses/>
         <FilterFetchingI  country={props.country}/>
@@ -45,12 +45,25 @@ const Instructor = (props) => {
         <CreateACourse/>
        
 
+
      </div>
      <br/>
      <UserSearchCourse country={props.country}/>
      <DataFetching country={props.country}/>
      <FilterFetching  country={props.country}/>
+     
+     <div className="quiz">
+        
+        
+  
+          </div>
+     
      </div>
+
+
+
+
+     
 
     
   )}

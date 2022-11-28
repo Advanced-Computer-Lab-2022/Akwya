@@ -10,11 +10,12 @@ const courseSchema = mongoose.Schema({
     subject: String,
     instructor: {type:mongoose.Types.ObjectId, ref: instructor},
     totalHours: Number,
-    rating: Number,// [{ actualRating: Number, ratings: [{ rate: Number, ownerName: String, ownerID: Number }] }],
+    rating: Number,
+    noOfRatings: [{rate:Number,review:String}],// [{ actualRating: Number, ratings: [{ rate: Number, ownerName: String, ownerID: Number }] }],
     // reviews: [{ review: { comment: String, ownerName: String, ownerID: Number } }],
     promotion: Number,
-    promotionExpiry: Date
-    // previewVideo: String,
+    promotionExpiry: Date,
+    previewVideo: String,
     // certificate: String
 
 

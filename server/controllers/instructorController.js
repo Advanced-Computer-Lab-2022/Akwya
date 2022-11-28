@@ -135,12 +135,41 @@ const courseID = req.params.courseID
     console.log("tmm")
 }
 
+const addPreview = async (req, res) => {
+    const { previewVideo } = req.body;
+
+const courseID = req.params.courseID
+
+    try {
+        const newVideo = await course.findOneAndUpdate({_id:req.params.courseID},{previewVideo:previewVideo},{
+            new: true}  );
+        res.status(200).json(newVideo)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+
+    console.log("tmm")
+}
+
 const viewVideos = async (req, res) => {
     const Coursestitles = await video.find({courseID:{$eq:req.params.courseID}})
 
     res.status(200).json(Coursestitles)
 
-} //const coursesPrices = await course.find({}).select('title price')
+}
+
+const viewPreview = async (req, res) => {
+    const Coursestitles = await course.find({_id:{$eq:req.params.courseID}}).select('previewVideo')
+
+    res.status(200).json(Coursestitles)
+
+}
+
+const CanViewVideos = async (req, res) => {
+    const Coursestitles = await course.find({$and:[{_id:{$eq:req.params.courseID}},{instructor:{$eq:req.params.instructorID}}]})
+    res.status(200).json(Coursestitles)
+
+}//const coursesPrices = await course.find({}).select('title price')
 // const  instructorId = req.body.id
 
 const viewEmail = async (req, res) => {
@@ -178,10 +207,44 @@ const editEmail = async (req, res) => {
     
    
 
+   
+
 
 }
+const changePassword= async (req, res) => {
+ 
+   
+    try {
+        
+        const change = await instructor.findOneAndUpdate({_id:req.params.id},{password:req.query.password},{
+         new: true}  );
+        res.status(200).json(change)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+    
 
 
+const ViewRating = async (req, res) => {
+    
+
+    try{
+       
+        const view = await instructor.find({_id:{$eq:req.params.id}}).select('ratings')
+        
+        console.log(view)
+
+        res.status(200).json(view)
+    }
+    catch( error ){
+        res.status(400).json({error: error.message})
+       
+
+    }
+
+
+ 
 const editBio = async (req, res) => {
  
    
@@ -201,11 +264,24 @@ const editBio = async (req, res) => {
 
 
 
+ const getRatings = async (req, res) => {
+ 
+   
+    try {
+
+        const newCourse = await course.find({_id:req.params.id}).select('noOfRatings');
+        res.status(200).json(newCourse)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
+}
 
 
 
 
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
-    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail ,editBio } 
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
+     viewPreview, ViewRating,getRatings,changePassword} 
 
