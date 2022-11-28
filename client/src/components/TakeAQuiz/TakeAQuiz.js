@@ -14,15 +14,11 @@ function TakeAQuiz() {
   const [ShowIt, setShow]= useState(true);
   const CourseID = window.location.href.split('/').at(4);
 
-  // const [quizIndex, setQuizIndex] = useState(0)
-  // const [questionIndex, setQuestions] = useState(0)
-  // const [chosenAnswers, setAnswers] = useState('')
- 
+
+  const [correctAnswerr,setCorrectAnswer] = useState(0)
+  const [chosenAnswerr,setChosenAnswer] = useState(0)
 
 
-    
-    // const id = window.location.href.split('/').at(4);
-    
     useEffect(()=>{
       axios
       .get('http://localhost:9000/Quiz/TakeQuiz/'+CourseID)
@@ -38,36 +34,19 @@ function TakeAQuiz() {
       
 
       setShow(false);
-      // e.preventDefault()
- 
-      // Swal.fire({
-      //     title: 'Question Submitted!',
-      //     icon: 'success',
-      //     confirmButtonColor: '#38a53e',
-      //     confirmButtonText: 'OK',
-          
-      //   }).then((result) => {
-      //     if (result.isConfirmed) {
-      //       window.location.reload();
-      //     }
-      //   })
-        
-        
-      //   let tempQuiz=Quizzes[quizIndex]
-
-    
-      //     axios.post('/TakeQuiz/submitQuiz', {tempQuiz} ).then(
-      //      (res) => { 
-      //          console.log("tmm")
-               
-      //      }
-      //       );
+      
         let tempQuiz=Quizzes[quizIndex]
 
+        
 
 
             axios.post('http://localhost:9000/Quiz/TakeQuiz/submitQuiz', tempQuiz).then(res=>{
               console.log(tempQuiz)
+
+
+
+
+
               Swal.fire({
                   title: 'Question Submitted!',
                   icon: 'success',
@@ -83,13 +62,11 @@ function TakeAQuiz() {
           })
             // console.log((Quizzes[quizIndex]));
 
+
+            
         
 
     }
-
-    let tempquizzes = Quizzes;
-    // console.log("hena el quizzes "+JSON.stringify(JSON.parse(tempquizzes)));
-
 
 return(
   <div>

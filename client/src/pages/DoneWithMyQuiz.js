@@ -25,7 +25,8 @@ const DoneWithMyQuiz = (props) => {
               <h2>Go to Home Page</h2>
             </Link>
     
-            <ViewAnswer/>            
+            <ViewAnswer/>
+            <ViewGrade/>            
     
     
     

@@ -36,6 +36,7 @@ const submitQuiz = async (req, res) => {
             console.log('ana hena')
 
             console.log(updatedQuiz)
+            
             const updateQuizz = await quiz.findOneAndReplace({_id:req.body._id},updatedQuiz)
             //  ({_id:updatedQuiz._id},{questions:{updatedQuiz.question}, {new: true});
 
@@ -47,24 +48,63 @@ const submitQuiz = async (req, res) => {
             res.json({message: error}); }
         }   
 
+const viewGrade = async (req, res) => {
+            console.log('ana hhhhh')
+            var chosenAnswerr=0;
+            var correctAnswerr=0;
 
+            try {
+                    
+
+//course el wahed momken yekon liii kaza quiz
+                    const updatedQuiz = await quiz.find({courseid:{$eq:req.params.id}}).select('questions')
+
+                    console.log(await quiz.find({courseid:{$eq:req.params.id}}))
+
+                    console.log('hhh'+updatedQuiz[0].questions.length)
+        
+                    for (let i = 0; i < updatedQuiz.length; i++) {
+                        console.log('yooo')
+
+                        for (let index = 0; index < updatedQuiz[i].questions.length; index++) {
+                        console.log('ana hena ok')
+
+                        correctAnswerr=correctAnswerr+1;
+                        
+
+                        if (updatedQuiz[i].questions[index].correctAnswer.valueOf()===updatedQuiz[i].questions[index].chosenAnswer.valueOf()) {
+                            chosenAnswerr=chosenAnswerr+1;
+                        }
+                
+                        console.log(correctAnswerr);
+                        console.log(chosenAnswerr)
+                        console.log('chosenAnswerr')
+                        // {chosenAnswerr&&'/'+correctAnswerr}
+                }
+            }
+            console.log('bye')
+            const x=chosenAnswerr.toString();
+            const y=correctAnswerr.toString();
+            console.log(x+'/'+y)
+
+            res.send(x+'/'+y)
+
+                console.log('ana we2eft ok')
+
+            
+                
+             }
+              catch (error) {
+            
+                    res.json({message: error}); }
+
+                    console.log('ana we2eft ok')
+
+                } 
      
-     
-    //  const addPreview = async (req, res) => {
-    //     const { previewVideo } = req.body;
+
+
     
-    // const courseID = req.params.courseID
-    
-    //     try {
-    //         const newVideo = await course.findOneAndUpdate({_id:req.params.courseID},{previewVideo:previewVideo},{
-    //             new: true}  );
-    //         res.status(200).json(newVideo)
-    //     } catch (error) {
-    //         res.status(400).json({ error: error.message })
-    //     }
-    
-    //     console.log("tmm")
-    // }
      
      
      
@@ -72,4 +112,4 @@ const submitQuiz = async (req, res) => {
 
 
 
-export{createQuiz,getQuiz,submitQuiz}
+export{createQuiz,getQuiz,submitQuiz,viewGrade}
