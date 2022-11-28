@@ -227,7 +227,7 @@ const changePassword= async (req, res) => {
 
 
 const ViewRating = async (req, res) => {
-    
+    //instructor view his rating
 
     try{
        
@@ -266,7 +266,7 @@ const editBio = async (req, res) => {
 
 
  const getRatings = async (req, res) => {
- 
+ //this is for the course ratings
    
     try {
 

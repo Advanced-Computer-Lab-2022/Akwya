@@ -46,8 +46,7 @@ router.get('/editBio/:id', editBio )
 
 router.get('/getRatings/:id', getRatings )
 
-
-
+router.get('/:id/myRating', ViewRating)
 
 
 export default router;
