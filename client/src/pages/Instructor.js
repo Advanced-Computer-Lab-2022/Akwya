@@ -31,7 +31,7 @@ const Instructor = (props) => {
         </Link>
        <h1>Hello Instructor</h1>
       <ChangePassword/>
-       <Link to="/ViewProfileInstructor/6380fada0e91fe67a1baf48a">
+       <Link to="/ViewProfileInstructor/6381101753d48ea316365f94">
 
           <h3>View My Profile</h3>
        </Link>

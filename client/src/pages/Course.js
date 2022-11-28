@@ -5,6 +5,7 @@ import MyCourse from '../components/user/GetASingleCourse'
 import ViewCourseRating from '../components/Instructor/ViewCourseRating'
 import RateAndReviewCourse from '../components/user/RateAndReviewCourse'
 import UserViewVideos from '../components/user/UserViewVideos'
+import RateAndReviewInstructor from '../components/user/RateAndReviewInstructor'
 
 const Course = (props) => {
 
@@ -17,6 +18,7 @@ const Course = (props) => {
 
         <MyCourse country={props.country}/>
         <RateAndReviewCourse/>
+        <RateAndReviewInstructor/>
 
         <UserViewVideos/>
 
