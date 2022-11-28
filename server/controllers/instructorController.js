@@ -204,15 +204,80 @@ const editEmail = async (req, res) => {
    } catch (error) {
        res.status(400).json({error: error.message})
    }
+
    
+}
+const changePassword= async (req, res) => {
+ 
+   
+    try {
+        
+        const change = await instructor.findOneAndUpdate({_id:req.params.id},{password:req.query.password},{
+         new: true}  );
+        res.status(200).json(change)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+    
+
+
+const ViewRating = async (req, res) => {
+    //instructor view his rating
+
+    try{
+       
+        const view = await instructor.find({_id:{$eq:req.params.id}}).select('ratings')
+        
+        console.log(view)
+
+        res.status(200).json(view)
+    }
+    catch( error ){
+        res.status(400).json({error: error.message})
+       
+
+    
+    }}
+
+
+ 
+const editBio = async (req, res) => {
+ 
+   
+    try {
+  
+        const newInstructor = await instructor.findOneAndUpdate({_id:req.params.id},{minibiography:req.query.minibiography},{
+         new: true}  );
+        res.status(200).json(newInstructor)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
+    
+ 
+ 
+ }
+
+
+
+ const getRatings = async (req, res) => {
+ //this is for the course ratings
+   
+    try {
+
+        const newCourse = await course.find({_id:req.params.id}).select('noOfRatings');
+        res.status(200).json(newCourse)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
 }
 
 
 
 
 
-
-
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
-    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos, addPreview, viewPreview} 
-
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
+    viewPreview, ViewRating, getRatings,changePassword }

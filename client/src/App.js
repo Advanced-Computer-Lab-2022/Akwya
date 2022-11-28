@@ -121,7 +121,12 @@ function App() {
               path="/ViewProfileInstructor/:id"
               element={<ViewProfileInstructor country={country}/>}
             />
+
+
           </Routes>
+
+
+
         </div>
       </BrowserRouter>
     </div>

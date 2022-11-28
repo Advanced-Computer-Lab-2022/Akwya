@@ -2,7 +2,9 @@ import express from "express";
 import { createCourse } from "../controllers/courseController.js";
 const router =express.Router()
 import { searchCourseI, viewCoursestitleI  , deleteAllInstructors,filterCoursesByPriceI, filterCoursesBySubjectI, 
-filterCoursesByRatingAndSubject, addVideo ,viewVideos,viewEmail ,editEmail, CanViewVideos, addPreview, viewPreview} from'../controllers/instructorController.js'
+filterCoursesByRatingAndSubject, addVideo ,viewVideos,viewEmail ,editEmail,editBio, CanViewVideos, addPreview, viewPreview, 
+ViewRating, getRatings,changePassword} from'../controllers/instructorController.js'
+
 
 
 router.get('/viewCoursestitleI/:id', viewCoursestitleI )
@@ -35,11 +37,16 @@ router.get('/viewEmail/:id', viewEmail )
 
 router.get('/editEmail/:id', editEmail )
 
+router.get('/viewRating/:id', ViewRating )
+
+router.get('/changePassword/:id', changePassword)
+
+router.get('/editBio/:id', editBio )
 
 
+router.get('/getRatings/:id', getRatings )
 
-
-//router.get('/searchCourse/:title',searchCoursee)
+router.get('/:id/myRating', ViewRating)
 
 
 export default router;

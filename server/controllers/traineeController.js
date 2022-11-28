@@ -1,5 +1,38 @@
 import trainee from "../models/trainee.js"
 import course from "../models/course.js";
+import instructor from "../models/instructor.js";
+
+
+const rateCourse = async (req, res) => {
+ 
+   
+    try {
+
+
+        const newCourse = await course.updateOne({_id:req.params.id},{$push:{noOfRatings:{rate:req.query.rating,review:req.query.review}}});
+        res.status(200).json(newCourse)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
+}
+
+const rateInstructor = async (req, res) => {
+ 
+   
+    try {
+
+
+        const courseRated = await course.findOne({_id:req.params.id});
+        const newinstructor = await instructor.updateOne({_id:courseRated.instructor._id},{$push:{ratings:{rate:req.query.rate, review:req.query.review}}})
+        res.status(200).json(newinstructor)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
+}
+
+
 
 const getTrainee= async(req,res) => {
     try{
@@ -54,10 +87,19 @@ const isRegistered = async (req, res) => {
 
 
 }
+const changePassword= async (req, res) => {
+   
+    try {
+        const change = await trainee.findOneAndUpdate({_id:req.params.id},{password:req.query.password},{
+         new: true}  );
+        res.status(200).json(change)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
 
 
 
 
 
-
-export {getTrainee,registerCourse,isRegistered,dropCourse}
+export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor}

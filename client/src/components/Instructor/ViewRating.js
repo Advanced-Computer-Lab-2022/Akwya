@@ -10,6 +10,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import react, {useEffect} from 'react'
+
 
 
 
@@ -26,7 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
   const { useState } = require("react");
 
-  const ViewEmail = () => { 
+  const ViewRating = () => { 
 
 
     const params = new URLSearchParams(window.location.search);
@@ -34,40 +36,52 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     const instructorId = '6381101753d48ea316365f94';
     console.log(instructorId);
 
-    const [instructors,setInstructors] = useState([]);
+
+    const [RateAndReview,setRateAndReview] = useState([]);
+
+    const CourseID  = window.location.href.split('/').at(5);
 
 
-    const getEmail =  async () => {
-        await axios.get(`http://localhost:9000/instructor/viewEmail/`+instructorId).then(
+  const [instructor,setInstructor] = useState([])
+    
+  const instructorID = '6381101753d48ea316365f94';
+
+
+
+
+    const getRatings =  async () => {
+        await axios.get(`http://localhost:9000/instructor/${instructorID}/myRating`).then(
        (res) => { 
-           const instructors = res.data
-           console.log(instructors)
-           setInstructors(instructors)
+           const RateAndReview = res.data
+           console.log(RateAndReview)
+           setRateAndReview(RateAndReview)
            
        }
         );
       
     }
+
+
 return(
 
 
-    <div className="View Email">
+    <div className="View Ratings">
         <h3>viewProfile</h3>
         
                 <Box sx={{marginBottom: 2}}>
                 <Button variant="contained"
-                onClick={getEmail}
+                onClick={getRatings}
                 margin="normal"
                 padding="normal"
-                >View My Email</Button> 
+                >View My Ratings & Reviews</Button> 
                 
                 </Box>
             
          <div> 
                    
          <div> 
-                  {instructors.map((inst) => (
-                  <div > <p>{inst.email}</p></div>
+                  {RateAndReview.map((inst) => (
+                  <div > <p>{inst.ratings.map((instt) => (<div><p>Rating: {instt.rate}, Review: {instt.review}</p></div>))}</p></div>
                     ))}
                   
        </div>
@@ -83,7 +97,7 @@ return(
 
 
   }
-  export default  ViewEmail;
+  export default  ViewRating;
 
 
 

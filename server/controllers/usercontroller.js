@@ -1,5 +1,6 @@
 import user from '../models/user.js';
 import mongoose from 'mongoose';
+import course from '../models/course.js';
 
 
 
@@ -75,7 +76,18 @@ export const createUser= async(req,res) => {
     }
     res.status(200).json(userr)
 }
-
-
-
    
+
+export const rateCourse = async (req, res) => {
+ 
+   
+    try {
+  
+        const newCourse = await course.findOneAndUpdate({_id:req.params.id},{rating: (rating*noOfRatings+req.query.rating)/(noOfRatings+1)},{
+         new: true}  );
+        res.status(200).json(newCourse)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
+}
