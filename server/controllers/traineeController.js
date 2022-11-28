@@ -84,10 +84,19 @@ const isRegistered = async (req, res) => {
 
 
 }
+const changePassword= async (req, res) => {
+   
+    try {
+        const change = await trainee.findOneAndUpdate({_id:req.params.id},{password:req.query.password},{
+         new: true}  );
+        res.status(200).json(change)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
 
 
 
 
 
-
-export {getTrainee,registerCourse,isRegistered,dropCourse,viewRate,rateCourse}
+export {getTrainee,registerCourse,isRegistered,dropCourse,viewRate,rateCourse,changePassword}

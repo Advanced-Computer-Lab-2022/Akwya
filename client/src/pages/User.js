@@ -3,7 +3,7 @@ import DataFetching from '../DataFetching'
 import FilterFetching from '../components/user/FilterFetching'
 
 import UserSearchCourse from '../components/user/UserSearchCourse'
-
+import ChangePw from '../components/Trainee/ChangePw'
 import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject'
 
 const User = (props) => {
@@ -14,6 +14,7 @@ const User = (props) => {
         <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>
+        <ChangePw/>
 
         <UserSearchCourse/>
         
