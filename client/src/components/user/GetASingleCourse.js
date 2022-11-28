@@ -34,6 +34,26 @@ switch(props.country) {
       // rate = 3;
   }
 
+if(window.location.href.split('/').at(3)=='userCorporate'){
+
+  return(
+    <div>
+        <h1>Course Details</h1>
+        <ul>
+
+            {courses.map(course => <li key={course._id}>Title: {course.title} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
+           
+
+        </ul>
+        
+
+    </div>
+)
+}
+
+
+
+
 return(
     <div>
         <h1>Course Details</h1>

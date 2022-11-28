@@ -4,8 +4,14 @@ import UserSearchCourse from '../components/user/UserSearchCourse'
 import MyCourseI from '../components/Instructor/GetASingleCourse'
 import AddVideo from '../components/Instructor/AddVideo'
 import ViewVideos from '../components/Instructor/ViewVideos'
+import ViewCourseRating from '../components/Instructor/ViewCourseRating'
 
 const Course = (props) => {
+
+
+const _idInstructor = window.location.href.split('/').at(4);
+const _idCourse = window.location.href.split('/').at(5);
+
 
     return (
       <div className="guest">
@@ -17,6 +23,10 @@ const Course = (props) => {
         <MyCourseI country={props.country}/>
         <AddVideo/>
         <ViewVideos/>
+
+        <ViewCourseRating/>
+
+
          
       </div>
     )

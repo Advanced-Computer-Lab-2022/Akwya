@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import course from './course.js';
 
 const traineeSchema = mongoose.Schema({
     username: String,
@@ -8,10 +9,10 @@ const traineeSchema = mongoose.Schema({
     lname: String,
     gender: String,
     traineetype: String, //corporate or individual
-    courses: [{ courseid: Number, progress: Number }],
+    courses: [{ courseid: String, progress: Number }],
     country: String
 
-
+    
 
 }, { timestamps: true }
 
