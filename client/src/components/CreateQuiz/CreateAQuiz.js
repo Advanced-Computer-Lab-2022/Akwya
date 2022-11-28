@@ -59,7 +59,7 @@ saveQuestion = () => {
         answers: this.state.answers,
         correctAnswer: this.state.answers[this.state.correctAnswer], 
         questionName: this.state.questionName,
-        chosenAnswer:this.state.chosenAnswer
+        chosenAnswer:''
     }
 
         this.setState({
@@ -89,7 +89,7 @@ saveQuiz = () => {
         name:this.state.name,
         questions: this.state.questions,
         category: this.state.categoryVal,
-        chosenAnswer:this.state.chosenAnswer,
+        chosenAnswer:'',
 
 
         answers: this.state.answers, 

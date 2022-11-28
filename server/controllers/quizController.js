@@ -27,15 +27,20 @@ const getQuiz = async (req, res) => {
 
 
 const submitQuiz = async (req, res) => {
-        try {
+    console.log('ana hena')
+
+    
+    try {
             
             const {updatedQuiz} = req.body
-            console.log(JSON.stringify(updatedQuiz))
-            const updateQuiz = await quiz.findOneAndUpdate({_id:"6384b22433ae8ee9cda3b3aa"},{questions:updatedQuiz},{
-                new: true}  );
+            console.log('ana hena')
+
+            console.log(req.body)
+            const updateQuizz = await quiz.findOneAndReplace({_id:req.body._id},{updatedQuiz})
+            //  ({_id:updatedQuiz._id},{questions:{updatedQuiz.question}, {new: true});
 
             
-                    res.json(updateQuiz)
+                    res.json(updateQuizz)
     
         } catch (error) {
     
@@ -43,21 +48,28 @@ const submitQuiz = async (req, res) => {
         }   
 
 
-const setChosenAnswer = async (req, res) => {
- 
-   
-            try {
-          
-                const newInstructor = await quiz.findOneAndUpdate({_id:req.params.id},{email:req.query.email},{
-                 new: true}  );
-                res.status(200).json(newInstructor)
-            } catch (error) {
-                res.status(400).json({error: error.message})
-            }
-            
-         }       
+     
+     
+    //  const addPreview = async (req, res) => {
+    //     const { previewVideo } = req.body;
+    
+    // const courseID = req.params.courseID
+    
+    //     try {
+    //         const newVideo = await course.findOneAndUpdate({_id:req.params.courseID},{previewVideo:previewVideo},{
+    //             new: true}  );
+    //         res.status(200).json(newVideo)
+    //     } catch (error) {
+    //         res.status(400).json({ error: error.message })
+    //     }
+    
+    //     console.log("tmm")
+    // }
+     
+     
+     
 
 
 
 
-export{createQuiz,getQuiz,setChosenAnswer,submitQuiz}
+export{createQuiz,getQuiz,submitQuiz}
