@@ -63,7 +63,7 @@ function TakeAQuiz() {
 
 
 
-            axios.post('http://localhost:9000/Quiz/TakeQuiz/submitQuiz', {tempQuiz}).then(res=>{
+            axios.post('http://localhost:9000/Quiz/TakeQuiz/submitQuiz', tempQuiz).then(res=>{
               console.log(tempQuiz)
               Swal.fire({
                   title: 'Question Submitted!',
@@ -143,9 +143,7 @@ return(
                         }}
                          
                          name="answer"/>
-                          Answer: {ans} {answerIndex}                         
-
-                          {'   '+ ans}
+                          Answer: {ans} 
                         
                         </div>
                         

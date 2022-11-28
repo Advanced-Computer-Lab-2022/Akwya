@@ -32,11 +32,11 @@ const submitQuiz = async (req, res) => {
     
     try {
             
-            const {updatedQuiz} = req.body
+            const updatedQuiz = req.body
             console.log('ana hena')
 
-            console.log(req.body)
-            const updateQuizz = await quiz.findOneAndReplace({_id:req.body._id},{updatedQuiz})
+            console.log(updatedQuiz)
+            const updateQuizz = await quiz.findOneAndReplace({_id:req.body._id},updatedQuiz)
             //  ({_id:updatedQuiz._id},{questions:{updatedQuiz.question}, {new: true});
 
             
