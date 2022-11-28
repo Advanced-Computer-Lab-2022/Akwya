@@ -209,9 +209,9 @@ const courseDiscount = async (req, res) => {
 
       const date=await course.findOneAndUpdate({_id:req.params.id},{promotionExpiry:req.query.promotionExpiry},{new: true}  )
        
-        res.status(200).json(discount)
-        res.status(200).json(date)
+        res.status(200).json({discount, date})
        
+
 
     }
     catch (error) {

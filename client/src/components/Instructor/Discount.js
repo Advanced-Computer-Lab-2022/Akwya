@@ -65,9 +65,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
             setPrice(newPrice)
             console.log(newPrice)
             
-            
-
-           console.log("yasmine")
+            if(promotion!=0){
+              console.log("calling date")
+              date()
+            }
          
        }
         );
@@ -79,8 +80,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotionExpiry='+ promotionExpiry ).then(
      (res) => { 
 
-      // setPrice(res.data['price'])
-       const promotionExpiry = res.data['promotionExpiry']
+      setPromotionExpiry(res.data['promotionExpiry'])
+      // const promotionExpiry = res.data['promotionExpiry']
       console.log(promotionExpiry)
       
        
@@ -113,14 +114,6 @@ return(
       />
         
         
-                <Box sx={{marginBottom: 2}}>
-                <Button variant="contained"
-                onClick={edit}
-                margin="normal"
-                padding="normal"
-                >Add discount for the course</Button> 
-                
-                </Box>
 
        <label>Discount valid till:</label>    
 
@@ -135,7 +128,7 @@ return(
         
                 <Box sx={{marginBottom: 2}}>
                 <Button variant="contained"
-                onClick={date}
+                onClick={edit}
                 margin="normal"
                 padding="normal"
                 >confirm </Button> 
