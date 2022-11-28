@@ -27,7 +27,9 @@ import react, {useState, useEffect} from 'react'
     const CourseID  = window.location.href.split('/').at(4);
     const TraineeID = "635849b7a58d8beb73e81787";
 
-    const PostRating =  async () => {
+    const PostRating =  async (e) => {
+        e.preventDefault()
+
         await axios.patch(`http://localhost:9000/trainee/${CourseID}/rateCourse?rating=${rating}&review=${review}`).then(
        (res) => { 
            const Ratings = res.data
@@ -45,9 +47,11 @@ import react, {useState, useEffect} from 'react'
             confirmButtonColor: '#38a53e',
             confirmButtonText: 'OK'
           }).then((result) => {
-            // if (result.isConfirmed) {
-              window.location.reload();
-            // }
+            if (result.isConfirmed) {
+            //   window.location.reload();
+            setRating(0);
+            setReview("");
+            }
           })
 
 
