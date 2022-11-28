@@ -241,7 +241,8 @@ const ViewRating = async (req, res) => {
         res.status(400).json({error: error.message})
        
 
-    }
+    
+    }}
 
 
  
@@ -283,5 +284,4 @@ const editBio = async (req, res) => {
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
     filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
-     viewPreview, ViewRating,getRatings,changePassword} 
-
+    viewPreview, ViewRating, getRatings,changePassword }
