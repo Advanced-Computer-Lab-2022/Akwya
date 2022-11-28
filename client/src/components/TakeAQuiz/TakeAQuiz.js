@@ -65,7 +65,7 @@ function TakeAQuiz() {
     }
 
     let tempquizzes = Quizzes;
-    console.log("hena el quizzes "+JSON.stringify(JSON.parse(tempquizzes)));
+    // console.log("hena el quizzes "+JSON.stringify(JSON.parse(tempquizzes)));
 
 
 return(
