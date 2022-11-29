@@ -14,6 +14,7 @@ import Guest from './pages/Guest'
 
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
 import Reset from './pages/ResetPassword';
+import Resett from './pages/ResetPwTrainee';
 
 import React, { useState, useEffect } from 'react';  
 import axios from 'axios'
@@ -126,6 +127,10 @@ function App() {
             <Route
               path="/reset"
               element={<Reset/>}
+              />
+              <Route
+              path="/resett"
+              element={<Resett/>}
               />
 
           </Routes>
