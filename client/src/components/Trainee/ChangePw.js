@@ -30,14 +30,17 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     const [password,setPassword] = useState('');
     const [oldPassword,setOldPassword] = useState('');
     const [hide,setHide] = useState(true);
-    
+    const [hidec,setHidec] = useState(true);
+
     const checkOld =  async () => {
-      await axios.get(`http://localhost:9000/trainee/changePassword/`+traineeId+'?oldpassword='+oldPassword).then(
+      await axios.get(`http://localhost:9000/trainee/checkPassword/`+traineeId).then(
           (res) => {             
-              if(res.data['password'] == oldPassword) {
+              if(res.data[0]['password'] == oldPassword) {
                 setHide(true)
+                setHidec(false)
                 change()
               }else {
+                setHidec(true)     
                 setHide(false)
               }
           }
@@ -82,9 +85,9 @@ return(
                 margin="normal"
                 padding="normal"
                 >Change Password</Button> 
-                
                 </Box>
                 <div hidden={hide}><h5>Old password is incorrect</h5></div>
+                <div hidden={hidec}><h4>Password changed successfully</h4></div>
 
 
        </div>
