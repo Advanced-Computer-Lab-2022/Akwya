@@ -13,7 +13,7 @@ import UserSearchCourse from '../components/user/UserSearchCourse'
 import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject.js'
 import ChangePassword from '../components/Instructor/ChangePassword.js'
 
-
+ import Contract from '../components/Instructor/Contract.js'
 
 
 const Instructor = (props) => {
@@ -58,6 +58,9 @@ const Instructor = (props) => {
   
           </div>
      
+<Link to="/Contract">
+<h3>View contract</h3>
+</Link>
      </div>
 
 
