@@ -1,6 +1,7 @@
 import trainee from "../models/trainee.js"
 import course from "../models/course.js";
 import instructor from "../models/instructor.js";
+import nodemailer from 'nodemailer'
 
 
 const rateCourse = async (req, res) => {

@@ -9,11 +9,12 @@ const AddInstructor = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
+    const [email, setEmail] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const instructor = {username, password}
+    const instructor = {username, password,email}
     
 
     const respnse= await fetch('/admin/newInstructor', {
@@ -40,6 +41,7 @@ const AddInstructor = () => {
         setError(null)
         setUsername('')
         setPassword('')
+        setEmail('')
         
 
     } 
@@ -58,6 +60,13 @@ const AddInstructor = () => {
         required
       />
         <br/>
+        <label>Email:</label>
+      <input 
+        type="email" 
+        onChange={(e) => setEmail(e.target.value)} 
+        value={email}
+      required/>
+        <br/>
       <label>Password:</label>
       <input 
         type="password" 
@@ -65,7 +74,7 @@ const AddInstructor = () => {
         value={password}
       required/>
         <br/>
-
+      
 
       <button>Add New Instructor</button>
       {error && <div className="error">{error}</div>}
