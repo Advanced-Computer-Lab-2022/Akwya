@@ -114,8 +114,8 @@ const createCourse = async (req, res) => {
 
         rating,
         // reviews,
-        // promotion,
-        // promotionExpiry,
+        //  promotion,
+        //  promotionExpiry,
         // previewVideo
         // certificate
     } = req.body
@@ -123,6 +123,9 @@ const createCourse = async (req, res) => {
 
     const previewVideo = ""
     const noOfRatings=[]
+    const promotion=0;
+    const promotionExpiry="";
+
     try {
         const newCourse = await course.create({
             title,
@@ -132,6 +135,9 @@ const createCourse = async (req, res) => {
             subject,
             instructor,
             totalHours,
+            promotion,
+            promotionExpiry,
+
 
             rating,
             noOfRatings,
@@ -198,5 +204,27 @@ const deleteAllCourses = async (req, res) => {
 }
 
 
+
+
+const courseDiscount = async (req, res) => {
+    try{
+
+      
+        const discount=await course.findOneAndUpdate({_id:req.params.id},{promotion:req.query.promotion},{new: true}  )
+
+      const date=await course.findOneAndUpdate({_id:req.params.id},{promotionExpiry:req.query.promotionExpiry},{new: true}  )
+       
+        res.status(200).json({discount, date})
+       
+
+
+    }
+    catch (error) {
+    res.status(400).json({error: error.message})
+}
+ }
+
+
+
 //export
-export { createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses }
+export { createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }

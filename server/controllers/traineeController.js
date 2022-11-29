@@ -1,19 +1,6 @@
 import trainee from "../models/trainee.js"
 import course from "../models/course.js";
-
-const viewRate = async (req, res) => {
- 
-   
-    try {
-
-
-        const newCourse = await course.updateOne({_id:req.params.id},{$push:{noOfRatings:{rate:req.query.rating}}});
-        res.status(200).json(newCourse)
-    } catch (error) {
-        res.status(400).json({error: error.message})
-    }
-     
-}
+import instructor from "../models/instructor.js";
 
 
 const rateCourse = async (req, res) => {
@@ -29,6 +16,22 @@ const rateCourse = async (req, res) => {
     }
      
 }
+
+const rateInstructor = async (req, res) => {
+ 
+   
+    try {
+
+
+        const courseRated = await course.findOne({_id:req.params.id});
+        const newinstructor = await instructor.updateOne({_id:courseRated.instructor._id},{$push:{ratings:{rate:req.query.rate, review:req.query.review}}})
+        res.status(200).json(newinstructor)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
+}
+
 
 
 const getTrainee= async(req,res) => {
@@ -99,4 +102,4 @@ const changePassword= async (req, res) => {
 
 
 
-export {getTrainee,registerCourse,isRegistered,dropCourse,viewRate,rateCourse,changePassword}
+export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor}

@@ -20,7 +20,9 @@ questions: [],
 addQuestion: false, 
 questionName:'',
 answers: [], 
-correctAnswer:''
+correctAnswer:'',
+chosenAnswer:''
+
 } 
 } 
 
@@ -53,18 +55,40 @@ updateAnswer = (e, i) => {
 
 
 saveQuestion = () => {
-    let question = {
-        answers: this.state.answers,
-        correctAnswer: this.state.answers[this.state.correctAnswer], 
-        questionName: this.state.questionName}
+    if( this.state.questionName==='' ||this.state.answers.length!==4 ||this.state.correctAnswer===''){
+        Swal.fire({
+            title: 'Missing Input!',
+            icon: 'error',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#380000'
 
-        this.setState({
-        questions: this.state.questions.concat(question),
-        addQuestion: false, 
-        questionName:'',
-        answers: [], 
-        correctAnswer:''
-        });
+            
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          })
+
+    }else{
+        let question = {
+            answers: this.state.answers,
+            correctAnswer: this.state.answers[this.state.correctAnswer], 
+            questionName: this.state.questionName,
+            chosenAnswer:''
+        }
+    
+            this.setState({
+            questions: this.state.questions.concat(question),
+            addQuestion: false, 
+            questionName:'',
+            answers: [], 
+            correctAnswer:'',
+            chosenAnswer:''
+    
+            });
+    }
+    
 }
 
 removeQuestion = () => {
@@ -83,6 +107,7 @@ saveQuiz = () => {
         name:this.state.name,
         questions: this.state.questions,
         category: this.state.categoryVal,
+        chosenAnswer:'',
 
 
         answers: this.state.answers, 
@@ -91,41 +116,34 @@ saveQuiz = () => {
         questionName: this.state.questionName
     }
 
-    if( quizz.questionName==='' ||quizz.answers.length!==4 ||quizz.correctAnswer===''){
-        Swal.fire({
-            title: 'Missing Input!',
-            icon: 'error',
-            confirmButtonColor: '#38a53e',
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#380000'
+    console.log("question name: "+quizz.questionName)
+    console.log("answer length: "+this.state.answers.length)
+    console.log("correct Answer: "+quizz.correctAnswer==='')
 
-            
-          }).then((result) => {
-            if (result.isConfirmed) {
-              window.location.reload();
-            }
-          })
+    
 
-    }
+        axios.post('/Quiz/create', {quizz}).then(res=>{
+            Swal.fire({
+                title: 'New Quiz added!',
+                icon: 'success',
+                confirmButtonColor: '#38a53e',
+                confirmButtonText: 'OK'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.reload();
+                }
+              })
+        }).catch(er=>{
+            console.error(er);
+        })
+
+    
 
 
 
 
 
-    axios.post('/Quiz/create', {quizz}).then(res=>{
-        Swal.fire({
-            title: 'New Quiz added!',
-            icon: 'success',
-            confirmButtonColor: '#38a53e',
-            confirmButtonText: 'OK'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              window.location.reload();
-            }
-          })
-    }).catch(er=>{
-        console.error(er);
-    })
+    
 
         
 }
