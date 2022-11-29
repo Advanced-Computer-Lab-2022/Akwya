@@ -220,7 +220,17 @@ const changePassword= async (req, res) => {
     }
 }
     
-
+const checkPassword= async (req, res) => {
+ 
+   
+    try {
+        
+        const check = await instructor.find({_id:req.params.id}).select('password');
+        res.status(200).json(check)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
 
 const ViewRating = async (req, res) => {
     //instructor view his rating
@@ -280,4 +290,4 @@ const editBio = async (req, res) => {
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
     filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
-    viewPreview, ViewRating, getRatings,changePassword }
+    viewPreview, ViewRating, getRatings,changePassword, checkPassword }

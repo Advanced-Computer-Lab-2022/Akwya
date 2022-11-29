@@ -98,8 +98,18 @@ const changePassword= async (req, res) => {
     }
 }
 
+const checkPassword= async (req, res) => {
+ 
+   
+    try {
+        
+        const check = await instructor.find({_id:req.params.id}).select('password');
+        res.status(200).json(check)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
 
 
 
-
-export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor}
+export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword}
