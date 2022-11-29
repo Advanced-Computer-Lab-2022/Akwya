@@ -28,41 +28,24 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   const ResetMail = () => { 
 
     const params = new URLSearchParams(window.location.search);
-    // const instructorId = '6380fada0e91fe67a1baf48a';
-    //EL SAH:
-    // const instructorId = window.location.href.split('/').at(4);
-
-    // console.log(instructorId);
+ 
     const [mail,setMail] = useState('');
-    // const [password,setPassword] = useState('');
-    // const [oldPassword,setOldPassword] = useState('');
     const [hide,setHide] = useState(true);
     const [hidec,setHidec] = useState(true);
     
     const reset =  async () => {
       await axios.get(`http://localhost:9000/instructor/resetPassword/?mail=`+mail).then(
           (res) => {    
-            console.log(res.statusCode)
-            console.log("HENAA")
-            console.log(res)
-            console.log(res.status)
-
-
-            //   if(res.) {
-            //     console.log('dakhal check pw w sah')          
-            //     setHide(true)
-            //     setHidec(false)
-            //     change()
-            //   }else {
-            //     console.log('dakhal check pw w ghalat')     
-            //     setHidec(true)     
-            //     setHide(false)
-
-            //   }
+              if(res.status==200) {
+                setHide(true)
+                setHidec(false)
+             
+              }else {
+                setHidec(true)     
+                setHide(false)
+              }
           }
            );
-        
-         
     }
     
 return(
@@ -86,7 +69,7 @@ return(
                 padding="normal"
                 >Reset</Button> 
                 </Box>
-                <div hidden={hide}><h5>Mail does not exist</h5></div>
+                <div hidden={hide}><h5>Error or mail does not exist</h5></div>
                 <div hidden={hidec}><h4>Success! Check your mail</h4></div>
 
 
