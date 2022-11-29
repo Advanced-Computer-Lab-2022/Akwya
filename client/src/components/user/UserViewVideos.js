@@ -178,7 +178,6 @@ return(
         <Link to={{pathname:"/user/"+CourseID+"/TakeQuiz"}}>
             <h2>Take A Quiz</h2>
           </Link>
-          
 
     </div>
 )

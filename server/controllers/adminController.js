@@ -48,10 +48,9 @@ export const createTrainee= async(req,res) => {
 export const createInstructor= async(req,res) => {
     const {username,password,email}=req.body
      console.log(email);
-     const minibiography='';
     
     try {
-        const newInstructor = await instructor.create({username,password,email,minibiography});
+        const newInstructor = await instructor.create({username,password,email});
         res.status(200).json(newInstructor)
     } catch (error) {
         res.status(400).json({error: error.message})

@@ -11,6 +11,7 @@ import Guest from './pages/Guest'
 
 
 
+
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
 
 import React, { useState, useEffect } from 'react';  
@@ -22,7 +23,6 @@ import CourseI from './pages/CourseI';
 import CreateAQuiz from './components/CreateQuiz/CreateAQuiz.js';
 import Quiz from './pages/Quiz';
 import TakeQuiz from './pages/TakeQuiz';
-import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
 
 
 let GlobalCountry = 'United Kingdom';
@@ -112,21 +112,12 @@ function App() {
               path="/userCorporate/:id/TakeQuiz"
               element={<TakeQuiz/>}
               />
-               <Route
-              path="/user/:id/TakeQuiz/Done"
-              element={<DoneWithMyQuiz/>}
-              />
 
             <Route
               path="/ViewProfileInstructor/:id"
               element={<ViewProfileInstructor country={country}/>}
             />
-
-
           </Routes>
-
-
-
         </div>
       </BrowserRouter>
     </div>

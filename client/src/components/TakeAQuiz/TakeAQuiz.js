@@ -1,132 +1,61 @@
-import React, {useState, useEffect} from 'react'
+import react, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Swal from "sweetalert2";
-// import { Component } from 'react';
-
 
 
 //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
 function TakeAQuiz() {
-  
+  const [search, setSearch] = useState(``);
+  const [error, setError] = useState(null)
   const [Quizzes,setQuizzes] = useState([])
-  //[name,questions[qName,answer[[],[],[],[] ],correctanswer, chosenanswer   ]]
-  const [ShowIt, setShow]= useState(true);
-  const CourseID = window.location.href.split('/').at(4);
 
 
-  const [correctAnswerr,setCorrectAnswer] = useState(0)
-  const [chosenAnswerr,setChosenAnswer] = useState(0)
-
-
+    
+    const id = window.location.href.split('/').at(4);
+    console.log(id)
+    
     useEffect(()=>{
       axios
-      .get('http://localhost:9000/Quiz/TakeQuiz/'+CourseID)
+      .get('http://localhost:9000/Quiz/TakeQuiz/'+id)
       .then( res => {
-         // console.log(res)
+          console.log(res)
           setQuizzes(res.data)
       })
       .catch(err=>{console.log(err)})
     },[])
 
 
-    const handleQuestionSubmit = async (quizIndex) => {
-      
-
-      setShow(false);
-      
-        let tempQuiz=Quizzes[quizIndex]
-
-        
-
-
-            axios.post('http://localhost:9000/Quiz/TakeQuiz/submitQuiz', tempQuiz).then(res=>{
-              console.log(tempQuiz)
 
 
 
 
-
-              Swal.fire({
-                  title: 'Question Submitted!',
-                  icon: 'success',
-                  confirmButtonColor: '#38a53e',
-                  confirmButtonText: 'OK'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    window.location.reload();
-                  }
-                })
-          }).catch(er=>{
-              console.error(er);
-          })
-            // console.log((Quizzes[quizIndex]));
-
-
-            
-        
-
-    }
 
 return(
   <div>
       <h1>Take Quiz</h1>
       <ul>
-      {Quizzes.map((quiz,quizIndex) => <li key={quiz._id}>
+          {Quizzes.map(quiz => <li key={quiz._id}>
             
-            <div id="myDIV" className="quiz name" >
-            <div >Quiz Name: {quiz.name}</div>
+            <div className="quiz name">
+            <div>Quiz Name: {quiz.name}</div>
             </div>
 
-
-            {/* <form id="myForm" className="question" style={{display: this.state.ShowIt ? 'block' : 'none' }}> */}
-
-            <form id="myForm" className="question" style={{display: ShowIt ? 'block' : 'none' }} onSubmit={(e)=>{
-              e.preventDefault();
-              handleQuestionSubmit(quizIndex)}}>
+            <form className="question">
               
                 {
-                  
-                    //[name,questions[qName,answer[[],[],[],[] ],correctanswer, chosenanswer   ]]
+                  quiz.questions.map((ques,idx)=>(
 
-
-
-                  // quiz.questions.map((ques,idx)=>{setQuestions(idx)(
-                    quiz.questions.map((ques,questionIndex)=>(
-
-                    <div className="question" key={questionIndex} >
+                    <div className="question" key={idx}>
                         <div>Question:{ques.questionName}</div>
                         
                         <form className="answers">
-                        {/* {quiz.questions[idx].answers.map((ans,idxx)=>{setAnswers(idxx)&&( */}
 
-                        {ques.answers.map((ans,answerIndex)=>(
+                        {quiz.questions[idx].answers.map((ans,idxx)=>(
                         <div>
-                           {/* <input type='radio' value={ans} onChange={e=>{setQuizzes(quizModel.Create({name:quiz.name,
-                            questions:{correctAnswer:quiz.questions[idx].correctAnswer,
-                            chosenAnswer:e.target.value,answers:{0:quiz.questions[idx].answers[0],
-                            1:quiz.questions[idx].answers[1],
-                            2:quiz.questions[idx].answers[2],
-                            3:quiz.questions[idx].answers[3]}}}))}} name="answer"/>
-                          Answer: {ans} {idxx}   */}
-
-                         <input type='radio' value={ans}
-                         
-                        //  onChange={e=>{ques.chosenAnswer=e.target.value;console.log(tempquizzes.questions[idx].chosenAnswer )}}
-                        onChange={()=>{
-                          let updatedQuizzes=[...Quizzes]
-                          updatedQuizzes[quizIndex].questions[questionIndex].chosenAnswer=ans
-                          // console.log(updatedQuizzes)
-                          setQuizzes(updatedQuizzes)
-                          // console.log(Quizzes)
-
-                        }}
-                         
-                         name="answer"/>
-                          Answer: {ans} 
+                         <input type='radio' value={idxx} onChange={e=>{this.setState({chosenAnswer:e.target.value})}} name="answer"/>
+                          Answer: {ans}
                         
                         </div>
-                        
 
                         ))}
                         </form>
@@ -135,22 +64,16 @@ return(
                     
                 ))
                 }
-                  <button>Submit</button>
 
+                
 
                 
             </form>
-
             
-            
-            {/* </li> && setQuizIndex(quiz._id)})} */}
             
             </li>)}
          
       </ul>
-      <Link to={{pathname:"/user/"+CourseID+"/TakeQuiz/Done"}}>
-            <h2>Done With My Quiz</h2>
-          </Link>
   </div>
 )
 }

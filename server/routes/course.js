@@ -1,6 +1,6 @@
 import express from "express";
 const router =express.Router()
-import { createCourse, getCourses ,viewACourse ,filterCoursesByPrice, viewCourses, searchCourse, viewCoursesPrices,filterCoursesOnSubjAndRating,deleteCourse, deleteAllCourses , courseDiscount}from '../controllers/courseController.js'
+import { createCourse, getCourses ,viewACourse ,filterCoursesByPrice, viewCourses, searchCourse, viewCoursesPrices,filterCoursesOnSubjAndRating,deleteCourse, deleteAllCourses }from '../controllers/courseController.js'
 
 router.get('/viewCourseDeets',viewCourses)
 
@@ -28,13 +28,6 @@ router.delete('/',deleteAllCourses)
 router.patch('/:id',(req,res)=>{
     res.json({mssg:'update a guest'})
 
-
-
-    
-
 })
-
-
-router.get('/courseDiscount/:id',courseDiscount)
 
 export default router;

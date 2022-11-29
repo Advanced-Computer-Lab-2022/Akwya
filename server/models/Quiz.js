@@ -12,13 +12,14 @@ const QuizSchema = mongoose.Schema({
         instructorID:{
             type:mongoose.Types.ObjectId, 
             ref: instructor,
+            require:true
 
         }, 
-        courseid:{ 
+        courseid:{
             type:mongoose.Types.ObjectId, 
             ref: course,
             require:true
- 
+
         }, 
         name: {
         type: String, 
