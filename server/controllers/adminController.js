@@ -31,11 +31,11 @@ export const getAdmins= async(req,res) => {
 }
 
 export const createTrainee= async(req,res) => {
-    const {username,password}=req.body
+    const {username,password,email}=req.body
 
     
     try {
-        const newTrainee = await trainee.create({username,password});
+        const newTrainee = await trainee.create({username,password,email});
         res.status(200).json(newTrainee)
     } catch (error) {
         res.status(400).json({error: error.message})

@@ -25,79 +25,52 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
   const { useState } = require("react");
 
-  const ChangePassword = () => { 
+  const ResetMail = () => { 
 
     const params = new URLSearchParams(window.location.search);
-    // const instructorId = '6380fada0e91fe67a1baf48a';
-    //EL SAH:
-    const instructorId = window.location.href.split('/').at(4);
-
-    console.log(instructorId);
-
-    const [password,setPassword] = useState('');
-    const [oldPassword,setOldPassword] = useState('');
+ 
+    const [mail,setMail] = useState('');
     const [hide,setHide] = useState(true);
     const [hidec,setHidec] = useState(true);
     
-    const checkOld =  async () => {
-      await axios.get(`http://localhost:9000/instructor/checkPassword/`+instructorId).then(
+    const reset =  async () => {
+      await axios.get(`http://localhost:9000/trainee/resetPassword/?mail=`+mail).then(
           (res) => {    
-              if(res.data[0]['password'] == oldPassword) {
-                console.log('dakhal check pw w sah')          
+              if(res.status==200) {
                 setHide(true)
                 setHidec(false)
-                change()
+             
               }else {
-                console.log('dakhal check pw w ghalat')     
                 setHidec(true)     
                 setHide(false)
-
               }
           }
            );
-        
-         
-    }
-    const change = async () => {
-      await axios.get(`http://localhost:9000/instructor/changePassword/`+instructorId +'?password='+password).then(
-       (res) => { 
-        console.log('changed pw')           
-       }
-        );
-        
     }
     
 return(
 
 
-    <div className="Edit Password">
-         <label>Enter your old Password:</label>
+    <div className="Reset Password">
+         <label>Enter your mail:</label>
       <input 
         type="text" 
         id="textbox"
-        onChange={(e) => setOldPassword(e.target.value)} 
-        value={oldPassword}
+        onChange={(e) => setMail(e.target.value)} 
+        value={mail}
         required
       />
       <br/>
-    <label>Enter your new Password:</label>
-      <input 
-        type="text" 
-        id="textbox"
-        onChange={(e) => setPassword(e.target.value)} 
-        value={password}
-        required
-      />
-      
+    
                 <Box sx={{marginBottom: 2}}>
                 <Button variant="contained"
-                onClick={checkOld}
+                onClick={reset}
                 margin="normal"
                 padding="normal"
-                >Change Password</Button> 
+                >Reset</Button> 
                 </Box>
-                <div hidden={hide}><h5>Old password is incorrect</h5></div>
-                <div hidden={hidec}><h4>Password changed successfully</h4></div>
+                <div hidden={hide}><h5>Error or mail does not exist</h5></div>
+                <div hidden={hidec}><h4>Success! Check your mail</h4></div>
 
 
        </div>
@@ -107,7 +80,7 @@ return(
 
 
 }
-  export default ChangePassword;
+  export default ResetMail;
 
 
 
