@@ -31,7 +31,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
     const params = new URLSearchParams(window.location.search);
     
-    const courseId = window.location.href.split('/').at(4);
+    const courseId = window.location.href.split('/').at(5);
 
     console.log(courseId)
     
@@ -106,8 +106,10 @@ return(
 
 <label>Enter Discount Percentage:</label>
       <input 
-        type="text" 
+        type="number" 
         id="bio"
+        min = "0"
+        max = "100"
         onChange={(e) => setPromotion(e.target.value)} 
         value={promotion}
         required
@@ -118,7 +120,7 @@ return(
        <label>Discount valid till:</label>    
 
                 <input 
-        type="text" 
+        type="date" 
         id="xx"
         onChange={(e) =>setPromotionExpiry(e.target.value)} 
         value={promotionExpiry}
@@ -144,7 +146,7 @@ return(
 
                   
        </div>
-       {promotionExpiry}
+       {/* {promotionExpiry} */}
 
 
        </div>

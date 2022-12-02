@@ -32,6 +32,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     const params = new URLSearchParams(window.location.search);
     // const instructorId = params.get('id');
     const instructorId = '6381101753d48ea316365f94';
+    // const instructorId = window.location.href.split('/').at(4);
     console.log(instructorId);
 
     const [instructors,setInstructors] = useState([]);
