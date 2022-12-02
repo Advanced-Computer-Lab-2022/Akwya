@@ -8,11 +8,13 @@ import User from './pages/User';
 import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
-
+// import Contract from './Instructor/Contract'
 
 
 
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
+import Reset from './pages/ResetPassword';
+import Resett from './pages/ResetPwTrainee';
 
 import React, { useState, useEffect } from 'react';  
 import axios from 'axios'
@@ -23,6 +25,7 @@ import CourseI from './pages/CourseI';
 import CreateAQuiz from './components/CreateQuiz/CreateAQuiz.js';
 import Quiz from './pages/Quiz';
 import TakeQuiz from './pages/TakeQuiz';
+import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
 
 
 let GlobalCountry = 'United Kingdom';
@@ -112,12 +115,28 @@ function App() {
               path="/userCorporate/:id/TakeQuiz"
               element={<TakeQuiz/>}
               />
+               <Route
+              path="/user/:id/TakeQuiz/Done"
+              element={<DoneWithMyQuiz/>}
+              />
 
             <Route
               path="/ViewProfileInstructor/:id"
               element={<ViewProfileInstructor country={country}/>}
             />
+            <Route
+              path="/reset"
+              element={<Reset/>}
+              />
+              <Route
+              path="/resett"
+              element={<Resett/>}
+              />
+
           </Routes>
+
+
+
         </div>
       </BrowserRouter>
     </div>

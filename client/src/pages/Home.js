@@ -14,11 +14,17 @@ const Home = () => {
         <Link to="/userCorporate">
           <h2>Go to Corporate Trainee Page</h2>
         </Link>
-      <Link to="/instructor/6380fada0e91fe67a1baf48a">
+      <Link to="/instructor/6381101753d48ea316365f94">
           <h2>Go to Instructor Page</h2>
         </Link>
         <Link to="/guest">
           <h2>Go to Guest Page</h2>
+        </Link>
+        <Link to="/reset">
+          <h2>Go to Instructor Reset Password</h2>
+        </Link>
+        <Link to="/resett">
+          <h2>Go to Trainee Reset Password</h2>
         </Link>
     </div>
     

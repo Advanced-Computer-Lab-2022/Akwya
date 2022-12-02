@@ -31,7 +31,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
     const params = new URLSearchParams(window.location.search);
     // const instructorId = params.get('id');
-    const instructorId = '6380fada0e91fe67a1baf48a';
+    const instructorId = '6381101753d48ea316365f94';
     console.log(instructorId);
 
     const [instructors,setInstructors] = useState([]);
@@ -53,6 +53,17 @@ return(
 
 
     <div className="Edit Email">
+
+
+
+<label>Enter your new Email:</label>
+      <input 
+        type="text" 
+        id="textbox"
+        onChange={(e) => setEmail(e.target.value)} 
+        value={email}
+        required
+      />
         
         
                 <Box sx={{marginBottom: 2}}>
@@ -65,14 +76,7 @@ return(
                 </Box>
 
 
-    <label>Enter your new Email:</label>
-      <input 
-        type="text" 
-        id="textbox"
-        onChange={(e) => setEmail(e.target.value)} 
-        value={email}
-        required
-      />
+   
             
          <div> 
                    

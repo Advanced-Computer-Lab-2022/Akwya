@@ -18,13 +18,14 @@ useEffect(()=>{
     .catch(err=>{console.log(err)})
 },[])
 
-
+//<Link to={{pathname:course._id}}><h2>{course.title}</h2></Link><
 return(
     <div>
         <h1>View My courses</h1>
         <ul>
-            {courses.map(course => <li key={course._id}>Title: <Link to={{pathname:course._id}}><h2>{course.title}</h2></Link></li>)}
-           
+        {courses.map(course => <li key={course._id}>Title: <Link to={{pathname:course._id}}><h2>{course.title}</h2></Link></li>)}
+
+
         </ul>
     </div>
 )

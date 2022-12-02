@@ -11,8 +11,9 @@ import FilterFetchingISubject from '../components/Instructor/FilterFetchingISubj
 import UserSearchCourse from '../components/user/UserSearchCourse'
 
 import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject.js'
+import ChangePassword from '../components/Instructor/ChangePassword.js'
 
-
+ import Contract from '../components/Instructor/Contract.js'
 
 
 const Instructor = (props) => {
@@ -29,8 +30,9 @@ const Instructor = (props) => {
           <h2>Go to Home Page</h2>
         </Link>
        <h1>Hello Instructor</h1>
+      <ChangePassword/>
+       <Link to="/ViewProfileInstructor/6381101753d48ea316365f94">
 
-       <Link to="/ViewProfileInstructor/6380fada0e91fe67a1baf48a">
           <h3>View My Profile</h3>
        </Link>
 
@@ -56,6 +58,9 @@ const Instructor = (props) => {
   
           </div>
      
+<Link to="/Contract">
+<h3>View contract</h3>
+</Link>
      </div>
 
 

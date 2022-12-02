@@ -3,7 +3,7 @@ import instructor from "../models/instructor.js"
 import course from "../models/course.js"
 import e from "express"
 import video from "../models/videos.js"
-
+import nodemailer from 'nodemailer'
 
 
 //view all the titles of the courses given by him/her
@@ -204,18 +204,36 @@ const editEmail = async (req, res) => {
    } catch (error) {
        res.status(400).json({error: error.message})
    }
+
+   
+}
+const changePassword= async (req, res) => {
+ 
+   
+    try {
+        
+        const change = await instructor.findOneAndUpdate({_id:req.params.id},{password:req.query.password},{
+         new: true}  );
+        res.status(200).json(change)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
     
+const checkPassword= async (req, res) => {
+ 
    
-
-   
-
-
+    try {
+        
+        const check = await instructor.find({_id:req.params.id}).select('password');
+        res.status(200).json(check)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
 
-
-
 const ViewRating = async (req, res) => {
-    
+    //instructor view his rating
 
     try{
        
@@ -229,17 +247,32 @@ const ViewRating = async (req, res) => {
         res.status(400).json({error: error.message})
        
 
-    }
-
-
     
+    }}
 
 
-}
+ 
+const editBio = async (req, res) => {
+ 
+   
+    try {
+  
+        const newInstructor = await instructor.findOneAndUpdate({_id:req.params.id},{minibiography:req.query.minibiography},{
+         new: true}  );
+        res.status(200).json(newInstructor)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+     
+    
+ 
+ 
+ }
+
 
 
  const getRatings = async (req, res) => {
- 
+ //this is for the course ratings
    
     try {
 
@@ -251,11 +284,44 @@ const ViewRating = async (req, res) => {
      
 }
 
-
+const resetPassword = async (req,res)=>{
+    const userEmail = req.query.mail;
+    await instructor.find({email: req.query.mail}).then( async (result) =>  {
+        var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var length = 8;
+        var newRandom = "";
+        for (var i = 0; i<=length; i++) {
+            var randomNumber = Math.floor(Math.random() * chars.length);
+            newRandom += chars.substring(randomNumber, randomNumber+1);
+        }
+        await instructor.findOneAndUpdate({_id: result[0]._id},{password:newRandom},{ new: true}).then((result)=>{
+            const mail = {
+                from: process.env.AUTH_EMAIL,
+                to: userEmail,
+                subject: "Reset Your Password",
+                html: `<p>Forgot your password? We've reset it for you!</p>
+                    <p>Use this new password to login safely: <strong> ${newRandom} </strong></p>`
+            }
+        
+            let transporter = nodemailer.createTransport({
+                service: 'hotmail',
+                auth: {
+                    user: process.env.AUTH_EMAIL,
+                    pass: process.env.AUTH_PASS
+                }
+            })
+            transporter.sendMail(mail).then((result)=>{
+                return res.status(200).json({status:true,Message:"Reset mail sent"})
+            }).catch((error) => {
+                return res.status(400).json({status:false, error:error.message ,Message:"Failed to send mail"}) })
+             }).catch((error)=>{
+                return res.status(400).json({status:false, error:error.message,Message:"Failed to update password"}) })
+    }).catch((error)=>{
+        return res.status(400).json({status:false, error:error .message,Message:"Email not registered"}) });
+    }
 
 
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
-    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail, CanViewVideos, addPreview,
-     viewPreview, ViewRating,getRatings} 
-
+    filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
+    viewPreview, ViewRating, getRatings,changePassword, checkPassword,resetPassword }
