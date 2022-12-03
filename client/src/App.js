@@ -8,7 +8,7 @@ import User from './pages/User';
 import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
-// import Contract from './Instructor/Contract'
+import Contract from './pages/Contract'
 
 
 
@@ -132,7 +132,14 @@ function App() {
               path="/resett"
               element={<Resett/>}
               />
-
+            <Route
+              path="/Course"
+              element={<Course/>}
+            />
+            <Route
+              path="/Contract"
+              element={<Contract/>}
+            />
           </Routes>
 
 
