@@ -22,8 +22,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   const ChangePw = () => { 
 
     const params = new URLSearchParams(window.location.search);
-    // const traineeId = '635e92ced2e6e342febedd2d';
-    const traineeId = window.location.href.split('/').at(4);
+    const traineeId = '63868a41143ffa7252ea011e';
+    // const traineeId = window.location.href.split('/').at(4);
 
     console.log(traineeId);
 
