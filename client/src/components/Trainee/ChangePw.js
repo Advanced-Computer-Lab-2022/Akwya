@@ -34,7 +34,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
     const checkOld =  async () => {
       await axios.get(`http://localhost:9000/trainee/checkPassword/`+traineeId).then(
-          (res) => {             
+          (res) => { 
+            console.log('YASSS')     
+            console.log(res.data);       
+            console.log(res.data[0]);       
+
               if(res.data[0]['password'] == oldPassword) {
                 setHide(true)
                 setHidec(false)
