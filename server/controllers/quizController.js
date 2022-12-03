@@ -55,15 +55,17 @@ const viewQuestionGrade = async (req, res) => {
     var chosenAnswerr=0;
     var correctAnswerr=0;
 
-    try {
-            
 
-//course el wahed momken yekon liii kaza quiz
+    try {
             const updatedQuiz = await quiz.find({courseid:{$eq:req.params.id}}).select('questions')
 
-            console.log(await quiz.find({courseid:{$eq:req.params.id}}))
+            // console.log(await quiz.find({courseid:{$eq:req.params.id}}))
 
-            
+
+            const i= req.params.quiz;
+
+            console.log(i)
+
 
 
 
@@ -76,10 +78,12 @@ const viewQuestionGrade = async (req, res) => {
                     chosenAnswerr=chosenAnswerr+1;
                 }
         
-                console.log(correctAnswerr);
-                console.log(chosenAnswerr)
+                
                 // {chosenAnswerr&&'/'+correctAnswerr}
         }
+
+        console.log(correctAnswerr);
+        console.log(chosenAnswerr)
     
     const x=chosenAnswerr.toString();
     const y=correctAnswerr.toString();
@@ -112,7 +116,6 @@ const viewGrade = async (req, res) => {
 
                     console.log(await quiz.find({courseid:{$eq:req.params.id}}))
 
-                    const i= req.params.quiz;
         
                     for (let i = 0; i < updatedQuiz.length; i++) {
 

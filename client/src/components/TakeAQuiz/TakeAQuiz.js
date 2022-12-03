@@ -10,15 +10,11 @@ import Swal from "sweetalert2";
 function TakeAQuiz() {
   
   const [Quizzes,setQuizzes] = useState([])
-  //[name,questions[qName,answer[[],[],[],[] ],correctanswer, chosenanswer   ]]
-  const [ShowIt, setShow]= useState(true);
   const CourseID = window.location.href.split('/').at(4);
-  const [show,setShowGrade] = useState(false)
-  const [grade,setGrade] = useState('')
+  const [showGrade,setShowGrade] = useState(false);
+  const [grade,setGrade] = useState('');
 
 
-  const [correctAnswerr,setCorrectAnswer] = useState(0)
-  const [chosenAnswerr,setChosenAnswer] = useState(0)
 
 
     useEffect(()=>{
@@ -45,32 +41,52 @@ function TakeAQuiz() {
               console.log(tempQuiz)
 
 
-              Swal.fire({
-                  title: 'Question Submitted!',
-                  icon: 'success',
-                  confirmButtonColor: '#38a53e',
-                  confirmButtonText: 'OK'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    // window.location.reload();
+              // Swal.fire({
+              //     title: 'Question Submitted!',
+              //     icon: 'success',
+              //     confirmButtonColor: '#38a53e',
+              //     confirmButtonText: 'OK'
+              //   }).then((result) => {
+              //     if (result.isConfirmed) {
+              //       // window.location.reload();
 
-                  }
-                })
+              //     }
+              //   })
           }).catch(er=>{
               console.error(er);
           })
             // console.log((Quizzes[quizIndex]));
 
 
-        // axios
-        // .get('http://localhost:9000/Quiz/TakeQuiz/viewQuestionGrade/'+CourseID+'/'+questionIndex)
-        // .then( res => {
-        //    // console.log(res)
-        //    console.log((res.data))
-        //    setGrade(res.data);
-        //    setShow(true)
-        // })
-        // .catch(err=>{console.log(err)})
+        axios
+        .get('http://localhost:9000/Quiz/TakeQuiz/viewQuestionGrade/'+CourseID+'/'+quizIndex)
+        .then( res => {
+           // console.log(res)
+           console.log((res.data))
+           setGrade(res.data);
+           console.log(showGrade);
+
+
+
+           Swal.fire({
+            title: 'Question Submitted!',
+            text:"You Scored" +res.data,
+            icon: 'success',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // window.location.reload();
+
+            }
+          })
+
+
+          })
+        .catch(err=>{console.log(err)})
+
+        // document.getElementById(quizIndex+'answer').hidden = false;
+
 
     }
 
@@ -92,11 +108,15 @@ return(
             <form id={quizIndex}  key={quizIndex} className="question"  onSubmit={(e)=>{
               e.preventDefault();
               // setShow(false);
-              // setShowGrade(true);
               document.getElementById(quizIndex).hidden = true;
 
-              handleQuestionSubmit(quizIndex)}}>
+              handleQuestionSubmit(quizIndex)
               
+              setShowGrade(true);
+
+              
+              }}>
+
                 {
                     quiz.questions.map((ques,questionIndex)=>(
 
@@ -136,18 +156,17 @@ return(
                 ))
                 }
 
-                    
-
-
-
                   <button>Submit</button>
+                  
+                  
 
                   
                 
             </form>
 
             
-            
+            {/* <h1 id={quizIndex+'answer'} style={{display: showGrade ? 'block' : 'none' }}>You Scored:{grade}</h1> */}
+
             
             </li>)}
          
@@ -155,8 +174,7 @@ return(
       {/* <button hidden>View Grade</button>
       <h1 style={{display: show ? 'block' : 'none' }}>You Scored:{grade}</h1> */}
 
-      {/* <button>View Grade</button>
-      <h1>You Scored:{grade}</h1> */}
+      {/* <button>View Grade</button> */}
 
 
       <Link to={{pathname:"/user/"+CourseID+"/TakeQuiz/Done"}}>

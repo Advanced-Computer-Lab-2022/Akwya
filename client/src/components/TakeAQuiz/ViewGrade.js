@@ -24,7 +24,7 @@ function ViewGrade() {
          // console.log(res)
          console.log((res.data))
          setGrade(res.data);
-         setShow(true)
+         setShow(true);
       })
       .catch(err=>{console.log(err)})
 }
