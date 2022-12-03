@@ -34,7 +34,7 @@ function ViewGrade() {
 return(
     <form className="create" onSubmit={handleSubmit}> 
   <div>
-      <button>View Grade</button>
+      <button>View Total Quiz Grade</button>
       <h1 style={{display: show ? 'block' : 'none' }}>You Scored:{grade}</h1>
       
   </div>

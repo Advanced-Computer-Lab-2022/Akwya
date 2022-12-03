@@ -13,6 +13,8 @@ function TakeAQuiz() {
   //[name,questions[qName,answer[[],[],[],[] ],correctanswer, chosenanswer   ]]
   const [ShowIt, setShow]= useState(true);
   const CourseID = window.location.href.split('/').at(4);
+  const [show,setShowGrade] = useState(false)
+  const [grade,setGrade] = useState('')
 
 
   const [correctAnswerr,setCorrectAnswer] = useState(0)
@@ -33,7 +35,6 @@ function TakeAQuiz() {
     const handleQuestionSubmit = async (quizIndex) => {
       
 
-      setShow(false);
       
         let tempQuiz=Quizzes[quizIndex]
 
@@ -44,9 +45,6 @@ function TakeAQuiz() {
               console.log(tempQuiz)
 
 
-
-
-
               Swal.fire({
                   title: 'Question Submitted!',
                   icon: 'success',
@@ -54,7 +52,8 @@ function TakeAQuiz() {
                   confirmButtonText: 'OK'
                 }).then((result) => {
                   if (result.isConfirmed) {
-                    window.location.reload();
+                    // window.location.reload();
+
                   }
                 })
           }).catch(er=>{
@@ -63,10 +62,20 @@ function TakeAQuiz() {
             // console.log((Quizzes[quizIndex]));
 
 
-            
-        
+        // axios
+        // .get('http://localhost:9000/Quiz/TakeQuiz/viewQuestionGrade/'+CourseID+'/'+questionIndex)
+        // .then( res => {
+        //    // console.log(res)
+        //    console.log((res.data))
+        //    setGrade(res.data);
+        //    setShow(true)
+        // })
+        // .catch(err=>{console.log(err)})
 
     }
+
+
+    
 
 return(
   <div>
@@ -79,51 +88,40 @@ return(
             </div>
 
 
-            {/* <form id="myForm" className="question" style={{display: this.state.ShowIt ? 'block' : 'none' }}> */}
 
-            <form id="myForm" className="question" style={{display: ShowIt ? 'block' : 'none' }} onSubmit={(e)=>{
+            <form id={quizIndex}  key={quizIndex} className="question"  onSubmit={(e)=>{
               e.preventDefault();
+              // setShow(false);
+              // setShowGrade(true);
+              document.getElementById(quizIndex).hidden = true;
+
               handleQuestionSubmit(quizIndex)}}>
               
                 {
-                  
-                    //[name,questions[qName,answer[[],[],[],[] ],correctanswer, chosenanswer   ]]
-
-
-
-                  // quiz.questions.map((ques,idx)=>{setQuestions(idx)(
                     quiz.questions.map((ques,questionIndex)=>(
 
-                    <div className="question" key={questionIndex} >
+                      // <div className={questionIndex} key={questionIndex} style={{display: ShowIt ? 'block' : 'none' }}>
+
+                    <div className={questionIndex} key={questionIndex}>
                         <div>Question:{ques.questionName}</div>
                         
                         <form className="answers">
-                        {/* {quiz.questions[idx].answers.map((ans,idxx)=>{setAnswers(idxx)&&( */}
 
                         {ques.answers.map((ans,answerIndex)=>(
                         <div>
-                           {/* <input type='radio' value={ans} onChange={e=>{setQuizzes(quizModel.Create({name:quiz.name,
-                            questions:{correctAnswer:quiz.questions[idx].correctAnswer,
-                            chosenAnswer:e.target.value,answers:{0:quiz.questions[idx].answers[0],
-                            1:quiz.questions[idx].answers[1],
-                            2:quiz.questions[idx].answers[2],
-                            3:quiz.questions[idx].answers[3]}}}))}} name="answer"/>
-                          Answer: {ans} {idxx}   */}
+                           
 
                          <input type='radio' value={ans}
                          
-                        //  onChange={e=>{ques.chosenAnswer=e.target.value;console.log(tempquizzes.questions[idx].chosenAnswer )}}
                         onChange={()=>{
                           let updatedQuizzes=[...Quizzes]
                           updatedQuizzes[quizIndex].questions[questionIndex].chosenAnswer=ans
-                          // console.log(updatedQuizzes)
                           setQuizzes(updatedQuizzes)
-                          // console.log(Quizzes)
 
                         }}
                          
                          name="answer"/>
-                          Answer: {ans} 
+                          Answer: {ans}
                         
                         </div>
                         
@@ -131,23 +129,36 @@ return(
                         ))}
                         </form>
 
+ 
+
                     </div>
                     
                 ))
                 }
+
+                    
+
+
+
                   <button>Submit</button>
 
-
+                  
                 
             </form>
 
             
             
-            {/* </li> && setQuizIndex(quiz._id)})} */}
             
             </li>)}
          
       </ul>
+      {/* <button hidden>View Grade</button>
+      <h1 style={{display: show ? 'block' : 'none' }}>You Scored:{grade}</h1> */}
+
+      {/* <button>View Grade</button>
+      <h1>You Scored:{grade}</h1> */}
+
+
       <Link to={{pathname:"/user/"+CourseID+"/TakeQuiz/Done"}}>
             <h2>Done With My Quiz</h2>
           </Link>
