@@ -70,12 +70,12 @@ function App() {
               element={<Admin />}
             />
             <Route
-              path="/user"
+              path="/user/:id"
               element={<User country={country}/>}
             />
             <Route
 
-              path="/userCorporate"
+              path="/userCorporate/:id"
               element={<UserCorporate />}
             />
             <Route
