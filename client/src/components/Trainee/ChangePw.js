@@ -19,13 +19,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
   const { useState } = require("react");
 
-  const ChangePw = () => { 
+  const ChangePw = (props) => { 
 
     const params = new URLSearchParams(window.location.search);
-    const traineeId = '63868a41143ffa7252ea011e';
+    // const traineeId = '63868a41143ffa7252ea011e';
     // const traineeId = window.location.href.split('/').at(4);
-
-    console.log(traineeId);
+    const traineeId = props.tid
 
     const [password,setPassword] = useState('');
     const [oldPassword,setOldPassword] = useState('');
@@ -35,7 +34,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     const checkOld =  async () => {
       await axios.get(`http://localhost:9000/trainee/checkPassword/`+traineeId).then(
           (res) => { 
-            console.log('YASSS')     
             console.log(res.data);       
             console.log(res.data[0]);       
 
