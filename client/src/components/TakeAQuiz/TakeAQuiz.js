@@ -41,24 +41,14 @@ function TakeAQuiz() {
               console.log(tempQuiz)
 
 
-              // Swal.fire({
-              //     title: 'Question Submitted!',
-              //     icon: 'success',
-              //     confirmButtonColor: '#38a53e',
-              //     confirmButtonText: 'OK'
-              //   }).then((result) => {
-              //     if (result.isConfirmed) {
-              //       // window.location.reload();
-
-              //     }
-              //   })
-          }).catch(er=>{
-              console.error(er);
-          })
-            // console.log((Quizzes[quizIndex]));
-
-
-        axios
+              Swal.fire({
+                  title: 'Question Submitted!',
+                  icon: 'success',
+                  confirmButtonColor: '#38a53e',
+                  confirmButtonText: 'View Grade'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    axios
         .get('http://localhost:9000/Quiz/TakeQuiz/viewQuestionGrade/'+CourseID+'/'+quizIndex)
         .then( res => {
            // console.log(res)
@@ -69,8 +59,8 @@ function TakeAQuiz() {
 
 
            Swal.fire({
-            title: 'Question Submitted!',
-            text:"You Scored" +res.data,
+            title: 'Your Grade!',
+            text:"You Scored " +res.data,
             icon: 'success',
             confirmButtonColor: '#38a53e',
             confirmButtonText: 'OK'
@@ -83,6 +73,16 @@ function TakeAQuiz() {
 
 
           })
+
+                  }
+                })
+          }).catch(er=>{
+              console.error(er);
+          })
+            // console.log((Quizzes[quizIndex]));
+
+
+        
         .catch(err=>{console.log(err)})
 
         // document.getElementById(quizIndex+'answer').hidden = false;
