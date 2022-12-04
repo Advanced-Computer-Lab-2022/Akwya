@@ -14,7 +14,7 @@ const User = (props) => {
         <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>
-        <ChangePw/>
+        <ChangePw tid={props.tid}/>
 
         <UserSearchCourse/>
         
