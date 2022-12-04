@@ -8,10 +8,10 @@ const Home = () => {
       <Link to="/admin">
           <h2>Go to Admin Page</h2>
         </Link>
-        <Link to="/user/63868a41143ffa7252ea011e">
+        <Link to="/user/">
           <h2>Go to Individual Trainee Page</h2>
         </Link>
-        <Link to="/userCorporate/635849b7a58d8beb73e81787">
+        <Link to="/userCorporate/">
           <h2>Go to Corporate Trainee Page</h2>
         </Link>
       <Link to="/instructor/6381101753d48ea316365f94">
