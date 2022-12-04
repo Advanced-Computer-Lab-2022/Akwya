@@ -48,8 +48,63 @@ const submitQuiz = async (req, res) => {
             res.json({message: error}); }
         }   
 
+
+
+
+const viewQuestionGrade = async (req, res) => { 
+    var chosenAnswerr=0;
+    var correctAnswerr=0;
+
+
+    try {
+            const updatedQuiz = await quiz.find({courseid:{$eq:req.params.id}}).select('questions')
+
+            // console.log(await quiz.find({courseid:{$eq:req.params.id}}))
+
+
+            const i= req.params.quiz;
+
+            console.log(i)
+
+
+
+
+                for (let index = 0; index < updatedQuiz[i].questions.length; index++) {
+
+                correctAnswerr=correctAnswerr+1;
+                
+
+                if (updatedQuiz[i].questions[index].correctAnswer.valueOf()===updatedQuiz[i].questions[index].chosenAnswer.valueOf()) {
+                    chosenAnswerr=chosenAnswerr+1;
+                }
+        
+                
+                // {chosenAnswerr&&'/'+correctAnswerr}
+        }
+
+        console.log(correctAnswerr);
+        console.log(chosenAnswerr)
+    
+    const x=chosenAnswerr.toString();
+    const y=correctAnswerr.toString();
+    console.log(x+'/'+y)
+
+    res.send(x+'/'+y)
+
+        console.log('ana we2eft ok')
+
+    
+        
+     }
+      catch (error) {
+    
+            res.json({message: error}); }
+
+            console.log('ana we2eft ok')
+
+        } 
+
 const viewGrade = async (req, res) => {
-            console.log('ana hhhhh')
             var chosenAnswerr=0;
             var correctAnswerr=0;
 
@@ -61,13 +116,10 @@ const viewGrade = async (req, res) => {
 
                     console.log(await quiz.find({courseid:{$eq:req.params.id}}))
 
-                    console.log('hhh'+updatedQuiz[0].questions.length)
         
                     for (let i = 0; i < updatedQuiz.length; i++) {
-                        console.log('yooo')
 
                         for (let index = 0; index < updatedQuiz[i].questions.length; index++) {
-                        console.log('ana hena ok')
 
                         correctAnswerr=correctAnswerr+1;
                         
@@ -78,11 +130,9 @@ const viewGrade = async (req, res) => {
                 
                         console.log(correctAnswerr);
                         console.log(chosenAnswerr)
-                        console.log('chosenAnswerr')
                         // {chosenAnswerr&&'/'+correctAnswerr}
                 }
             }
-            console.log('bye')
             const x=chosenAnswerr.toString();
             const y=correctAnswerr.toString();
             console.log(x+'/'+y)
@@ -112,4 +162,4 @@ const viewGrade = async (req, res) => {
 
 
 
-export{createQuiz,getQuiz,submitQuiz,viewGrade}
+export{createQuiz,getQuiz,submitQuiz,viewGrade,viewQuestionGrade}
