@@ -14,7 +14,10 @@ const [UB,setUB] = useState(1000000)
 const handleSubmit = async (e) => {
     e.preventDefault()
 
-const respnse= await fetch('http://localhost:9000/course/filterCoursesByPrice?price='+LB+','+UB, {
+    let min = LB/rate
+    let max = UB/rate
+
+const respnse= await fetch('http://localhost:9000/course/filterCoursesByPrice?price='+min+','+max, {
     method: 'GET',
     headers: {
         'Content-Type' : 'application/json'
@@ -30,8 +33,8 @@ if(respnse.ok){
     setCourses(json)
      
     }
-    setUB=(100000)
-    setLB=(0)
+    // setUB=(100000)
+    // setLB=(0)
 }
 // useEffect(()=>{
 //     axios
