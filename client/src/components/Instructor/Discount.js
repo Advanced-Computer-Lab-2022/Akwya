@@ -10,7 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import react, {useState, useEffect} from 'react'
 
 
 
@@ -24,11 +24,29 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-  const { useState } = require("react");
+
 
   const Discount = () => { 
+  
 
 
+
+const [instructor,setInstructor] = useState([])
+
+const _idInstructor = window.location.href.split('/').at(4);
+const _idCourse = window.location.href.split('/').at(5);
+const ID = window.location.href.split('/').at(5);
+const instructorID = window.location.href.split('/').at(4);
+
+    useEffect(()=>{
+      axios
+      .get(`http://localhost:9000/instructor/CanViewVideos/${ID}/${instructorID}`)
+      .then( res => {
+          console.log(res)
+          setInstructor(res.data)
+      })
+      .catch(err=>{console.log(err)})
+  },[])
     const params = new URLSearchParams(window.location.search);
     
     const courseId = window.location.href.split('/').at(5);
@@ -90,11 +108,15 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
      }
       );
    
-
+      if(JSON.stringify(instructor).length==2){
+        // console.log(JSON.stringify(instructor).length+" instructor ");
+        // console.log(instructorID+" instructor id from url");
+        
+        return;
   }
 
 
-
+    }
 
 
 

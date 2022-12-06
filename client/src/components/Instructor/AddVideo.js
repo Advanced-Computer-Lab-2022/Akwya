@@ -117,14 +117,17 @@ const handleSubmit2 = async (e) => {
         
 
     } 
-}
+
 
 
 if(JSON.stringify(instructor).length==2){
-    // console.log(JSON.stringify(instructor).length+" instructor ");
-    // console.log(instructorID+" instructor id from url");
-    
-    return;
+  // console.log(JSON.stringify(instructor).length+" instructor ");
+  // console.log(instructorID+" instructor id from url");
+  
+  return;
+}
+
+
 }
 
   return (
