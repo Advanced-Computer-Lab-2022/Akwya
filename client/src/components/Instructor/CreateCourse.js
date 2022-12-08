@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 const CreateACourse = () => {
 
   const [title, setTitle] = useState('')
-  const [subtitles, setSubtitles] = useState('')
+  const [subtitles, setSubtitles] = useState('') 
   const [price, setPrice] = useState('')
   const [summary, setSummary] = useState('')
   const [totalHours, setTotalHours] = useState('')

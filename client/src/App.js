@@ -8,12 +8,13 @@ import User from './pages/User';
 import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
-
-
+import Contract from './pages/Contract'
 
 
 
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
+import Reset from './pages/ResetPassword';
+import Resett from './pages/ResetPwTrainee';
 
 import React, { useState, useEffect } from 'react';  
 import axios from 'axios'
@@ -24,6 +25,7 @@ import CourseI from './pages/CourseI';
 import CreateAQuiz from './components/CreateQuiz/CreateAQuiz.js';
 import Quiz from './pages/Quiz';
 import TakeQuiz from './pages/TakeQuiz';
+import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
 
 
 let GlobalCountry = 'United Kingdom';
@@ -68,13 +70,13 @@ function App() {
               element={<Admin />}
             />
             <Route
-              path="/user"
-              element={<User country={country}/>}
+              path="/user/"
+              element={<User country={country} tid='63868a41143ffa7252ea011e'/>}
             />
             <Route
 
-              path="/userCorporate"
-              element={<UserCorporate />}
+              path="/userCorporate/"
+              element={<UserCorporate country={country} tid='635849b7a58d8beb73e81787'/>}
             />
             <Route
               path="/instructor/:id"
@@ -113,13 +115,31 @@ function App() {
               path="/userCorporate/:id/TakeQuiz"
               element={<TakeQuiz/>}
               />
+               <Route
+              path="/user/:id/TakeQuiz/Done"
+              element={<DoneWithMyQuiz/>}
+              />
 
             <Route
               path="/ViewProfileInstructor/:id"
               element={<ViewProfileInstructor country={country}/>}
             />
-
-
+            <Route
+              path="/reset"
+              element={<Reset/>}
+              />
+              <Route
+              path="/resett"
+              element={<Resett/>}
+              />
+            <Route
+              path="/Course"
+              element={<Course/>}
+            />
+            <Route
+              path="/Contract"
+              element={<Contract/>}
+            />
           </Routes>
 
 

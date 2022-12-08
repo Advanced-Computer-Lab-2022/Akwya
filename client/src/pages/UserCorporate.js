@@ -6,7 +6,7 @@ import UserSearchCourse from '../components/user/UserSearchCourse'
 import SearchCourseCorporate from '../components/user/SearchCourseCorporate'
 import ChangePw from '../components/Trainee/ChangePw'
 
-const User = () => {
+const User = (props) => {
 
     return (
       <div className="user">
@@ -14,7 +14,7 @@ const User = () => {
         <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>
-        <ChangePw/>
+        <ChangePw tid={props.tid}/>
 
         <SearchCourseCorporate/>
         <DisplayCourses/>

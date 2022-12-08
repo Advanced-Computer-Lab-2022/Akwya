@@ -15,7 +15,6 @@ import ChangePassword from '../components/Instructor/ChangePassword.js'
 
 
 
-
 const Instructor = (props) => {
 
  
@@ -58,6 +57,7 @@ const Instructor = (props) => {
   
           </div>
      
+
      </div>
 
 

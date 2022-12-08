@@ -110,7 +110,7 @@ return(
            
               >
               <TableCell align="center"><Link to={{pathname:course._id}}><h2>{course.title}</h2></Link></TableCell>
-              <TableCell align="center">{(Math.round(course.price * rate) + ' ' + currency)}</TableCell>
+              <TableCell align="center">{(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)}</TableCell>
               <TableCell align="center">{course.totalHours}</TableCell>
               <TableCell align="center">{course.rating}</TableCell>
 

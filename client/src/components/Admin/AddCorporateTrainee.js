@@ -8,12 +8,14 @@ const AddTrainee = () => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+
     const [error, setError] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const trainee = {username, password}
+    const trainee = {username, password,email}
     
 
     const respnse= await fetch('/admin/newTrainee', {
@@ -40,7 +42,8 @@ const AddTrainee = () => {
         setError(null)
         setUsername('')
         setPassword('')
-        
+        setEmail('')
+
 
     } 
 }
@@ -58,6 +61,13 @@ const AddTrainee = () => {
         required
       />
         <br/>
+        <label>Email:</label>
+      <input 
+        type="email" 
+        onChange={(e) => setEmail(e.target.value)} 
+        value={email}
+      required/>
+        <br/>
       <label>Password:</label>
       <input 
         type="password" 
@@ -65,7 +75,7 @@ const AddTrainee = () => {
         value={password}
       required/>
         <br/>
-
+        
 
       <button>Add New Trainee</button>
       {error && <div className="error">{error}</div>}

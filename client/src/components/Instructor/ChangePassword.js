@@ -28,7 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   const ChangePassword = () => { 
 
     const params = new URLSearchParams(window.location.search);
-    // const instructorId = '635e92ced2e6e342febedd2d';
+    // const instructorId = '6380fada0e91fe67a1baf48a';
     //EL SAH:
     const instructorId = window.location.href.split('/').at(4);
 
@@ -37,16 +37,21 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     const [password,setPassword] = useState('');
     const [oldPassword,setOldPassword] = useState('');
     const [hide,setHide] = useState(true);
-
+    const [hidec,setHidec] = useState(true);
     
     const checkOld =  async () => {
-      await axios.get(`http://localhost:9000/instructor/changePassword/`+instructorId+'?oldpassword='+oldPassword).then(
-          (res) => {             
-              if(res.data['password'] == oldPassword) {
+      await axios.get(`http://localhost:9000/instructor/checkPassword/`+instructorId).then(
+          (res) => {    
+              if(res.data[0]['password'] == oldPassword) {
+                console.log('dakhal check pw w sah')          
                 setHide(true)
+                setHidec(false)
                 change()
               }else {
+                console.log('dakhal check pw w ghalat')     
+                setHidec(true)     
                 setHide(false)
+
               }
           }
            );
@@ -90,9 +95,10 @@ return(
                 margin="normal"
                 padding="normal"
                 >Change Password</Button> 
-                
                 </Box>
                 <div hidden={hide}><h5>Old password is incorrect</h5></div>
+                <div hidden={hidec}><h4>Password changed successfully</h4></div>
+
 
        </div>
 
