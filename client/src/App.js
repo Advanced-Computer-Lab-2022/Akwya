@@ -8,7 +8,7 @@ import User from './pages/User';
 import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
-// import Contract from './Instructor/Contract'
+import Contract from './pages/Contract'
 
 
 
@@ -70,13 +70,13 @@ function App() {
               element={<Admin />}
             />
             <Route
-              path="/user"
-              element={<User country={country}/>}
+              path="/user/"
+              element={<User country={country} tid='63868a41143ffa7252ea011e'/>}
             />
             <Route
 
-              path="/userCorporate"
-              element={<UserCorporate />}
+              path="/userCorporate/"
+              element={<UserCorporate country={country} tid='635849b7a58d8beb73e81787'/>}
             />
             <Route
               path="/instructor/:id"
@@ -132,7 +132,14 @@ function App() {
               path="/resett"
               element={<Resett/>}
               />
-
+            <Route
+              path="/Course"
+              element={<Course/>}
+            />
+            <Route
+              path="/Contract"
+              element={<Contract/>}
+            />
           </Routes>
 
 
