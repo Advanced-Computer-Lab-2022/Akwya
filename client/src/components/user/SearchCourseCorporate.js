@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Swal from "sweetalert2";
+import { Link } from 'react-router-dom'
+
 
 
 
@@ -74,7 +76,7 @@ const SearchCourseCorporate = () => {
     <div style={{ "text-align" : 'left' }}>
 
       <ul>
-      {courses.map(course => <li key={course._id}> Title: {course.title} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+      {courses.map(course => <li key={course._id}> Title: <Link to={{pathname:course._id}}><h3 style={{display:"inline",margin:"10px"}}>{course.title}</h3></Link> Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
       </ul>
       </div>
 
