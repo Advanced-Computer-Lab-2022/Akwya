@@ -66,7 +66,7 @@ saveQuestion = () => {
             
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.reload();
+            //   window.location.reload();
             }
           })
 
@@ -120,7 +120,23 @@ saveQuiz = () => {
     console.log("answer length: "+this.state.answers.length)
     console.log("correct Answer: "+quizz.correctAnswer==='')
 
-    
+    if( !this.state.name){
+        Swal.fire({
+            title: 'Missing Quiz Name!',
+            icon: 'error',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#380000'
+
+            
+          }).then((result) => {
+            if (result.isConfirmed) {
+            //   window.location.reload();
+            }
+          })
+          return;
+
+    }
 
         axios.post('/Quiz/create', {quizz}).then(res=>{
             Swal.fire({
@@ -154,7 +170,7 @@ return (
     <div className="create-quiz-wrapper">
         
 <div className='main'>
-    <div className='header'>Create a Quiz</div>
+    <div className='header'><h2>Create a Quiz</h2></div>
 <div className='form card'>
 <div> <input className='input' onChange={e=>this.setState({name:e.target.value})} value={this.state.name} placeholder="Quiz Name" required /> </div>
 {/* <div>    <input className='input' onChange={e=>this.setState({instructorID:e.target.value})} value={this.state.instructorID} placeholder="Instructor ID" required/> </div>
@@ -176,15 +192,16 @@ return (
     ))
     }
     
-
-<div className='btn delete' onClick={()=>this.removeQuestion()}>Delete Questions</div>
+<br/>
+<br/>
+<span className='btn save-quiz' style={{background:"orangered", padding:5 ,cursor: "pointer"}} onClick={()=>this.removeQuestion()}>Delete Questions</span>
 
 
     <div className="questions">
-            <div className='add-question' onClick={()=>this.setState({addQuestion: true})}>Add Question</div>
+            <div className='add-question' style={{background:"DarkTurquoise"}} onClick={()=>this.setState({addQuestion: true})}>Add Question</div>
         </div>
             
-    <span onClick={()=>this.saveQuiz()} className='btn save-quiz'>Save Quiz</span>
+    <span style={{background:"DarkTurquoise", padding:10,cursor: "pointer"}} onClick={()=>this.saveQuiz()} className='btn save-quiz'>Save Quiz</span>
 
 <QuizDialog model={this.state.addQuestion}>
 <div className='new-question-form'>
@@ -210,8 +227,8 @@ return (
   
                 </form>
         <div className='btn-wrapper'>
-            <div className='btn' onClick={()=>this.setState({addQuestion:false})}>close </div>
-            <div className='btn' onClick={()=>this.saveQuestion()}>Save</div>
+            <div className='btn' style={{background:"orangered", padding:3,margin:5,cursor: "pointer"}} onClick={()=>this.setState({addQuestion:false})}>Close </div>
+            <div className='btn' style={{background:"DarkTurquoise", padding:3,margin:5,cursor: "pointer"}} onClick={()=>this.saveQuestion()}>Save</div>
         </div>
 
         </div>

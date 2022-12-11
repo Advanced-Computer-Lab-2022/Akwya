@@ -55,7 +55,11 @@ const UserSearchCourse = () => {
 
 
   return (
+    <div style={{ "text-align" : 'center' }}>
     <form className="search" onSubmit={handleSubmit}> 
+    <br/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+
 
     <label>Search in All Courses:</label>
     <input
@@ -66,15 +70,17 @@ const UserSearchCourse = () => {
       required
 
     />
-    <button>Search</button>
+  <button type="submit"><i class="fa fa-search"></i></button>
       {error && <div className="error">{error}</div>}
-
+      <div style={{ "text-align" : 'left' }}>
 
       <ul>
-      {courses.map(course => <li key={course._id}>Title: <Link to={{pathname:course._id}}><h2>{course.title}</h2></Link>  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+      {courses.map(course => <li key={course._id}>Title: <Link to={{pathname:course._id}}><h3 style={{display:"inline",margin:"10px"}}>{course.title}</h3></Link>  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
       </ul>
+      </div>
 
     </form>
+    </div>
   )}
 
   export default UserSearchCourse 

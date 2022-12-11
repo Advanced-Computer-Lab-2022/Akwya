@@ -4,6 +4,9 @@ import react, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Swal from "sweetalert2";
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+
 function UserViewVideos() {
 const [videos,setVideos] = useState([])
 const [preview,setPreview] = useState([])
@@ -48,62 +51,62 @@ useEffect(()=>{
 },[])
 
 
-const handleSubmit2 = async (e) => {
-    e.preventDefault()
+// const handleSubmit2 = async (e) => {
+//     e.preventDefault()
 
-    const id = window.location.href.split('/').at(5);
-    const respnse= await fetch(`http://localhost:9000/trainee/drop/${CourseID}/${TraineeID}`, {
-        method: 'GET',
-    })  
-    const json= await respnse.json()
+//     const id = window.location.href.split('/').at(5);
+//     const respnse= await fetch(`http://localhost:9000/trainee/drop/${CourseID}/${TraineeID}`, {
+//         method: 'GET',
+//     })  
+//     const json= await respnse.json()
 
-    if(!respnse.ok){
-        setError(json.error)
-    }
-    if(respnse.ok){
-        console.log("Course Successfully Dropped!")
-        Swal.fire({
-            title: 'Course Successfully Dropped!',
-            icon: 'success',
-            confirmButtonColor: '#38a53e',
-            confirmButtonText: 'OK'
-          }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.reload();
-            }
-          })  
-        setError(null)
-    } 
-}
+//     if(!respnse.ok){
+//         setError(json.error)
+//     }
+//     if(respnse.ok){
+//         console.log("Course Successfully Dropped!")
+//         Swal.fire({
+//             title: 'Course Successfully Dropped!',
+//             icon: 'success',
+//             confirmButtonColor: '#38a53e',
+//             confirmButtonText: 'OK'
+//           }).then((result) => {
+//             if (result.isConfirmed) {
+//                 window.location.reload();
+//             }
+//           })  
+//         setError(null)
+//     } 
+// }
 
 
-const handleSubmit = async (e) => {
-    e.preventDefault()
+// const handleSubmit = async (e) => {
+//     e.preventDefault()
 
-    const id = window.location.href.split('/').at(5);
-    const respnse= await fetch(`http://localhost:9000/trainee/register/${CourseID}/${TraineeID}`, {
-        method: 'GET',
-    })  
-    const json= await respnse.json()
+//     const id = window.location.href.split('/').at(5);
+//     const respnse= await fetch(`http://localhost:9000/trainee/register/${CourseID}/${TraineeID}`, {
+//         method: 'GET',
+//     })  
+//     const json= await respnse.json()
 
-    if(!respnse.ok){
-        setError(json.error)
-    }
-    if(respnse.ok){
-        console.log("Course Successfully Registered!")
-        Swal.fire({
-            title: 'Course Successfully Registered!',
-            icon: 'success',
-            confirmButtonColor: '#38a53e',
-            confirmButtonText: 'OK'
-          }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.reload();
-            }
-          })  
-        setError(null)
-    } 
-}
+//     if(!respnse.ok){
+//         setError(json.error)
+//     }
+//     if(respnse.ok){
+//         console.log("Course Successfully Registered!")
+//         Swal.fire({
+//             title: 'Course Successfully Registered!',
+//             icon: 'success',
+//             confirmButtonColor: '#38a53e',
+//             confirmButtonText: 'OK'
+//           }).then((result) => {
+//             if (result.isConfirmed) {
+//                 window.location.reload();
+//             }
+//           })  
+//         setError(null)
+//     } 
+// }
 
 
 if(JSON.stringify(registered).length==2){
@@ -111,9 +114,9 @@ if(JSON.stringify(registered).length==2){
     // console.log(instructorID+" instructor id from url");
     
     return (
-        <div>
+        <div style={{ "text-align" : 'left' }}>
 
-        <form className="create" onSubmit={handleSubmit}> 
+        {/* <form className="create" onSubmit={handleSubmit}> 
             <h3>Add/Drop The Course</h3>
             <button>Add Course</button>
             {error && <div className="error">{error}</div>}
@@ -121,7 +124,7 @@ if(JSON.stringify(registered).length==2){
         <form className="create" onSubmit={handleSubmit2}> 
           <button>Drop Course</button>
           {error && <div className="error">{error}</div>}
-        </form>
+        </form> */}
 
 
             <h1>Course Content</h1>
@@ -145,9 +148,9 @@ if(JSON.stringify(registered).length==2){
 
 
 return(
-    <div>
+    <div style={{ "text-align" : 'left' }}>
 
-        <form className="create" onSubmit={handleSubmit}> 
+        {/* <form className="create" onSubmit={handleSubmit}> 
             <h3>Add/Drop The Course</h3>
             <button>Add Course</button>
             {error && <div className="error">{error}</div>}
@@ -155,7 +158,7 @@ return(
         <form className="create" onSubmit={handleSubmit2}> 
           <button>Drop Course</button>
           {error && <div className="error">{error}</div>}
-        </form>
+        </form> */}
 
 
         <h1>Course Content</h1>
@@ -174,11 +177,17 @@ return(
 
         
         
-
+<div style={{ "text-align" : 'center' }}>
         <Link to={{pathname:"/user/"+CourseID+"/TakeQuiz"}}>
-            <h2>Take A Quiz</h2>
+        <Box sx={{marginBottom: 5}}>
+                <Button variant="contained"
+                margin="normal"
+                padding="normal"
+                >Take A Quiz</Button> 
+                
+                </Box>
           </Link>
-          
+          </div>
 
     </div>
 )
