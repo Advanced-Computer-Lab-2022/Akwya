@@ -1,92 +1,61 @@
+import React, { useState } from "react";
+import styled from "styled-components";
 
-import axios from 'axios';
-import Button from '@mui/material/Button';
-import Table from '@mui/material/Table';
-import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';  
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+// Watch the Button tutorial
+// http://react.school/ui/button
 
+// Free React training
+// http://react.school/join
+
+// Free Material-UI template
+// http://react.school/material-ui/templates
 
 
+  const Tab = styled.button`
+    padding: 10px 30px;
+    cursor: pointer;
+    opacity: 0.6;
+    background: white;
+    border: 0;
+    outline: 0;
+    border-bottom: 2px solid transparent;
+    transition: ease border-bottom 500ms;
+    ${({ active }) =>
+      active &&
+      `
+      border-bottom: 2px solid black;
+      opacity: 1;
+    `}
+  `;
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
+function TabGroup() {
+  const [active, setActive] = useState(types[0]);
+  return (
+    <>
+      <div>
+        {types.map((type) => (
+          <Tab
+            key={type}
+            active={active === type}
+            onClick={() => setActive(type)}
+          >
+            {type}
+          </Tab>
+        ))}
+      </div>
+      <p />
+      <p> Your payment selection: {active} </p>
+    </>
+  );
+}
 
-  const { useState } = require("react");
-
-  const ViewEmail = () => { 
-
-
-    const params = new URLSearchParams(window.location.search);
-    // const instructorId = params.get('id');
-    const instructorId = '6381101753d48ea316365f94';
-    console.log(instructorId);
-
-    const [instructors,setInstructors] = useState([]);
-
-
-    const getEmail =  async () => {
-        await axios.get(`http://localhost:9000/instructor/viewEmail/`+instructorId).then(
-       (res) => { 
-           const instructors = res.data
-           console.log(instructors)
-           setInstructors(instructors)
-           
-       }
-        );
-      
-    }
-return(
-
-
-    <div className="View Email">
-        <h3>viewProfile</h3>
-        
-                <Box sx={{marginBottom: 2}}>
-                <Button variant="contained"
-                onClick={getEmail}
-                margin="normal"
-                padding="normal"
-                >View My Email</Button> 
-                
-                </Box>
-            
-         <div> 
-                   
-         <div> 
-                  {instructors.map((inst) => (
-                  <div > <p>{inst.email}</p></div>
-                    ))}
-                  
-       </div>
-
-                  
-       </div>
+const types = ["Cash", "Credit Card", "Bitcoin"];
 
 
-       </div>
-
-)
-   
-
-
-  }
-  export default  ViewEmail;
-
-
-
-
-
-
+export default function App() {
+  return (
+    <>
+      <TabGroup />
+    </>
+  );
+}

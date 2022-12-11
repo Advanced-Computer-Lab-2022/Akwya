@@ -1,0 +1,93 @@
+.report-problem-wrapper {
+    display: flex;
+    align-items: flex-start;
+    font-family: 'Ubuntu', sans-serif; 
+    width: 100%;
+} 
+
+.report-problem-wrapper .main{
+    width: 100%;
+} 
+    
+.report-problem-wrapper .header {
+     width: 90%;
+    margin: 0 auto; 
+    margin-bottom: 30px; 
+    font-size: 2.3em;
+}
+.report-problem-wrapper.form {
+    width: 90%;
+    margin: 8 auto; 
+    padding: 20px;
+}
+
+.report-problem-wrapper .select {
+    margin-top: 20px;
+    }
+
+
+.report-problem-wrapper .checkbox {
+    margin-top: 30px;
+    color: rgb(110, 108, 188);
+    display: flex;
+    align-items: center;
+    width: 300px;
+    justify-content: space-between;
+    }
+
+.report-problem-wrapper .input {
+    width: 308px !important;
+    }
+
+
+.report-problem-wrapper .add-question, .add-answer {
+    box-shadow: 2px 2px 4px 2px rgba(0, 8, 0, 0.2); 
+    border-radius: 15px;
+    padding: 10px 0;
+    text-align: center; 
+    font-size: 1.5em;
+    margin: 30px 0;
+    cursor: pointer
+}
+
+.report-problem-wrapper .btn-wrapper{
+    display: flex;
+    align-items: center;
+    }
+
+.report-problem-wrapper .btn-wrapper .btn { 
+    color: black;
+    border-radius: 10px !important;
+}
+
+.report-problem-wrapper .btn-wrapper .btn:first-child{
+    background-color: red;
+}
+
+.report-problem-wrapper .question {
+    display: flex;
+    position: relative;
+    background-color: #1babdb;
+    padding: 12px;
+    width: 90%;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+    border-left: 5px solid D#00aaf1;
+}
+.report-problem-wrapper .question div {
+    margin-right: 40px;
+}
+
+.report-problem-wrapper .question .delete {
+    position: absolute;
+    right: 20px;
+    background-color: Ored;
+    border-radius: 10px !important;
+    color: black;
+    padding: 8px;
+    top: 5px;
+}
+.report-problem-wrapper .save-quiz {
+    border-radius: 10px;
+    color:black
+}

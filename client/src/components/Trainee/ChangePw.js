@@ -63,6 +63,7 @@ return(
 
 
     <div className="Edit Password">
+      <br/>
          <label>Enter your old Password:</label>
       <input 
         type="text" 

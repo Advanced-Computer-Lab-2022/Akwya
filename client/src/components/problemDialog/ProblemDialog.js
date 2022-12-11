@@ -1,5 +1,5 @@
 import React from 'react';
-export default class QuizDialog extends React.Component{
+export default class ProblemDialog extends React.Component{
 constructor (props){
     super (props);
 
@@ -36,4 +36,4 @@ render() {
         
     )
   }
-} 
+}

@@ -5,7 +5,7 @@ import instructor from './instructor.js';
 
 
 const QuizSchema = mongoose.Schema({
-        mustBeSignedIn: {
+        mustBeSignedIn: { 
         type: Boolean, 
         default: false
         }, 
