@@ -9,6 +9,7 @@ import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
 import Contract from './pages/Contract'
+import Policy from './pages/Policy'
 
 
 
@@ -138,6 +139,10 @@ function App() {
             <Route
               path="/Contract"
               element={<Contract/>}
+            />
+            <Route
+              path="/Policy"
+              element={<Policy/>}
             />
           </Routes>
 
