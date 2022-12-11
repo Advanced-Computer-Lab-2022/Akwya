@@ -148,5 +148,17 @@ const resetPassword = async (req,res)=>{
         return res.status(400).json({status:false, error:error .message,Message:"Email not registered"}) });
     }
 
+    const getWallet= async (req, res) => {
 
-export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword}
+   
+        try {
+            
+            const wallet = await trainee.findOne({_id:req.params.id}).select('wallet');
+            console.log(wallet);
+            res.status(200).json(wallet)
+        } catch (error) {
+            res.status(400).json({error: error.message})
+        }
+    }
+
+export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet}
