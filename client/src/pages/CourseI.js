@@ -9,6 +9,9 @@ import Discount from '../components/Instructor/Discount'
 import React, { useState } from "react";
 import styled from "styled-components";
 
+
+import reportAProblem2 from '../components/Problem/reportAProblem2'
+
 const Course = (props) => {
   const types = ["Show Course Content","Manage Course Content"];
   const [active, setActive] = useState(types[0]);
@@ -76,7 +79,9 @@ const Course = (props) => {
         <h2>Course Page</h2>
         <Link to="/">
           <h2>Go to Home Page</h2>
+
         </Link>
+
         
         <TabGroup/>
 
@@ -87,15 +92,25 @@ const Course = (props) => {
 
         
 
+
         
         
 
         
+
+        <button onClick={reportAProblem2}>    
+        Report a problem
+          </button>
 
 
          
       </div>
     )
   }
+
+
+  //
+
+
   
   export default Course

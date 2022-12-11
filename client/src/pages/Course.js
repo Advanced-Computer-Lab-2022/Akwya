@@ -9,6 +9,11 @@ import RateAndReviewInstructor from '../components/user/RateAndReviewInstructor'
 import React, { useState } from "react";
 import styled from "styled-components";
 
+
+import reportAProblem2 from '../components/Problem/reportAProblem2'
+
+ 
+
 const Course = (props) => {
   const types = ["Course Details","Course Content"];
   const [active, setActive] = useState(types[0]);
@@ -74,16 +79,22 @@ const Course = (props) => {
           <h2>Go to Home Page</h2>
         </Link>
 
+
         <TabGroup/>
 
         <div style={{display: showContent ? 'block' : 'none' , "text-align" : 'center' }}><UserViewVideos/></div>
         <div style={{display: showDetails ? 'block' : 'none' }}><MyCourse country={props.country}/>
+
         <RateAndReviewCourse/>
         <RateAndReviewInstructor/>
         </div>
 
         
 
+
+        <button onClick={reportAProblem2}>    
+        Report a problem
+          </button>
 
         
 
