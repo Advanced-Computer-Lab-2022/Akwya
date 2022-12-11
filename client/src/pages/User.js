@@ -4,9 +4,12 @@ import FilterFetching from '../components/user/FilterFetching'
 
 import UserSearchCourse from '../components/user/UserSearchCourse'
 import ChangePw from '../components/Trainee/ChangePw'
+import getWallet from '../components/Trainee/GetWallet'
+
 import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject'
 import React, { useState } from "react";
 import styled from "styled-components";
+import GetWallet from '../components/Trainee/GetWallet'
 
 const User = (props) => {
 
@@ -77,7 +80,9 @@ const User = (props) => {
 
     return (
       <div className="user">
+
         <h2>User Page</h2>
+        <GetWallet tid={props.tid}/>
         <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>

@@ -71,7 +71,7 @@ function App() {
             />
             <Route
               path="/user/"
-              element={<User country={country} tid='63868a41143ffa7252ea011e'/>}
+              element={<User country={country} tid='6396424da56263086dde2489'/>}
             />
             <Route
 
