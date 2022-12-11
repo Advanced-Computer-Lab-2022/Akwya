@@ -29,6 +29,9 @@ const Home = () => {
         <Link to="/Contract">
         <h2>View Instructor contract</h2>
          </Link>
+         <Link to="/Policy">
+        <h2>View Trainee/Guest policy</h2>
+         </Link>
     </div>
     
     
