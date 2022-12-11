@@ -22,7 +22,6 @@ import axios from 'axios'
 import CountryDropdown from 'country-dropdown-with-flags-for-react';  
 import Course from './pages/Course';
 import CourseI from './pages/CourseI';
-import CreateAQuiz from './components/CreateQuiz/CreateAQuiz.js';
 import Quiz from './pages/Quiz';
 import TakeQuiz from './pages/TakeQuiz';
 import DoneWithMyQuiz from './pages/DoneWithMyQuiz';

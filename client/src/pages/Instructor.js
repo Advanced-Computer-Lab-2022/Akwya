@@ -51,11 +51,7 @@ const Instructor = (props) => {
      <DataFetching country={props.country}/>
      <FilterFetching  country={props.country}/>
      
-     <div className="quiz">
-        
-        
-  
-          </div>
+    
      
 
      </div>

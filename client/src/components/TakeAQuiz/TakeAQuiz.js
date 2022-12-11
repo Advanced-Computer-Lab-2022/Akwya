@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 // import { Component } from 'react';
 
 
-
+ 
 //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
 function TakeAQuiz() {
   

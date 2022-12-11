@@ -1,4 +1,5 @@
 import course from "../models/course.js";
+import problem from "../models/problem.js";
 
 //view all the titles of the courses available including the total hours of the course and course rating
 const viewCourses = async (req, res) => {
@@ -225,6 +226,46 @@ const courseDiscount = async (req, res) => {
  }
 
 
+ const reportAProblem =  (req, res) => {
+
+    try{
+
+    console.log("ana weselttttt");
+    let newProblem=  new problem({
+        ...req.body.prob,
+    });
+    newProblem.save().then(result => {
+        res.status(200).json({success: true});
+        })
+    }
+        catch (error) {
+            res.status(400).json({error: error.message})
+        }
+
+}
+
+
+// const reportAProblem = async (req, res) => {
+//     const { 
+//         category
+//     } = req.body
+//     //  const instructor = req.params.id
+
+//     // const category='hah'
+
+//     try {
+//         const newProblem = await problem.create({
+//             category
+//         });
+//         res.status(200).json(newProblem)
+//     } catch (error) {
+//         res.status(400).json({ error: error.message })
+//     }
+// }
+
+
+
+
 
 //export
-export { createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }
+export {reportAProblem, createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }

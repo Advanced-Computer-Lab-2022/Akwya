@@ -7,6 +7,9 @@ import ViewVideos from '../components/Instructor/ViewVideos'
 import ViewCourseRating from '../components/Instructor/ViewCourseRating'
 import Discount from '../components/Instructor/Discount'
 
+
+import reportAProblem2 from '../components/Problem/reportAProblem2'
+
 const Course = (props) => {
 
 
@@ -19,7 +22,10 @@ const _idCourse = window.location.href.split('/').at(5);
         <h2>Course Page</h2>
         <Link to="/">
           <h2>Go to Home Page</h2>
+
         </Link>
+     
+
         <Discount/>
 
         <MyCourseI country={props.country}/>
@@ -28,10 +34,19 @@ const _idCourse = window.location.href.split('/').at(5);
 
         <ViewCourseRating/>
 
+        <button onClick={reportAProblem2}>    
+        Report a problem
+          </button>
+
 
          
       </div>
     )
   }
+
+
+  //
+
+
   
   export default Course
