@@ -105,7 +105,6 @@ const Instructor = (props) => {
       <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>
-       <h1>Hello Instructor</h1>  
        <TabGroup/>
 
        <div style={{display: showCourses ? 'block' : 'none' }}><UserSearchCourse country={props.country}/>
