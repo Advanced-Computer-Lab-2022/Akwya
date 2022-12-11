@@ -10,6 +10,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Swal from "sweetalert2";
+
 
 
 
@@ -24,19 +26,35 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-  const { useState } = require("react");
+  const { useState, useEffect } = require("react");
+  const params = new URLSearchParams(window.location.search);
+  // const instructorId = params.get('id');
+  // const instructorId = window.location.href.split('/').at(4);
 
-  const EditEmail = () => { 
 
 
-    const params = new URLSearchParams(window.location.search);
-    // const instructorId = params.get('id');
-    const instructorId = '6381101753d48ea316365f94';
-    // const instructorId = window.location.href.split('/').at(4);
+  const EditEmail = () => {
+    const [instructors,setInstructors] = useState([]);
+    const [email,setEmail] = useState(''); 
+
+    const instructorId = window.location.href.split('/').at(4);
     console.log(instructorId);
 
-    const [instructors,setInstructors] = useState([]);
-    const [email,setEmail] = useState('');
+    const [instructor,setInstructor] = useState([]);
+
+
+        useEffect(()=>{
+          axios.get(`http://localhost:9000/instructor/viewEmail/`+instructorId).then(
+       (res) => { 
+           console.log(instructor)
+           setInstructor(res.data)
+           
+       }
+        );
+      },[instructors]) 
+
+
+
 
 
     const edit =  async () => {
@@ -45,7 +63,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
            const instructors = res.data
            console.log(instructors)
            setInstructors(instructors)
-           
+           Swal.fire({
+            title: 'New Email added!',
+            icon: 'success',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK'
+          })  
        }
         );
       
@@ -55,7 +78,13 @@ return(
 
     <div className="Edit Email">
 
-
+<div> 
+                  {instructor.map((inst) => (
+                  <div > Your Email: <h4 style={{display:"inline" , color:'black'}}>{inst.email}</h4 ></div>
+                    ))}
+                    <br/>
+                
+       </div>
 
 <label>Enter your new Email:</label>
       <input 
@@ -67,7 +96,7 @@ return(
       />
         
         
-                <Box sx={{marginBottom: 2}}>
+                <Box sx={{marginBottom: 2,marginLeft: 5,display:"inline"}}>
                 <Button variant="contained"
                 onClick={edit}
                 margin="normal"
@@ -81,10 +110,7 @@ return(
             
          <div> 
                    
-         <div> 
-                  
-                  
-       </div>
+        <br/>
 
                   
        </div>

@@ -30,6 +30,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
   const ViewCourseRating = () => { 
 
+    const [empty,setEmpty] = useState(false);
+
 
     const params = new URLSearchParams(window.location.search);
     // const instructorId = params.get('id');
@@ -66,6 +68,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
            const RateAndReview = res.data
            console.log(RateAndReview)
            setRateAndReview(RateAndReview)
+           RateAndReview.map((instr)=>{if(instr.noOfRatings.length==0){
+            setEmpty(true);
+           }})
+          
+           
            
        }
         );
@@ -101,6 +108,9 @@ return(
                   <div > <p>{inst.noOfRatings.map((instt) => (<div><p>Rating: {instt.rate}, Review: {instt.review}</p></div>))}</p></div>
                     ))}
                   
+       </div>
+       <div style={{display: empty ? 'block' : 'none' }}>
+        <h2>There are no Ratings And Reviews yet</h2>
        </div>
 
                   
