@@ -31,7 +31,7 @@ const Instructor = (props) => {
 
 
   const Tab = styled.button`
-    padding: 10px 30px;
+    padding: 10px 80px;
     cursor: pointer;
     opacity: 0.6;
     background: white;
