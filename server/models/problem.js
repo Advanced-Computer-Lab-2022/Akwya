@@ -4,26 +4,13 @@ import mongoose from 'mongoose';
 //mongoose allows us to have some sort of uniformity: each post have to have these things
 const problemSchema = mongoose.Schema({
 
-    // status: String,
+    status: String,
 
     // ownerID:{  
     //     type:mongoose.Types.ObjectId, 
     //     // require:true
 
-    // }, 
-
-    // // individualTraineeID:{
-    // //     type:mongoose.Types.ObjectId, 
-    // //     ref: user,
-
-    // // }, 
-
-
-    // // corporateTraineeID:{
-    // //     type:mongoose.Types.ObjectId, 
-    // //     ref: trainee,
-
-    // // }, 
+    // },
 
 
     // courseid:{ 
@@ -41,7 +28,7 @@ const problemSchema = mongoose.Schema({
     theProblem: {
         type: String, 
         // required: true
-        }, 
+        },  
 
 }, { timestamps: true }
 );

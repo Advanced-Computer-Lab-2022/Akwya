@@ -244,6 +244,18 @@ const courseDiscount = async (req, res) => {
 
 }
 
+const getProblems = async (req, res) => {
+    try {
+        
+        const objs = await problem.find({})
+
+                res.json(objs)
+
+    } catch (error) {
+
+        res.json({message: error}); }
+    }
+
 
 // const reportAProblem = async (req, res) => {
 //     const { 
@@ -268,4 +280,4 @@ const courseDiscount = async (req, res) => {
 
 
 //export
-export {reportAProblem, createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }
+export {getProblems, reportAProblem, createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }
