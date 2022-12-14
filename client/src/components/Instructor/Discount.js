@@ -168,8 +168,9 @@ return(
 
       <form onSubmit={edit}>
 
+      <h3>Add a New Discount</h3>
 
-<label>Enter Discount Percentage:</label>
+<label>Enter Discount Percentage: </label>
       <input 
         type="number" 
         id="bio"
@@ -182,7 +183,7 @@ return(
         
         
 
-       <label>Discount valid till:</label>    
+       <label> Discount valid till: </label>    
 
                 <input 
         type="date"
@@ -194,7 +195,7 @@ return(
       />
         
         
-                <Box sx={{marginBottom: 2}}>
+                <Box sx={{marginBottom: 2,marginLeft: 2 ,display:"inline"}}>
                 <Button variant="contained"
                 onClick={edit}
                 margin="normal"

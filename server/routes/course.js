@@ -1,6 +1,6 @@
 import express from "express";
 const router =express.Router()
-import { createCourse, getCourses ,viewACourse ,filterCoursesByPrice, viewCourses, searchCourse, viewCoursesPrices,filterCoursesOnSubjAndRating,deleteCourse, deleteAllCourses , courseDiscount}from '../controllers/courseController.js'
+import {reportAProblem, createCourse, getCourses ,viewACourse ,filterCoursesByPrice, viewCourses, searchCourse, viewCoursesPrices,filterCoursesOnSubjAndRating,deleteCourse, deleteAllCourses , courseDiscount}from '../controllers/courseController.js'
 
 router.get('/viewCourseDeets',viewCourses)
 
@@ -16,7 +16,13 @@ router.get('/search/:search',searchCourse)
 
 router.get('/viewACourse/:titlee',viewACourse)
 
+router.post('/report',reportAProblem)
+
 router.post('/:id',createCourse)
+
+router.post('/reporttttt',reportAProblem)
+
+
 
 // router.get('/',viewCourses)
 

@@ -2,6 +2,8 @@ import Swal from "sweetalert2";
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
 const AddVideo = () => { 
@@ -124,15 +126,30 @@ if(JSON.stringify(instructor).length==2){
     // console.log(JSON.stringify(instructor).length+" instructor ");
     // console.log(instructorID+" instructor id from url");
     
-    return;
+    return(
+      <div>
+        <h2>You are not the instructor of this course.</h2>
+      </div>
+    )
 }
 
   return (
     <div>
+       <Link to={{pathname:"/instructor/"+_idInstructor+"/"+_idCourse+"/Quiz"}}>
+        <Box sx={{marginBottom: 5}}>
+                <Button variant="contained"
+                margin="normal"
+                padding="normal"
+                >Create A Quiz</Button> 
+                
+                </Box>
+          </Link>
+          
+          
     <form className="create" onSubmit={handleSubmit2}> 
       <h3>Add a New Preview Video</h3>
 
-      <label>URL:</label>
+      <label>URL: </label>
       <input 
         type="text" 
         onChange={(e) => setPreview(e.target.value)} 
@@ -147,7 +164,7 @@ if(JSON.stringify(instructor).length==2){
 <form className="create" onSubmit={handleSubmit}> 
       <h3>Add a New Video</h3>
 
-      <label>Video Subtitle:</label>
+      <label>Video Subtitle: </label>
       <input 
         type="text" 
         onChange={(e) => setTitle(e.target.value)} 
@@ -155,7 +172,7 @@ if(JSON.stringify(instructor).length==2){
         required
       />
         <br/>
-      <label>URL:</label>
+      <label>URL: </label>
       <input 
         type="text" 
         onChange={(e) => setURL(e.target.value)} 
@@ -163,7 +180,7 @@ if(JSON.stringify(instructor).length==2){
       required/>
         <br/>
 
-        <label>Short Summary:</label>
+        <label>Short Summary: </label>
       <input 
         type="text" 
         onChange={(e) => setSummary(e.target.value)} 
@@ -171,7 +188,7 @@ if(JSON.stringify(instructor).length==2){
       required/>
         <br/>
         
-        <label>Total Hours:</label>
+        <label>Total Hours: </label>
       <input 
         type="number" 
         onChange={(e) => setTotalHours(e.target.value)} 
@@ -183,9 +200,7 @@ if(JSON.stringify(instructor).length==2){
       {error && <div className="error">{error}</div>}
     </form>
 
-    <Link to={{pathname:"/instructor/"+_idInstructor+"/"+_idCourse+"/Quiz"}}>
-            <h2>Create A Quiz</h2>
-          </Link>
+   
 
     </div>
 

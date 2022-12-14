@@ -32,10 +32,10 @@ export const getAdmins= async(req,res) => {
 
 export const createTrainee= async(req,res) => {
     const {username,password,email}=req.body
-
+    const wallet=0;
     
     try {
-        const newTrainee = await trainee.create({username,password,email});
+        const newTrainee = await trainee.create({username,password,email,wallet});
         res.status(200).json(newTrainee)
     } catch (error) {
         res.status(400).json({error: error.message})

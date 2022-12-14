@@ -9,6 +9,7 @@ import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
 import Contract from './pages/Contract'
+import Policy from './pages/Policy'
 
 
 
@@ -22,7 +23,6 @@ import axios from 'axios'
 import CountryDropdown from 'country-dropdown-with-flags-for-react';  
 import Course from './pages/Course';
 import CourseI from './pages/CourseI';
-import CreateAQuiz from './components/CreateQuiz/CreateAQuiz.js';
 import Quiz from './pages/Quiz';
 import TakeQuiz from './pages/TakeQuiz';
 import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
@@ -71,7 +71,7 @@ function App() {
             />
             <Route
               path="/user/"
-              element={<User country={country} tid='63868a41143ffa7252ea011e'/>}
+              element={<User country={country} tid='6396424da56263086dde2489'/>}
             />
             <Route
 
@@ -139,6 +139,10 @@ function App() {
             <Route
               path="/Contract"
               element={<Contract/>}
+            />
+            <Route
+              path="/Policy"
+              element={<Policy/>}
             />
           </Routes>
 
