@@ -161,4 +161,69 @@ const resetPassword = async (req,res)=>{
         }
     }
 
-export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet}
+
+
+
+    // create json web token
+const maxAge = 3 * 24 * 60 * 60;
+const createToken = (name) => {
+    return jwt.sign({ name }, 'supersecret', {
+        expiresIn: maxAge
+    });
+};
+
+const signUp = async (req, res) => {
+    const { username, email, password ,fname, lname,gender} = req.body;
+    try {
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(password, salt);
+        const user = await trainee.create({ username: username, email: email, password: hashedPassword ,fname: fname , lname:lname , gender:gender});
+        const token = createToken(user.name);
+
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+
+
+const login = async (req, res) => {
+    const { name, email, password } = req.body;
+    const user = await trainee.findOne({name:name}) 
+    console.log(user);
+    if (user){
+        const databasePass=await user.password;
+        const pass=password;
+        const result = await bcrypt.compare(pass,databasePass);
+        console.log(result);
+        if (result){
+            const token = createToken(user.name); 
+            res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        res.status(200).json(user)
+    
+        }
+        else{
+            res.status(400).json({ error:"wrong password or password" })  
+        }
+
+   
+}
+
+}
+
+
+const logout = async (req, res) => {
+  
+    res.cookie('jwt', "", { httpOnly: true, maxAge: maxAge * 1 }); //empty string
+    res.status(200).json( "logout done" )
+
+
+}
+
+
+
+
+
+
+export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet, signUp, login ,logout }
