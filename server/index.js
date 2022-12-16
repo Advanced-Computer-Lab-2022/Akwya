@@ -52,7 +52,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(cookieParser());
+// app.use(cookieParser());
 
 
 
