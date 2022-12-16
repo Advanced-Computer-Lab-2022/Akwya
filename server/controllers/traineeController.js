@@ -161,4 +161,38 @@ const resetPassword = async (req,res)=>{
         }
     }
 
-export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet}
+
+const sendCertificate = async (req,res)=>{
+    const userEmail = req.query.mail;
+    const courseTitle = req.query.title;        
+        
+            const mail = {
+                from: process.env.AUTH_EMAIL,
+                to: userEmail,
+                subject: courseTitle,
+                html: `<p>Congratulations!</p>
+                    <p>You have completed <strong> 100% </strong> of this course. Keep it up.</p>
+                    <p>Your certificate is attached below</p>`,
+                attachments: [{
+                    filename: 'Certificate.pdf',
+                    path: '/Users/yasmine/Documents/Certificate.pdf',
+                    contentType: 'application/pdf'
+                }],
+            }
+        
+            let transporter = nodemailer.createTransport({
+                service: 'hotmail',
+                auth: {
+                    user: process.env.AUTH_EMAIL,
+                    pass: process.env.AUTH_PASS
+                }
+            })
+            transporter.sendMail(mail).then((result)=>{
+                return res.status(200).json({status:true,Message:"Certificate mail sent"})
+            }).catch((error) => {
+                return res.status(400).json({status:false, error:error.message ,Message:"Failed to send mail"}) })     
+    }
+
+
+
+export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate}
