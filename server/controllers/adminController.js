@@ -60,3 +60,17 @@ export const createInstructor= async(req,res) => {
 
 }
 
+
+export const refundTrainee= async(req,res) => {
+    
+    try {
+
+        const traineee = await trainee.findOne({_id:req.params.id});
+        const newWallet = parseInt(traineee.wallet) + parseInt(req.query.amount)
+        const refunded = await trainee.findOneAndUpdate({_id:req.params.id}, {wallet: newWallet},{
+            new: true} );
+        res.status(200).json(refunded)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
