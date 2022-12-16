@@ -10,7 +10,7 @@ import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
 import Contract from './pages/Contract'
 import Policy from './pages/Policy'
-
+import SignUp from './pages/SignUp'
 
 
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
@@ -143,6 +143,10 @@ function App() {
             <Route
               path="/Policy"
               element={<Policy/>}
+            />
+             <Route
+              path="/signup"
+              element={<SignUp/>}
             />
           </Routes>
 
