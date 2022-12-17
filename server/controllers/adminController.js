@@ -3,6 +3,7 @@ import trainee from "../models/trainee.js"
 import instructor from "../models/instructor.js"
 import course from "../models/course.js"
 
+
 export const getAdmins= async(req,res) => {
     try{
         const admins= await admin.find({});
@@ -72,7 +73,7 @@ export const courseDiscountAdmin = async (req, res) => {
     const date=await course.findOneAndUpdate({_id:req.params.id},{promotionExpiry:req.query.promotionExpiry},{new: true}  )
        
         res.status(200).json({discount, date})
-       
+    
 
 
     }
@@ -81,3 +82,14 @@ export const courseDiscountAdmin = async (req, res) => {
 }
  }
 
+
+export const promotionFound = async (req, res) => {
+try{
+    const course1 =await course.findOne({_id:req.params.id})
+    res.status(200).json(course1)
+
+}
+catch (error) {
+    res.status(400).json({error: error.message})
+}
+}
