@@ -63,3 +63,10 @@ h6 {
   font-weight: 0;
   line-height: 25px;
 }
+
+.format-pre pre {
+  font-family: 'Times New Roman', Times, serif;
+  padding: 10px;
+  font-size: 14px;
+  text-align:left;
+}
