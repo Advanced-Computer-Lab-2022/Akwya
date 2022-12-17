@@ -188,42 +188,12 @@ const signUp = async (req, res) => {
 }
 
 
-const login = async (req, res) => {
-    const { name, email, password } = req.body;
-    const user = await trainee.findOne({name:name}) 
-    console.log(user);
-    if (user){
-        const databasePass=await user.password;
-        const pass=password;
-        const result = await bcrypt.compare(pass,databasePass);
-        console.log(result);
-        if (result){
-            const token = createToken(user.name); 
-            res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-        res.status(200).json(user)
-    
-        }
-        else{
-            res.status(400).json({ error:"wrong password or password" })  
-        }
-
-   
-}
-
-}
-
-
-const logout = async (req, res) => {
-  
-    res.cookie('jwt', "", { httpOnly: true, maxAge: maxAge * 1 }); //empty string
-    res.status(200).json( "logout done" )
-
-
-}
 
 
 
 
 
 
-export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet, signUp, login ,logout }
+
+
+export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet, signUp}

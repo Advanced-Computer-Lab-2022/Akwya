@@ -27,6 +27,7 @@ import Quiz from './pages/Quiz';
 import TakeQuiz from './pages/TakeQuiz';
 import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
 
+import AdminPromotion from './pages/AdminPromotion';
 
 let GlobalCountry = 'United Kingdom';
 
@@ -144,6 +145,12 @@ function App() {
               path="/Policy"
               element={<Policy/>}
             />
+            <Route
+              path="/AdminPromotion"
+              element={<AdminPromotion/>}
+            />
+
+
           </Routes>
 
 
