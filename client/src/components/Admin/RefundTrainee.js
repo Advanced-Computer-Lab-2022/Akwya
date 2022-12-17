@@ -3,6 +3,7 @@ import axios from 'axios';
 // import react, {useState, useEffect} from 'react'
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Swal from "sweetalert2";
 
 
 
@@ -18,7 +19,13 @@ import Box from '@mui/material/Box';
     
     const refund =  async () => {
       await axios.get(`http://localhost:9000/admin/refundTrainee/`+traineeID+`?amount=`+amount).then(
-          (res) => {    
+          (res) => {   
+            Swal.fire({
+              title: 'Refund successful!',
+              icon: 'success',
+              confirmButtonColor: '#38a53e',
+              confirmButtonText: 'OK'
+            })  
           }
            );
    
