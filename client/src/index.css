@@ -1,6 +1,5 @@
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
-@import url(https:///fonts.goopleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap);
 
 /* layout */
 :root {
@@ -63,4 +62,11 @@ h6 {
   font-family: 'Times New Roman', Times, serif;
   font-weight: 0;
   line-height: 25px;
+}
+
+.format-pre pre {
+  font-family: 'Times New Roman', Times, serif;
+  padding: 10px;
+  font-size: 14px;
+  text-align:left;
 }
