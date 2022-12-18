@@ -99,7 +99,7 @@ const User = (props) => {
         </Link>
         
 
-        <TabGroup/>
+        <TabGroup/> 
 
         <div style={{display: showPW ? 'block' : 'none' }}><ChangePw tid={props.tid}/></div>
         <div style={{display: showCourses ? 'block' : 'none' }}><UserSearchCourse/><DataFetching country={props.country}/></div>

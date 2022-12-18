@@ -70,12 +70,12 @@ function App() {
             />
             <Route
               path="/user/"
-              element={<User country={country} tid='63868a41143ffa7252ea011e'/>}
+              element={<User country={country} tid='63868a41143ffa7252ea011e' tempid='63868a41143ffa7252ea011e'/>}
             />
             <Route
 
               path="/userCorporate/"
-              element={<UserCorporate country={country} tid='635849b7a58d8beb73e81787'/>}
+              element={<UserCorporate country={country} tid='635849b7a58d8beb73e81787' tempid='63868a41143ffa7252ea011e'/>}
             />
             <Route
               path="/instructor/:id"
@@ -91,15 +91,15 @@ function App() {
             />
             <Route
               path="/user/:id"
-              element={<Course country={country}/>}
+              element={<Course tempid='63868a41143ffa7252ea011e' country={country}/>}
             />
             <Route
               path="/userCorporate/:id"
-              element={<Course country={country}/>}
+              element={<Course tempid='63868a41143ffa7252ea011e' country={country}/>}
             />
             <Route
               path="/instructor/:id/:id"
-              element={<CourseI country={country}/>}
+              element={<CourseI tempid='63868a41143ffa7252ea011e' country={country}/>}
             />
 
             <Route
@@ -133,7 +133,7 @@ function App() {
               />
             <Route
               path="/Course"
-              element={<Course/>}
+              element={<Course tempid='63868a41143ffa7252ea011e'/>}
             />
             <Route
               path="/Contract"

@@ -6,19 +6,20 @@ const problemSchema = mongoose.Schema({
 
     status: String,
 
-    // ownerID:{  
-    //     type:mongoose.Types.ObjectId, 
-    //     // require:true
+    ownerID:{  
+        type: String, 
+        // type:mongoose.Types.ObjectId, 
+        // require:true
 
-    // },
+    },
 
 
-    // courseid:{ 
-    //     type:mongoose.Types.ObjectId, 
-    //     ref: course,
-    //     // require:true
+    courseid:{ 
+        type:mongoose.Types.ObjectId, 
+        // ref: course,
+        // require:true
 
-    // }, 
+    }, 
 
     category: {
         type: String, 

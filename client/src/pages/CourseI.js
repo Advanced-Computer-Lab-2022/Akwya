@@ -98,7 +98,7 @@ const Course = (props) => {
 
         
 
-        <button onClick={reportAProblem2}>    
+        <button onClick={() => reportAProblem2(props.tempid)}>    
         Report a problem
           </button>
 
