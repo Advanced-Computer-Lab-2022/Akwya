@@ -20,7 +20,7 @@ router.post('/report',reportAProblem)
 
 router.post('/:id',createCourse)
 
-router.get('/getProblems',getProblems)
+router.get('/getProblems/:id',getProblems)
 
 
 

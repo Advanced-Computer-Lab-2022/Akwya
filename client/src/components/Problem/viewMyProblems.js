@@ -15,7 +15,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 
-//async
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -27,13 +26,15 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
  
-function ViewMyProblems() {
+const ViewMyProblems= (props) => { 
 const [problems,setproblems] = useState([])
+const temp = props.tempid
+console.log('ssd'+temp)
 
 
 useEffect(()=>{
     axios
-    .get('http://localhost:9000/course/getProblems')
+    .get('http://localhost:9000/course/getProblems/'+temp)
     .then( res => {
         console.log(res)
         setproblems(res.data)
@@ -43,7 +44,7 @@ useEffect(()=>{
 
   
 
-return(
+return( 
     <div>
         <h1>View Problems</h1>
         

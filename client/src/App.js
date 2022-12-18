@@ -79,7 +79,7 @@ function App() {
             />
             <Route
               path="/instructor/:id"
-              element={<Instructor country={country}/>}
+              element={<Instructor country={country} tempid='6381101753d48ea316365f94'/>}
             />
             <Route
               path="/guest"
@@ -99,7 +99,7 @@ function App() {
             />
             <Route
               path="/instructor/:id/:id"
-              element={<CourseI tempid='63868a41143ffa7252ea011e' country={country}/>}
+              element={<CourseI tempid='6381101753d48ea316365f94' country={country}/>}
             />
 
             <Route
@@ -121,7 +121,7 @@ function App() {
 
             <Route
               path="/ViewProfileInstructor/:id"
-              element={<ViewProfileInstructor country={country}/>}
+              element={<ViewProfileInstructor tempid='6381101753d48ea316365f94' country={country}/>}
             />
             <Route
               path="/reset"

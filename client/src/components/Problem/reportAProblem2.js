@@ -67,8 +67,7 @@ import { getValue } from '@mui/system';
 
             let prob = {
 
-              // ownerID:window.location.href.split('/').at(4),
-              // courseid:window.location.href.split('/').at(3),
+              status:'unresolved',
               category:document.getElementById('swal-input1').value,
               theProblem:document.getElementById('swal-input2').value,
               ownerID: props,

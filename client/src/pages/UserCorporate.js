@@ -112,7 +112,7 @@ const User = (props) => {
 
         <div style={{display: showCourses ? 'block' : 'none' }}><SearchCourseCorporate/><DisplayCourses/></div>
        <div style={{display: showFilters ? 'block' : 'none' }}><FilterByRatingAndSubject/></div>         
-       <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems country={props.country}/></div>
+       <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems tempid={props.tempid} country={props.country}/></div>
 
       </div>
     )

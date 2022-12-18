@@ -104,7 +104,7 @@ const User = (props) => {
         <div style={{display: showPW ? 'block' : 'none' }}><ChangePw tid={props.tid}/></div>
         <div style={{display: showCourses ? 'block' : 'none' }}><UserSearchCourse/><DataFetching country={props.country}/></div>
         <div style={{display: showFilters ? 'block' : 'none' }}><FilterFetching country={props.country}/></div>
-        <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems country={props.country}/></div>
+        <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems tempid={props.tempid} country={props.country}/></div>
         <div><FilterByRatingAndSubject country={props.country}/></div>
         
         
