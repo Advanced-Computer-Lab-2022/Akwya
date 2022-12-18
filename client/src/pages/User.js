@@ -7,7 +7,7 @@ import ChangePw from '../components/Trainee/ChangePw'
 import ViewMyProblems from '../components/Problem/viewMyProblems'
 import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject'
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled from "styled-components"; 
 
 const User = (props) => {
 

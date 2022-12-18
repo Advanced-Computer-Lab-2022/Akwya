@@ -18,16 +18,18 @@ import  ViewEmail from '../components/Instructor/ViewEmail.js'
 import  EditEmail from '../components/Instructor/EditEmail.js'
 import ViewRating from '../components/Instructor/ViewRating'
 import  EditBio from '../components/Instructor/EditBio.js'
+import ViewMyProblems from '../components/Problem/viewMyProblems'
 
 
 
 const Instructor = (props) => {
-  const types = ["My Courses","My Info","Explore Courses", "Filter Courses"];
+  const types = ["My Courses","My Info","Explore Courses", "Filter Courses","View Reported Problems"];
   const [active, setActive] = useState(types[0]);
   const [showFilters, setshowFilters] = useState(false);
   const [showCourses, setshowCourses] = useState(false);
   const [showInfo, setshowInfo] = useState(false);
   const [showMyCourses, setshowMyCourses] = useState(true);
+  const [showProblems, setshowProblems] = useState(false);
 
 
   const Tab = styled.button`
@@ -60,26 +62,48 @@ const Instructor = (props) => {
                   setshowCourses(true);
                   setshowFilters(false)
                   setshowMyCourses(false)
-                  setshowInfo(false)                  
+                  setshowInfo(false)    
+                  setshowProblems(false)
+              
                 break;
                 case "Filter Courses":
                   setshowCourses(false);
                   setshowFilters(true)
                   setshowMyCourses(false)
-                  setshowInfo(false)                     
+                  setshowInfo(false)     
+                  setshowProblems(false)
+                
                 break;
                 case "My Courses":
                   setshowCourses(false);
                   setshowFilters(false)
                   setshowMyCourses(true)
-                  setshowInfo(false)                     
+                  setshowInfo(false)       
+                  setshowProblems(false)
+              
                   break;
                   case "My Info":
                     setshowCourses(false);
                     setshowFilters(false)
                     setshowMyCourses(false)
-                    setshowInfo(true)                       
+                    setshowInfo(true)     
+                    setshowProblems(false)
+                  
                     break;
+
+
+                    case "View Reported Problems":
+                    setshowCourses(false);
+                    setshowFilters(false)
+                    setshowMyCourses(false)
+                    setshowInfo(false)     
+                    setshowProblems(true)
+                  
+                    break;
+
+
+
+
                 default:
                   break;
               }}}
@@ -127,6 +151,8 @@ const Instructor = (props) => {
 
        <div style={{display: showFilters ? 'block' : 'none' }}><FilterFetching  country={props.country}/>
        <FilterByRatingAndSubject  country={props.country}/></div>
+       <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems country={props.country}/></div>
+
 
      </div>
      <br/>
