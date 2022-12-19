@@ -244,28 +244,24 @@ const courseDiscount = async (req, res) => {
 
 }
 
+const getProblems = async (req, res) => {
+    try {
 
-// const reportAProblem = async (req, res) => {
-//     const { 
-//         category
-//     } = req.body
-//     //  const instructor = req.params.id
+        const { id } = req.params
+        const objs = await problem.find({ownerID:{$eq:id} });
 
-//     // const category='hah'
+                res.json(objs)
 
-//     try {
-//         const newProblem = await problem.create({
-//             category
-//         });
-//         res.status(200).json(newProblem)
-//     } catch (error) {
-//         res.status(400).json({ error: error.message })
-//     }
-// }
+    } catch (error) {
+
+        res.json({message: error}); }
+    }
+
+   
 
 
 
 
 
 //export
-export {reportAProblem, createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }
+export {getProblems, reportAProblem, createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }

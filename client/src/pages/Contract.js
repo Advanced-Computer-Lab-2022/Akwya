@@ -101,14 +101,14 @@ const Contract = () => {
           show the sales price (in local currency) and your converted revenue
           amount (in USD).
           <br/>
-          <br/>
-          <input id="agreed" type="checkbox" onClick={checkChange}/>I agree to the terms of this contract
+          <h4>You have already agreed to the terms mentioned above.</h4>
+          {/* <input id="agreed" type="checkbox" onClick={checkChange}/>I agree to the terms of this contract
           <br/>
           <a href='http://localhost:3000/'>
           <button id="submitButton" class="btn btn-default" type="button" disabled="disabled">    
           Submit
           </button>
-          </a>
+          </a> */}
         </h6>
       </form>
     </div>

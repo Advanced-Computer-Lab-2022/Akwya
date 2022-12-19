@@ -10,7 +10,8 @@ import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
 import Contract from './pages/Contract'
 import Policy from './pages/Policy'
-
+import SignUp from './pages/SignUp'
+import Login from './pages/SignIn'
 
 
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
@@ -29,7 +30,7 @@ import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
 
 import AdminPromotion from './pages/AdminPromotion';
 
-let GlobalCountry = 'United Kingdom';
+// let GlobalCountry = 'United Kingdom';
 
 
 function App() {
@@ -71,17 +72,18 @@ function App() {
               element={<Admin />}
             />
             <Route
-              path="/user/"
+              path="/user/:id"
               element={<User country={country} tid='6396424da56263086dde2489'/>}
             />
             <Route
 
-              path="/userCorporate/"
+              path="/userCorporate/:id"
               element={<UserCorporate country={country} tid='635849b7a58d8beb73e81787'/>}
+
             />
             <Route
               path="/instructor/:id"
-              element={<Instructor country={country}/>}
+              element={<Instructor country={country} tempid='6381101753d48ea316365f94'/>}
             />
             <Route
               path="/guest"
@@ -92,16 +94,17 @@ function App() {
               element={<Course country={country}/>}
             />
             <Route
-              path="/user/:id"
+              path="/user/:id/:id"
               element={<Course country={country}/>}
             />
             <Route
-              path="/userCorporate/:id"
+              path="/userCorporate/:id/:id"
               element={<Course country={country}/>}
+
             />
             <Route
               path="/instructor/:id/:id"
-              element={<CourseI country={country}/>}
+              element={<CourseI tempid='6381101753d48ea316365f94' country={country}/>}
             />
 
             <Route
@@ -109,21 +112,21 @@ function App() {
               element={<Quiz/>}
               />
               <Route
-              path="/user/:id/TakeQuiz"
+              path="/user/:id/:id/TakeQuiz"
               element={<TakeQuiz/>}
               />
               <Route
-              path="/userCorporate/:id/TakeQuiz"
+              path="/userCorporate/:id/:id/TakeQuiz"
               element={<TakeQuiz/>}
               />
                <Route
-              path="/user/:id/TakeQuiz/Done"
+              path="/user/:id/:id/TakeQuiz/Done"
               element={<DoneWithMyQuiz/>}
               />
 
             <Route
               path="/ViewProfileInstructor/:id"
-              element={<ViewProfileInstructor country={country}/>}
+              element={<ViewProfileInstructor tempid='6381101753d48ea316365f94' country={country}/>}
             />
             <Route
               path="/reset"
@@ -135,7 +138,7 @@ function App() {
               />
             <Route
               path="/Course"
-              element={<Course/>}
+              element={<Course tempid='63868a41143ffa7252ea011e'/>}
             />
             <Route
               path="/Contract"
@@ -145,11 +148,23 @@ function App() {
               path="/Policy"
               element={<Policy/>}
             />
+
             <Route
               path="/AdminPromotion"
               element={<AdminPromotion/>}
             />
 
+
+
+             <Route
+              path="/signup"
+              element={<SignUp/>}
+            />
+            <Route
+              path="/login"
+              element={<Login/>}
+            />
+            
 
           </Routes>
 

@@ -14,10 +14,12 @@ import traineeRoutes from './routes/trainee.js';
 
 import quizRoutes from './routes/Quiz.js';
 
-// import { requireAuth } from './Middleware/authMiddleware.js';
-
-// import requireAuth from './Middleware/authMiddleware.js';
-
+// import jwt from 'jsonwebtoken';
+// import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
+// require('dotenv').config()
+import requireAuth from './Middleware/authMiddleware.js'
+import cookieParser from 'cookie-parser'
 
 /*
 I installed kol el fo2 in server directory
@@ -31,9 +33,8 @@ redux
 redux-thunk for asynchronous actions using redux
 */
 
+dotenv.config();
 
-
-//
 const app = express();
 
 
@@ -52,7 +53,9 @@ app.use((req, res, next) => {
     next();
 });
 
-// app.use(cookieParser());
+
+
+app.use(cookieParser());
 
 
 

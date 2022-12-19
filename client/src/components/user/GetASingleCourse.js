@@ -10,10 +10,10 @@ const [courses,setCourses] = useState([])
 const [error, setError] = useState(null)
 
 
-const CourseID = window.location.href.split('/').at(4);
-const TraineeID = "635849b7a58d8beb73e81787";
+const CourseID = window.location.href.split('/').at(5);
+const TraineeID = window.location.href.split('/').at(4);
 
-const ID = window.location.href.split('/').at(4);
+const ID = window.location.href.split('/').at(5);
 console.log(ID)
 useEffect(()=>{
     axios
@@ -44,7 +44,6 @@ switch(props.country) {
   const handleSubmit2 = async (e) => {
     e.preventDefault()
 
-    const id = window.location.href.split('/').at(5);
     const respnse= await fetch(`http://localhost:9000/trainee/drop/${CourseID}/${TraineeID}`, {
         method: 'GET',
     })  
@@ -73,7 +72,6 @@ switch(props.country) {
 const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const id = window.location.href.split('/').at(5);
     const respnse= await fetch(`http://localhost:9000/trainee/register/${CourseID}/${TraineeID}`, {
         method: 'GET',
     })  

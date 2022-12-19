@@ -30,6 +30,8 @@ const Course = (props) => {
   outline: 0;
   border-bottom: 2px solid transparent;
   transition: ease border-bottom 250ms;
+  :hover {opacity: 1;  transition: ease opacity 300ms;}
+  :not(:hover) {opacity: 0.6; transition: ease opacity 250ms;}
   
   ${({ active }) =>
     active &&
@@ -98,7 +100,7 @@ const Course = (props) => {
 
         
 
-        <button onClick={reportAProblem2}>    
+        <button onClick={() => reportAProblem2(props.tempid)}>    
         Report a problem
           </button>
 
