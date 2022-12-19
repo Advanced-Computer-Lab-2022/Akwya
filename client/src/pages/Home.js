@@ -10,10 +10,13 @@ const Home = () => {
       <Link to="/signup">
         <h2>Sign Up as a Trainee</h2>
       </Link>
-      <Link to="/user/">
+      <Link to="/login">
+        <h2>Sign In</h2>
+      </Link>
+      <Link to="/user/639f8a0c5738de516fae13bf">
         <h2>Go to Individual Trainee Page</h2>
       </Link>
-      <Link to="/userCorporate/">
+      <Link to="/userCorporate/639f8bd198df678643521246">
         <h2>Go to Corporate Trainee Page</h2>
       </Link>
       <Link to="/instructor/6381101753d48ea316365f94">

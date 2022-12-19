@@ -81,7 +81,7 @@ const User = (props) => {
   return (
     <div className="user">
       <h2>User Page</h2>
-      <GetWallet tid={props.tid} />
+      <GetWallet />
       <Link to="/">
         <h2>Go to Home Page</h2>
       </Link>
@@ -89,7 +89,7 @@ const User = (props) => {
       <TabGroup />
 
       <div style={{ display: showPW ? "block" : "none" }}>
-        <ChangePw tid={props.tid} />
+        <ChangePw  />
       </div>
       <div style={{ display: showCourses ? "block" : "none" }}>
         <UserSearchCourse />

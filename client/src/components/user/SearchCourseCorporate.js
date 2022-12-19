@@ -15,7 +15,7 @@ const SearchCourseCorporate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    const id = window.location.href.split('/').at(4);
+    const id = window.location.href.split('/').at(5);
     console.log(id)
     console.log(search)
 
