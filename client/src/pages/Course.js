@@ -26,12 +26,6 @@ const Course = (props) => {
   const [showContent, setshowContent] = useState(false);
   const [showDetails, setshowDetails] = useState(true);
 
-  const [sidebarOpen, setSideBarOpen] = useState(false);
-
-  const handleViewSidebar = () => {
-    setSideBarOpen(!sidebarOpen);
-  };
-
 
 
   const Tab = styled.button`
