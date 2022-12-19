@@ -26,6 +26,10 @@ const Course = (props) => {
   const [showContent, setshowContent] = useState(false);
   const [showDetails, setshowDetails] = useState(true);
 
+  // const tempid = props.tempid
+  // console.log('el7a20000ny plz')
+
+  // console.log(tempid)
 
 
   const Tab = styled.button`
@@ -99,10 +103,14 @@ const Course = (props) => {
         </div>
 
         
+        {/* onClick={() => begin(props)}
+        <div style={{display: showPW ? 'block' : 'none' }}><ChangePw tid={props.tid}/></div> */}
 
+        <button onClick={() => reportAProblem2(props.tempid)}>    
 
-        <button onClick={reportAProblem2}>    
+        {/* <button onClick={reportAProblem2 }>     */}
         Report a problem
+        
           </button>
 
         

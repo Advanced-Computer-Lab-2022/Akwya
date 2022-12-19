@@ -13,12 +13,12 @@ import Swal from "sweetalert2";
 
   
 
-    const [traineeID,setTraineeID] = useState('');
+    const [username,setUsername] = useState('');
     const [amount,setAmount] = useState(0);
    
     
     const refund =  async () => {
-      await axios.get(`http://localhost:9000/admin/refundTrainee/`+traineeID+`?amount=`+amount).then(
+      await axios.get(`http://localhost:9000/admin/refundTrainee/?username=`+username+`&amount=`+amount).then(
           (res) => {   
             Swal.fire({
               title: 'Refund successful!',
@@ -36,16 +36,16 @@ return(
 
     <div className="Refund">
        <h3>Refund to Trainee</h3> 
-         <label>Enter trainee's ID: </label>
+         <label>Trainee's Username: </label>
       <input 
         type="text" 
         id="idtextbox"
-        onChange={(e) => setTraineeID(e.target.value)} 
-        value={traineeID}
+        onChange={(e) => setUsername(e.target.value)} 
+        value={username}
         required
       />
       <br/>
-    <label>Enter refund amount: </label>
+    <label>Refund amount: </label>
       <input 
         type="text" 
         id="reftextbox"
@@ -66,9 +66,6 @@ return(
        </div>
 
 )
-   
-
-
 }
   export default Refund;
 

@@ -60,46 +60,49 @@ use of the Services. If we ban your account or disable your access to the conten
 eligible to receive a refund. Additional information on our refund policy is available here.
 </pre>`;
 
-  const register = async () => {
-    await axios
-      .post(`http://localhost:9000/trainee/signup`, {
-        username: username,
-        email: email,
-        password: password,
-        fname: fname,
-        lname: lname,
-        gender: gender,
-      })
-      .then((res) => {
-        console.log("REGISTERED!");
-        Swal.fire({
-          title: policyString,
-          width: 1110,
-          customClass: {
-            popup: "format-pre",
-          },
-          // icon: 'success',
-          input: "checkbox",
-          inputValue: 0,
-          inputPlaceholder: "I agree with the policies",
-          confirmButtonText: 'Continue <i class="fa fa-arrow-right"></i>',
-          inputValidator: (result) => {
-            return !result && "You need to agree first";
-          },
-          confirmButtonColor: "#38a53e",
-          confirmButtonText: "OK",
-        }).then((res) => {
-          Swal.fire({
-            title: "Registration successful!",
-            icon: "success",
-            confirmButtonColor: "#38a53e",
-            confirmButtonText: "OK",
-          }).then(() => {
-            window.location = "/";
+  const register = () => {
+    Swal.fire({
+      title: policyString,
+      width: 1110,
+      customClass: {
+        popup: "format-pre",
+      },
+      // icon: 'success',
+      input: "checkbox",
+      inputValue: 0,
+      inputPlaceholder: "I agree with the policies",
+      confirmButtonText: 'Continue <i class="fa fa-arrow-right"></i>',
+      inputValidator: (result) => {
+        return !result && "You need to agree first";
+      },
+      confirmButtonColor: "#38a53e",
+      confirmButtonText: "OK",
+    }).then(async (res) => {
+      await axios
+        .post(`http://localhost:9000/trainee/signup`, {
+          username: username,
+          email: email,
+          password: password,
+          fname: fname,
+          lname: lname,
+          gender: gender,
+        })
+        .then((res) => {
+        
+            Swal.fire({
+              title: "Registration successful!",
+              icon: "success",
+              confirmButtonColor: "#38a53e",
+              confirmButtonText: "OK",
+            }).then(() => {
+              window.location = "/";
+            });
           });
-        });
       });
+      
   };
+
+
 
   return (
     <div className="Sign Up">
@@ -123,7 +126,7 @@ eligible to receive a refund. Additional information on our refund policy is ava
       <br />
       <label>Password: </label>
       <input
-        type="text"
+        type="password"
         id="password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}

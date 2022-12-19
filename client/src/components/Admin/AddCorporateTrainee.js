@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
 const AddTrainee = () => {
-    console.log("here")
+    // console.log("here")
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')

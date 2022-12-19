@@ -8,8 +8,8 @@ const instructorSchema = mongoose.Schema({
     courses: [{ courseid: Number }],
     ratings: [{ rate: Number, review: String, ownerName: String, ownerID: Number }],
     country: String,
-    minibiography: String
-
+    minibiography: String,
+    firstLogin: Boolean
 
 
 }, { timestamps: true }
