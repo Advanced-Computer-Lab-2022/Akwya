@@ -47,11 +47,12 @@ export const getAdmins= async(req,res) => {
 export const createTrainee= async(req,res) => {
     const {username,password,email}=req.body
     const wallet=0;
-    
+    const type = 'corporate'
+    //bykon corporate
     try {
             const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(password, salt);
-            const newTrainee = await trainee.create({username:username,password:hashedPassword,email:email,wallet:wallet});
+            const newTrainee = await trainee.create({username:username,password:hashedPassword,email:email,traineetype:type,wallet:wallet});
             const token = createToken(username);
     
             res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
@@ -73,7 +74,7 @@ export const createInstructor= async(req,res) => {
     try {
         const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(password, salt);
-            const newInstructor = await instructor.create({username:username,password:hashedPassword,email:email,minibiography:minibiography});
+            const newInstructor = await instructor.create({username:username,password:hashedPassword,email:email,minibiography:minibiography,firstLogin:true});
             const token = createToken(username);
     
             res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
@@ -89,10 +90,9 @@ export const createInstructor= async(req,res) => {
 export const refundTrainee= async(req,res) => {
     
     try {
-
-        const traineee = await trainee.findOne({_id:req.params.id});
+        const traineee = await trainee.findOne({username:req.query.username});
         const newWallet = parseInt(traineee.wallet) + parseInt(req.query.amount)
-        const refunded = await trainee.findOneAndUpdate({_id:req.params.id}, {wallet: newWallet},{
+        const refunded = await trainee.findOneAndUpdate({username:req.query.username}, {wallet: newWallet},{
             new: true} );
         res.status(200).json(refunded)
     } catch (error) {

@@ -6,7 +6,7 @@ import {createInstructor, createAdmin, createTrainee,getAdmins, refundTrainee} f
 
 
 router.get('/',getAdmins)
-router.get('/refundTrainee/:id',refundTrainee)
+router.get('/refundTrainee',refundTrainee)
 router.post('/newAdmin',createAdmin)
 router.post('/newInstructor',createInstructor)
 router.post('/newTrainee',createTrainee)

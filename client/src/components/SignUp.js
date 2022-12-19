@@ -126,7 +126,7 @@ eligible to receive a refund. Additional information on our refund policy is ava
       <br />
       <label>Password: </label>
       <input
-        type="text"
+        type="password"
         id="password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}

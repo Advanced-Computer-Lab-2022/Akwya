@@ -155,7 +155,6 @@ const resetPassword = async (req,res)=>{
         try {
             
             const wallet = await trainee.findOne({_id:req.params.id}).select('wallet');
-            console.log(wallet);
             res.status(200).json(wallet)
         } catch (error) {
             res.status(400).json({error: error.message})
@@ -195,20 +194,21 @@ const sendCertificate = async (req,res)=>{
     }
 
     const maxAge = 3 * 24 * 60 * 60;
-const createToken = (name) => {
-    return jwt.sign({ name }, process.env.token, {
-        expiresIn: maxAge
-    });
-};
+    const createToken = (name) => {
+        return jwt.sign({ name }, process.env.token, {
+            expiresIn: maxAge
+        });
+    };
 
 
     const signUp = async (req, res) => {
         const { username, email, password, fname, lname, gender } = req.body;
         const wallet = 0
+        const type = 'individual'
         try {
             const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(password, salt);
-            const newUser = await trainee.create({ username: username, email: email, password: hashedPassword, fname: fname, lname:lname,gender:gender,wallet:wallet});
+            const newUser = await trainee.create({ username: username, email: email, password: hashedPassword, fname: fname, lname:lname,gender:gender,traineetype:type,wallet:wallet});
             const token = createToken(newUser.name);
     
             res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
@@ -222,17 +222,20 @@ const createToken = (name) => {
         // TODO: Login the user
         const { username, password } = req.body;
         let type = '';
-        try {
-            
-            const user = await instructor.findOne({ username: username});
+        try { 
+            let user = await instructor.findOne({ username: username});
             if(!user){
-                const user = await trainee.findOne({ username: username});
+                user = await trainee.findOne({ username: username});
                 if(!user) {
                     res.status(400).json("Username doesn't match")
                 }
                 else {
-                    //check type of trainee
-                    type = 'individual'
+                    //get type of trainee
+                    if(!user.traineetype){
+                        type='individual'
+                    }else {
+                        type = user.traineetype
+                    }
                 }
             }
             else {

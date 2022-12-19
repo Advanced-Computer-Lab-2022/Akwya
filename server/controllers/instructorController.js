@@ -370,7 +370,16 @@ const resetPassword = async (req,res)=>{
         res.end();
     
     }
+    const notFirst  = async (req, res) => {
+        try {
+            const inst = await instructor.findOneAndUpdate({_id:req.params.id},{firstLogin:false},{
+             new: true}  );
+            res.status(200).json(inst)
+        } catch (error) {
+            res.status(400).json({error: error.message})
+        }
+     } 
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
     filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
-    viewPreview, ViewRating, getRatings,changePassword, checkPassword,resetPassword,logout}
+    viewPreview, ViewRating, getRatings,changePassword, checkPassword,resetPassword,logout,notFirst}
