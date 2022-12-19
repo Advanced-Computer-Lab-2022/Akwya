@@ -204,10 +204,11 @@ const createToken = (name) => {
 
     const signUp = async (req, res) => {
         const { username, email, password, fname, lname, gender } = req.body;
+        const wallet = 0
         try {
             const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(password, salt);
-            const newUser = await trainee.create({ username: username, email: email, password: hashedPassword, fname: fname, lname:lname,gender:gender});
+            const newUser = await trainee.create({ username: username, email: email, password: hashedPassword, fname: fname, lname:lname,gender:gender,wallet:wallet});
             const token = createToken(newUser.name);
     
             res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
@@ -216,6 +217,44 @@ const createToken = (name) => {
             res.status(400).json({ error: error.message })
         }
     }
-    
 
-export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate,signUp}
+    const login = async (req, res) => {
+        // TODO: Login the user
+        const { username, password } = req.body;
+        let type = '';
+        try {
+            
+            const user = await instructor.findOne({ username: username});
+            if(!user){
+                const user = await trainee.findOne({ username: username});
+                if(!user) {
+                    res.status(400).json("Username doesn't match")
+                }
+                else {
+                    //check type of trainee
+                    type = 'individual'
+                }
+            }
+            else {
+                type = 'instructor'
+            }
+            if(await bcrypt.compare(password, user.password)){
+                const token = createToken(user.name);
+                res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+                res.status(200).json({type,user})        }
+            else {
+                res.status(400).json("Password doesn't match")
+            }
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    }
+    
+    const logout = async (req, res) => {
+        res.clearCookie('jwt');
+        res.status(200).json("logged out");
+        res.end();
+    
+    }
+
+export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate,signUp,login,logout}

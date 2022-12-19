@@ -18,10 +18,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
   const { useState } = require("react");
 
-  const GetWallet = (props) => { 
+  const GetWallet = () => { 
 
     const params = new URLSearchParams(window.location.search);
-    const traineeId = props.tid;
+    const traineeId = window.location.href.split('/').at(4);
 
     const [wallet,setWallet] = useState('');
     
