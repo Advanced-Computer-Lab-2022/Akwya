@@ -14,18 +14,23 @@ import FilterByRatingAndSubject from "../components/Instructor/FilterByRatingAnd
 import ChangePassword from "../components/Instructor/ChangePassword.js";
 import React from "react";
 import styled from "styled-components";
-import ViewEmail from "../components/Instructor/ViewEmail.js";
-import EditEmail from "../components/Instructor/EditEmail.js";
-import ViewRating from "../components/Instructor/ViewRating";
-import EditBio from "../components/Instructor/EditBio.js";
+
+import  ViewEmail from '../components/Instructor/ViewEmail.js'
+import  EditEmail from '../components/Instructor/EditEmail.js'
+import ViewRating from '../components/Instructor/ViewRating'
+import  EditBio from '../components/Instructor/EditBio.js'
+import ViewMyProblems from '../components/Problem/viewMyProblems'
+
+
 
 const Instructor = (props) => {
-  const types = ["My Courses", "My Info", "Explore Courses", "Filter Courses"];
+  const types = ["My Courses","My Info","Explore Courses", "Filter Courses","View Reported Problems"];
   const [active, setActive] = useState(types[0]);
   const [showFilters, setshowFilters] = useState(false);
   const [showCourses, setshowCourses] = useState(false);
   const [showInfo, setshowInfo] = useState(false);
   const [showMyCourses, setshowMyCourses] = useState(true);
+  const [showProblems, setshowProblems] = useState(false);
 
   const Tab = styled.button`
     padding: 10px 80px;
@@ -52,37 +57,57 @@ const Instructor = (props) => {
             <Tab
               key={type}
               active={active === type}
-              onClick={() => {
-                setActive(type);
-                switch (type) {
-                  case "Explore Courses":
-                    setshowCourses(true);
-                    setshowFilters(false);
-                    setshowMyCourses(false);
-                    setshowInfo(false);
-                    break;
-                  case "Filter Courses":
-                    setshowCourses(false);
-                    setshowFilters(true);
-                    setshowMyCourses(false);
-                    setshowInfo(false);
-                    break;
-                  case "My Courses":
-                    setshowCourses(false);
-                    setshowFilters(false);
-                    setshowMyCourses(true);
-                    setshowInfo(false);
-                    break;
+
+              onClick={() => {setActive(type);switch (type) {
+                case "Explore Courses":
+                  setshowCourses(true);
+                  setshowFilters(false)
+                  setshowMyCourses(false)
+                  setshowInfo(false)    
+                  setshowProblems(false)
+              
+                break;
+                case "Filter Courses":
+                  setshowCourses(false);
+                  setshowFilters(true)
+                  setshowMyCourses(false)
+                  setshowInfo(false)     
+                  setshowProblems(false)
+                
+                break;
+                case "My Courses":
+                  setshowCourses(false);
+                  setshowFilters(false)
+                  setshowMyCourses(true)
+                  setshowInfo(false)       
+                  setshowProblems(false)
+              
+                  break;
                   case "My Info":
                     setshowCourses(false);
-                    setshowFilters(false);
-                    setshowMyCourses(false);
-                    setshowInfo(true);
+                    setshowFilters(false)
+                    setshowMyCourses(false)
+                    setshowInfo(true)     
+                    setshowProblems(false)
+                  
                     break;
-                  default:
+
+
+                    case "View Reported Problems":
+                    setshowCourses(false);
+                    setshowFilters(false)
+                    setshowMyCourses(false)
+                    setshowInfo(false)     
+                    setshowProblems(true)
+                  
                     break;
-                }
-              }}
+
+
+
+
+                default:
+                  break;
+              }}}
             >
               {type}
             </Tab>
@@ -126,10 +151,15 @@ const Instructor = (props) => {
           <ViewRating />
         </div>
 
+
         <div style={{ display: showFilters ? "block" : "none" }}>
           <FilterFetching country={props.country} />
           <FilterByRatingAndSubject country={props.country} />
         </div>
+
+        <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems  country={props.country}/>
+        </div>
+
       </div>
       <br />
       <Link to="/Contract">
