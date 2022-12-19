@@ -52,10 +52,10 @@ return(
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-           <StyledTableCell align="center">Problem ID</StyledTableCell>
-            <StyledTableCell align="center">Course Name</StyledTableCell>
+           <StyledTableCell align="center">Problem</StyledTableCell>
             <StyledTableCell align="center">Category</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
+            <StyledTableCell align="center">Follow Up</StyledTableCell>
 
 
           </TableRow>
@@ -73,10 +73,14 @@ return(
             }}
            
               >
-              <TableCell align="center"><Link to={{pathname:problem._id}}><h2>{problem._id}</h2></Link></TableCell>
-              <TableCell align="center">{problem.courseid}</TableCell>
+              <TableCell align="center"><Link to={{pathname:problem._id}}><h2>{problem.theProblem}</h2></Link></TableCell>
               <TableCell align="center">{problem.category}</TableCell>
               <TableCell align="center">{problem.status}</TableCell>
+              {/* <TableCell align="center">{problem.status}</TableCell> */}
+              <input 
+        type="text" 
+        
+      />
 
 
             </TableRow>
