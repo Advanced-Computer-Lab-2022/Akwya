@@ -113,9 +113,12 @@ const User = (props) => {
       </div>
       <div style={{ display: showFilters ? "block" : "none" }}>
         <FilterFetching country={props.country} />
-                <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems tempid={props.tempid} country={props.country}/></div>
         <FilterByRatingAndSubject country={props.country} />
       </div>
+      <div style={{display: showProblems ? 'block' : 'none' }}>
+                <ViewMyProblems country={props.country}/>
+      </div>
+
 
       <Link to="/Policy">
         <h2>View Refund Policy</h2>

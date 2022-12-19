@@ -26,16 +26,20 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
  
-const ViewMyProblems= (props) => { 
+const ViewMyProblems= () => { 
 const [problems,setproblems] = useState([])
-const temp = props.tempid
-console.log('ssd'+temp)
+const temp =window.location.href.split('/').at(4)
+
 
 
 useEffect(()=>{
+  console.log('am yyyyyyyy'+temp)
+
     axios
     .get('http://localhost:9000/course/getProblems/'+temp)
     .then( res => {
+      console.log('am hereeee'+temp)
+
         console.log(res)
         setproblems(res.data)
     })

@@ -70,8 +70,8 @@ import { getValue } from '@mui/system';
               status:'unresolved',
               category:document.getElementById('swal-input1').value,
               theProblem:document.getElementById('swal-input2').value,
-              ownerID: props,
-              courseid:window.location.href.split('/').at(4)
+              ownerID: window.location.href.split('/').at(4),
+              courseid:window.location.href.split('/').at(5)
 
 
 

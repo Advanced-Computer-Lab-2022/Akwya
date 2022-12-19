@@ -155,9 +155,11 @@ const Instructor = (props) => {
         <div style={{ display: showFilters ? "block" : "none" }}>
           <FilterFetching country={props.country} />
           <FilterByRatingAndSubject country={props.country} />
-                 <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems tempid={props.tempid} country={props.country}/></div>
-
         </div>
+
+        <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems  country={props.country}/>
+        </div>
+
       </div>
       <br />
       <Link to="/Policy">
