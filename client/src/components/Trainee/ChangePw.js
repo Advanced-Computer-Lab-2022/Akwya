@@ -19,12 +19,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
   const { useState } = require("react");
 
-  const ChangePw = (props) => { 
+  const ChangePw = () => { 
 
     const params = new URLSearchParams(window.location.search);
     // const traineeId = '63868a41143ffa7252ea011e';
-    // const traineeId = window.location.href.split('/').at(4);
-    const traineeId = props.tid
+  
+    const traineeId = window.location.href.split('/').at(4);
 
     const [password,setPassword] = useState('');
     const [oldPassword,setOldPassword] = useState('');

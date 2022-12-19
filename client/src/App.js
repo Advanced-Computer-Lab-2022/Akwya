@@ -9,7 +9,9 @@ import UserCorporate from './pages/UserCorporate';
 import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
 import Contract from './pages/Contract'
-
+import Policy from './pages/Policy'
+import SignUp from './pages/SignUp'
+import Login from './pages/SignIn'
 
 
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
@@ -27,7 +29,7 @@ import TakeQuiz from './pages/TakeQuiz';
 import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
 
 
-let GlobalCountry = 'United Kingdom';
+// let GlobalCountry = 'United Kingdom';
 
 
 function App() {
@@ -69,13 +71,14 @@ function App() {
               element={<Admin />}
             />
             <Route
-              path="/user/"
-              element={<User country={country} tid='63868a41143ffa7252ea011e' tempid='63868a41143ffa7252ea011e'/>}
+              path="/user/:id"
+              element={<User country={country} tid='6396424da56263086dde2489'/>}
             />
             <Route
 
-              path="/userCorporate/"
-              element={<UserCorporate country={country} tid='635849b7a58d8beb73e81787' tempid='63868a41143ffa7252ea011e'/>}
+              path="/userCorporate/:id"
+              element={<UserCorporate country={country} tid='635849b7a58d8beb73e81787'/>}
+
             />
             <Route
               path="/instructor/:id"
@@ -90,12 +93,13 @@ function App() {
               element={<Course country={country}/>}
             />
             <Route
-              path="/user/:id"
-              element={<Course tempid='63868a41143ffa7252ea011e' country={country}/>}
+              path="/user/:id/:id"
+              element={<Course country={country}/>}
             />
             <Route
-              path="/userCorporate/:id"
-              element={<Course tempid='63868a41143ffa7252ea011e' country={country}/>}
+              path="/userCorporate/:id/:id"
+              element={<Course country={country}/>}
+
             />
             <Route
               path="/instructor/:id/:id"
@@ -107,15 +111,15 @@ function App() {
               element={<Quiz/>}
               />
               <Route
-              path="/user/:id/TakeQuiz"
+              path="/user/:id/:id/TakeQuiz"
               element={<TakeQuiz/>}
               />
               <Route
-              path="/userCorporate/:id/TakeQuiz"
+              path="/userCorporate/:id/:id/TakeQuiz"
               element={<TakeQuiz/>}
               />
                <Route
-              path="/user/:id/TakeQuiz/Done"
+              path="/user/:id/:id/TakeQuiz/Done"
               element={<DoneWithMyQuiz/>}
               />
 
@@ -139,6 +143,19 @@ function App() {
               path="/Contract"
               element={<Contract/>}
             />
+            <Route
+              path="/Policy"
+              element={<Policy/>}
+            />
+             <Route
+              path="/signup"
+              element={<SignUp/>}
+            />
+            <Route
+              path="/login"
+              element={<Login/>}
+            />
+            
           </Routes>
 
 

@@ -13,7 +13,12 @@ import instructorRoutes from './routes/instructor.js';
 import traineeRoutes from './routes/trainee.js';
 
 import quizRoutes from './routes/Quiz.js';
-
+// import jwt from 'jsonwebtoken';
+// import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
+// require('dotenv').config()
+import requireAuth from './Middleware/authMiddleware.js'
+import cookieParser from 'cookie-parser'
 /*
 I installed kol el fo2 in server directory
 also installed nodemon=> so that we dont have to manually reset the server every time we make a change
@@ -25,7 +30,7 @@ react-file-base64  used to convert images
 redux 
 redux-thunk for asynchronous actions using redux
 */
-
+dotenv.config();
 const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
@@ -40,7 +45,7 @@ app.use((req, res, next) => {
 });
 
 
-
+app.use(cookieParser());
 
 
 

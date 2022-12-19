@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import AddAdmin from '../components/Admin/AddAdmin'
 import AddTrainee from '../components/Admin/AddCorporateTrainee'
 import AddInstructor from '../components/Admin/AddInstructor'
+import Refund from '../components/Admin/RefundTrainee'
 
 
 const Admin = () => {
@@ -15,6 +16,7 @@ const Admin = () => {
         <AddAdmin />
         <AddInstructor />
         <AddTrainee />
+       <Refund/>
       </div>
     )
   }

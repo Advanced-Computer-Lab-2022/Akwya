@@ -1,19 +1,20 @@
-import { useEffect,useState } from 'react'
-import { Link } from 'react-router-dom'
-import ViewMyCourses from '../components/MyCourses.js'
-import CreateACourse from '../components/Instructor/CreateCourse.js'
-import SearchACourse from '../components/Instructor/SearchCourse.js'
-import DataFetching from '../DataFetching'
-import FilterFetching from '../components/user/FilterFetching.js'
-import FilterFetchingI from '../components/Instructor/FilterFetchingI.js'
-import FilterFetchingISubject from '../components/Instructor/FilterFetchingISubject.js'
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import ViewMyCourses from "../components/MyCourses.js";
+import CreateACourse from "../components/Instructor/CreateCourse.js";
+import SearchACourse from "../components/Instructor/SearchCourse.js";
+import DataFetching from "../DataFetching";
+import FilterFetching from "../components/user/FilterFetching.js";
+import FilterFetchingI from "../components/Instructor/FilterFetchingI.js";
+import FilterFetchingISubject from "../components/Instructor/FilterFetchingISubject.js";
 
-import UserSearchCourse from '../components/user/UserSearchCourse'
+import UserSearchCourse from "../components/user/UserSearchCourse";
 
-import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject.js'
-import ChangePassword from '../components/Instructor/ChangePassword.js'
+import FilterByRatingAndSubject from "../components/Instructor/FilterByRatingAndSubject.js";
+import ChangePassword from "../components/Instructor/ChangePassword.js";
 import React from "react";
 import styled from "styled-components";
+
 import  ViewEmail from '../components/Instructor/ViewEmail.js'
 import  EditEmail from '../components/Instructor/EditEmail.js'
 import ViewRating from '../components/Instructor/ViewRating'
@@ -30,7 +31,6 @@ const Instructor = (props) => {
   const [showInfo, setshowInfo] = useState(false);
   const [showMyCourses, setshowMyCourses] = useState(true);
   const [showProblems, setshowProblems] = useState(false);
-
 
   const Tab = styled.button`
     padding: 10px 80px;
@@ -52,11 +52,12 @@ const Instructor = (props) => {
   function TabGroup() {
     return (
       <>
-        <div style={{ "text-align" : 'center' ,position: 'relative'}}>
+        <div style={{ "text-align": "center", position: "relative" }}>
           {types.map((type) => (
-            <Tab 
+            <Tab
               key={type}
               active={active === type}
+
               onClick={() => {setActive(type);switch (type) {
                 case "Explore Courses":
                   setshowCourses(true);
@@ -112,60 +113,58 @@ const Instructor = (props) => {
             </Tab>
           ))}
         </div>
-        <br/>
-
+        <br />
       </>
     );
   }
 
- 
   return (
-
-    
-    <div>   
-
-    <div className="instructor">
-    <h2>Instructor Page</h2>
-      <Link to="/">
+    <div>
+      <div className="instructor">
+        <h2>Instructor Page</h2>
+        <Link to="/">
           <h2>Go to Home Page</h2>
         </Link>
-       <TabGroup/>
+        <TabGroup />
 
-       <div style={{display: showCourses ? 'block' : 'none' }}><UserSearchCourse country={props.country}/>
-       <DataFetching country={props.country}/></div>
+        <div style={{ display: showCourses ? "block" : "none" }}>
+          <UserSearchCourse country={props.country} />
+          <DataFetching country={props.country} />
+        </div>
 
-       <div style={{display: showMyCourses ? 'block' : 'none' }}><SearchACourse/>
-       <CreateACourse/><ViewMyCourses/><FilterFetchingI  country={props.country}/>
-        <FilterFetchingISubject  country={props.country}/></div>
- 
-{/*       <div style={{display: showInfo ? 'block' : 'none' }}><Link to="/ViewProfileInstructor/6381101753d48ea316365f94">
+        <div style={{ display: showMyCourses ? "block" : "none" }}>
+          <SearchACourse />
+          <CreateACourse />
+          <ViewMyCourses />
+          <FilterFetchingI country={props.country} />
+          <FilterFetchingISubject country={props.country} />
+        </div>
+
+        {/*       <div style={{display: showInfo ? 'block' : 'none' }}><Link to="/ViewProfileInstructor/6381101753d48ea316365f94">
           <h3>View My Profile</h3>
        </Link> */}
-       <div style={{display: showInfo ? 'block' : 'none' }}>
-        {/* <ViewEmail/> */}
-        <EditEmail/>
-        <ChangePassword/>
-        <EditBio/>
-        <ViewRating/>
-       </div>
-
-       <div style={{display: showFilters ? 'block' : 'none' }}><FilterFetching  country={props.country}/>
-       <FilterByRatingAndSubject  country={props.country}/></div>
-       <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems tempid={props.tempid} country={props.country}/></div>
+        <div style={{ display: showInfo ? "block" : "none" }}>
+          {/* <ViewEmail/> */}
+          <EditEmail />
+          <ChangePassword />
+          <EditBio />
+          <ViewRating />
+        </div>
 
 
-     </div>
-     <br/>
+        <div style={{ display: showFilters ? "block" : "none" }}>
+          <FilterFetching country={props.country} />
+          <FilterByRatingAndSubject country={props.country} />
+                 <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems tempid={props.tempid} country={props.country}/></div>
 
+        </div>
+      </div>
+      <br />
+      <Link to="/Policy">
+        <h2>View Refund Policy</h2>
+      </Link>
+    </div>
+  );
+};
 
-     </div>
-
-
-
-
-     
-
-    
-  )}
-  
-  export default Instructor
+export default Instructor;

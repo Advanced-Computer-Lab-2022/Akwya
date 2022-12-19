@@ -2,10 +2,11 @@ import express from "express";
 const router =express.Router()
 
 
-import {createInstructor, createAdmin, createTrainee,getAdmins} from "../controllers/adminController.js"
+import {createInstructor, createAdmin, createTrainee,getAdmins, refundTrainee} from "../controllers/adminController.js"
 
 
 router.get('/',getAdmins)
+router.get('/refundTrainee/:id',refundTrainee)
 router.post('/newAdmin',createAdmin)
 router.post('/newInstructor',createInstructor)
 router.post('/newTrainee',createTrainee)

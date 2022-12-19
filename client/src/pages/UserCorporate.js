@@ -108,7 +108,7 @@ const User = (props) => {
         
         <TabGroup/>
 
-        <div style={{display: showPW ? 'block' : 'none' }}><ChangePw tid={props.tid}/></div>
+        <div style={{display: showPW ? 'block' : 'none' }}><ChangePw /></div>
 
         <div style={{display: showCourses ? 'block' : 'none' }}><SearchCourseCorporate/><DisplayCourses/></div>
        <div style={{display: showFilters ? 'block' : 'none' }}><FilterByRatingAndSubject/></div>         

@@ -24,8 +24,8 @@ import react, {useState, useEffect} from 'react'
     const [registered,setRegistered] = useState([])
     const [error, setError] = useState(null)
 
-    const CourseID  = window.location.href.split('/').at(4);
-    const TraineeID = "635849b7a58d8beb73e81787";
+    const CourseID  = window.location.href.split('/').at(5);
+    const TraineeID = window.location.href.split('/').at(4);
 
     const PostRating =  async (e) => {
         e.preventDefault()

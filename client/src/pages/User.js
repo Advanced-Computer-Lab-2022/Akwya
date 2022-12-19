@@ -1,17 +1,20 @@
-import { Link } from 'react-router-dom'
-import DataFetching from '../DataFetching'
-import FilterFetching from '../components/user/FilterFetching'
+import { Link } from "react-router-dom";
+import DataFetching from "../DataFetching";
+import FilterFetching from "../components/user/FilterFetching";
 
-import UserSearchCourse from '../components/user/UserSearchCourse'
-import ChangePw from '../components/Trainee/ChangePw'
+import UserSearchCourse from "../components/user/UserSearchCourse";
+import ChangePw from "../components/Trainee/ChangePw";
+import getWallet from "../components/Trainee/GetWallet";
 import ViewMyProblems from '../components/Problem/viewMyProblems'
-import FilterByRatingAndSubject from '../components/Instructor/FilterByRatingAndSubject'
+
+import FilterByRatingAndSubject from "../components/Instructor/FilterByRatingAndSubject";
 import React, { useState } from "react";
-import styled from "styled-components"; 
+import styled from "styled-components";
+import GetWallet from "../components/Trainee/GetWallet";
 
 const User = (props) => {
-
   const types = ["Explore Courses", "Filter Courses", "Change Password","View Reported Problems"];
+
   const [active, setActive] = useState(types[0]);
   const [showFilters, setshowFilters] = useState(false);
   const [showCourses, setshowCourses] = useState(true);
@@ -19,31 +22,31 @@ const User = (props) => {
   const [showProblems, setshowProblems] = useState(false);
 
   const Tab = styled.button`
-  
-  padding: 10px 100px;
-  cursor: pointer;
-  opacity: 0.6;
-  background: white;
-  border: 0;
-  outline: 0;
-  border-bottom: 2px solid transparent;
-  transition: ease border-bottom 250ms;
-  ${({ active }) =>
-    active &&
-    `
+    padding: 10px 100px;
+    cursor: pointer;
+    opacity: 0.6;
+    background: white;
+    border: 0;
+    outline: 0;
+    border-bottom: 2px solid transparent;
+    transition: ease border-bottom 250ms;
+    ${({ active }) =>
+      active &&
+      `
     border-bottom: 2px solid black;
     opacity: 1;
   `}
-`;
+  `;
 
   function TabGroup() {
     return (
       <>
-        <div style={{ "text-align" : 'center' }}>
+        <div style={{ "text-align": "center" }}>
           {types.map((type) => (
-            <Tab 
+            <Tab
               key={type}
               active={active === type}
+
               onClick={() => {setActive(type);switch (type) {
                 case "Explore Courses":
                   setshowCourses(true);
@@ -86,36 +89,39 @@ const User = (props) => {
             </Tab>
           ))}
         </div>
-
       </>
     );
   }
 
-    return (
-      <div className="user">
-        <h2>User Page</h2>
-        <Link to="/">
-          <h2>Go to Home Page</h2>
-        </Link>
-        
+  return (
+    <div className="user">
+      <h2>User Page</h2>
+      <GetWallet />
+      <Link to="/">
+        <h2>Go to Home Page</h2>
+      </Link>
 
-        <TabGroup/> 
+      <TabGroup />
 
-        <div style={{display: showPW ? 'block' : 'none' }}><ChangePw tid={props.tid}/></div>
-        <div style={{display: showCourses ? 'block' : 'none' }}><UserSearchCourse/><DataFetching country={props.country}/></div>
-        <div style={{display: showFilters ? 'block' : 'none' }}><FilterFetching country={props.country}/></div>
-        <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems tempid={props.tempid} country={props.country}/></div>
-        <div><FilterByRatingAndSubject country={props.country}/></div>
-        
-        
-        
 
-        
-        
-        
-         
+      <div style={{ display: showPW ? "block" : "none" }}>
+        <ChangePw  />
       </div>
-    )
-  }
-  
-  export default User
+      <div style={{ display: showCourses ? "block" : "none" }}>
+        <UserSearchCourse />
+        <DataFetching country={props.country} />
+      </div>
+      <div style={{ display: showFilters ? "block" : "none" }}>
+        <FilterFetching country={props.country} />
+                <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems tempid={props.tempid} country={props.country}/></div>
+        <FilterByRatingAndSubject country={props.country} />
+      </div>
+
+      <Link to="/Policy">
+        <h2>View Refund Policy</h2>
+      </Link>
+    </div>
+  );
+};
+
+export default User;
