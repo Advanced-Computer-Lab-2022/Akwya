@@ -8,7 +8,7 @@
 import { getValue } from '@mui/system';
  
 
- const reportAProblem2=()=> {
+ const reportAProblem2= (props) => { 
 
   const func =  async (e) => {
 
@@ -67,11 +67,17 @@ import { getValue } from '@mui/system';
 
             let prob = {
 
-              // ownerID:window.location.href.split('/').at(4),
-              // courseid:window.location.href.split('/').at(3),
+              status:'unresolved',
               category:document.getElementById('swal-input1').value,
               theProblem:document.getElementById('swal-input2').value,
+              ownerID: props,
+              courseid:window.location.href.split('/').at(4)
+
+
+
           }
+
+
             await axios.post('/course/report', {prob}).then(res=>{
                 Swal.fire({
                     title: 'Your report has been submitted!',
