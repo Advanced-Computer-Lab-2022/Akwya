@@ -85,14 +85,12 @@ const Discount = (props) => {
 const id=window.location.href.split('/').at(4);
    
    const ifPromotionFound =async (courseId) =>{
-    console.log(courseId);
-    console.log('kklk');
     await axios.get(`http://localhost:9000/admin/promotionFound/`+courseId).then(
         (res) => {   
             console.log(courseId)
             console.log("BBB")
             console.log(res)
-            const promotionF=res.data[0]['promotion']
+            const promotionF=res.data['promotion']
                 console.log(promotionF)
                 if(promotionF!==0){
                     console.log("already existing")
@@ -175,6 +173,57 @@ const id=window.location.href.split('/').at(4);
 
     
         return(
+
+<div>
+
+          <div className="Dicount">
+        
+          <form >
+    
+          <h3>Add a New Discount</h3>
+    
+    <label>Enter Discount Percentage: </label>
+          <input 
+            type="number" 
+            id="bio"
+            min = "0"
+            max = "100"
+            onChange={(e) => setPromotion(e.target.value)} 
+            value={promotion}
+            required
+          />
+            
+            
+    
+           <label> Discount valid till: </label>    
+    
+                    <input 
+            type="date"
+            required 
+            id="xx"
+            placeholder='01/01/2023'
+            onChange={(e) =>setPromotionExpiry(e.target.value)} 
+            value={promotionExpiry}
+          />
+            
+
+    
+    
+        
+        
+                
+             <div> 
+           
+    
+                      
+           </div>
+           <div>
+           
+        </div>
+           </form>
+    
+           </div>
+        
             <div>
             <div>
 
@@ -209,8 +258,8 @@ const id=window.location.href.split('/').at(4);
               <TableCell align="center">{(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)}</TableCell>
               <TableCell align="center"><Box sx={{marginBottom: 2,marginLeft: 2 ,display:"inline"}}>
                         <Button variant="contained"
-                        
-                        onClick={()=>ifPromotionFound(course._id)}
+                    
+                    onClick={()=>ifPromotionFound(course._id)}
                         margin="normal"
                         padding="normal"
                         >confirm </Button> 
@@ -240,60 +289,6 @@ const id=window.location.href.split('/').at(4);
            
 
 
-            <div className="Dicount">
-        
-              <form >
-        
-              <h3>Add a New Discount</h3>
-        
-        <label>Enter Discount Percentage: </label>
-              <input 
-                type="number" 
-                id="bio"
-                min = "0"
-                max = "100"
-                onChange={(e) => setPromotion(e.target.value)} 
-                value={promotion}
-                required
-              />
-                
-                
-        
-               <label> Discount valid till: </label>    
-        
-                        <input 
-                type="date"
-                required 
-                id="xx"
-                placeholder='01/01/2023'
-                onChange={(e) =>setPromotionExpiry(e.target.value)} 
-                value={promotionExpiry}
-              />
-                
-{/*                 
-                        <Box sx={{marginBottom: 2,marginLeft: 2 ,display:"inline"}}>
-                        <Button variant="contained"
-                        onClick={ifPromotionFound}
-                        margin="normal"
-                        padding="normal"
-                        >confirm </Button> 
-                        
-                        </Box>        */}
-        
-        
-            
-            
-                    
-                 <div> 
-               
-        
-                          
-               </div>
-               <div>
-                {/* <Courses/> */}
-            </div>
-               </form>
-        
                </div>
                </div>
                </div>
