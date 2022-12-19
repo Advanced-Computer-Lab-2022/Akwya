@@ -144,7 +144,8 @@ const id=window.location.href.split('/').at(4);
        
               
    
-            //    const newPrice=res.data['price']-(res.data['price']*(promotion/100))
+               const newPrice=res.data['price']-(res.data['price']*(promotion/100))
+               console.log(newPrice)
                
             //    setPrice(newPrice)
             //    console.log(newPrice)
