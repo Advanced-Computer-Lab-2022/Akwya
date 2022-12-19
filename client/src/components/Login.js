@@ -121,7 +121,7 @@ fees that you may incur. Your revenue report will show the sales price (in local
       <br />
       <label>Password: </label>
       <input
-        type="text"
+        type="password"
         id="password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}

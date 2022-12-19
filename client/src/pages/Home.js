@@ -31,9 +31,7 @@ const Home = () => {
       <Link to="/resett">
         <h2>Go to Trainee Reset Password</h2>
       </Link>
-      <Link to="/Contract">
-        <h2>View Instructor contract</h2>
-      </Link>
+      
     </div>
   );
 };

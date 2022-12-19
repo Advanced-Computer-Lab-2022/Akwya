@@ -132,6 +132,9 @@ const Instructor = (props) => {
         </div>
       </div>
       <br />
+      <Link to="/Contract">
+        <h2>View Contract</h2>
+      </Link>
       <Link to="/Policy">
         <h2>View Refund Policy</h2>
       </Link>
