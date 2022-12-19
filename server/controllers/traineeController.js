@@ -155,7 +155,6 @@ const resetPassword = async (req,res)=>{
         try {
             
             const wallet = await trainee.findOne({_id:req.params.id}).select('wallet');
-            console.log(wallet);
             res.status(200).json(wallet)
         } catch (error) {
             res.status(400).json({error: error.message})
