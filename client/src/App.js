@@ -10,8 +10,8 @@ import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
 import Contract from './pages/Contract'
 import Policy from './pages/Policy'
-import SignUp from './pages/SignUp'
-import Login from './pages/SignIn'
+import SignUp from './pages/SignupFE'
+import Login from './pages/LoginFE'
 
 
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
