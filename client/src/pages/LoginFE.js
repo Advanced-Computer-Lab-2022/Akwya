@@ -131,7 +131,7 @@ const Login = () => {
           <span></span>
           <label>Password</label>
         </div>
-        <div class="pass"> <a href="/resetPassword">Forgot Password?</a></div>
+        <div class="pass"> <a href="/reset">Forgot Password?</a></div>
         <br/>
         <Box sx={{ marginBottom: 2 }}>
         <Button

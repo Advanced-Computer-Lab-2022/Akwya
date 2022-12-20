@@ -25,12 +25,7 @@ const Home = () => {
       <Link to="/guest">
         <h2>Go to Guest Page</h2>
       </Link>
-      <Link to="/reset">
-        <h2>Go to Instructor Reset Password</h2>
-      </Link>
-      <Link to="/resett">
-        <h2>Go to Trainee Reset Password</h2>
-      </Link>
+   
       
     </div>
   );
