@@ -7,17 +7,17 @@
     font-family: "Poppins", sans-serif;
 }
 
-.signup body {
-    margin: 0;
+.signup {
+    margin: -20px;
     padding: 0;
-    background: linear-gradient(120deg, #e3eef6, #a574ba);
-    height: 100vh;
+    background: linear-gradient(120deg, #2c7eb9, #73129d);
+    height: 105vh;
     overflow: hidden;
 }
 
 .signup .center {
     position: absolute;
-    top: 70%;
+    top: 72%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;

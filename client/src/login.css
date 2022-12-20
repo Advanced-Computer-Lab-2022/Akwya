@@ -7,17 +7,17 @@
     font-family: "Poppins", sans-serif;
 }
 
-.login body {
-    margin: 0;
+.login {
+    margin: -20px;
     padding: 0;
-    background: linear-gradient(120deg, #e3eef6, #a574ba);
+    background: linear-gradient(120deg, #2c7eb9, #73129d);
     height: 100vh;
     overflow: hidden;
 }
 
 .login .center {
     position: absolute;
-    top: 53%;
+    top: 57%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
