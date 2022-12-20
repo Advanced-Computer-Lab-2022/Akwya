@@ -286,41 +286,41 @@ const editBio = async (req, res) => {
      
 }
 
-const resetPassword = async (req,res)=>{
-    const userEmail = req.query.mail;
-    await instructor.find({email: req.query.mail}).then( async (result) =>  {
-        var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        var length = 8;
-        var newRandom = "";
-        for (var i = 0; i<=length; i++) {
-            var randomNumber = Math.floor(Math.random() * chars.length);
-            newRandom += chars.substring(randomNumber, randomNumber+1);
-        }
-        await instructor.findOneAndUpdate({_id: result[0]._id},{password:newRandom},{ new: true}).then((result)=>{
-            const mail = {
-                from: process.env.AUTH_EMAIL,
-                to: userEmail,
-                subject: "Reset Your Password",
-                html: `<p>Forgot your password? We've reset it for you!</p>
-                    <p>Use this new password to login safely: <strong> ${newRandom} </strong></p>`
-            }
+// const resetPassword = async (req,res)=>{
+//     const userEmail = req.query.mail;
+//     await instructor.find({email: req.query.mail}).then( async (result) =>  {
+//         var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//         var length = 8;
+//         var newRandom = "";
+//         for (var i = 0; i<=length; i++) {
+//             var randomNumber = Math.floor(Math.random() * chars.length);
+//             newRandom += chars.substring(randomNumber, randomNumber+1);
+//         }
+//         await instructor.findOneAndUpdate({_id: result[0]._id},{password:newRandom},{ new: true}).then((result)=>{
+//             const mail = {
+//                 from: process.env.AUTH_EMAIL,
+//                 to: userEmail,
+//                 subject: "Reset Your Password",
+//                 html: `<p>Forgot your password? We've reset it for you!</p>
+//                     <p>Use this new password to login safely: <strong> ${newRandom} </strong></p>`
+//             }
         
-            let transporter = nodemailer.createTransport({
-                service: 'hotmail',
-                auth: {
-                    user: process.env.AUTH_EMAIL,
-                    pass: process.env.AUTH_PASS
-                }
-            })
-            transporter.sendMail(mail).then((result)=>{
-                return res.status(200).json({status:true,Message:"Reset mail sent"})
-            }).catch((error) => {
-                return res.status(400).json({status:false, error:error.message ,Message:"Failed to send mail"}) })
-             }).catch((error)=>{
-                return res.status(400).json({status:false, error:error.message,Message:"Failed to update password"}) })
-    }).catch((error)=>{
-        return res.status(400).json({status:false, error:error .message,Message:"Email not registered"}) });
-    }
+//             let transporter = nodemailer.createTransport({
+//                 service: 'hotmail',
+//                 auth: {
+//                     user: process.env.AUTH_EMAIL,
+//                     pass: process.env.AUTH_PASS
+//                 }
+//             })
+//             transporter.sendMail(mail).then((result)=>{
+//                 return res.status(200).json({status:true,Message:"Reset mail sent"})
+//             }).catch((error) => {
+//                 return res.status(400).json({status:false, error:error.message ,Message:"Failed to send mail"}) })
+//              }).catch((error)=>{
+//                 return res.status(400).json({status:false, error:error.message,Message:"Failed to update password"}) })
+//     }).catch((error)=>{
+//         return res.status(400).json({status:false, error:error .message,Message:"Email not registered"}) });
+//     }
 
     const maxAge = 3 * 24 * 60 * 60
     const createToken = (name) => {
@@ -382,4 +382,4 @@ const resetPassword = async (req,res)=>{
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
     filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
-    viewPreview, ViewRating, getRatings,changePassword, checkPassword,resetPassword,logout,notFirst}
+    viewPreview, ViewRating, getRatings,changePassword, checkPassword,logout,notFirst}
