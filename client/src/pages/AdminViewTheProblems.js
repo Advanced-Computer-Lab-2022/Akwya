@@ -24,7 +24,7 @@ const AdminViewProblems= () => {
   const temp =window.location.href.split('/').at(4)  
   
 
-const [active, setActive] = useState(types[0]);
+const [active, setActive] = useState(types[1]);
 const [showUnResolved, setshowUnResolved] = useState(false);
 const [showPending, setshowPending] = useState(true);
 const [showResolved, setshowResolved] = useState(false);
@@ -46,7 +46,7 @@ const Tab = styledd.button`
   ${({ active }) =>
     active &&
     `
-  border-bottom: 2px solid black;
+  border-bottom: 3px solid black;
   opacity: 1;
 `}
 `;
@@ -54,7 +54,7 @@ const Tab = styledd.button`
 function TabGroup() {
   return (
     <>
-      <div style={{ "text-align": "center" }}>
+      <div style={{ "text-align": "center",marginBottom:"10px" }}>
         {types.map((type) => (
           <Tab
             key={type}
@@ -126,7 +126,7 @@ useEffect(()=>{
 return( 
 
 
-    <div>
+    <div style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
         <h1>View Problems</h1>
 
         <TabGroup />
@@ -216,6 +216,10 @@ return(
                           icon: 'success',
                           confirmButtonColor: '#38a53e',
                           confirmButtonText: 'OK'
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            window.location.reload();
+                          }
                         })
                   }).catch(er=>{
                       console.error(er);
@@ -274,6 +278,10 @@ return(
                       icon: 'success',
                       confirmButtonColor: '#38a53e',
                       confirmButtonText: 'OK'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        window.location.reload();
+                      }
                     })
               }).catch(er=>{
                   console.error(er);
