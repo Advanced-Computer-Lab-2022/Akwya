@@ -10,7 +10,8 @@ import Swal from "sweetalert2";
 function TakeAQuiz() {
   
   const [Quizzes,setQuizzes] = useState([])
-  const CourseID = window.location.href.split('/').at(4);
+  const CourseID = window.location.href.split('/').at(5);
+  const TraineeID = window.location.href.split('/').at(4);
   const [showGrade,setShowGrade] = useState(false);
   const [grade,setGrade] = useState('');
 
@@ -177,7 +178,7 @@ return(
       {/* <button>View Grade</button> */}
 
 
-      <Link to={{pathname:"/user/"+CourseID+"/TakeQuiz/Done"}}>
+      <Link to={{pathname:"/user/"+TraineeID+"/"+CourseID+"/TakeQuiz/Done"}}>
             <h2>Done With My Quiz</h2>
           </Link>
   </div>

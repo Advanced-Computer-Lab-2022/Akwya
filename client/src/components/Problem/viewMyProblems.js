@@ -112,7 +112,7 @@ return(
            <StyledTableCell align="center">Problem</StyledTableCell>
             <StyledTableCell align="center">Category</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
-            <StyledTableCell align="center">Follow Up</StyledTableCell>
+            <StyledTableCell align="center">Action</StyledTableCell>
 
 
           </TableRow>
@@ -134,7 +134,7 @@ return(
               <TableCell align="center">{problem.category}</TableCell>
               <TableCell align="center">{problem.status}</TableCell>
               <TableCell align="center" >
-              <Button className='btn followup' style={{background:"black", padding:5 ,cursor: "pointer"}} onClick={() => followup(problem._id)}>follow up</Button>
+              <Button className='btn followup' variant="contained" style={{padding:5 ,cursor: "pointer"}} onClick={() => followup(problem._id)}>follow up</Button>
               </TableCell>
 
             </TableRow>

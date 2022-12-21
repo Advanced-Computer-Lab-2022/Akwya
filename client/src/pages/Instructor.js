@@ -123,7 +123,7 @@ const Instructor = (props) => {
   }
 
   return (
-    <div>
+    <div style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
       <div className="instructor">
         <h2>Instructor Page</h2>
         <Link to="/">

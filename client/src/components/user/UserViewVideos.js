@@ -170,7 +170,7 @@ return(
         
         
 <div style={{ "text-align" : 'center' }}>
-        <Link to={{pathname:"/user/"+CourseID+"/TakeQuiz"}}>
+        <Link to={{pathname:"/user/"+TraineeID+"/"+CourseID+"/TakeQuiz"}}>
         <Box sx={{marginBottom: 5}}>
                 <Button variant="contained"
                 margin="normal"

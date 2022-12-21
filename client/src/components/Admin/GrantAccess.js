@@ -105,10 +105,12 @@ const GrantAccess = (props) => {
    if(JSON.stringify(requests).length==2){
     return(
         <div style={{"background":"white","padding":"10px","borderRadius":"10px"}}>
+            <div style={{marginLeft:"20px",marginRight:"20px"}}>
         <h2>There are currently no Access Requests.</h2>
         <Link to="/admin">
         <h2>Go to Back</h2>
       </Link>
+      </div>
         </div>
     )
 
@@ -116,7 +118,11 @@ const GrantAccess = (props) => {
  
 return(
 
-<div>
+<div style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
+
+<Link to="/admin">
+        <h2>Go to Back</h2>
+      </Link>
 
           
 

@@ -13,7 +13,7 @@ const Quiz = (props) => {
   return (
 
     
-    <div>   
+    <div style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>   
 
     <div className="createQuiz">
     <h2>Quiz Page</h2>
