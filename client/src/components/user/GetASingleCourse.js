@@ -3,11 +3,17 @@
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Swal from "sweetalert2";
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 
 function MyCourse(props) {
 const [courses,setCourses] = useState([])
 const [error, setError] = useState(null)
+const [registered,setRegistered] = useState([])
+const [show,setShow] = useState(false)
+
+
 
 
 const CourseID = window.location.href.split('/').at(5);
@@ -40,6 +46,53 @@ switch(props.country) {
     default:
       // rate = 3;
   }
+
+  useEffect(()=>{
+    axios
+    .get(`http://localhost:9000/trainee/isRegistered/${CourseID}/${TraineeID}`)
+    .then( res => {
+        console.log(res)
+        setRegistered(res.data)
+    })
+    .catch(err=>{console.log(err)})
+},[])
+
+
+  const handleSubmit3 = async (e) => {
+    e.preventDefault()
+
+    const respnse= await fetch(`http://localhost:9000/admin/requestAccess/${TraineeID}/${CourseID}`, {
+        method: 'GET',
+    })  
+    const json= await respnse.json()
+
+    if(!respnse.ok){
+        setError(json.error)
+        Swal.fire({
+            title: 'Your Request is Currently Pending...',
+            icon: 'info',
+            confirmButtonColor: '#1976d2',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+            }
+          })
+    }
+    if(respnse.ok){
+        console.log("Course Successfully Requested!")
+        Swal.fire({
+            title: 'Course Successfully Requested!',
+            icon: 'success',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                        }
+          })  
+        setError(null)
+    } 
+}
+
 
   const handleSubmit2 = async (e) => {
     e.preventDefault()
@@ -96,7 +149,42 @@ const handleSubmit = async (e) => {
     } 
 }
 
+
+
 if(window.location.href.split('/').at(3)=='userCorporate'){
+    if(JSON.stringify(registered).length==2){
+
+        return(
+            <div>
+                
+                <h1>Course Details</h1>
+                <ul>
+        
+                    {courses.map(course => <li key={course._id}>Title: {course.title} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
+                   
+        
+                </ul>
+                <form className="create" onSubmit={handleSubmit}> 
+                    <h3>Request Access to This Course</h3>
+                    <Box sx={{marginBottom: 5}}>
+                        <Button variant="contained"
+                        margin="normal"
+                        padding="normal"
+                        onClick={handleSubmit3}
+                        >Request Access</Button> 
+                        
+                        </Box>
+                   {error && <div className="error">{error}</div>}
+                </form>
+        
+            </div>
+        )
+        }
+
+    
+    
+
+
 
   return(
     <div>
@@ -108,16 +196,7 @@ if(window.location.href.split('/').at(3)=='userCorporate'){
            
 
         </ul>
-        
-        <form className="create" onSubmit={handleSubmit}> 
-            <h3>Add/Drop The Course</h3>
-            <button>Add Course</button>
-            {error && <div className="error">{error}</div>}
-        </form>
-        <form className="create" onSubmit={handleSubmit2}> 
-          <button>Drop Course</button>
-          {error && <div className="error">{error}</div>}
-        </form>
+    
 
     </div>
 )

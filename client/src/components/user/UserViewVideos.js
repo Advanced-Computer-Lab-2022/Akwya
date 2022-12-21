@@ -150,15 +150,7 @@ if(JSON.stringify(registered).length==2){
 return(
     <div style={{ "text-align" : 'left' }}>
 
-        {/* <form className="create" onSubmit={handleSubmit}> 
-            <h3>Add/Drop The Course</h3>
-            <button>Add Course</button>
-            {error && <div className="error">{error}</div>}
-        </form>
-        <form className="create" onSubmit={handleSubmit2}> 
-          <button>Drop Course</button>
-          {error && <div className="error">{error}</div>}
-        </form> */}
+
 
 
         <h1>Course Content</h1>
