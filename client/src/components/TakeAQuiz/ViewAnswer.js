@@ -11,11 +11,10 @@ function ViewAnswer() {
   
   const [Quizzes,setQuizzes] = useState([])
   const [ShowIt, setShow]= useState(true);
-  const CourseID = window.location.href.split('/').at(4);
 
 
     
-    const id = window.location.href.split('/').at(4);
+    const id = window.location.href.split('/').at(5);
     
     useEffect(()=>{
       axios

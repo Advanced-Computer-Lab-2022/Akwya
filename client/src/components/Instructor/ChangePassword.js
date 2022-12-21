@@ -70,7 +70,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 return(
 
 
-    <div className="Edit Password">
+    <div className="Edit Password" style={{lineHeight: "40px"}}>
          <label>Enter your old Password:</label>
       <input 
         type="text" 

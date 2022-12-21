@@ -175,7 +175,7 @@ const id=window.location.href.split('/').at(4);
     
         return(
 
-<div>
+<div style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
 
           <div className="Dicount">
         
@@ -237,6 +237,7 @@ const id=window.location.href.split('/').at(4);
           <TableRow>
             <StyledTableCell align="center">Title</StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
+            <StyledTableCell align="center">Action</StyledTableCell>
           
 
 

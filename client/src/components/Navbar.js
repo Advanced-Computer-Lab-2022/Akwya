@@ -7,7 +7,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="container">
+      <div className="container" style={{background: "white",marginLeft:"200px",marginRight:"200px"}}>
         <Link to="/">
           <h1>Online Learning</h1>
         </Link>

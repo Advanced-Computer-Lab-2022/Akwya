@@ -32,9 +32,8 @@ import logout from './components/Logout';
 
 import AdminPromotion from './pages/AdminPromotion';
 import Refund from './pages/Refund';
+import GrantAccess from './components/Admin/GrantAccess';
 import AdminViewTheProblems from './pages/AdminViewTheProblems';
-
-
 
 
 // let GlobalCountry = 'United Kingdom';
@@ -174,6 +173,10 @@ function App() {
             <Route
               path="/login"
               element={<Login/>}
+            />
+            <Route
+              path="/GrantAccess"
+              element={<GrantAccess/>}
             />
             
 
