@@ -19,6 +19,7 @@ const User = (props) => {
   const [showProblems, setshowProblems] = useState(false);
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = false
+    document.getElementById('loginbutton').hidden = true
     })
   const Tab = styled.button`
   

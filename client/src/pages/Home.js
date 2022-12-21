@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 const Home = () => {
   useEffect(()=>{
   document.getElementById('logoutbutton').hidden = true
+  document.getElementById('loginbutton').hidden = true
   })
   return (
     <div className="home">

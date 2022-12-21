@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 const Policy = () => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = true
+    document.getElementById('loginbutton').hidden = true
     })
   // function checkChange() {
   //   const checkbox = document.getElementById("agreed");
