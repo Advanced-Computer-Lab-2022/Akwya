@@ -278,6 +278,7 @@ const sendCertificate = async (req,res)=>{
                 user = await trainee.findOne({ username: username});
                 if(!user) {
                     res.status(400).json("Username doesn't match")
+                    return;
                 }
                 else {
                     //get type of trainee
@@ -294,9 +295,11 @@ const sendCertificate = async (req,res)=>{
             if(await bcrypt.compare(password, user.password)){
                 const token = createToken(user.name);
                 res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-                res.status(200).json({type,user})        }
+                res.status(200).json({type,user}) 
+                return;       }
             else {
                 res.status(400).json("Password doesn't match")
+                return;
             }
         } catch (error) {
             res.status(400).json({ error: error.message })
