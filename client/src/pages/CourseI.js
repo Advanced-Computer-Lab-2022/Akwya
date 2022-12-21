@@ -36,7 +36,7 @@ const Course = (props) => {
   ${({ active }) =>
     active &&
     `
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid black;
     opacity: 1;
   `}
 `;
