@@ -3,6 +3,7 @@ import AddAdmin from '../components/Admin/AddAdmin'
 import AddTrainee from '../components/Admin/AddCorporateTrainee'
 import AddInstructor from '../components/Admin/AddInstructor'
 import Refund from '../components/Admin/RefundTrainee'
+import AdminViewProblems from '../components/Admin/AdminViewProblem'
 
 
 const Admin = () => {
@@ -24,7 +25,7 @@ const Admin = () => {
        
 
        <Refund/>
-
+       <AdminViewProblems/>
       </div>
     )
   }
