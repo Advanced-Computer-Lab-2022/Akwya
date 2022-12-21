@@ -56,6 +56,7 @@ function App() {
   return (
     <div className="App">
 
+      <CountryDropdown  id="UNIQUE_ID" className='YOUR_CSS_CLASS' preferredCountries={['gb', 'us','eg']}  value="" handleChange={e => {handleCountry(e)}}></CountryDropdown>   
       
 
       <BrowserRouter>
