@@ -43,8 +43,9 @@ header a {
 }
 
 h5 {
-  font-size: 16px;
-  color: red;
+  font-size: 20px;
+  font-weight: 0.1px;
+  color: rgb(230, 230, 230);
 }
 
 h4 {
@@ -69,4 +70,69 @@ h6 {
   padding: 10px;
   font-size: 14px;
   text-align: left;
+}
+
+/* footer */
+
+
+footer {
+  width: calc(100%-80px);
+  padding: 30px 30px;
+  margin-top: 0px;
+  background-color: #111;
+  overflow: hidden;
+}
+
+footer ul {
+  width: fit-content;
+  float: left;
+  padding-left: 20px;
+}
+
+footer li {
+  display: block;
+  list-style: none;
+}
+
+footer li a {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 40px;
+}
+
+.footer-links-cases {
+  display: none;
+}
+
+.footer-socialmedia {
+  width: 50px;
+  float: right;
+}
+
+.footer-socialmedia img {
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+/* FOOTER DESKTOP VERSION */
+
+@media only screen and (min-width: 1000px) {
+  .footer-links-cases {
+    display: block;
+  }
+
+  footer ul {
+    padding-right: 50px;
+  }
+
+  footer li p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    line-height: 40px;
+    text-transform: uppercase;
+  }
 }

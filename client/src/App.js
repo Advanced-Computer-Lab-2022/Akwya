@@ -12,7 +12,7 @@ import Contract from './pages/Contract'
 import Policy from './pages/Policy'
 import SignUp from './pages/SignupFE'
 import Login from './pages/LoginFE'
-
+import Footer from './components/Footer'
 
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
 import ResetMail from './pages/ResetPwFE';
@@ -31,6 +31,7 @@ import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
 import logout from './components/Logout';
 
 import AdminPromotion from './pages/AdminPromotion';
+import Refund from './pages/Refund';
 
 // let GlobalCountry = 'United Kingdom';
 
@@ -152,7 +153,10 @@ function App() {
               element={<AdminPromotion/>}
             />
 
-
+          <Route
+              path="/Refund"
+              element={<Refund/>}
+            />
 
              <Route
               path="/signup"
@@ -170,6 +174,7 @@ function App() {
 
         </div>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 

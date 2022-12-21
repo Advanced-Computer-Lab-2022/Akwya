@@ -12,24 +12,21 @@ const Admin = () => {
     document.getElementById('loginbutton').hidden = true
     })
     return (
-      <div className="admin">
-        <h2>Admin Page</h2>
-        <Link to="/">
-          <h2>Go to Home Page</h2>
-        </Link>
+        <div class="admin">
+        <div class="allganb">
+
         <AddAdmin />
         <AddInstructor />
         <AddTrainee />
-
-        <Link to="/AdminPromotion">
-          
-          <h3>Set promotions</h3>
-        </Link>
-       
-
-       <Refund/>
-
-      </div>
+        </div>
+        <div class="container">       
+         <h5>Feeling generous?  </h5>
+        <button class="prbutton" onClick={()=>{window.location='/AdminPromotion'}}><h5>Set Promotions %</h5></button>
+    <br/>
+        <button class="prbutton" onClick={()=>{window.location='/Refund'}}><h5>Refund Trainee $</h5></button>
+        </div>
+       </div>
+      
     )
   }
   
