@@ -249,12 +249,39 @@ const getProblems = async (req, res) => {
 
         const { id } = req.params
         const objs = await problem.find({ownerID:{$eq:id} });
-
-                res.json(objs)
-
+        res.json(objs)
     } catch (error) {
 
         res.json({message: error}); }
+    }
+
+    
+    
+    
+const followUpOnAProblem  = async (req, res) => {
+        const {
+            id,
+            input
+        } = req.body.prob
+
+        const theProblem = await problem.findById(id)
+
+        console.log('4' + theProblem)
+
+            theProblem.followUps.push(input)
+
+        try{
+            const p=await problem.findOneAndUpdate({_id:id},{followUps:theProblem.followUps},{new: true})
+            res.status(200).json({p})
+        }
+            catch (error) {
+                console.log('dakhlyyy')
+
+                res.status(400).json({error: error.message})
+            }
+
+            console.log('hena3    '+theProblem.followUps)
+    
     }
 
    
@@ -264,4 +291,4 @@ const getProblems = async (req, res) => {
 
 
 //export
-export {getProblems, reportAProblem, createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }
+export {followUpOnAProblem, getProblems, reportAProblem, createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }

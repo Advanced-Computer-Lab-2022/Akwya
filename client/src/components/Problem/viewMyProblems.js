@@ -13,6 +13,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Swal from "sweetalert2";
 
 
 
@@ -32,13 +33,12 @@ const temp =window.location.href.split('/').at(4)
 
 
 
+
 useEffect(()=>{
-  console.log('am yyyyyyyy'+temp)
 
     axios
     .get('http://localhost:9000/course/getProblems/'+temp)
     .then( res => {
-      console.log('am hereeee'+temp)
 
         console.log(res)
         setproblems(res.data)
@@ -46,6 +46,59 @@ useEffect(()=>{
     .catch(err=>{console.log(err)})
 },[])
 
+
+
+
+
+const followup= (props) => { 
+
+  Swal.fire({
+    title: "Follow Up!",
+    text: "Let us know how can we help you",
+    input: 'text',
+    showCancelButton: true,
+    closeOnConfirm: true,
+    animation: "slide-from-top",
+    inputPlaceholder: "Please include as much info as possible..."
+  }).then(async(result) =>{
+    if (result.isConfirmed) {
+
+if (result.value=='') {
+  // Swal.showValidationMessage('First input missing')
+
+  Swal.fire({
+    title: 'Missing input!',
+    confirmButtonText: 'OK'
+  })
+} 
+      else {
+          
+
+    const prob = {
+
+      id:props,
+      input:result.value,
+    };
+
+    await axios.post('/course/followUp', {prob}).then(res=>{
+      Swal.fire({
+          title: 'FollowUp Submitted!',
+          icon: 'success',
+          confirmButtonColor: '#38a53e',
+          confirmButtonText: 'OK'
+        })
+  }).catch(er=>{
+      console.error(er);
+  })
+      }
+
+
+  
+    }
+});
+      
+
+}
   
 
 return( 
@@ -77,15 +130,12 @@ return(
             }}
            
               >
-              <TableCell align="center"><Link to={{pathname:problem._id}}><h2>{problem.theProblem}</h2></Link></TableCell>
+              <TableCell align="center">{problem.theProblem}</TableCell>
               <TableCell align="center">{problem.category}</TableCell>
               <TableCell align="center">{problem.status}</TableCell>
-              {/* <TableCell align="center">{problem.status}</TableCell> */}
-              <input 
-        type="text" 
-        
-      />
-
+              <TableCell align="center" >
+              <Button className='btn followup' style={{background:"black", padding:5 ,cursor: "pointer"}} onClick={() => followup(problem._id)}>follow up</Button>
+              </TableCell>
 
             </TableRow>
           ))}

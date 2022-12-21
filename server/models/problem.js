@@ -29,7 +29,9 @@ const problemSchema = mongoose.Schema({
     theProblem: {
         type: String, 
         // required: true
-        },  
+        }, 
+        
+    followUps:[],  
 
 }, { timestamps: true }
 );
