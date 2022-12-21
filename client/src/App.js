@@ -12,7 +12,7 @@ import Contract from './pages/Contract'
 import Policy from './pages/Policy'
 import SignUp from './pages/SignupFE'
 import Login from './pages/LoginFE'
-
+import Footer from './components/Footer'
 
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
 import ResetMail from './pages/ResetPwFE';
@@ -174,6 +174,7 @@ function App() {
 
         </div>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 
