@@ -4,6 +4,7 @@ import AddTrainee from '../components/Admin/AddCorporateTrainee'
 import AddInstructor from '../components/Admin/AddInstructor'
 import Refund from '../components/Admin/RefundTrainee'
 import React, { useState, useEffect } from 'react';  
+import AdminViewProblems from '../components/Admin/AdminViewProblem'
 
 
 const Admin = () => {
@@ -25,8 +26,12 @@ const Admin = () => {
     <br/>
         <button class="prbutton" onClick={()=>{window.location='/Refund'}}><h5>Refund Trainee $</h5></button>
         </div>
-       </div>
       
+
+       
+
+       <AdminViewProblems/>
+      </div>
     )
   }
   
