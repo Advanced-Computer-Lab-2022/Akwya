@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react';
 const Admin = () => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = false
+    document.getElementById('loginbutton').hidden = true
     })
     return (
       <div className="admin">

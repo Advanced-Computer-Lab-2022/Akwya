@@ -7,9 +7,7 @@ import ViewRating from '../components/Instructor/ViewRating'
 import  EditBio from '../components/Instructor/EditBio.js'
 
 const ViewProfileInstructor = (props) => {
-  useEffect(()=>{
-    document.getElementById('logoutbutton').hidden = false
-    })
+  
     return (
       <div className="view profile">
         <h2>MY PROFILE</h2>

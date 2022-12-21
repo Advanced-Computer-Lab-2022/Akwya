@@ -10,6 +10,8 @@ import FilterByRatingAndSubject from "../components/Instructor/FilterByRatingAnd
 const User = (props) => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = true
+    document.getElementById('loginbutton').hidden = false
+
     })
   return (
     <div className="guest">
