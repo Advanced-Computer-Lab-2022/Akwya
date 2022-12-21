@@ -30,6 +30,8 @@ import TakeQuiz from './pages/TakeQuiz';
 import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
 import logout from './components/Logout';
 
+import AdminPromotion from './pages/AdminPromotion';
+
 // let GlobalCountry = 'United Kingdom';
 
 
@@ -144,6 +146,14 @@ function App() {
               path="/Policy"
               element={<Policy/>}
             />
+
+            <Route
+              path="/AdminPromotion"
+              element={<AdminPromotion/>}
+            />
+
+
+
              <Route
               path="/signup"
               element={<SignUp/>}
@@ -153,6 +163,7 @@ function App() {
               element={<Login/>}
             />
             
+
           </Routes>
 
 

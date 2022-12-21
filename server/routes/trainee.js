@@ -25,7 +25,8 @@ router.get('/checkPassword/:id',checkPassword)
 
 router.get('/resetPassword/', resetPassword)
 
-router.get('/getWallet/:id', getWallet)
+router.get('/getWallet/:id', getWallet) 
+
 
 router.get('/sendCertificate/', sendCertificate)
 

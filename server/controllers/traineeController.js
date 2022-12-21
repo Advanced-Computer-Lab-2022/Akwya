@@ -202,6 +202,16 @@ const resetPassword = async (req,res)=>{
     }
 
 
+
+
+
+
+
+
+
+
+
+
 const sendCertificate = async (req,res)=>{
     const userEmail = req.query.mail;
     const courseTitle = req.query.title;        
@@ -301,3 +311,4 @@ const sendCertificate = async (req,res)=>{
     }
 
 export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate,signUp,login,logout}
+

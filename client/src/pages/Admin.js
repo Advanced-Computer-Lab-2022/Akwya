@@ -19,7 +19,15 @@ const Admin = () => {
         <AddAdmin />
         <AddInstructor />
         <AddTrainee />
+
+        <Link to="/AdminPromotion">
+          
+          <h3>Set promotions</h3>
+        </Link>
+       
+
        <Refund/>
+
       </div>
     )
   }
