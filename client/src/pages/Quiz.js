@@ -1,5 +1,5 @@
-import { useEffect,useState } from 'react'
 import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';  
 
 import CreateAQuiz from '../components/CreateQuiz/CreateAQuiz.js'
 

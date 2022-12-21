@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';  
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import Swal from "sweetalert2";
+import useEffect from 'react';  
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -21,8 +22,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   const { useState } = require("react");
 
   const ResetMail = () => { 
-
- 
+   
     const [mail,setMail] = useState('');
     
     const reset =  async () => {

@@ -364,12 +364,12 @@ const editBio = async (req, res) => {
     //     }
     // }
      
-    const logout = async (req, res) => {
-        res.clearCookie('jwt');
-        res.status(200).json("logged out");
-        res.end();
+    // const logout = async (req, res) => {
+    //     res.clearCookie('jwt');
+    //     res.status(200).json("logged out");
+    //     res.end();
     
-    }
+    // }
     const notFirst  = async (req, res) => {
         try {
             const inst = await instructor.findOneAndUpdate({_id:req.params.id},{firstLogin:false},{
@@ -382,4 +382,4 @@ const editBio = async (req, res) => {
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
     filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
-    viewPreview, ViewRating, getRatings,changePassword, checkPassword,logout,notFirst}
+    viewPreview, ViewRating, getRatings,changePassword, checkPassword,notFirst}

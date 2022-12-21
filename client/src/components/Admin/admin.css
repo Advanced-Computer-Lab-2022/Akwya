@@ -1,49 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
 
-.login * {
+.admin * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
 
-.login {
+.admin {
     margin: -20px;
+    margin-top: -60px;
     padding: 0;
     background: linear-gradient(120deg, #2c7eb9, #73129d);
-    height: 100vh;
-    overflow: hidden;
+    height: 110vh;
+    /* overflow: hidden; */
 }
 
-.login .center {
-    position: absolute;
-    top: 57%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.admin .allganb {
+    margin: 40px;
+    margin-bottom: 30px;
+    display: flex;
+}
+
+.admin .ganb {
+    /* position: relative; */
+    /* top: 57%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    margin: 40px;
+    padding-bottom: 40px;
     width: 400px;
     background: white;
     border-radius: 10px;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+    flex: 1;
 }
 
-.login .center h1 {
+
+
+.admin .ganb h1 {
     text-align: center;
     padding: 20px 0;
     border-bottom: 1px solid silver;
 }
 
-.login .center form {
+.admin .ganb form {
     padding: 0 40px;
     box-sizing: border-box;
 }
 
-.login form .txt_field {
+
+.admin form .txt_field {
     position: relative;
     border-bottom: 2px solid #adadad;
     margin: 30px 0;
 }
 
-.login .txt_field input {
+.admin .txt_field input {
     width: 100%;
     padding: 0 5px;
     height: 40px;
@@ -53,7 +66,7 @@
     outline: none;
 }
 
-.login .txt_field label {
+.admin .txt_field label {
     position: absolute;
     top: 50%;
     left: 5px;
@@ -64,7 +77,7 @@
     transition: .5s;
 }
 
-.login .txt_field span::before {
+.admin .txt_field span::before {
     content: '';
     position: absolute;
     top: 40px;
@@ -75,29 +88,29 @@
     transition: .5s;
 }
 
-.login .txt_field input:focus~label,
-.login .txt_field input:valid~label {
+.admin .txt_field input:focus~label,
+.admin .txt_field input:valid~label {
     top: -5px;
     color: #2691d9;
 }
 
-.login .txt_field input:focus~span::before,
-.login .txt_field input:valid~span::before {
+.admin .txt_field input:focus~span::before,
+.admin .txt_field input:valid~span::before {
     width: 100%;
 }
 
-.login .pass a {
+.admin .pass a {
     margin: -5px 0 20px 5px;
     color: #a6a6a6;
     cursor: pointer;
     text-decoration: none;
 }
 
-.login .pass:hover {
+.admin .pass:hover {
     text-decoration: underline;
 }
 
-.login button {
+.admin button {
     width: 100%;
     height: 50px;
     border: 1px solid;
@@ -110,31 +123,38 @@
     outline: none;
 }
 
-.login .cancel {
-    background: #aeacac;
-}
-
-.login .cancel:hover {
-    background: #676767;
-}
-
-.login button:hover {
+.admin button:hover {
     border-color: #2691d9;
     transition: .5s;
 }
 
-.login .signup_link {
+.admin .signup_link {
     margin: 30px 0;
     text-align: center;
     font-size: 16px;
     color: #666666;
 }
 
-.login .signup_link a {
+.admin .signup_link a {
     color: #2691d9;
     text-decoration: none;
 }
 
-.login .signup_link a:hover {
+.admin .signup_link a:hover {
     text-decoration: underline;
+}
+
+.admin .container {
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.admin .prbutton {
+    width: 200px;
+    margin-top: 20px;
+}
+
+.admin .prbutton h5 {
+    font-size: 16px;
+
 }

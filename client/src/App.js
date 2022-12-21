@@ -12,7 +12,7 @@ import Contract from './pages/Contract'
 import Policy from './pages/Policy'
 import SignUp from './pages/SignupFE'
 import Login from './pages/LoginFE'
-
+import Footer from './components/Footer'
 
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
 import ResetMail from './pages/ResetPwFE';
@@ -20,15 +20,18 @@ import ResetMail from './pages/ResetPwFE';
 
 import React, { useState, useEffect } from 'react';  
 import axios from 'axios'
-
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import CountryDropdown from 'country-dropdown-with-flags-for-react';  
 import Course from './pages/Course';
 import CourseI from './pages/CourseI';
 import Quiz from './pages/Quiz';
 import TakeQuiz from './pages/TakeQuiz';
 import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
+import logout from './components/Logout';
 
 import AdminPromotion from './pages/AdminPromotion';
+import Refund from './pages/Refund';
 
 // let GlobalCountry = 'United Kingdom';
 
@@ -57,7 +60,7 @@ function App() {
     <div className="App">
 
       <CountryDropdown  id="UNIQUE_ID" className='YOUR_CSS_CLASS' preferredCountries={['gb', 'us','eg']}  value="" handleChange={e => {handleCountry(e)}}></CountryDropdown>   
-
+      
 
       <BrowserRouter>
         <Navbar />
@@ -150,7 +153,10 @@ function App() {
               element={<AdminPromotion/>}
             />
 
-
+          <Route
+              path="/Refund"
+              element={<Refund/>}
+            />
 
              <Route
               path="/signup"
@@ -168,6 +174,7 @@ function App() {
 
         </div>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 
