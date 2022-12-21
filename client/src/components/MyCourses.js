@@ -24,8 +24,6 @@ return(
         <h1>View My courses</h1>
         <ul>
         {courses.map(course => <li key={course._id}>Title: <Link to={{pathname:course._id}}><h3 style={{display:"inline",margin:"10px"}}>{course.title}</h3></Link></li>)}
-
-
         </ul>
     </div>
 )

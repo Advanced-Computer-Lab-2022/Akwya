@@ -13,7 +13,7 @@ import UserSearchCourse from "../components/user/UserSearchCourse";
 import FilterByRatingAndSubject from "../components/Instructor/FilterByRatingAndSubject.js";
 import ChangePassword from "../components/Instructor/ChangePassword.js";
 import styled from "styled-components";
-
+ 
 import  ViewEmail from '../components/Instructor/ViewEmail.js'
 import  EditEmail from '../components/Instructor/EditEmail.js'
 import ViewRating from '../components/Instructor/ViewRating'

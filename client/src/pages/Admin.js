@@ -27,9 +27,14 @@ const Admin = () => {
         <br/>
         <button class="prbutton" onClick={()=>{window.location='/GrantAccess'}}><h5>Grant Access !</h5></button>
 
+        <button class="prbutton" onClick={()=>{window.location='/AdminViewTheProblems'}}><h5>View Problems</h5></button>
+
         </div>
-       </div>
       
+
+       
+
+      </div>
     )
   }
   
