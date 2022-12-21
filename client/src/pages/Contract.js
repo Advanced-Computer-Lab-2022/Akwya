@@ -13,7 +13,7 @@ const Contract = () => {
 }
 
   return (
-    <div className="contract">
+    <div className="contract" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
       <Link to="/">
         <h2>Go to Home Page</h2>
       </Link>

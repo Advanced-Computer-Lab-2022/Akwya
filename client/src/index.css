@@ -8,13 +8,13 @@
 }
 
 body {
-  background: #f1f1f1;
+  background: linear-gradient(120deg, #2c7eb9, #73129d);;
   margin: 0;
   font-family: "Poppins";
 }
 
 header {
-  background: #fff;
+  background: transparent;
 }
 
 header .container {
@@ -23,7 +23,9 @@ header .container {
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  border-radius: 200px;;
+
 }
 
 header a {

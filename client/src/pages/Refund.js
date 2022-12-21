@@ -66,7 +66,7 @@ return(
     <label>Username</label>
   </div>
   <div class="txt_field">
-    <input type="text"
+    <input type="number"
      id="amount"
      onChange={(e) => setAmount(e.target.value)}
      value={amount} 
