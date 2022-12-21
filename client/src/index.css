@@ -57,7 +57,7 @@ h6 {
   border-color: #333;
   border-style: double;
   font-size: 15px;
-  margin: 150px;
+  margin: 40px 150px 40px 150px;
   padding: 50px;
   font-family: 'Times New Roman', Times, serif;
   font-weight: 0;
@@ -68,5 +68,5 @@ h6 {
   font-family: 'Times New Roman', Times, serif;
   padding: 10px;
   font-size: 14px;
-  text-align:left;
+  text-align: left;
 }

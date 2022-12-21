@@ -5,7 +5,7 @@ import DataFetching from '../DataFetching'
 import UserSearchCourse from '../components/user/UserSearchCourse'
 import SearchCourseCorporate from '../components/user/SearchCourseCorporate'
 import ChangePw from '../components/Trainee/ChangePw'
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';  
 import styled from "styled-components";
 import ViewMyProblems from '../components/Problem/viewMyProblems'
 
@@ -17,7 +17,9 @@ const User = (props) => {
   const [showCourses, setshowCourses] = useState(true);
   const [showPW, setshowPW] = useState(false);
   const [showProblems, setshowProblems] = useState(false);
-
+  useEffect(()=>{
+    document.getElementById('logoutbutton').hidden = false
+    })
   const Tab = styled.button`
   
   padding: 10px 100px;

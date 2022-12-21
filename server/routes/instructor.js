@@ -3,7 +3,7 @@ import { createCourse } from "../controllers/courseController.js";
 const router =express.Router()
 import { searchCourseI, viewCoursestitleI  , deleteAllInstructors,filterCoursesByPriceI, filterCoursesBySubjectI, 
 filterCoursesByRatingAndSubject, addVideo ,viewVideos,viewEmail ,editEmail,editBio, CanViewVideos, addPreview, viewPreview, 
-ViewRating, getRatings,changePassword,checkPassword,logout,notFirst} from'../controllers/instructorController.js'
+ViewRating, getRatings,changePassword,checkPassword,notFirst} from'../controllers/instructorController.js'
 
 
 router.get('/viewCoursestitleI/:id', viewCoursestitleI )
@@ -52,7 +52,7 @@ router.get('/:id/myRating', ViewRating)
 
 // router.get('/resetPassword/', resetPassword)
 
-router.get('/logout', logout)
+// router.get('/logout', logout)
 
 router.get('/notFirst/:id', notFirst)
 

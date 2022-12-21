@@ -20,14 +20,15 @@ import ResetMail from './pages/ResetPwFE';
 
 import React, { useState, useEffect } from 'react';  
 import axios from 'axios'
-
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import CountryDropdown from 'country-dropdown-with-flags-for-react';  
 import Course from './pages/Course';
 import CourseI from './pages/CourseI';
 import Quiz from './pages/Quiz';
 import TakeQuiz from './pages/TakeQuiz';
 import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
-
+import logout from './components/Logout';
 
 // let GlobalCountry = 'United Kingdom';
 
@@ -55,8 +56,7 @@ function App() {
   return (
     <div className="App">
 
-      <CountryDropdown  id="UNIQUE_ID" className='YOUR_CSS_CLASS' preferredCountries={['gb', 'us','eg']}  value="" handleChange={e => {handleCountry(e)}}></CountryDropdown>   
-
+      
 
       <BrowserRouter>
         <Navbar />
