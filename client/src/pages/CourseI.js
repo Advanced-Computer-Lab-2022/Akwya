@@ -6,8 +6,8 @@ import AddVideo from '../components/Instructor/AddVideo'
 import ViewVideos from '../components/Instructor/ViewVideos'
 import ViewCourseRating from '../components/Instructor/ViewCourseRating'
 import Discount from '../components/Instructor/Discount'
-import React, { useState } from "react";
 import styled from "styled-components";
+import React, { useState, useEffect } from 'react';  
 
 
 import reportAProblem2 from '../components/Problem/reportAProblem2'

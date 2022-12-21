@@ -6,8 +6,8 @@ import ViewCourseRating from '../components/Instructor/ViewCourseRating'
 import RateAndReviewCourse from '../components/user/RateAndReviewCourse'
 import UserViewVideos from '../components/user/UserViewVideos'
 import RateAndReviewInstructor from '../components/user/RateAndReviewInstructor'
-import React, { useState } from "react";
 import styled from "styled-components";
+import React, { useState, useEffect } from 'react';  
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';

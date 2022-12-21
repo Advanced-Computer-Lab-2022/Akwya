@@ -3,10 +3,13 @@ import AddAdmin from '../components/Admin/AddAdmin'
 import AddTrainee from '../components/Admin/AddCorporateTrainee'
 import AddInstructor from '../components/Admin/AddInstructor'
 import Refund from '../components/Admin/RefundTrainee'
+import React, { useState, useEffect } from 'react';  
 
 
 const Admin = () => {
-
+  useEffect(()=>{
+    document.getElementById('logoutbutton').hidden = false
+    })
     return (
       <div className="admin">
         <h2>Admin Page</h2>
