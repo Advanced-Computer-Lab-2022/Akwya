@@ -8,7 +8,7 @@ import getWallet from "../components/Trainee/GetWallet";
 import ViewMyProblems from '../components/Problem/viewMyProblems'
 
 import FilterByRatingAndSubject from "../components/Instructor/FilterByRatingAndSubject";
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';  
 import styled from "styled-components";
 import GetWallet from "../components/Trainee/GetWallet";
 
@@ -20,7 +20,10 @@ const User = (props) => {
   const [showCourses, setshowCourses] = useState(true);
   const [showPW, setshowPW] = useState(false);
   const [showProblems, setshowProblems] = useState(false);
-
+  useEffect(()=>{
+    document.getElementById('logoutbutton').hidden = false
+    document.getElementById('loginbutton').hidden = true
+    })
   const Tab = styled.button`
     padding: 10px 100px;
     cursor: pointer;

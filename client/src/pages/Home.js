@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';  
 
 const Home = () => {
+  useEffect(()=>{
+  document.getElementById('logoutbutton').hidden = true
+  document.getElementById('loginbutton').hidden = true
+  })
   return (
     <div className="home">
       <h2>Home</h2>
@@ -25,12 +30,7 @@ const Home = () => {
       <Link to="/guest">
         <h2>Go to Guest Page</h2>
       </Link>
-      <Link to="/reset">
-        <h2>Go to Instructor Reset Password</h2>
-      </Link>
-      <Link to="/resett">
-        <h2>Go to Trainee Reset Password</h2>
-      </Link>
+   
       
     </div>
   );

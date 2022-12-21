@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';  
 import { Link } from "react-router-dom";
 import ViewMyCourses from "../components/MyCourses.js";
 import CreateACourse from "../components/Instructor/CreateCourse.js";
@@ -12,7 +12,6 @@ import UserSearchCourse from "../components/user/UserSearchCourse";
 
 import FilterByRatingAndSubject from "../components/Instructor/FilterByRatingAndSubject.js";
 import ChangePassword from "../components/Instructor/ChangePassword.js";
-import React from "react";
 import styled from "styled-components";
 
 import  ViewEmail from '../components/Instructor/ViewEmail.js'
@@ -31,7 +30,10 @@ const Instructor = (props) => {
   const [showInfo, setshowInfo] = useState(false);
   const [showMyCourses, setshowMyCourses] = useState(true);
   const [showProblems, setshowProblems] = useState(false);
-
+  useEffect(()=>{
+    document.getElementById('logoutbutton').hidden = false
+    document.getElementById('loginbutton').hidden = true
+    })
   const Tab = styled.button`
     padding: 10px 80px;
     cursor: pointer;
