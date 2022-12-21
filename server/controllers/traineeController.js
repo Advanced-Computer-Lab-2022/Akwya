@@ -116,6 +116,45 @@ const checkPassword= async (req, res) => {
 const resetPassword = async (req,res)=>{
     const userEmail = req.query.mail;
     await trainee.find({email: req.query.mail}).then( async (result) =>  {
+
+        if(result.length==0){
+            //didnt find in trainee, check instructor
+            await instructor.find({email: req.query.mail}).then( async (result) =>  {
+                if(result.length==0){
+                    return res.status(400).json({status:false,Message:"Email not registered"})
+                }
+                var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                var length = 8;
+                var newRandom = "";
+                for (var i = 0; i<=length; i++) {
+                    var randomNumber = Math.floor(Math.random() * chars.length);
+                    newRandom += chars.substring(randomNumber, randomNumber+1);
+                }
+                await instructor.findOneAndUpdate({_id: result[0]._id},{password:newRandom},{ new: true}).then((result)=>{
+                    const mail = {
+                        from: process.env.AUTH_EMAIL,
+                        to: userEmail,
+                        subject: "Reset Your Password",
+                        html: `<p>Forgot your password? We've reset it for you!</p>
+                            <p>Use this new password to login safely: <strong> ${newRandom} </strong></p>`
+                    }
+                
+                    let transporter = nodemailer.createTransport({
+                        service: 'hotmail',
+                        auth: {
+                            user: process.env.AUTH_EMAIL,
+                            pass: process.env.AUTH_PASS
+                        }
+                    })
+                    transporter.sendMail(mail).then((result)=>{
+                        return res.status(200).json({status:true,Message:"Reset mail sent"})
+                    }).catch((error) => {
+                        return res.status(400).json({status:false, error:error.message ,Message:"Failed to send mail"}) })
+                    }).catch((error)=>{
+                        return res.status(400).json({status:false, error:error.message,Message:"Failed to update password"}) })
+            })  
+        }
+        else {
         var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var length = 8;
         var newRandom = "";
@@ -145,6 +184,7 @@ const resetPassword = async (req,res)=>{
                 return res.status(400).json({status:false, error:error.message ,Message:"Failed to send mail"}) })
              }).catch((error)=>{
                 return res.status(400).json({status:false, error:error.message,Message:"Failed to update password"}) })
+             }
     }).catch((error)=>{
         return res.status(400).json({status:false, error:error .message,Message:"Email not registered"}) });
     }
@@ -155,12 +195,21 @@ const resetPassword = async (req,res)=>{
         try {
             
             const wallet = await trainee.findOne({_id:req.params.id}).select('wallet');
-            console.log(wallet);
             res.status(200).json(wallet)
         } catch (error) {
             res.status(400).json({error: error.message})
         }
     }
+
+
+
+
+
+
+
+
+
+
 
 
 const sendCertificate = async (req,res)=>{
@@ -195,20 +244,21 @@ const sendCertificate = async (req,res)=>{
     }
 
     const maxAge = 3 * 24 * 60 * 60;
-const createToken = (name) => {
-    return jwt.sign({ name }, process.env.token, {
-        expiresIn: maxAge
-    });
-};
+    const createToken = (name) => {
+        return jwt.sign({ name }, process.env.token, {
+            expiresIn: maxAge
+        });
+    };
 
 
     const signUp = async (req, res) => {
         const { username, email, password, fname, lname, gender } = req.body;
         const wallet = 0
+        const type = 'individual'
         try {
             const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(password, salt);
-            const newUser = await trainee.create({ username: username, email: email, password: hashedPassword, fname: fname, lname:lname,gender:gender,wallet:wallet});
+            const newUser = await trainee.create({ username: username, email: email, password: hashedPassword, fname: fname, lname:lname,gender:gender,traineetype:type,wallet:wallet});
             const token = createToken(newUser.name);
     
             res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
@@ -222,17 +272,20 @@ const createToken = (name) => {
         // TODO: Login the user
         const { username, password } = req.body;
         let type = '';
-        try {
-            
-            const user = await instructor.findOne({ username: username});
+        try { 
+            let user = await instructor.findOne({ username: username});
             if(!user){
-                const user = await trainee.findOne({ username: username});
+                user = await trainee.findOne({ username: username});
                 if(!user) {
                     res.status(400).json("Username doesn't match")
                 }
                 else {
-                    //check type of trainee
-                    type = 'individual'
+                    //get type of trainee
+                    if(!user.traineetype){
+                        type='individual'
+                    }else {
+                        type = user.traineetype
+                    }
                 }
             }
             else {
@@ -258,3 +311,4 @@ const createToken = (name) => {
     }
 
 export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate,signUp,login,logout}
+

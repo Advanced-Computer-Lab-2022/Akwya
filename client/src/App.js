@@ -10,13 +10,13 @@ import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
 import Contract from './pages/Contract'
 import Policy from './pages/Policy'
-import SignUp from './pages/SignUp'
-import Login from './pages/SignIn'
+import SignUp from './pages/SignupFE'
+import Login from './pages/LoginFE'
 
 
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
-import Reset from './pages/ResetPassword';
-import Resett from './pages/ResetPwTrainee';
+import ResetMail from './pages/ResetPwFE';
+// import Resett from './pages/ResetPwTrainee';
 
 import React, { useState, useEffect } from 'react';  
 import axios from 'axios'
@@ -28,6 +28,7 @@ import Quiz from './pages/Quiz';
 import TakeQuiz from './pages/TakeQuiz';
 import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
 
+import AdminPromotion from './pages/AdminPromotion';
 
 // let GlobalCountry = 'United Kingdom';
 
@@ -129,11 +130,7 @@ function App() {
             />
             <Route
               path="/reset"
-              element={<Reset/>}
-              />
-              <Route
-              path="/resett"
-              element={<Resett/>}
+              element={<ResetMail/>}
               />
             <Route
               path="/Course"
@@ -147,6 +144,14 @@ function App() {
               path="/Policy"
               element={<Policy/>}
             />
+
+            <Route
+              path="/AdminPromotion"
+              element={<AdminPromotion/>}
+            />
+
+
+
              <Route
               path="/signup"
               element={<SignUp/>}
@@ -156,6 +161,7 @@ function App() {
               element={<Login/>}
             />
             
+
           </Routes>
 
 

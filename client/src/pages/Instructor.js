@@ -41,6 +41,8 @@ const Instructor = (props) => {
     outline: 0;
     border-bottom: 2px solid transparent;
     transition: ease border-bottom 5000ms;
+    :hover {opacity: 1;  transition: ease opacity 300ms;}
+    :not(:hover) {opacity: 0.6; transition: ease opacity 250ms;}
     ${({ active }) =>
       active &&
       `
@@ -162,6 +164,9 @@ const Instructor = (props) => {
 
       </div>
       <br />
+      <Link to="/Contract">
+        <h2>View Contract</h2>
+      </Link>
       <Link to="/Policy">
         <h2>View Refund Policy</h2>
       </Link>

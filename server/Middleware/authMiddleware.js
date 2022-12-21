@@ -1,3 +1,4 @@
+
 // const jwt = require('jsonwebtoken');
 import jwt from 'jsonwebtoken';
 
@@ -12,6 +13,7 @@ const requireAuth = (req, res, next) => {
         // res send status 401 you are not logged in
         res.status(401).json({message:"You are not logged in."})
         // res.redirect('/login');
+
       } else {
         console.log(decodedToken);
         next();
@@ -22,5 +24,9 @@ const requireAuth = (req, res, next) => {
   }
 };
 
+
+
+
 export default requireAuth;
 // module.exports = { requireAuth };
+

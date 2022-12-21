@@ -1,6 +1,10 @@
 import admin from "../models/admin.js";
 import trainee from "../models/trainee.js"
 import instructor from "../models/instructor.js"
+
+import course from "../models/course.js"
+
+
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -10,6 +14,7 @@ export const createToken = (name) => {
         expiresIn: maxAge
     });
 };
+
 
 export const getAdmins= async(req,res) => {
     try{
@@ -47,11 +52,12 @@ export const getAdmins= async(req,res) => {
 export const createTrainee= async(req,res) => {
     const {username,password,email}=req.body
     const wallet=0;
-    
+    const type = 'corporate'
+    //bykon corporate
     try {
             const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(password, salt);
-            const newTrainee = await trainee.create({username:username,password:hashedPassword,email:email,wallet:wallet});
+            const newTrainee = await trainee.create({username:username,password:hashedPassword,email:email,traineetype:type,wallet:wallet});
             const token = createToken(username);
     
             res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
@@ -73,7 +79,7 @@ export const createInstructor= async(req,res) => {
     try {
         const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(password, salt);
-            const newInstructor = await instructor.create({username:username,password:hashedPassword,email:email,minibiography:minibiography});
+            const newInstructor = await instructor.create({username:username,password:hashedPassword,email:email,minibiography:minibiography,firstLogin:true});
             const token = createToken(username);
     
             res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
@@ -81,21 +87,54 @@ export const createInstructor= async(req,res) => {
     } catch (error) {
         res.status(400).json({error: error.message})
     }
+
+    
      
 
+}
+
+
+export const courseDiscountAdmin = async (req, res) => {
+    try{
+
+      
+    const discount=await course.findOneAndUpdate({_id:req.params.id},{promotion:req.query.promotion},{new: true}  )
+
+    const date=await course.findOneAndUpdate({_id:req.params.id},{promotionExpiry:req.query.promotionExpiry},{new: true}  )
+       
+        res.status(200).json({discount, date})
+    
+
+
+    }
+    catch (error) {
+    res.status(400).json({error: error.message})
+}
+ }
+
+
+export const promotionFound = async (req, res) => {
+try{
+    const course1 =await course.findOne({_id:req.params.id})
+    res.status(200).json(course1)
+
+}
+catch (error) {
+    res.status(400).json({error: error.message})
+}
 }
 
 
 export const refundTrainee= async(req,res) => {
     
     try {
-
-        const traineee = await trainee.findOne({_id:req.params.id});
+        const traineee = await trainee.findOne({username:req.query.username});
         const newWallet = parseInt(traineee.wallet) + parseInt(req.query.amount)
-        const refunded = await trainee.findOneAndUpdate({_id:req.params.id}, {wallet: newWallet},{
+        const refunded = await trainee.findOneAndUpdate({username:req.query.username}, {wallet: newWallet},{
             new: true} );
         res.status(200).json(refunded)
     } catch (error) {
         res.status(400).json({error: error.message})
     }
 }
+
