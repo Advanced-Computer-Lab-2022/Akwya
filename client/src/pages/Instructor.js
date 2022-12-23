@@ -13,7 +13,7 @@ import UserSearchCourse from "../components/user/UserSearchCourse";
 import FilterByRatingAndSubject from "../components/Instructor/FilterByRatingAndSubject.js";
 import ChangePassword from "../components/Instructor/ChangePassword.js";
 import styled from "styled-components";
-
+ 
 import  ViewEmail from '../components/Instructor/ViewEmail.js'
 import  EditEmail from '../components/Instructor/EditEmail.js'
 import ViewRating from '../components/Instructor/ViewRating'
@@ -123,7 +123,7 @@ const Instructor = (props) => {
   }
 
   return (
-    <div>
+    <div style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
       <div className="instructor">
         <h2>Instructor Page</h2>
         <Link to="/">

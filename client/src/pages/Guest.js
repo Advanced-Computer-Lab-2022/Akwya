@@ -14,7 +14,7 @@ const User = (props) => {
 
     })
   return (
-    <div className="guest">
+    <div className="guest" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
       <h2>Guest Page</h2>
       <Link to="/">
         <h2>Go to Home Page</h2>

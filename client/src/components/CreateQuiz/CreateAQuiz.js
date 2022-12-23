@@ -198,10 +198,10 @@ return (
 
 
     <div className="questions">
-            <div className='add-question' style={{background:"DarkTurquoise"}} onClick={()=>this.setState({addQuestion: true})}>Add Question</div>
+            <div className='add-question' style={{background:"#1976d2"}} onClick={()=>this.setState({addQuestion: true})}>Add Question</div>
         </div>
             
-    <span style={{background:"DarkTurquoise", padding:10,cursor: "pointer"}} onClick={()=>this.saveQuiz()} className='btn save-quiz'>Save Quiz</span>
+    <span style={{background:"#1976d2", padding:10,cursor: "pointer"}} onClick={()=>this.saveQuiz()} className='btn save-quiz'>Save Quiz</span>
 
 <QuizDialog model={this.state.addQuestion}>
 <div className='new-question-form'>
@@ -228,7 +228,7 @@ return (
                 </form>
         <div className='btn-wrapper'>
             <div className='btn' style={{background:"orangered", padding:3,margin:5,cursor: "pointer"}} onClick={()=>this.setState({addQuestion:false})}>Close </div>
-            <div className='btn' style={{background:"DarkTurquoise", padding:3,margin:5,cursor: "pointer"}} onClick={()=>this.saveQuestion()}>Save</div>
+            <div className='btn' style={{background:"#1976d2", padding:3,margin:5,cursor: "pointer"}} onClick={()=>this.saveQuestion()}>Save</div>
         </div>
 
         </div>
