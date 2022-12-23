@@ -17,13 +17,15 @@ const Notes = () => {
         const sidebarClass = props.isOpen ? "0" : "-20vw";
         return (
             
-          <div style={{"position": "fixed", "top": "160px", "right":sidebarClass, "height": "100%","width": "20vw", "transition": "right 0.3s ease-in-out", "background-color": "lightgray"}}>
+          <div style={{"position": "fixed", "top": "160px", "right":sidebarClass, "height": "100%","width": "20vw",
+          "transition": "right 0.3s ease-in-out", "background-color": "lightgray","border-radius":"20px"}}>
             <div style={{ "text-align" : 'center' }}>
             <form onSubmit={(e)=>{
               e.preventDefault();downloadTxtFile()}}>
-              <textarea rows="26" cols="32" onChange={(e) => {textarea = e.target.value}} style={{"font-size":"12pt"}}></textarea>
+              <textarea rows="26" cols="32" onChange={(e) => {textarea = e.target.value}} style={{"font-size":"12pt",
+              "border-radius":"20px 0px 0px 0px","padding": "10px"}}></textarea>
               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-              <button class="btn" id="downloadbtn"  style={{"marginTop":"20px","background-color": "#1976d2",
+              <button class="btn" id="downloadbtn"  style={{"marginTop":"13px","background-color": "#1976d2",
                "border": "none", "color": "white", "padding": "12px", "cursor": "pointer", "font-size": "20px",  "border-radius":"5px"}}>
                 <i class="fa fa-download"></i> Download</button>
                 </form>
