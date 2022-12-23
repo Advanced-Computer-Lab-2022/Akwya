@@ -4,6 +4,8 @@ import instructor from "../models/instructor.js";
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import stripe from 'stripe';
+stripe('sk_test_51MIFP2HUXZhuMagYEdCYj0wsG45Ya6iUZ0heOaJjNw7s99MsoWZ7KRRkjPZH2PdyB7JP5sjx2cEKHhZvSXKktkps00cHANVVBh');
 
 const rateCourse = async (req, res) => {
  
@@ -313,5 +315,62 @@ const sendCertificate = async (req,res)=>{
     
     }
 
-export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate,signUp,login,logout}
+    //generate payment request for a card payer
+    const generatePayment =
+async (req, res) => {
+
+    //user sends price along with request
+    const userPrice = parseInt(req.body.price)*100;
+
+    //create a payment intent
+    const intent = await stripe.paymentIntents.create({
+  
+      //use the specified price
+      amount: userPrice,
+      currency: 'usd'
+  
+    });
+  
+    //respond with the client secret and id of the new paymentintent
+    res.json({client_secret: intent.client_secret, intent_id:intent.id});
+  
+  }
+  const confirmPayment =async (req, res) => {
+
+    //extract payment type from the client request
+    const paymentType = String(req.body.payment_type);
+  
+    //handle confirmed stripe transaction
+    if (paymentType == "stripe") {
+  
+      //get payment id for stripe
+      const clientid = String(req.body.payment_id);
+  
+      //get the transaction based on the provided id
+      stripe.paymentIntents.retrieve(
+        clientid,
+        function(err, paymentIntent) {
+  
+          //handle errors
+          if (err){
+            console.log(err);
+          }
+          
+          //respond to the client that the server confirmed the transaction
+          if (paymentIntent.status === 'succeeded') {
+  
+            /*YOUR CODE HERE*/  
+            
+            console.log("confirmed stripe payment: " + clientid);
+            res.json({success: true});
+          } else {
+            res.json({success: false});
+          }
+        }
+      );
+    } 
+    
+  }
+
+export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate,signUp,login,logout,generatePayment,confirmPayment}
 

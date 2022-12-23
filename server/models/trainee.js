@@ -12,6 +12,7 @@ const traineeSchema = mongoose.Schema({
     courses: [{ courseid: String, progress: Number }],
     country: String,
     wallet: Number
+
     
 
 }, { timestamps: true }

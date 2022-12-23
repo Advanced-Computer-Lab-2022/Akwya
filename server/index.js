@@ -13,13 +13,17 @@ import instructorRoutes from './routes/instructor.js';
 import traineeRoutes from './routes/trainee.js';
 
 import quizRoutes from './routes/Quiz.js';
-
+//130f8e596e6d93d5007c8208de32ef7726463ee9315c515e1b26c94b81325b72b64e25797f18803579752ec2255c87d782a2c9901d6da8a791adad15e13c3421
 // import jwt from 'jsonwebtoken';
 // import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 // require('dotenv').config()
 import requireAuth from './Middleware/authMiddleware.js'
 import cookieParser from 'cookie-parser'
+import path from 'path'
+import {createRequire} from "module";
+const require=createRequire(import.meta.url)
+const stripe = require('stripe')('sk_test_51MIFP2HUXZhuMagYEdCYj0wsG45Ya6iUZ0heOaJjNw7s99MsoWZ7KRRkjPZH2PdyB7JP5sjx2cEKHhZvSXKktkps00cHANVVBh');
 
 /*
 I installed kol el fo2 in server directory
@@ -32,7 +36,7 @@ react-file-base64  used to convert images
 redux 
 redux-thunk for asynchronous actions using redux
 */
-
+// stripe('sk_test_51MIFP2HUXZhuMagYEdCYj0wsG45Ya6iUZ0heOaJjNw7s99MsoWZ7KRRkjPZH2PdyB7JP5sjx2cEKHhZvSXKktkps00cHANVVBh');
 dotenv.config();
 
 const app = express();
@@ -57,8 +61,76 @@ app.use((req, res, next) => {
 
 app.use(cookieParser());
 
+app.use((_, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept'
+    )
+    next()
+  })
+  app.use(bodyParser.urlencoded({ extended: false }))
 
+  // parse application/json
+  app.use(bodyParser.json())
+    
+  app.post('/stripe', async (req, res) => {
 
+    //user sends price along with request
+    const userPrice = parseInt(req.body.price)*100;
+  
+    //create a payment intent
+    const intent = await stripe.paymentIntents.create({
+      
+      //use the specified price
+      amount: userPrice,
+      currency: 'usd'
+  
+    });
+  
+    //respond with the client secret and id of the new paymentintent
+    res.json({client_secret: intent.client_secret, intent_id:intent.id});
+  
+  })
+  
+  //handle payment confirmations
+  app.post('/confirm-payment', async (req, res) => {
+  
+    //extract payment type from the client request
+    const paymentType = String(req.body.payment_type);
+  
+    //handle confirmed stripe transaction
+    if (paymentType == "stripe") {
+  
+      //get payment id for stripe
+      const clientid = String(req.body.payment_id);
+  
+      //get the transaction based on the provided id
+      stripe.paymentIntents.retrieve(
+        clientid,
+        function(err, paymentIntent) {
+  
+          //handle errors
+          if (err){
+            console.log(err);
+          }
+          
+          //respond to the client that the server confirmed the transaction
+          if (paymentIntent.status === 'succeeded') {
+  
+            /*YOUR CODE HERE*/  
+            
+            console.log("confirmed stripe payment: " + clientid);
+            res.json({success: true});
+          } else {
+            res.json({success: false});
+          }
+        }
+      );
+    } 
+    
+  })
+  
 
 
 
