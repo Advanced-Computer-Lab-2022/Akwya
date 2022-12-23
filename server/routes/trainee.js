@@ -4,7 +4,8 @@ const router =express.Router()
 
 
 
-import {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword, rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate,signUp,login,logout} from "../controllers/traineeController.js"
+import {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword, rateInstructor,checkPassword,resetPassword
+,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo} from "../controllers/traineeController.js"
 
 router.patch('/:id/rateCourse',rateCourse)
 
@@ -28,6 +29,8 @@ router.get('/resetPassword/', resetPassword)
 router.get('/getWallet/:id', getWallet) 
 
 
+router.get('/videoCount', videoCount)
+
 router.get('/sendCertificate/', sendCertificate)
 
 router.post('/signup', signUp);
@@ -35,5 +38,7 @@ router.post('/signup', signUp);
 router.post('/login', login);
 
 router.get('/logout', logout);
+
+router.get('/userWatchVideo/:TraineeID/:VideoID', userWatchVideo);
 
 export default router;

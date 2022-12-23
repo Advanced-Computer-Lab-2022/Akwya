@@ -1,6 +1,8 @@
 import trainee from "../models/trainee.js";
 import course from "../models/course.js";
+import videos from "../models/videos.js";
 import instructor from "../models/instructor.js";
+import userWatchVideos from "../models/userWatchVideos.js";
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -313,5 +315,44 @@ const sendCertificate = async (req,res)=>{
     
     }
 
-export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate,signUp,login,logout}
+    const videoCount= async(req,res) => {
+        try{
+            const videoos= await videos.find({courseID:req.query.CourseID}).count();
+            res.status(200).json(videoos)
+        }
+    
+        catch(error){
+            res.status(400).json({message: error.message})
+        }
+    }
+
+    const userWatchVideo= async(req,res) => {
+        try{
+            const videoos= await videos.findOne({_id:req.params.VideoID});
+
+            const oldWatchedVideo = await userWatchVideos.findOne({$and:[{VideoID:videoos._id},{TraineeID:req.params.TraineeID}]});
+        if(oldWatchedVideo!=null){
+            res.status(200).json({message:"Video Already Watched"})
+            return;
+        }
+            
+            const newWatchedVideo = await userWatchVideos.create({VideoID:videoos._id,CourseID:videoos.courseID,
+                TraineeID:req.params.TraineeID});
+                newWatchedVideo.save();
+            
+            const traineee = await trainee.findOneAndUpdate({_id:{$eq:req.params.TraineeID}},
+                {$inc:{"courses.$[course].progress": 1}},{ arrayFilters: [  { "course.courseid":  videoos.courseID } ] });
+
+
+
+            res.status(200).json(traineee)
+        }
+    
+        catch(error){
+            res.status(400).json({message: error.message})
+        }
+    }
+
+export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,
+    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo}
 
