@@ -5,7 +5,7 @@ import DataFetching from '../DataFetching'
 import UserSearchCourse from '../components/user/UserSearchCourse'
 import SearchCourseCorporate from '../components/user/SearchCourseCorporate'
 import ChangePw from '../components/Trainee/ChangePw'
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';  
 import styled from "styled-components";
 import ViewMyProblems from '../components/Problem/viewMyProblems'
 
@@ -17,7 +17,10 @@ const User = (props) => {
   const [showCourses, setshowCourses] = useState(true);
   const [showPW, setshowPW] = useState(false);
   const [showProblems, setshowProblems] = useState(false);
-
+  useEffect(()=>{
+    document.getElementById('logoutbutton').hidden = false
+    document.getElementById('loginbutton').hidden = true
+    })
   const Tab = styled.button`
   
   padding: 10px 100px;
@@ -33,7 +36,7 @@ const User = (props) => {
   ${({ active }) =>
     active &&
     `
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid black;
     opacity: 1;
   `}
 `;
@@ -102,7 +105,7 @@ const User = (props) => {
   }
 
     return (
-      <div className="user">
+      <div className="user" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
         <h2>User Page</h2>
         <Link to="/">
           <h2>Go to Home Page</h2>

@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';  
 
 const Home = () => {
+  useEffect(()=>{
+  document.getElementById('logoutbutton').hidden = true
+  document.getElementById('loginbutton').hidden = true
+  })
   return (
-    <div className="home">
+    <div className="home" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
       <h2>Home</h2>
       <Link to="/admin">
         <h2>Go to Admin Page</h2>

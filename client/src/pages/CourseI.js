@@ -6,8 +6,8 @@ import AddVideo from '../components/Instructor/AddVideo'
 import ViewVideos from '../components/Instructor/ViewVideos'
 import ViewCourseRating from '../components/Instructor/ViewCourseRating'
 import Discount from '../components/Instructor/Discount'
-import React, { useState } from "react";
 import styled from "styled-components";
+import React, { useState, useEffect } from 'react';  
 
 
 import reportAProblem2 from '../components/Problem/reportAProblem2'
@@ -36,7 +36,7 @@ const Course = (props) => {
   ${({ active }) =>
     active &&
     `
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid black;
     opacity: 1;
   `}
 `;
@@ -77,7 +77,7 @@ const Course = (props) => {
 
 
     return (
-      <div className="guest">
+      <div className="guest" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
         <h2>Course Page</h2>
         <Link to="/">
           <h2>Go to Home Page</h2>

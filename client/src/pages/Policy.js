@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';  
 
 const Policy = () => {
+  useEffect(()=>{
+    document.getElementById('logoutbutton').hidden = true
+    document.getElementById('loginbutton').hidden = true
+    })
   // function checkChange() {
   //   const checkbox = document.getElementById("agreed");
   //   if (checkbox.checked == true) {
@@ -13,11 +18,11 @@ const Policy = () => {
   // }
 
   return (
-    <div className="policy">
+    <div className="policy" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
       <Link to="/">
         <h2>Go to Home Page</h2>
       </Link>
-      <form>
+      {/* <form> */}
         <h6>
           <h2>Our Policies</h2>
           Payments and Refunds
@@ -112,7 +117,7 @@ const Policy = () => {
           </button>
           </a> */}
         </h6>
-      </form>
+      {/* </form> */}
     </div>
   );
 };

@@ -4,6 +4,9 @@ import instructor from "../models/instructor.js"
 
 import course from "../models/course.js"
 
+import courseRequest from "../models/courseRequest.js"
+
+
 
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -136,5 +139,49 @@ export const refundTrainee= async(req,res) => {
     } catch (error) {
         res.status(400).json({error: error.message})
     }
+}
+
+export const grantAccess= async(req,res) => {
+    const traineeID =req.params.TraineeID
+    const courseID =req.params.CourseID;
+
+    try {
+        const oldrequest = await courseRequest.findOneAndDelete({$and:[{CourseID:courseID},{TraineeID:traineeID}]});
+        const addcourse = await trainee.updateOne({_id:traineeID},{$push:{courses:{courseid:courseID,progress:0}}});
+        res.status(200).json({addcourse,oldrequest})
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+
+}
+
+export const requestAccess= async(req,res) => {
+    const traineeID =req.params.TraineeID
+    const courseID =req.params.CourseID;
+
+    try {
+        const traineee = await trainee.findOne({_id:traineeID});
+        const coursee = await course.findOne({_id:courseID});
+        const oldrequest = await courseRequest.findOne({$and:[{CourseID:coursee._id},{TraineeID:traineee._id}]});
+        if(oldrequest!=null){
+            res.status(400).json({message:"Course Already Requested"})
+            return;
+        }
+
+        const newrequest = await courseRequest.create({username:traineee.username,CourseID:coursee._id,
+        TraineeID:traineee._id,courseName:coursee.title});
+        newrequest.save();
+        res.status(200).json(newrequest)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
+
+export const viewRequests= async(req,res) => {
+    const allrequests = await courseRequest.find({}).select('username TraineeID CourseID courseName')
+    res.status(200).json(allrequests)
+
+
 }
 
