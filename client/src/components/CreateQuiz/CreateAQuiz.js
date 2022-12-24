@@ -21,7 +21,8 @@ addQuestion: false,
 questionName:'',
 answers: [], 
 correctAnswer:'',
-chosenAnswer:''
+chosenAnswer:'',
+deleteBayen: true, 
 
 } 
 } 
@@ -194,7 +195,8 @@ return (
     
 <br/>
 <br/>
-<span className='btn save-quiz' style={{background:"orangered", padding:5 ,cursor: "pointer"}} onClick={()=>this.removeQuestion()}>Delete Questions</span>
+
+<span hidden={this.state.deleteBayen} className='btn save-quiz' style={{background:"orangered", padding:5 ,cursor: "pointer"}} onClick={()=>this.removeQuestion() && this.setState({deleteBayen: true})}>Delete Questions</span>
 
 
     <div className="questions">
@@ -228,7 +230,7 @@ return (
                 </form>
         <div className='btn-wrapper'>
             <div className='btn' style={{background:"orangered", padding:3,margin:5,cursor: "pointer"}} onClick={()=>this.setState({addQuestion:false})}>Close </div>
-            <div className='btn' style={{background:"#1976d2", padding:3,margin:5,cursor: "pointer"}} onClick={()=>this.saveQuestion()}>Save</div>
+            <div className='btn' style={{background:"#1976d2", padding:3,margin:5,cursor: "pointer"}} onClick={()=> {this.setState({deleteBayen: false}) ;this.saveQuestion()}}>Save</div>
         </div>
 
         </div>
