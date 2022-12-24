@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper';
 import Swal from "sweetalert2";
 import styledd from "styled-components";
 
-const AdminViewProblems= () => { 
+const AdminViewProblems= () => {  
 
   const types = ["UnResolved", "Pending", "Resolved"];
 
@@ -137,7 +137,7 @@ return(
         <TableHead>
           <TableRow>
 
-          <StyledTableCell align="center">State</StyledTableCell>
+          <StyledTableCell align="center">Owner</StyledTableCell>
            <StyledTableCell align="center">Problem</StyledTableCell>
             <StyledTableCell align="center">Category</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
@@ -168,7 +168,7 @@ return(
            
               >
                
-              
+               <TableCell align="center">{problem.ownerID}</TableCell>              
               <TableCell align="center">{problem.theProblem}</TableCell>
               <TableCell align="center">{problem.category}</TableCell>
               <TableCell align="center">{problem.status}</TableCell>

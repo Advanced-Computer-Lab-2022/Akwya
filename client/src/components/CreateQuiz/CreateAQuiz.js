@@ -13,8 +13,8 @@ super (props);
 this.state ={
 instructorID:[],
 courseid:[],
-categories: ['Math', 'Science', 'Technology', 'Sports', 'History', 'Misc'],
-categoryVal: 'Math', 
+categories: ['Beginner', 'Intermediate', 'Advanced'],
+levelVal: 'Beginner', 
 mustBeSignedin: false, 
 questions: [],
 addQuestion: false, 
@@ -106,7 +106,7 @@ saveQuiz = () => {
         mustBeSignedIn:this.state.mustBeSignedin,
         name:this.state.name,
         questions: this.state.questions,
-        category: this.state.categoryVal,
+        level: this.state.levelVal,
         chosenAnswer:'',
 
 
@@ -177,7 +177,7 @@ return (
 <div>  <input className='input' onChange={e=>this.setState({courseid:e.target.value})} value={this.state.courseid} placeholder="Course ID" required/> </div> */}
 
             <br></br>
-            <select value={this.state.categoryVal} onChange={e=>this.setState({categoryVal:e.target.value})} className="input select" placeholder="Category">
+            <select value={this.state.levelVal} onChange={e=>this.setState({levelVal:e.target.value})} className="input select" placeholder="Level">
                 {this.state.categories.map((cat,idx)=>(
                     <option key={idx} value={cat}>{cat}</option>
                 ))}
