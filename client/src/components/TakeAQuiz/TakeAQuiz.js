@@ -52,12 +52,17 @@ const Tab = styledd.button`
 
   const [level,setLevel] = useState('');
 
+  const [course,setCourse] = useState('');
 
   const [reset,setReset] = useState(1);
 
 
   const [gradee,setGradee] = useState('')
   const [show,setShow] = useState(false)
+
+
+  const [totalGrade,setTotalGrade] = useState(true)
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -88,6 +93,17 @@ const Tab = styledd.button`
     },[reset])
 
 
+    useEffect(()=>{
+      axios
+      .get('http://localhost:9000/Quiz/TakeQuiz/getMyCourseName/'+CourseID)
+      .then( res => {
+         console.log('hereeeeeee'+res.data)
+         setCourse(res.data)
+      })
+      .catch(err=>{console.log(err)})
+    },[reset])
+
+
     const handleQuestionSubmit = async (quizIndex) => {
       
 
@@ -96,6 +112,7 @@ const Tab = styledd.button`
 
             axios.post('http://localhost:9000/Quiz/TakeQuiz/submitQuiz', tempQuiz).then(res=>{
               console.log(tempQuiz)
+              console.log(course)
 
 
               Swal.fire({
@@ -166,6 +183,7 @@ const Tab = styledd.button`
                     setShow(false);
                     // setQuizzes(Quizzes1)
                     setReset(reset+1)
+                    setTotalGrade(false)
                     
                   break;
                   case "Intermediate":
@@ -176,6 +194,8 @@ const Tab = styledd.button`
                     setShow(false);
                     // setQuizzes(Quizzes1)
                     setReset(reset+1)
+                    setTotalGrade(false)
+
 
     
                     
@@ -188,6 +208,8 @@ const Tab = styledd.button`
                     setShow(false);
                     // setQuizzes(Quizzes1)
                     setReset(reset+1)
+                    setTotalGrade(false)
+
 
                     
                     break;
@@ -208,9 +230,8 @@ const Tab = styledd.button`
 
 return(
   <div class='quiz'>
-      <h1>Take Quiz</h1>
       <TabGroup />
-
+<h1>{course} Quiz</h1>
       <ul>
       {Quizzes.map((quiz,quizIndex) => {
        if(quiz.level==='Beginner' && showBeginner) {
@@ -231,8 +252,9 @@ return(
                     {
                         quiz.questions.map((ques,questionIndex)=>(
                         <div className={questionIndex} key={questionIndex}>    
-                            <div>Question:{ques.questionName}</div>                             
-                            <form className="answers">
+                            <h2>{ques.questionName}</h2>                             
+
+                            <form className="answers flex-center">
                             {ques.answers.map((ans,answerIndex)=>(
                             <div >
                              <input type='radio' value={ans}
@@ -286,8 +308,9 @@ return(
                         
                     ))
                     }
-    
-                      <button class="prbutton">Submit</button>
+                   <div className='flex-center'>
+                      <button class="anaButton">Submit</button>
+                    </div>
                       
                       
     
@@ -323,8 +346,8 @@ return(
                               {
                                   quiz.questions.map((ques,questionIndex)=>(
                                   <div className={questionIndex} key={questionIndex}>    
-                                      <div>Question:{ques.questionName}</div>                             
-                                      <form className="answers">
+                            <h2>{ques.questionName}</h2>                             
+                                      <form className="answers flex-center">
                                       {ques.answers.map((ans,answerIndex)=>(
                                       <div >
                                        <input type='radio' value={ans}
@@ -380,9 +403,9 @@ return(
                                   
                               ))
                               }
-              
-                                <button class="prbutton">Submit</button>
-                                
+                <div className='flex-center'>
+                                <button class="anaButton">Submit</button>
+                                </div>
                                 
               
           
@@ -418,8 +441,8 @@ return(
                               {
                                   quiz.questions.map((ques,questionIndex)=>(
                                   <div className={questionIndex} key={questionIndex}>    
-                                      <div>Question:{ques.questionName}</div>                             
-                                      <form className="answers">
+                            <h2>{ques.questionName}</h2>                             
+                                      <form className="answers flex-center">
                                       {ques.answers.map((ans,answerIndex)=>(
                                       <div >
                                        <input type='radio' value={ans}
@@ -474,9 +497,9 @@ return(
                                   
                               ))
                               }
-              
-                                <button class="prbutton">Submit</button>
-                                
+              <div className='flex-center'>
+                                <button class="anaButton">Submit</button>
+                                </div>
                                 
               
           
@@ -503,8 +526,8 @@ return(
   
           <form className="create" onSubmit={handleSubmit}> 
   <div>
-      <button>View Total Quiz Grade For This Level</button>
-      <h1 style={{display: show ? 'block' : 'none' }}>You Scored:{gradee}</h1>
+      <button hidden={totalGrade} className='anaButton'>View This Level Grade<h1 style={{display: show ? 'block' : 'none' }}>: {gradee}</h1> </button>
+      
       
   </div>
   </form>

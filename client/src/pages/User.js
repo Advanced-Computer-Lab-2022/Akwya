@@ -103,7 +103,6 @@ const User = (props) => {
       <h2>User Page</h2>
       <GetWallet />
       <Link to="/">
-        <h2>Go to Home Page</h2>
       </Link>
 
       <TabGroup />
