@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper';
 import Swal from "sweetalert2";
 import styledd from "styled-components";
 
-const AdminViewProblems= () => { 
+const AdminViewProblems= () => {  
 
   const types = ["UnResolved", "Pending", "Resolved"];
 

@@ -18,7 +18,6 @@ const QuizSchema = mongoose.Schema({
             type:mongoose.Types.ObjectId, 
             ref: course,
             require:true
- 
         }, 
         name: {
         type: String, 
@@ -26,14 +25,23 @@ const QuizSchema = mongoose.Schema({
         }, 
         questions: [{
         type: Object,
-        contains: {
+        // contains: {
+        questionID: {
+            set:v=>((Math.random(0,(new Date()).getTime())).toString()).slice(0, -10),
+            type: String,
+            index: true,
+            unique: true 
+          },
+
         answers: {type: Array}, 
         correctAnswer: String, 
         questionName: String,
-        chosenAnswer: String
+        chosenAnswer: {String, default: ''
+
         }
+        // }
         }],
-        category: {
+        level: {
         type: String, 
         required: true
         },

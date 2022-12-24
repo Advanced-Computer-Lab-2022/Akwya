@@ -27,11 +27,8 @@ const getQuiz = async (req, res) => {
 
 
 const submitQuiz = async (req, res) => {
-    console.log('ana hena')
-
     
-    try {
-            
+    try { 
             const updatedQuiz = req.body
             console.log('ana hena')
 
@@ -46,7 +43,45 @@ const submitQuiz = async (req, res) => {
         } catch (error) {
     
             res.json({message: error}); }
-        }   
+        }  
+        
+const resetQuiz = async (req, res) => {        
+            
+            try {    
+                const updatedQuiz = await quiz.find({courseid:{$eq:req.params.id}})
+                const quizid = await quiz.find({courseid:{$eq:req.params.id}})
+                console.log('yo am her '+quizid[0]._id)
+                var myobj = JSON.stringify(quizid[0]._id);
+                console.log('yo am her '+updatedQuiz.length)
+
+                    for (let i = 0; i < updatedQuiz.length; i++) {
+                        console.log('ana apaapapapppaap'+quizid[i]._id)                      
+                        for (let index = 0; index < updatedQuiz[i].questions.length ; index++) {
+                            console.log('ana babbaababababaaaba'+updatedQuiz[i].questions[index].chosenAnswer)
+                            updatedQuiz[i].questions[index].chosenAnswer=''
+                }
+                let text1 = "'";
+                let text2 = quizid[i]._id;
+                let result = text1.concat(text2);
+
+                let text3 = "'";
+                let result2 = result.concat(text3);
+                console.log('ressss'+result2)    
+                await quiz.findOneAndUpdate({_id:quizid[i]},updatedQuiz[i],{new: true} )
+                console.log('singleQuiz kheles')
+            }
+            const updatedQuizz = await quiz.find({courseid:{$eq:req.params.id}})
+
+
+            res.json(updatedQuizz)
+
+            
+            console.log(' kharagtttt')
+
+                } catch (error) {
+            
+                    res.json({message: error}); }
+                }  
 
 
 
@@ -57,18 +92,11 @@ const viewQuestionGrade = async (req, res) => {
 
 
     try {
-            const updatedQuiz = await quiz.find({courseid:{$eq:req.params.id}}).select('questions')
+            const updatedQuiz = await quiz.find({courseid:{$eq:req.params.id}})
 
             // console.log(await quiz.find({courseid:{$eq:req.params.id}}))
-
-
             const i= req.params.quiz;
-
             console.log(i)
-
-
-
-
                 for (let index = 0; index < updatedQuiz[i].questions.length; index++) {
 
                 correctAnswerr=correctAnswerr+1;
@@ -76,7 +104,7 @@ const viewQuestionGrade = async (req, res) => {
 
                 if (updatedQuiz[i].questions[index].correctAnswer.valueOf()===updatedQuiz[i].questions[index].chosenAnswer.valueOf()) {
                     chosenAnswerr=chosenAnswerr+1;
-                }
+                } 
         
                 
                 // {chosenAnswerr&&'/'+correctAnswerr}
@@ -107,19 +135,21 @@ const viewQuestionGrade = async (req, res) => {
 const viewGrade = async (req, res) => {
             var chosenAnswerr=0;
             var correctAnswerr=0;
+            let temp=  {
+                ...req.body.level,
+            };
 
             try {
                     
 
 //course el wahed momken yekon liii kaza quiz
-                    const updatedQuiz = await quiz.find({courseid:{$eq:req.params.id}}).select('questions')
+                    const updatedQuiz = await quiz.find({courseid:{$eq:req.params.id}, level:{$eq:req.params.level}}).select('questions')
 
-                    console.log(await quiz.find({courseid:{$eq:req.params.id}}))
-
+                    
         
                     for (let i = 0; i < updatedQuiz.length; i++) {
 
-                        for (let index = 0; index < updatedQuiz[i].questions.length; index++) {
+                        for (let index = 0; index < updatedQuiz[i].questions.length ; index++) {
 
                         correctAnswerr=correctAnswerr+1;
                         
@@ -130,7 +160,6 @@ const viewGrade = async (req, res) => {
                 
                         console.log(correctAnswerr);
                         console.log(chosenAnswerr)
-                        // {chosenAnswerr&&'/'+correctAnswerr}
                 }
             }
             const x=chosenAnswerr.toString();
@@ -140,8 +169,6 @@ const viewGrade = async (req, res) => {
             res.send(x+'/'+y)
 
                 console.log('ana we2eft ok')
-
-            
                 
              }
               catch (error) {
@@ -150,7 +177,7 @@ const viewGrade = async (req, res) => {
 
                     console.log('ana we2eft ok')
 
-                } 
+                }
      
 
 
@@ -162,4 +189,4 @@ const viewGrade = async (req, res) => {
 
 
 
-export{createQuiz,getQuiz,submitQuiz,viewGrade,viewQuestionGrade}
+export{resetQuiz,createQuiz,getQuiz,submitQuiz,viewGrade,viewQuestionGrade}

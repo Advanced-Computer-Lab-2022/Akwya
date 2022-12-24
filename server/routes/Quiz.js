@@ -1,5 +1,5 @@
 import express from "express";
-import { createQuiz, getQuiz, submitQuiz,viewGrade,viewQuestionGrade } from "../controllers/quizController.js";
+import { resetQuiz, createQuiz, getQuiz, submitQuiz,viewGrade,viewQuestionGrade } from "../controllers/quizController.js";
 
 // const checkAuth = require('../middleware/check-auth');
 
@@ -8,7 +8,9 @@ const router = express.Router();
 router.post('/create',createQuiz);
 router.get('/TakeQuiz/:id',getQuiz)
 router.post('/TakeQuiz/submitQuiz',submitQuiz)
-router.get('/TakeQuiz/viewGrade/:id',viewGrade)
+router.post('/TakeQuiz/resetQuiz/:id',resetQuiz)
+
+router.get('/TakeQuiz/viewGrade/:id/:level',viewGrade)
 router.get('/TakeQuiz/viewQuestionGrade/:id/:quiz',viewQuestionGrade)
 
 
