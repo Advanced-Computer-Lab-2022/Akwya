@@ -11,6 +11,7 @@ const User = (props) => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = true
     document.getElementById('loginbutton').hidden = false
+    document.getElementById('contract').hidden = true
 
     })
   return (

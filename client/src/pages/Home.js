@@ -5,6 +5,8 @@ const Home = () => {
   useEffect(()=>{
   document.getElementById('logoutbutton').hidden = true
   document.getElementById('loginbutton').hidden = true
+  document.getElementById('contract').hidden = true
+
   })
   return (
     <div className="home" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>

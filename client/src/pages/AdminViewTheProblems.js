@@ -31,6 +31,8 @@ const [showResolved, setshowResolved] = useState(false);
 useEffect(()=>{
   document.getElementById('logoutbutton').hidden = false
   document.getElementById('loginbutton').hidden = true
+  document.getElementById('contract').hidden = true
+
   })
 const Tab = styledd.button`
   padding: 10px 100px;

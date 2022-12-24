@@ -5,6 +5,8 @@ const Policy = () => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = true
     document.getElementById('loginbutton').hidden = true
+    document.getElementById('contract').hidden = true
+
     })
   // function checkChange() {
   //   const checkbox = document.getElementById("agreed");

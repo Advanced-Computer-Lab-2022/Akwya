@@ -20,6 +20,8 @@ const User = (props) => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = false
     document.getElementById('loginbutton').hidden = true
+    document.getElementById('contract').hidden = true
+
     })
   const Tab = styled.button`
   
