@@ -153,31 +153,6 @@ const Tab = styledd.button`
                       
             axios.post('http://localhost:9000/Quiz/TakeQuiz/resetQuiz/'+CourseID).then(res=>{
              console.log((res.data))
-
-
-             
-            //  setQuizzes([])
-            //  setShowGrade(true)
-            //  setGrade(true)
-            //  setTheQuestionIndex('')
-            //  setTheQuizIndex('')
-         
-
-
-
-
-             Swal.fire({
-              title: 'Your reset!',
-              text:"You reset " +res.data,
-              icon: 'success',
-              confirmButtonColor: '#38a53e',
-              confirmButtonText: 'OK'
-            }).then((result) => {
-              if (result.isConfirmed) {
-        
-              }
-            })
-        
         
             });
                   
