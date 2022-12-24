@@ -121,9 +121,9 @@ saveQuiz = () => {
     console.log("answer length: "+this.state.answers.length)
     console.log("correct Answer: "+quizz.correctAnswer==='')
 
-    if( !this.state.name){
+    if( !this.state.name || this.state.questions.length===0){
         Swal.fire({
-            title: 'Missing Quiz Name!',
+            title: 'Missing Quiz Name or Question(s)!',
             icon: 'error',
             confirmButtonColor: '#38a53e',
             confirmButtonText: 'OK',
@@ -200,7 +200,7 @@ return (
 
 
     <div className="questions">
-            <div className='add-question' style={{background:"#1976d2"}} onClick={()=>this.setState({addQuestion: true})}>Add Question</div>
+            <div className='add-question' style={{background:"#1976d2"}} onClick={()=>this.setState({addQuestion: true})}>Add A Question</div>
         </div>
             
     <span style={{background:"#1976d2", padding:10,cursor: "pointer"}} onClick={()=>this.saveQuiz()} className='btn save-quiz'>Save Quiz</span>
