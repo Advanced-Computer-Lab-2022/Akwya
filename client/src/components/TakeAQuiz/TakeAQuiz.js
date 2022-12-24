@@ -166,9 +166,6 @@ const Tab = styledd.button`
                     setShow(false);
                     // setQuizzes(Quizzes1)
                     setReset(reset+1)
-console.log(reset)
-
-
                     
                   break;
                   case "Intermediate":
