@@ -196,7 +196,7 @@ return (
 <br/>
 <br/>
 
-<span hidden={this.state.deleteBayen} className='btn save-quiz' style={{background:"orangered", padding:5 ,cursor: "pointer"}} onClick={()=>this.removeQuestion() && this.setState({deleteBayen: true})}>Delete Questions</span>
+<span hidden={this.state.deleteBayen} className='btn save-quiz' style={{background:"orangered", padding:5 ,cursor: "pointer"}} onClick={()=>{this.removeQuestion() ; this.setState({deleteBayen: true})}}>Delete Questions</span>
 
 
     <div className="questions">
