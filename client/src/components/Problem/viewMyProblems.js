@@ -14,7 +14,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Swal from "sweetalert2";
-
+import styles from './reportAProblem.css'
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -119,7 +119,7 @@ return(
         </TableHead>
         <TableBody>
           {problems.map((problem) => (
-            <TableRow
+            <TableRow style={{boxShadow:"100px 20px 1000px purple" ,backgroundColor:'white',borderWidth:'20px',borderColor:'green' , '':'white', borderRadius: '20px', padding: '20px'}}
             hover
             sx={{
                 "&:hover":{
@@ -134,7 +134,7 @@ return(
               <TableCell align="center">{problem.category}</TableCell>
               <TableCell align="center">{problem.status}</TableCell>
               <TableCell align="center" >
-              <Button className='btn followup' variant="contained" style={{padding:5 ,cursor: "pointer"}} onClick={() => followup(problem._id)}>follow up</Button>
+              <Button variant="contained" style={{padding:5 ,cursor: "pointer", backgroundColor:'purple'}} onClick={() => followup(problem._id)}>follow up</Button>
               </TableCell>
 
             </TableRow>
