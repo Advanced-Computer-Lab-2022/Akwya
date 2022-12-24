@@ -53,7 +53,7 @@ const Tab = styledd.button`
   const [level,setLevel] = useState('');
 
 
-  const [reset,setReset] = useState(false);
+  const [reset,setReset] = useState(1);
 
 
   const [gradee,setGradee] = useState('')
@@ -85,7 +85,7 @@ const Tab = styledd.button`
           setQuizzes(res.data)
       })
       .catch(err=>{console.log(err)})
-    },[])
+    },[reset])
 
 
     const handleQuestionSubmit = async (quizIndex) => {
@@ -190,8 +190,8 @@ const Tab = styledd.button`
                     setLevel('Beginner')
                     setShow(false);
                     // setQuizzes(Quizzes1)
-                    setReset(true)
-
+                    setReset(reset+1)
+console.log(reset)
 
 
                     
@@ -203,7 +203,7 @@ const Tab = styledd.button`
                     setLevel('Intermediate')
                     setShow(false);
                     // setQuizzes(Quizzes1)
-                    setReset(true)
+                    setReset(reset+1)
 
     
                     
@@ -215,7 +215,7 @@ const Tab = styledd.button`
                     setLevel('Advanced')
                     setShow(false);
                     // setQuizzes(Quizzes1)
-                    setReset(true)
+                    setReset(reset+1)
 
                     
                     break;
