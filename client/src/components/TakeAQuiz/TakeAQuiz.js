@@ -526,7 +526,7 @@ return(
   
           <form className="create" onSubmit={handleSubmit}> 
   <div>
-      <button hidden={totalGrade} className='anaButton'>View This Level Grade<h1 style={{display: show ? 'block' : 'none' }}>: {gradee}</h1> </button>
+      <button hidden={totalGrade} className='anaButton'>View This Level Grade<p style={{display: show ? 'block' : 'none' }}>: {gradee}</p> </button>
       
       
   </div>
