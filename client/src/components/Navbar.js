@@ -7,10 +7,13 @@ const Navbar = () => {
 
   return (
     <header>
+       <Link to="/">
+        <h2  align="right" style={{  marginTop:"-20px",marginRight:"2px"}} sx={{marginRight:2 }}>Go To Home Page</h2>
+
+      </Link>
       <div className="container" style={{background: "white",marginLeft:"200px",marginRight:"200px"}}>
-        <Link to="/">
-          <h1>Online Learning</h1>
-        </Link>
+          <h1>Akwya</h1>
+          
         <Box id="logoutbutton" align="right" sx={{marginRight:2 }} hidden="true">
         <Button variant="contained" onClick={logout} margin="normal" padding="normal">Log Out</Button>
       </Box>
@@ -18,7 +21,12 @@ const Navbar = () => {
         <Button variant="contained" onClick={()=>{window.location = '/login'}} margin="normal" padding="normal">Log In</Button>
       </Box>
       </div>
+
+     
+
     </header>
+
+    
   )
 }
 

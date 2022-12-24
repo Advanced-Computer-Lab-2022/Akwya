@@ -18,7 +18,6 @@ const Quiz = (props) => {
     <div className="createQuiz">
     <h2>Quiz Page</h2>
       <Link to="/">
-          <h2>Go to Home Page</h2>
         </Link>
 
         

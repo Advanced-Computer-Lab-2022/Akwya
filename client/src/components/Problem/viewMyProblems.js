@@ -77,7 +77,7 @@ if (result.value=='') {
     const prob = {
 
       id:props,
-      input:result.value,
+      input:result.value+'   ',
     };
 
     await axios.post('/course/followUp', {prob}).then(res=>{
