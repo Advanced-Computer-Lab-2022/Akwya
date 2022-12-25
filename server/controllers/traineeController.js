@@ -317,8 +317,42 @@ const sendCertificate = async (req,res)=>{
 
     const videoCount= async(req,res) => {
         try{
-            const videoos= await videos.find({courseID:req.query.CourseID}).count();
+            const videoos= await videos.find({courseID:req.params.CourseID}).count();
             res.status(200).json(videoos)
+        }
+    
+        catch(error){
+            res.status(400).json({message: error.message})
+        }
+    }
+
+    const getUser= async(req,res) => {
+        try{
+
+            const traineeee = await trainee.findOne({_id: req.params.TraineeID})//not working
+
+           // const traineee = await trainee.aggregate([{$match: { "courses.courseid": req.params.CourseID }},//also not working
+
+            // const traineee = await trainee.aggregate([
+            //     { $match: {'courses.courseid': req.params.CourseID } },
+            //     {
+            //       $project: {
+            //         courses: {
+            //           $filter: {
+            //             input: '$courses',
+            //             as: 'courses',
+            //             cond: { $eq: ['$$courses.courseid', req.params.CourseID] },
+            //           },
+            //         },
+            //         _id: 0,
+            //       },
+            //     },
+            //   ]);
+
+
+            // {$match: { _id: req.params.TraineeID }},
+            // {$project: { progress: "$courses.progress" }}]);            
+            res.status(200).json(traineee)
         }
     
         catch(error){
@@ -332,7 +366,7 @@ const sendCertificate = async (req,res)=>{
 
             const oldWatchedVideo = await userWatchVideos.findOne({$and:[{VideoID:videoos._id},{TraineeID:req.params.TraineeID}]});
         if(oldWatchedVideo!=null){
-            res.status(200).json({message:"Video Already Watched"})
+            res.status(400).json({message:"Video Already Watched"})
             return;
         }
             
@@ -354,5 +388,5 @@ const sendCertificate = async (req,res)=>{
     }
 
 export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,
-    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo}
+    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUser}
 
