@@ -48,7 +48,7 @@ const Course = (props) => {
   ${({ active }) =>
     active &&
     `
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid black;
     opacity: 1;
   `}
 `;
@@ -91,7 +91,6 @@ const Course = (props) => {
       <div className="guest" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
         <h2>Course Page</h2>
         <Link to="/">
-          <h2>Go to Home Page</h2>
         </Link>
         <TabGroup/>
 

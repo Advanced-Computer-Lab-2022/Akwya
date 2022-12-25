@@ -25,14 +25,16 @@ const Admin = () => {
          <h5>Feeling generous?  </h5>
          <div style={{display: "flex","justify-content": "space-between","max-width": "420px"}}>
         <button class="prbutton" onClick={()=>{window.location='/AdminPromotion'}}><h5>Set Promotions %</h5></button>
-        <button class="prbutton" onClick={()=>{window.location='/AdminViewTheProblems'}}><h5>View Problems</h5></button>
         </div>
+        <button class="prbutton" onClick={()=>{window.location='/AdminViewTheProblems'}}><h5>View Problems</h5></button>
+        <br/>
+
         <button class="prbutton" onClick={()=>{window.location='/Refund'}}><h5>Refund Trainee $</h5></button>
         <br/>
         <button class="prbutton" onClick={()=>{window.location='/GrantAccess'}}><h5>Grant Access !</h5></button>
 
 
-        </div>
+        </div> 
       
 
        

@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper';
 import Swal from "sweetalert2";
 import styledd from "styled-components";
 
-const AdminViewProblems= () => { 
+const AdminViewProblems= () => {  
 
   const types = ["UnResolved", "Pending", "Resolved"];
 
@@ -125,6 +125,8 @@ useEffect(()=>{
 
 
 
+
+
 return( 
 
 
@@ -138,12 +140,10 @@ return(
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-
-          <StyledTableCell align="center">State</StyledTableCell>
+          <StyledTableCell align="center">Status</StyledTableCell>
            <StyledTableCell align="center">Problem</StyledTableCell>
             <StyledTableCell align="center">Category</StyledTableCell>
-            <StyledTableCell align="center">Status</StyledTableCell>
-            <StyledTableCell align="center">Follow Up</StyledTableCell>
+            <StyledTableCell align="center">Follow Ups</StyledTableCell>
 
 
           </TableRow>
@@ -158,7 +158,7 @@ return(
             <TableRow id = {problem._id}
 
 
-            style={{backgroundColor:'green' , '':'white', borderRadius: '20px', padding: '20px'}}
+            style={{boxShadow:"10px 10px 1000px green" ,backgroundColor:'white',borderWidth:'20px',borderColor:'green' , '':'white', borderRadius: '20px', padding: '20px'}}
             hover
             sx={{
                 "&:hover":{
@@ -169,12 +169,16 @@ return(
             }}
            
               >
-               
-              
+            
+            <TableCell align="center">{problem.status}</TableCell>
               <TableCell align="center">{problem.theProblem}</TableCell>
               <TableCell align="center">{problem.category}</TableCell>
-              <TableCell align="center">{problem.status}</TableCell>
-              <TableCell align="center" >{problem.followUps.map(followUp =><ul>{followUp}</ul>)}</TableCell>
+              {/* <TableCell align="center" >{problem.followUps.map(followUp =><ul>{followUp}</ul>)}</TableCell> */}
+              <TableCell align="center" style={{overflow:'auto'}}>{problem.followUps}</TableCell>
+
+               {/* <TableCell align="center" >{problem.followUps.map(followUp =><ul>{followUp}</ul>)}</TableCell> */}
+               {/* <TableCell align="center" style={{overflow:'scroll'}}>{problem.followUs}</TableCell> */}
+
 
             </TableRow>
             
@@ -189,7 +193,7 @@ return(
                 <TableRow id = {problem._id}
     
     
-                style={{backgroundColor:'yellow' , '':'white', borderRadius: '20px', padding: '20px'}}
+                style={{boxShadow:"100px 20px 1000px yellow" ,backgroundColor:'white',borderWidth:'20px',borderColor:'green' , '':'white', borderRadius: '20px', padding: '20px'}}
                 hover
                 sx={{
                     "&:hover":{
@@ -232,10 +236,12 @@ return(
                   </TableCell> 
     
                   
+
+                  
+          
                   <TableCell align="center">{problem.theProblem}</TableCell>
                   <TableCell align="center">{problem.category}</TableCell>
-                  <TableCell align="center">{problem.status}</TableCell>
-                  <TableCell align="center" >{problem.followUps.map(followUp =><ul>{followUp}</ul>)}</TableCell>
+                  <TableCell align="center">{problem.followUps}</TableCell>
     
                 </TableRow>
             
@@ -250,7 +256,7 @@ return(
               <TableRow id = {problem._id}
   
   
-              style={{backgroundColor:'red' , '':'white', borderRadius: '20px', padding: '20px'}}
+              style={{boxShadow:"100px 20px 1000px red" ,backgroundColor:'white',borderWidth:'20px',borderColor:'green' , '':'white', borderRadius: '20px', padding: '20px'}}
               hover
               sx={{
                   "&:hover":{
@@ -313,11 +319,9 @@ return(
                  </form> 
                 </TableCell> 
   
-                
                 <TableCell align="center">{problem.theProblem}</TableCell>
                 <TableCell align="center">{problem.category}</TableCell>
-                <TableCell align="center">{problem.status}</TableCell>
-                <TableCell align="center" >{problem.followUps.map(followUp =><ul>{followUp}</ul>)}</TableCell>
+                <TableCell align="center">{problem.followUps}</TableCell>
   
               </TableRow>
 

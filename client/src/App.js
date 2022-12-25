@@ -92,11 +92,11 @@ function App() {
               element={<Instructor country={country} tempid='6381101753d48ea316365f94'/>}
             />
             <Route
-              path="/guest"
+              path="/guest/0"
               element={<Guest country={country}/>}
             />
             <Route
-              path="/guest/:id"
+              path="/guest/0/:id"
               element={<Course country={country}/>}
             />
             <Route

@@ -170,17 +170,17 @@ const getCourses = async (req, res) => {
 
 
 //get a course
-const getACourse = async (req, res) => {
-    const { id } = req.params
+// const getACourse = async (req, res) => {
+//     const { id } = req.params
 
-    const ACourse = await course.findById(id)
+//     const ACourse = await course.findById(id).select('title')
 
-    if (!ACourse) {
-        return res.status(404).json({ error: " No such Course" })
+//     if (!ACourse) {
+//         return res.status(404).json({ error: " No such Course" })
 
-    }
-    res.status(200).json(ACourse)
-}
+//     }
+//     res.status(200).json(ACourse)
+// }
 
 
 //delete a course
@@ -317,6 +317,8 @@ const followUpOnAProblem  = async (req, res) => {
 
     
     }
+
+   
 
    
 

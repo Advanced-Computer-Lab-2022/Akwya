@@ -38,7 +38,7 @@ const User = (props) => {
   ${({ active }) =>
     active &&
     `
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid black;
     opacity: 1;
   `}
 `;
@@ -110,7 +110,6 @@ const User = (props) => {
       <div className="user" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
         <h2>User Page</h2>
         <Link to="/">
-          <h2>Go to Home Page</h2>
         </Link>
         
         <TabGroup/>

@@ -29,7 +29,7 @@ const Home = () => {
       <Link to="/instructor/6381101753d48ea316365f94">
         <h2>Go to Instructor Page</h2>
       </Link>
-      <Link to="/guest">
+      <Link to="/guest/0">
         <h2>Go to Guest Page</h2>
       </Link>
    

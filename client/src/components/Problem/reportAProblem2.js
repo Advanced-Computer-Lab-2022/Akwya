@@ -86,7 +86,7 @@ import { getValue } from '@mui/system';
                     confirmButtonText: 'OK'
                   }).then((result) => {
                     if (result.isConfirmed) {
-                      window.location.reload();
+                      // window.location.reload();
                     }
                   })
             }).catch(er=>{
@@ -95,10 +95,10 @@ import { getValue } from '@mui/system';
 
         }else {
         
-          Swal.fire({
-            title: 'Missing input!',
-            confirmButtonText: 'OK'
-          })
+          // Swal.fire({
+          //   title: 'Missing input!',
+          //   confirmButtonText: 'OK'
+          // })
         } 
 
 
