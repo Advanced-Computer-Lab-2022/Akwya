@@ -203,6 +203,21 @@ if(window.location.href.split('/').at(3)=='userCorporate'){
 }
 
 
+if(window.location.href.split('/').at(3)=='guest'){
+    return(
+        <div>
+            <h1>Course Details</h1>
+            <ul>
+    
+                {courses.map(course => <li key={course._id}>Title: {course.title} Price: {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
+               
+    
+            </ul>
+    
+        </div>
+    )
+    
+}
 
 
 return(
