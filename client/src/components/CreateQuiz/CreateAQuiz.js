@@ -21,7 +21,8 @@ addQuestion: false,
 questionName:'',
 answers: [], 
 correctAnswer:'',
-chosenAnswer:''
+chosenAnswer:'',
+deleteBayen: true, 
 
 } 
 } 
@@ -120,9 +121,9 @@ saveQuiz = () => {
     console.log("answer length: "+this.state.answers.length)
     console.log("correct Answer: "+quizz.correctAnswer==='')
 
-    if( !this.state.name){
+    if( !this.state.name || this.state.questions.length===0){
         Swal.fire({
-            title: 'Missing Quiz Name!',
+            title: 'Missing Quiz Name or Question(s)!',
             icon: 'error',
             confirmButtonColor: '#38a53e',
             confirmButtonText: 'OK',
@@ -194,11 +195,12 @@ return (
     
 <br/>
 <br/>
-<span className='btn save-quiz' style={{background:"orangered", padding:5 ,cursor: "pointer"}} onClick={()=>this.removeQuestion()}>Delete Questions</span>
+
+<span hidden={this.state.deleteBayen} className='btn save-quiz' style={{background:"orangered", padding:5 ,cursor: "pointer"}} onClick={()=>{this.removeQuestion() ; this.setState({deleteBayen: true})}}>Delete Questions</span>
 
 
     <div className="questions">
-            <div className='add-question' style={{background:"#1976d2"}} onClick={()=>this.setState({addQuestion: true})}>Add Question</div>
+            <div className='add-question' style={{background:"#1976d2"}} onClick={()=>this.setState({addQuestion: true})}>Add A Question</div>
         </div>
             
     <span style={{background:"#1976d2", padding:10,cursor: "pointer"}} onClick={()=>this.saveQuiz()} className='btn save-quiz'>Save Quiz</span>
@@ -228,7 +230,7 @@ return (
                 </form>
         <div className='btn-wrapper'>
             <div className='btn' style={{background:"orangered", padding:3,margin:5,cursor: "pointer"}} onClick={()=>this.setState({addQuestion:false})}>Close </div>
-            <div className='btn' style={{background:"#1976d2", padding:3,margin:5,cursor: "pointer"}} onClick={()=>this.saveQuestion()}>Save</div>
+            <div className='btn' style={{background:"#1976d2", padding:3,margin:5,cursor: "pointer"}} onClick={()=> {this.setState({deleteBayen: false}) ;this.saveQuestion()}}>Save</div>
         </div>
 
         </div>

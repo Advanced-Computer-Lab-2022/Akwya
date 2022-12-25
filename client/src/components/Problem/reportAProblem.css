@@ -1,3 +1,9 @@
+.btn-followup{
+    background-color: red;
+
+}
+
+
 .report-problem-wrapper {
     display: flex;
     align-items: flex-start;
@@ -53,15 +59,18 @@
 .report-problem-wrapper .btn-wrapper{
     display: flex;
     align-items: center;
+
     }
 
 .report-problem-wrapper .btn-wrapper .btn { 
     color: black;
     border-radius: 10px !important;
+    
 }
 
 .report-problem-wrapper .btn-wrapper .btn:first-child{
     background-color: red;
+    
 }
 
 .report-problem-wrapper .question {
