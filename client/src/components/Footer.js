@@ -10,6 +10,9 @@ const Footer = () =>
         <li>
             <a href="/Policy">Policy</a>
         </li>
+        <li>
+            <a href="/Contract" id='contract' hidden>Contract</a>
+        </li>
         {/* <li>
             <a href="cases.html">Cases</a>
         </li>

@@ -10,6 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Swal from "sweetalert2";
 
 
 
@@ -24,20 +25,30 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-  const { useState } = require("react");
+  const { useState, useEffect } = require("react");
 
   const EditBio = () => { 
 
 
     const params = new URLSearchParams(window.location.search);
     // const instructorId = params.get('id');
-    const instructorId = '6381101753d48ea316365f94';
-    // const instructorId = window.location.href.split('/').at(4);
+    // const instructorId = '6381101753d48ea316365f94';
+    const instructorId = window.location.href.split('/').at(4);
     console.log(instructorId);
 
     const [instructors,setInstructors] = useState([]);
     const [ minibiography,setMinibiography] = useState('');
+    const [instructor,setInstructor] = useState([]);
 
+    useEffect(()=>{
+      axios.get(`http://localhost:9000/instructor/viewBio/`+instructorId).then(
+   (res) => { 
+    setInstructor(res.data)
+       setMinibiography(res.data[0].minibiography)
+       
+   }
+    );
+  },[instructors]) 
 
     const edit =  async () => {
         await axios.get(`http://localhost:9000/instructor/editBio/`+instructorId +'?minibiography='+ minibiography ).then(
@@ -45,7 +56,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
            const instructors = res.data
            console.log(instructors)
            setInstructors(instructors)
-           
+           Swal.fire({
+            title: 'New Bio saved!',
+            icon: 'success',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK'
+          })  
        }
         );
       
@@ -53,10 +69,22 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 return(
 
 
-    <div className="Edit bio">
+  <div class="ganb">
+
+<form className="create"> 
+<div>
+{instructor.map((inst) => (
+                    
+                    <div> <h1>Biography</h1>
+                      <h4 style={{display:"inline" , color:'black'}}>
+                        {inst.minibiography}</h4 ></div>
+                      ))}
 
 
-<label>Enter Your Biography:</label>
+  </div>
+  <br/>
+<div class="txt_field">
+
       <input 
         type="text" 
         id="bio"
@@ -64,21 +92,23 @@ return(
         value={ minibiography}
         required
       />
-        
-        
+        <label>Edit Biography</label>
+
+        </div> <br/>
                 <Box sx={{marginBottom: 2}}>
                 <Button variant="contained"
+                class="button"
                 onClick={edit}
                 margin="normal"
                 padding="normal"
-                >Update Your Minibiography</Button> 
+                >Edit</Button> 
                 
                 </Box>
 
 
     
-    
-            
+    </form>
+{/*             
          <div> 
         { minibiography}
          <div> 
@@ -87,7 +117,7 @@ return(
        </div>
 
                   
-       </div>
+       </div> */}
 
 
        </div>

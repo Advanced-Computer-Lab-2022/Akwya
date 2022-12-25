@@ -10,6 +10,8 @@ const Admin = () => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = false
     document.getElementById('loginbutton').hidden = true
+    document.getElementById('contract').hidden = true
+
     })
     return (
         <div class="admin">
