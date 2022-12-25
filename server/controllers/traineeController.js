@@ -326,33 +326,16 @@ const sendCertificate = async (req,res)=>{
         }
     }
 
-    const getUser= async(req,res) => {
+    const getUserProgress= async(req,res) => {
         try{
 
-            const traineeee = await trainee.findOne({_id: req.params.TraineeID})//not working
 
-           // const traineee = await trainee.aggregate([{$match: { "courses.courseid": req.params.CourseID }},//also not working
+            const videoos= await userWatchVideos.find({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]}).count();
 
-            // const traineee = await trainee.aggregate([
-            //     { $match: {'courses.courseid': req.params.CourseID } },
-            //     {
-            //       $project: {
-            //         courses: {
-            //           $filter: {
-            //             input: '$courses',
-            //             as: 'courses',
-            //             cond: { $eq: ['$$courses.courseid', req.params.CourseID] },
-            //           },
-            //         },
-            //         _id: 0,
-            //       },
-            //     },
-            //   ]);
+            const vidcount= await videos.find({courseID:req.params.CourseID}).count();
 
-
-            // {$match: { _id: req.params.TraineeID }},
-            // {$project: { progress: "$courses.progress" }}]);            
-            res.status(200).json(traineeee)
+        
+            res.status(200).json(Math.round((videoos/vidcount)*100))
         }
     
         catch(error){
@@ -388,5 +371,5 @@ const sendCertificate = async (req,res)=>{
     }
 
 export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,
-    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUser}
+    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress}
 

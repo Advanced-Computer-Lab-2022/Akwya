@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 
 function UserViewVideos() {
 const [videos,setVideos] = useState([])
-const [userr,setUser] = useState([])
+const [userProgress,setUserProgress] = useState(0)
 const [videoCount,setVideoCount] = useState(0)
 const [preview,setPreview] = useState([])
 const [registered,setRegistered] = useState([])
@@ -22,30 +22,14 @@ const TraineeID = window.location.href.split('/').at(4);
 
 useEffect(()=>{
     axios
-    .get(`http://localhost:9000/trainee/getUser/${TraineeID}`)
+    .get(`http://localhost:9000/trainee/getUserProgress/${TraineeID}/${CourseID}`)
     .then( res => {
-        console.log(res)
-        setUser(res.data)
+        console.log(JSON.stringify(res)+" daaaaa")
+        if(res.data!=null)
+            setUserProgress(res.data)
     })
     .catch(err=>{console.log(err)})
-},[])
-
-
-useEffect(()=>{
-    axios
-    .get(`http://localhost:9000/trainee/videoCount/${CourseID}`)
-    .then( res => {
-        console.log(res)
-        setVideoCount(res.data)
-        console.log(videoCount+" this is budeid codubne")
-        if(videoCount>0){
-            setShowProgress(true);
-        }
-    })
-    .catch(err=>{console.log(err)})
-},[])
-
-
+},[showProgress])
 
 // console.log(ID)
 useEffect(()=>{
@@ -195,7 +179,7 @@ return(
     <div style={{ "text-align" : 'left' }}>
 
     <div  style={{"text-align" : 'center' }}>
-        {userr.courses.map(course => ( <h2>Your Progress is {(course.progress/videoCount)*100}</h2> ))}
+       <h2>Your Progress is {userProgress}%</h2>
         
     </div>
 
@@ -234,7 +218,8 @@ return(
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-                        }
+                setShowProgress(!showProgress);
+            }
           })  
         setError(null)
     } 
