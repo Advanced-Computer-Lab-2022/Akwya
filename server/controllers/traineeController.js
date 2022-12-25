@@ -352,7 +352,7 @@ const sendCertificate = async (req,res)=>{
 
             // {$match: { _id: req.params.TraineeID }},
             // {$project: { progress: "$courses.progress" }}]);            
-            res.status(200).json(traineee)
+            res.status(200).json(traineeee)
         }
     
         catch(error){
