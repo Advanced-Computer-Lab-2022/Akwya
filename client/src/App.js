@@ -10,25 +10,34 @@ import Instructor from './pages/Instructor'
 import Guest from './pages/Guest'
 import Contract from './pages/Contract'
 import Policy from './pages/Policy'
-
-
+import SignUp from './pages/SignupFE'
+import Login from './pages/LoginFE'
+import Footer from './components/Footer'
 
 import ViewProfileInstructor from './pages/ViewProfileInstructor';
-import Reset from './pages/ResetPassword';
-import Resett from './pages/ResetPwTrainee';
+import ResetMail from './pages/ResetPwFE';
+// import Resett from './pages/ResetPwTrainee';
 
 import React, { useState, useEffect } from 'react';  
 import axios from 'axios'
-
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import CountryDropdown from 'country-dropdown-with-flags-for-react';  
 import Course from './pages/Course';
 import CourseI from './pages/CourseI';
 import Quiz from './pages/Quiz';
 import TakeQuiz from './pages/TakeQuiz';
 import DoneWithMyQuiz from './pages/DoneWithMyQuiz';
+import logout from './components/Logout';
+
+import AdminPromotion from './pages/AdminPromotion';
+import Refund from './pages/Refund';
+import GrantAccess from './components/Admin/GrantAccess';
+import AdminViewTheProblems from './pages/AdminViewTheProblems';
+import ContactUs from './pages/ContactUs';
 
 
-let GlobalCountry = 'United Kingdom';
+// let GlobalCountry = 'United Kingdom';
 
 
 function App() {
@@ -53,9 +62,9 @@ function App() {
 
   return (
     <div className="App">
-
-      <CountryDropdown  id="UNIQUE_ID" className='YOUR_CSS_CLASS' preferredCountries={['gb', 'us','eg']}  value="" handleChange={e => {handleCountry(e)}}></CountryDropdown>   
-
+      {/* <div class='countrydd'>
+      <CountryDropdown  preferredCountries={['gb', 'us','eg']}  value="" handleChange={e => {handleCountry(e)}}></CountryDropdown>   
+      </div> */}
 
       <BrowserRouter>
         <Navbar />
@@ -70,37 +79,39 @@ function App() {
               element={<Admin />}
             />
             <Route
-              path="/user/"
+              path="/user/:id"
               element={<User country={country} tid='6396424da56263086dde2489'/>}
             />
             <Route
 
-              path="/userCorporate/"
+              path="/userCorporate/:id"
               element={<UserCorporate country={country} tid='635849b7a58d8beb73e81787'/>}
+
             />
             <Route
               path="/instructor/:id"
-              element={<Instructor country={country}/>}
+              element={<Instructor country={country} tempid='6381101753d48ea316365f94'/>}
             />
             <Route
-              path="/guest"
+              path="/guest/0"
               element={<Guest country={country}/>}
             />
             <Route
-              path="/guest/:id"
+              path="/guest/0/:id"
               element={<Course country={country}/>}
             />
             <Route
-              path="/user/:id"
+              path="/user/:id/:id"
               element={<Course country={country}/>}
             />
             <Route
-              path="/userCorporate/:id"
+              path="/userCorporate/:id/:id"
               element={<Course country={country}/>}
+
             />
             <Route
               path="/instructor/:id/:id"
-              element={<CourseI country={country}/>}
+              element={<CourseI tempid='6381101753d48ea316365f94' country={country}/>}
             />
 
             <Route
@@ -108,33 +119,29 @@ function App() {
               element={<Quiz/>}
               />
               <Route
-              path="/user/:id/TakeQuiz"
+              path="/user/:id/:id/TakeQuiz"
               element={<TakeQuiz/>}
               />
               <Route
-              path="/userCorporate/:id/TakeQuiz"
+              path="/userCorporate/:id/:id/TakeQuiz"
               element={<TakeQuiz/>}
               />
                <Route
-              path="/user/:id/TakeQuiz/Done"
+              path="/user/:id/:id/TakeQuiz/Done"
               element={<DoneWithMyQuiz/>}
               />
 
             <Route
               path="/ViewProfileInstructor/:id"
-              element={<ViewProfileInstructor country={country}/>}
+              element={<ViewProfileInstructor tempid='6381101753d48ea316365f94' country={country}/>}
             />
             <Route
               path="/reset"
-              element={<Reset/>}
-              />
-              <Route
-              path="/resett"
-              element={<Resett/>}
+              element={<ResetMail/>}
               />
             <Route
               path="/Course"
-              element={<Course/>}
+              element={<Course tempid='63868a41143ffa7252ea011e'/>}
             />
             <Route
               path="/Contract"
@@ -144,12 +151,61 @@ function App() {
               path="/Policy"
               element={<Policy/>}
             />
+
+            <Route
+              path="/AdminPromotion"
+              element={<AdminPromotion/>}
+            />
+
+            <Route
+              path="/AdminViewTheProblems"
+              element={<AdminViewTheProblems/>}
+            />
+
+          <Route
+              path="/Refund"
+              element={<Refund/>}
+            />
+
+             <Route
+              path="/signup"
+              element={<SignUp/>}
+            />
+            <Route
+              path="/login"
+              element={<Login/>}
+            />
+            <Route
+              path="/GrantAccess"
+              element={<GrantAccess/>}
+            />
+             <Route
+              path="/contact"
+              element={<ContactUs/>}
+            />
+
           </Routes>
 
 
 
         </div>
       </BrowserRouter>
+      
+      <footer>
+    <ul class="footer-links-main">
+    
+        <li>
+            <a href="/Policy">Policy</a>
+        </li>
+        <li>
+            <a href="/Contract" id='contract' hidden>Contract</a>
+        </li>
+      </ul>
+      
+</footer>
+<div class='countrydd'>
+      <CountryDropdown  preferredCountries={['gb', 'us','eg']}  value="" handleChange={e => {handleCountry(e)}}></CountryDropdown>   
+      </div>
     </div>
   );
 

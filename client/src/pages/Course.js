@@ -6,8 +6,14 @@ import ViewCourseRating from '../components/Instructor/ViewCourseRating'
 import RateAndReviewCourse from '../components/user/RateAndReviewCourse'
 import UserViewVideos from '../components/user/UserViewVideos'
 import RateAndReviewInstructor from '../components/user/RateAndReviewInstructor'
-import React, { useState } from "react";
 import styled from "styled-components";
+import React, { useState, useEffect } from 'react';  
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Notes from '../components/user/Notes.js'
+
 
 
 import reportAProblem2 from '../components/Problem/reportAProblem2'
@@ -20,6 +26,10 @@ const Course = (props) => {
   const [showContent, setshowContent] = useState(false);
   const [showDetails, setshowDetails] = useState(true);
 
+  // const tempid = props.tempid
+  // console.log('el7a20000ny plz')
+
+  // console.log(tempid)
 
 
   const Tab = styled.button`
@@ -32,10 +42,13 @@ const Course = (props) => {
   outline: 0;
   border-bottom: 2px solid transparent;
   transition: ease border-bottom 250ms;
+  :hover {opacity: 1;  transition: ease opacity 300ms;}
+  :not(:hover) {opacity: 0.6; transition: ease opacity 250ms;}
+
   ${({ active }) =>
     active &&
     `
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid black;
     opacity: 1;
   `}
 `;
@@ -72,17 +85,16 @@ const Course = (props) => {
     );
   }
 
+
+
     return (
-      <div className="guest">
+      <div className="guest" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
         <h2>Course Page</h2>
         <Link to="/">
-          <h2>Go to Home Page</h2>
         </Link>
-
-
         <TabGroup/>
 
-        <div style={{display: showContent ? 'block' : 'none' , "text-align" : 'center' }}><UserViewVideos/></div>
+        <div style={{display: showContent ? 'block' : 'none' , "text-align" : 'center' }}><UserViewVideos/><Notes/></div>
         <div style={{display: showDetails ? 'block' : 'none' }}><MyCourse country={props.country}/>
 
         <RateAndReviewCourse/>
@@ -90,10 +102,14 @@ const Course = (props) => {
         </div>
 
         
+        {/* onClick={() => begin(props)}
+        <div style={{display: showPW ? 'block' : 'none' }}><ChangePw tid={props.tid}/></div> */}
 
+        <button onClick={() => reportAProblem2(props.tempid)}>    
 
-        <button onClick={reportAProblem2}>    
+        {/* <button onClick={reportAProblem2 }>     */}
         Report a problem
+        
           </button>
 
         

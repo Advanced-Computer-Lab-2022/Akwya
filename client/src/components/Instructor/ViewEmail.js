@@ -20,10 +20,12 @@ import styled from "styled-components";
     outline: 0;
     border-bottom: 2px solid transparent;
     transition: ease border-bottom 500ms;
+    :hover {opacity: 1;  transition: ease opacity 300ms;}
+    :not(:hover) {opacity: 0.6; transition: ease opacity 250ms;}
     ${({ active }) =>
       active &&
       `
-      border-bottom: 2px solid black;
+      border-bottom: 3px solid black;
       opacity: 1;
     `}
   `;

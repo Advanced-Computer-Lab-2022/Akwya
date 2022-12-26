@@ -1,8 +1,11 @@
-import trainee from "../models/trainee.js"
+import trainee from "../models/trainee.js";
 import course from "../models/course.js";
+import videos from "../models/videos.js";
 import instructor from "../models/instructor.js";
-import nodemailer from 'nodemailer'
-
+import userWatchVideos from "../models/userWatchVideos.js";
+import nodemailer from 'nodemailer';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const rateCourse = async (req, res) => {
  
@@ -115,6 +118,45 @@ const checkPassword= async (req, res) => {
 const resetPassword = async (req,res)=>{
     const userEmail = req.query.mail;
     await trainee.find({email: req.query.mail}).then( async (result) =>  {
+
+        if(result.length==0){
+            //didnt find in trainee, check instructor
+            await instructor.find({email: req.query.mail}).then( async (result) =>  {
+                if(result.length==0){
+                    return res.status(400).json({status:false,Message:"Email not registered"})
+                }
+                var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                var length = 8;
+                var newRandom = "";
+                for (var i = 0; i<=length; i++) {
+                    var randomNumber = Math.floor(Math.random() * chars.length);
+                    newRandom += chars.substring(randomNumber, randomNumber+1);
+                }
+                await instructor.findOneAndUpdate({_id: result[0]._id},{password:newRandom},{ new: true}).then((result)=>{
+                    const mail = {
+                        from: process.env.AUTH_EMAIL,
+                        to: userEmail,
+                        subject: "Reset Your Password",
+                        html: `<p>Forgot your password? We've reset it for you!</p>
+                            <p>Use this new password to login safely: <strong> ${newRandom} </strong></p>`
+                    }
+                
+                    let transporter = nodemailer.createTransport({
+                        service: 'hotmail',
+                        auth: {
+                            user: process.env.AUTH_EMAIL,
+                            pass: process.env.AUTH_PASS
+                        }
+                    })
+                    transporter.sendMail(mail).then((result)=>{
+                        return res.status(200).json({status:true,Message:"Reset mail sent"})
+                    }).catch((error) => {
+                        return res.status(400).json({status:false, error:error.message ,Message:"Failed to send mail"}) })
+                    }).catch((error)=>{
+                        return res.status(400).json({status:false, error:error.message,Message:"Failed to update password"}) })
+            })  
+        }
+        else {
         var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var length = 8;
         var newRandom = "";
@@ -144,6 +186,7 @@ const resetPassword = async (req,res)=>{
                 return res.status(400).json({status:false, error:error.message ,Message:"Failed to send mail"}) })
              }).catch((error)=>{
                 return res.status(400).json({status:false, error:error.message,Message:"Failed to update password"}) })
+             }
     }).catch((error)=>{
         return res.status(400).json({status:false, error:error .message,Message:"Email not registered"}) });
     }
@@ -154,12 +197,21 @@ const resetPassword = async (req,res)=>{
         try {
             
             const wallet = await trainee.findOne({_id:req.params.id}).select('wallet');
-            console.log(wallet);
             res.status(200).json(wallet)
         } catch (error) {
             res.status(400).json({error: error.message})
         }
     }
+
+
+
+
+
+
+
+
+
+
 
 
 const sendCertificate = async (req,res)=>{
@@ -193,6 +245,131 @@ const sendCertificate = async (req,res)=>{
                 return res.status(400).json({status:false, error:error.message ,Message:"Failed to send mail"}) })     
     }
 
+    const maxAge = 3 * 24 * 60 * 60;
+    const createToken = (name) => {
+        return jwt.sign({ name }, process.env.token, {
+            expiresIn: maxAge
+        });
+    };
 
 
-export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate}
+    const signUp = async (req, res) => {
+        const { username, email, password, fname, lname, gender } = req.body;
+        const wallet = 0
+        const type = 'individual'
+        try {
+            const salt = await bcrypt.genSalt();
+            const hashedPassword = await bcrypt.hash(password, salt);
+            const newUser = await trainee.create({ username: username, email: email, password: hashedPassword, fname: fname, lname:lname,gender:gender,traineetype:type,wallet:wallet});
+            const token = createToken(newUser.name);
+    
+            res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+            res.status(200).json(newUser)
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    }
+
+    const login = async (req, res) => {
+        // TODO: Login the user
+        const { username, password } = req.body;
+        let type = '';
+        try { 
+            let user = await instructor.findOne({ username: username});
+            if(!user){
+                user = await trainee.findOne({ username: username});
+                if(!user) {
+                    res.status(400).json("Username doesn't match")
+                    return;
+                }
+                else {
+                    //get type of trainee
+                    if(!user.traineetype){
+                        type='individual'
+                    }else {
+                        type = user.traineetype
+                    }
+                }
+            }
+            else {
+                type = 'instructor'
+            }
+            if(await bcrypt.compare(password, user.password)){
+                const token = createToken(user.name);
+                res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+                res.status(200).json({type,user}) 
+                return;       }
+            else {
+                res.status(400).json("Password doesn't match")
+                return;
+            }
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    }
+    
+    const logout = async (req, res) => {
+        res.clearCookie('jwt');
+        res.status(200).json("logged out");
+        res.end();
+    
+    }
+
+    const videoCount= async(req,res) => {
+        try{
+            const videoos= await videos.find({courseID:req.params.CourseID}).count();
+            res.status(200).json(videoos)
+        }
+    
+        catch(error){
+            res.status(400).json({message: error.message})
+        }
+    }
+
+    const getUserProgress= async(req,res) => {
+        try{
+
+
+            const videoos= await userWatchVideos.find({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]}).count();
+
+            const vidcount= await videos.find({courseID:req.params.CourseID}).count();
+
+        
+            res.status(200).json(Math.round((videoos/vidcount)*100))
+        }
+    
+        catch(error){
+            res.status(400).json({message: error.message})
+        }
+    }
+
+    const userWatchVideo= async(req,res) => {
+        try{
+            const videoos= await videos.findOne({_id:req.params.VideoID});
+
+            const oldWatchedVideo = await userWatchVideos.findOne({$and:[{VideoID:videoos._id},{TraineeID:req.params.TraineeID}]});
+        if(oldWatchedVideo!=null){
+            res.status(400).json({message:"Video Already Watched"})
+            return;
+        }
+            
+            const newWatchedVideo = await userWatchVideos.create({VideoID:videoos._id,CourseID:videoos.courseID,
+                TraineeID:req.params.TraineeID});
+                newWatchedVideo.save();
+            
+            const traineee = await trainee.findOneAndUpdate({_id:{$eq:req.params.TraineeID}},
+                {$inc:{"courses.$[course].progress": 1}},{ arrayFilters: [  { "course.courseid":  videoos.courseID } ] });
+
+
+
+            res.status(200).json(traineee)
+        }
+    
+        catch(error){
+            res.status(400).json({message: error.message})
+        }
+    }
+
+export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,
+    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress}
+

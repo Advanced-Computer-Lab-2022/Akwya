@@ -13,15 +13,16 @@ super (props);
 this.state ={
 instructorID:[],
 courseid:[],
-categories: ['Math', 'Science', 'Technology', 'Sports', 'History', 'Misc'],
-categoryVal: 'Math', 
+categories: ['Beginner', 'Intermediate', 'Advanced'],
+levelVal: 'Beginner', 
 mustBeSignedin: false, 
 questions: [],
 addQuestion: false, 
 questionName:'',
 answers: [], 
 correctAnswer:'',
-chosenAnswer:''
+chosenAnswer:'',
+deleteBayen: true, 
 
 } 
 } 
@@ -106,7 +107,7 @@ saveQuiz = () => {
         mustBeSignedIn:this.state.mustBeSignedin,
         name:this.state.name,
         questions: this.state.questions,
-        category: this.state.categoryVal,
+        level: this.state.levelVal,
         chosenAnswer:'',
 
 
@@ -120,9 +121,9 @@ saveQuiz = () => {
     console.log("answer length: "+this.state.answers.length)
     console.log("correct Answer: "+quizz.correctAnswer==='')
 
-    if( !this.state.name){
+    if( !this.state.name || this.state.questions.length===0){
         Swal.fire({
-            title: 'Missing Quiz Name!',
+            title: 'Missing Quiz Name or Question(s)!',
             icon: 'error',
             confirmButtonColor: '#38a53e',
             confirmButtonText: 'OK',
@@ -177,7 +178,7 @@ return (
 <div>  <input className='input' onChange={e=>this.setState({courseid:e.target.value})} value={this.state.courseid} placeholder="Course ID" required/> </div> */}
 
             <br></br>
-            <select value={this.state.categoryVal} onChange={e=>this.setState({categoryVal:e.target.value})} className="input select" placeholder="Category">
+            <select value={this.state.levelVal} onChange={e=>this.setState({levelVal:e.target.value})} className="input select" placeholder="Level">
                 {this.state.categories.map((cat,idx)=>(
                     <option key={idx} value={cat}>{cat}</option>
                 ))}
@@ -194,14 +195,15 @@ return (
     
 <br/>
 <br/>
-<span className='btn save-quiz' style={{background:"orangered", padding:5 ,cursor: "pointer"}} onClick={()=>this.removeQuestion()}>Delete Questions</span>
+
+<span hidden={this.state.deleteBayen} className='btn save-quiz' style={{background:"orangered", padding:5 ,cursor: "pointer"}} onClick={()=>{this.removeQuestion() ; this.setState({deleteBayen: true})}}>Delete Questions</span>
 
 
     <div className="questions">
-            <div className='add-question' style={{background:"DarkTurquoise"}} onClick={()=>this.setState({addQuestion: true})}>Add Question</div>
+            <div className='add-question' style={{background:"#1976d2"}} onClick={()=>this.setState({addQuestion: true})}>Add A Question</div>
         </div>
             
-    <span style={{background:"DarkTurquoise", padding:10,cursor: "pointer"}} onClick={()=>this.saveQuiz()} className='btn save-quiz'>Save Quiz</span>
+    <span style={{background:"#1976d2", padding:10,cursor: "pointer"}} onClick={()=>this.saveQuiz()} className='btn save-quiz'>Save Quiz</span>
 
 <QuizDialog model={this.state.addQuestion}>
 <div className='new-question-form'>
@@ -228,7 +230,7 @@ return (
                 </form>
         <div className='btn-wrapper'>
             <div className='btn' style={{background:"orangered", padding:3,margin:5,cursor: "pointer"}} onClick={()=>this.setState({addQuestion:false})}>Close </div>
-            <div className='btn' style={{background:"DarkTurquoise", padding:3,margin:5,cursor: "pointer"}} onClick={()=>this.saveQuestion()}>Save</div>
+            <div className='btn' style={{background:"#1976d2", padding:3,margin:5,cursor: "pointer"}} onClick={()=> {this.setState({deleteBayen: false}) ;this.saveQuestion()}}>Save</div>
         </div>
 
         </div>

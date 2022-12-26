@@ -3,6 +3,7 @@ import axios from 'axios';
 import { styled } from '@mui/material/styles';  
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import Button from '@mui/material/Button';
+import React, { useState, useEffect } from 'react';  
 
 
 
@@ -16,35 +17,34 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-  const { useState } = require("react");
+  // const { useState } = require("react");
 
-  const GetWallet = (props) => { 
+  const GetWallet = () => { 
 
     const params = new URLSearchParams(window.location.search);
-    const traineeId = props.tid;
+    const traineeId = window.location.href.split('/').at(4);
 
     const [wallet,setWallet] = useState('');
-    
-    const getWallet =  async () => {
-      await axios.get(`http://localhost:9000/trainee/getWallet/`+traineeId).then(
+    useEffect(()=>{
+    // const getWallet =  async () => {
+       axios.get(`http://localhost:9000/trainee/getWallet/`+traineeId).then(
           (res) => {    
              setWallet(res.data['wallet']);
-
               }
            );
-         
-    }
+          },[])
     return(
         <div align="right">
-        <Button variant="contained"
+           <h4>Wallet $ {wallet}</h4>
+        {/* <Button variant="contained"
                 onClick={getWallet}
                 margin="normal"
                 padding="normal"
                 align="right"
                 >View Wallet</Button> 
                 <div>
-                <h4>$ {wallet}</h4>
-                </div>
+               
+                </div> */}
                 </div>
     )
     }

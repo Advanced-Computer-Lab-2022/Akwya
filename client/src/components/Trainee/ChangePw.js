@@ -19,12 +19,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
   const { useState } = require("react");
 
-  const ChangePw = (props) => { 
+  const ChangePw = () => { 
 
     const params = new URLSearchParams(window.location.search);
     // const traineeId = '63868a41143ffa7252ea011e';
-    // const traineeId = window.location.href.split('/').at(4);
-    const traineeId = props.tid
+  
+    const traineeId = window.location.href.split('/').at(4);
 
     const [password,setPassword] = useState('');
     const [oldPassword,setOldPassword] = useState('');
@@ -62,38 +62,48 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 return(
 
 
-    <div className="Edit Password">
-      <br/>
-         <label>Enter your old Password:</label>
+<div class="ganb"> 
+<form className="create">
+<h1>Password</h1>
+<div class="txt_field">
+
       <input 
-        type="text" 
+        type="password" 
         id="textbox"
         onChange={(e) => setOldPassword(e.target.value)} 
         value={oldPassword}
         required
       />
       <br/>
-    <label>Enter your new Password:</label>
+      <label>Old Password</label>
+
+      </div>
+      <div class="txt_field">
+
       <input 
-        type="text" 
+        type="password" 
         id="textbox"
         onChange={(e) => setPassword(e.target.value)} 
         value={password}
         required
       />
-        
+          <label>New Password</label>
+          </div>
+
+   
                 <Box sx={{marginBottom: 2}}>
                 <Button variant="contained"
                 onClick={checkOld}
                 margin="normal"
+                class="button"
                 padding="normal"
-                >Change Password</Button> 
+                >Change</Button> 
                 </Box>
-                <div hidden={hide}><h5>Old password is incorrect</h5></div>
+                <div hidden={hide}><h3 style={{color:'red', fontSize:'12px'}}>Old password is incorrect</h3></div>
                 <div hidden={hidec}><h4>Password changed successfully</h4></div>
+                </form>
+                </div>
 
-
-       </div>
 
 )
 }

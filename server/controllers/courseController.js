@@ -170,17 +170,17 @@ const getCourses = async (req, res) => {
 
 
 //get a course
-const getACourse = async (req, res) => {
-    const { id } = req.params
+// const getACourse = async (req, res) => {
+//     const { id } = req.params
 
-    const ACourse = await course.findById(id)
+//     const ACourse = await course.findById(id).select('title')
 
-    if (!ACourse) {
-        return res.status(404).json({ error: " No such Course" })
+//     if (!ACourse) {
+//         return res.status(404).json({ error: " No such Course" })
 
-    }
-    res.status(200).json(ACourse)
-}
+//     }
+//     res.status(200).json(ACourse)
+// }
 
 
 //delete a course
@@ -244,28 +244,87 @@ const courseDiscount = async (req, res) => {
 
 }
 
+const getProblems = async (req, res) => {
+    try {
 
-// const reportAProblem = async (req, res) => {
-//     const { 
-//         category
-//     } = req.body
-//     //  const instructor = req.params.id
+        const { id } = req.params
+        const objs = await problem.find({ownerID:{$eq:id} });
+        res.json(objs)
+    } catch (error) {
 
-//     // const category='hah'
+        res.json({message: error}); }
+    }
 
-//     try {
-//         const newProblem = await problem.create({
-//             category
-//         });
-//         res.status(200).json(newProblem)
-//     } catch (error) {
-//         res.status(400).json({ error: error.message })
-//     }
-// }
+    const getAllProblems = async (req, res) => {
+        try {
+    
+            const { id } = req.params
+            const objs = await problem.find({}).sort({ createdAt: -1 })
+
+            res.json(objs)
+        } catch (error) {
+    
+            res.json({message: error}); }
+        }
+
+    
+    
+    
+const followUpOnAProblem  = async (req, res) => {
+        const {
+            id,
+            input
+        } = req.body.prob
+
+        const theProblem = await problem.findById(id)
+
+        console.log('4' + theProblem)
+
+            theProblem.followUps.push(input)
+
+        try{
+            const p=await problem.findOneAndUpdate({_id:id},{followUps:theProblem.followUps},{new: true})
+            res.status(200).json({p})
+        }
+            catch (error) {
+                console.log('dakhlyyy')
+
+                res.status(400).json({error: error.message})
+            }
+
+            console.log('hena3    '+theProblem.followUps)
+    
+    }
+
+
+    const problemState  = async (req, res) => {
+        const {
+            id,
+            status
+        } = req.body.prob
+
+
+
+
+        try{
+            const p=await problem.findOneAndUpdate({_id:id},{status:status},{new: true})
+            res.status(200).json({p})
+        }
+            catch (error) {
+
+                res.status(400).json({error: error.message})
+            }
+
+    
+    }
+
+   
+
+   
 
 
 
 
 
 //export
-export {reportAProblem, createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }
+export {problemState, getAllProblems, followUpOnAProblem, getProblems, reportAProblem, createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }

@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 function ViewGrade() {
   
-  const CourseID = window.location.href.split('/').at(4);
+  const CourseID = window.location.href.split('/').at(5);
 
 
   const [grade,setGrade] = useState('')
@@ -29,7 +29,7 @@ function ViewGrade() {
       .catch(err=>{console.log(err)})
 }
 
-
+ 
 
 return(
     <form className="create" onSubmit={handleSubmit}> 

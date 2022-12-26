@@ -8,13 +8,14 @@
 }
 
 body {
-  background: #f1f1f1;
+  background: linear-gradient(120deg, #2c7eb9, #73129d);
+  ;
   margin: 0;
   font-family: "Poppins";
 }
 
-header {
-  background: #fff;
+/* header {
+  background: transparent;
 }
 
 header .container {
@@ -23,18 +24,21 @@ header .container {
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  border-radius: 200px;
+  ;
+
 }
 
 header a {
   color: #333;
   text-decoration: none;
-}
+} */
 
 .pages {
   max-width: 1400px;
   padding: 20px;
-  margin: 0 auto;
+  margin: 70px auto;
 }
 
 .card {
@@ -43,8 +47,9 @@ header a {
 }
 
 h5 {
-  font-size: 16px;
-  color: red;
+  font-size: 20px;
+  font-weight: 0.1px;
+  color: rgb(230, 230, 230);
 }
 
 h4 {
@@ -57,9 +62,202 @@ h6 {
   border-color: #333;
   border-style: double;
   font-size: 15px;
-  margin: 150px;
+  margin: 40px 150px 40px 150px;
   padding: 50px;
   font-family: 'Times New Roman', Times, serif;
   font-weight: 0;
   line-height: 25px;
+}
+
+.format-pre pre {
+  font-family: 'Times New Roman', Times, serif;
+  padding: 10px;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* footer */
+
+
+footer {
+  width: calc(100%-80px);
+  padding: 30px 30px;
+  margin-top: 5px;
+  background-color: #111;
+  overflow: hidden;
+}
+
+footer ul {
+  width: fit-content;
+  float: left;
+  padding-left: 20px;
+}
+
+footer li {
+  display: block;
+  list-style: none;
+}
+
+footer li a {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 40px;
+}
+
+.footer-links-cases {
+  display: none;
+}
+
+.footer-socialmedia {
+  width: 50px;
+  float: right;
+}
+
+.footer-socialmedia img {
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+/* FOOTER DESKTOP VERSION */
+
+@media only screen and (min-width: 1000px) {
+  .footer-links-cases {
+    display: block;
+  }
+
+  footer ul {
+    padding-right: 50px;
+  }
+
+  footer li p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    line-height: 40px;
+    text-transform: uppercase;
+  }
+}
+
+.countrydd {
+  position: relative;
+  margin-top: -78px;
+  margin-left: 150px;
+  z-index: 2;
+
+}
+
+/* HEADER */
+
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  height: 82px;
+  display: flex;
+  z-index: 1;
+
+}
+
+header .header-brand {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #111;
+  flex: 1;
+
+  margin: 20px 0;
+  text-align: left;
+  padding: 0px 20px 0px 40px;
+  border-right: 3px solid #111;
+  float: left;
+  line-height: 40px;
+}
+
+header nav ul {
+  display: block;
+  width: fit-content;
+  flex: 1;
+  margin: 20px 0px 20px 0px;
+  float: left;
+}
+
+header nav ul li {
+  display: inline-block;
+  float: left;
+  list-style: none;
+  padding: 0 16px;
+
+}
+
+header nav ul li a {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #111;
+  text-decoration: none;
+  text-transform: uppercase;
+  line-height: 60px;
+
+
+}
+
+
+nav {
+  width: calc(100% - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* BANNER */
+
+.index-banner {
+  margin-left: -20px;
+  margin-top: -13px;
+  width: 103%;
+  height: 450px;
+  margin-bottom: 20px;
+  background-image: url(img/developer.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: table;
+}
+
+.vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.index-banner h1 {
+  margin: 10px 10px 0px;
+  color: #fff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 21px;
+  font-weight: 100;
+  font-style: italic;
+  text-indent: 20px;
+  text-align: center;
+  text-shadow: 1px 1px 4px #111;
+  line-height: 30px;
+}
+
+.index-banner h2 {
+  margin: 0px 10px 0px;
+  color: #fff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 60px;
+  font-weight: 550;
+  text-indent: 20px;
+  text-align: center;
+  text-shadow: 1px 1px 4px #111;
+  line-height: 70px;
 }
