@@ -35,7 +35,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
           },[])
     return(
         <div align="right">
-          Wallet <h4>$ {wallet}</h4>
+           <h4>Wallet $ {wallet}</h4>
         {/* <Button variant="contained"
                 onClick={getWallet}
                 margin="normal"

@@ -12,6 +12,8 @@ const Admin = () => {
     document.getElementById('loginbutton').hidden = true
     document.getElementById('contract').hidden = true
 
+    document.getElementById('navPages').innerHTML = '<li> <a href="/admin"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
+
     })
     return (
         <div class="admin">
