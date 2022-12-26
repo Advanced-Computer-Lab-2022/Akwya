@@ -142,8 +142,9 @@ const Instructor = (props) => {
         </div>
 
         <div style={{ display: showMyCourses ? "block" : "none" }}>
+          
+          <CreateACourse /> <br/>
           <SearchACourse />
-          <CreateACourse />
           <ViewMyCourses />
           <FilterFetchingI country={props.country} />
           <FilterFetchingISubject country={props.country} />

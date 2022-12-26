@@ -64,62 +64,76 @@ const CreateACourse = () => {
 
 
   return (
-    <form className="create" onSubmit={handleSubmit}> 
-      <h3>Add a New Course</h3>
+    <div class='admin allganb' style={{height:'700px',marginTop:'0px',padding:'5px',background:'rgb(240,240,240)'}}>
 
-      <label>Course Title:</label>
+    <div class="ganb"> 
+
+    <form className="create" onSubmit={handleSubmit}> 
+      <h1>New Course</h1>
+      <div class="txt_field">
+
       <input 
         type="text" 
         onChange={(e) => setTitle(e.target.value)} 
         value={title}
         required
       />
-        <br/>
-      <label>Subtitles:</label>
+            <label>Course Title</label>
+</div>
+    
+        <div class="txt_field">
+
       <input 
         type="text" 
         onChange={(e) => setSubtitles(e.target.value)} 
         value={subtitles}
       required/>
-        <br/>
+            <label>Subtitles</label>
 
-      <label>Price:</label>
+      </div>
+
+        <div class="txt_field">
+
+      
       <input 
         type="number" 
         onChange={(e) => setPrice(e.target.value)} 
         value={price}
-      required/>
-        <br/>
+      required/> <label>Price</label></div>
+      
+        <div class="txt_field">
 
-      <label>Summary:</label>
       <input 
         type="text" 
         onChange={(e) => setSummary(e.target.value)} 
         value={summary}
-      required/>
-        <br/>
+      required/>      <label>Summary</label>
+      </div>
+      
+        <div class="txt_field">
 
-        <label>Total Hours:</label>
       <input 
         type="number" 
         onChange={(e) => setTotalHours(e.target.value)} 
         value={totalHours}
-      required/>
-        <br/>
+      required/>        <label>Total Hours</label>
+      </div>
+       
+        <div class="txt_field">
 
-        <label>Subject:</label>
       <input 
         type="text" 
         onChange={(e) => setSubject(e.target.value)} 
         value={subject}
-      required/>
-        <br/>
+      required/>        <label>Subject</label>
+      </div>
+       
 
       <button>Add New Course</button>
       {error && <div className="error">{error}</div>}
     </form>
 
-    
+    </div></div>
 )
 }
 

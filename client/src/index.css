@@ -210,38 +210,12 @@ header nav ul li a {
 }
 
 
-/* HEADER DESKTOP VERSION */
-
-/* @media only screen and (min-width: 1000px) { */
 nav {
   width: calc(100% - 120px);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
-/* 
-  header .header-brand {
-    margin: 20px 0;
-    text-align: left;
-    padding: 0px 20px 0px 40px;
-    border-right: 3px solid #111;
-    float: left;
-    line-height: 40px;
-  }
-
-
-  header nav ul {
-    margin: 20px 0px 20px 0px;
-    float: left;
-  }
-
-  header nav ul li a {
-    line-height: 60px;
-  }
-
-
-} */
 
 /* BANNER */
 
