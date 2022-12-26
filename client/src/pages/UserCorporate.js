@@ -20,6 +20,9 @@ const User = (props) => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = false
     document.getElementById('loginbutton').hidden = true
+    document.getElementById('contract').hidden = true
+    document.getElementById('navPages').innerHTML = '<li> <a href="/userCorporate/'+window.location.href.split('/').at(4)+'"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
+
     })
   const Tab = styled.button`
   
@@ -108,7 +111,6 @@ const User = (props) => {
       <div className="user" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
         <h2>User Page</h2>
         <Link to="/">
-          <h2>Go to Home Page</h2>
         </Link>
         
         <TabGroup/>

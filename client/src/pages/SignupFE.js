@@ -4,9 +4,9 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Swal from "sweetalert2";
-import useEffect from 'react';  
+// import useEffect from 'react';  
 
-const { useState } = require("react");
+const { useState,useEffect } = require("react");
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -61,7 +61,14 @@ or if you’ve previously refunded the content, we reserve the right to deny you
 use of the Services. If we ban your account or disable your access to the content due to your violation of these Terms or our Trust & Safety Guidelines, you will not be 
 eligible to receive a refund. Additional information on our refund policy is available here.
 </pre>`;
+useEffect(()=>{
+  document.getElementById('logoutbutton').hidden = true
+  document.getElementById('loginbutton').hidden = true
+  document.getElementById('contract').hidden = true
 
+  document.getElementById('navPages').innerHTML = '<li> <a href="/guest/0"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
+
+  })
   const register = () => {
     Swal.fire({
       title: policyString,

@@ -48,6 +48,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
        (res) => { 
            console.log(instructor)
            setInstructor(res.data)
+           setEmail(res.data[0].email)
            
        }
         );
@@ -64,7 +65,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
            console.log(instructors)
            setInstructors(instructors)
            Swal.fire({
-            title: 'New Email added!',
+            title: 'New Email saved!',
             icon: 'success',
             confirmButtonColor: '#38a53e',
             confirmButtonText: 'OK'
@@ -76,17 +77,21 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 return(
 
 
-    <div className="Edit Email">
 
-<div> 
+<div class="ganb"> 
+<form className="create">
+
+<div>
                   {instructor.map((inst) => (
-                  <div > Your Email: <h4 style={{display:"inline" , color:'black'}}>{inst.email}</h4 ></div>
+                    
+                  <div> <h1>Email</h1>
+                    <h4 style={{display:"inline" , color:'black'}}>
+                      {inst.email}</h4 ></div>
                     ))}
                     <br/>
                 
        </div>
-
-<label>Enter your new Email:</label>
+<div class="txt_field">
       <input 
         type="text" 
         id="textbox"
@@ -94,29 +99,26 @@ return(
         value={email}
         required
       />
-        
-        
-                <Box sx={{marginBottom: 2,marginLeft: 5,display:"inline"}}>
+        <label>Edit Email</label>
+        </div> <br/>
+                <Box sx={{marginBottom: 2,display:"inline"}}>
                 <Button variant="contained"
+                class="button"
+                // style={{width:'300px', marginLeft:'-50px'}}
                 onClick={edit}
                 margin="normal"
                 padding="normal"
-                >Edit My Email</Button> 
+                >Edit</Button> 
                 
                 </Box>
 
-
-   
-            
-         <div> 
-                   
-        <br/>
-
+     
+         </form>
                   
        </div>
 
 
-       </div>
+      
 
 )
    

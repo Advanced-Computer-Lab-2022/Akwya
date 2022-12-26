@@ -252,7 +252,22 @@ const ViewRating = async (req, res) => {
     
     }}
 
+    const viewBio = async (req, res) => {
+    
 
+        try{
+           
+            const view = await instructor.find({_id:{$eq:req.params.id}}).select('minibiography')    
+            res.status(200).json(view)
+        }
+        catch( error ){
+            res.status(400).json({error: error.message})
+    
+        }
+    
+    
+    
+    }
  
 const editBio = async (req, res) => {
  
@@ -382,4 +397,4 @@ const editBio = async (req, res) => {
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
     filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
-    viewPreview, ViewRating, getRatings,changePassword, checkPassword,notFirst}
+    viewPreview, ViewRating, getRatings,changePassword, checkPassword,notFirst,viewBio}

@@ -5,6 +5,9 @@ const Policy = () => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = true
     document.getElementById('loginbutton').hidden = true
+    document.getElementById('contract').hidden = true
+    document.getElementById('navPages').innerHTML = '<li> <a href='+document.referrer+'> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
+
     })
   // function checkChange() {
   //   const checkbox = document.getElementById("agreed");
@@ -20,7 +23,6 @@ const Policy = () => {
   return (
     <div className="policy" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
       <Link to="/">
-        <h2>Go to Home Page</h2>
       </Link>
       {/* <form> */}
         <h6>
