@@ -215,19 +215,23 @@ const resetPassword = async (req,res)=>{
 
 
 const sendCertificate = async (req,res)=>{
-    const userEmail = req.query.mail;
-    const courseTitle = req.query.title;        
-        
+    const coursee = req.params.CourseID;
+    const traine = await trainee.findOne({_id:req.params.TraineeID}).select('email');
+    const cours = await course.findOne({_id:req.params.CourseID}).select('title');
+
+    console.log("Title: "+cours.title)
+    console.log("Email: "+traine.email)
+
             const mail = {
                 from: process.env.AUTH_EMAIL,
-                to: userEmail,
-                subject: courseTitle,
+                to: traine.email,
+                subject: cours.title,
                 html: `<p>Congratulations!</p>
                     <p>You have completed <strong> 100% </strong> of this course. Keep it up.</p>
                     <p>Your certificate is attached below</p>`,
                 attachments: [{
                     filename: 'Certificate.pdf',
-                    path: '/Users/yasmine/Documents/Certificate.pdf',
+                    path: '../server/Certificate.pdf',
                     contentType: 'application/pdf'
                 }],
             }

@@ -31,7 +31,7 @@ router.get('/getWallet/:id', getWallet)
 
 router.get('/videoCount/:CourseID', videoCount)
 
-router.get('/sendCertificate/', sendCertificate)
+router.get('/sendCertificate/:TraineeID/:CourseID', sendCertificate)
 
 router.post('/signup', signUp);
 
