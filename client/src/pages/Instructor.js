@@ -35,6 +35,7 @@ const Instructor = (props) => {
     document.getElementById('loginbutton').hidden = true
     document.getElementById('contract').hidden = false
 
+    document.getElementById('navPages').innerHTML = '<li> <a href="/instructor/'+window.location.href.split('/').at(4)+'"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
     })
   const Tab = styled.button`
     padding: 10px 80px;
@@ -151,16 +152,17 @@ const Instructor = (props) => {
         {/*       <div style={{display: showInfo ? 'block' : 'none' }}><Link to="/ViewProfileInstructor/6381101753d48ea316365f94">
           <h3>View My Profile</h3>
        </Link> */}
-        <div class="admin" style={{ display: showInfo ? "block" : "none", height:'140vh' }}>
-        <div class="allganb" >
+        <div class="admin" style={{ display: showInfo ? "block" : "none", height:'140vh', background:'rgb(240,240,240)'}}>
+        <div class="allganb">
           <EditBio />        
           <EditEmail />
           
           <ChangePassword />
           
           </div>
-
+          
           <ViewRating />
+        
         </div>
 
         <div style={{ display: showFilters ? "block" : "none" }}>

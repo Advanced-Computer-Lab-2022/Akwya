@@ -14,7 +14,7 @@ body {
   font-family: "Poppins";
 }
 
-header {
+/* header {
   background: transparent;
 }
 
@@ -33,12 +33,12 @@ header .container {
 header a {
   color: #333;
   text-decoration: none;
-}
+} */
 
 .pages {
   max-width: 1400px;
   padding: 20px;
-  margin: 0 auto;
+  margin: 70px auto;
 }
 
 .card {
@@ -82,7 +82,7 @@ h6 {
 footer {
   width: calc(100%-80px);
   padding: 30px 30px;
-  margin-top: 0px;
+  margin-top: 5px;
   background-color: #111;
   overflow: hidden;
 }
@@ -139,4 +139,151 @@ footer li a {
     line-height: 40px;
     text-transform: uppercase;
   }
+}
+
+.countrydd {
+  position: relative;
+  margin-top: -78px;
+  margin-left: 150px;
+  z-index: 2;
+
+}
+
+/* HEADER */
+
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  height: 82px;
+  display: flex;
+  z-index: 1;
+
+}
+
+header .header-brand {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #111;
+  flex: 1;
+
+  margin: 20px 0;
+  text-align: left;
+  padding: 0px 20px 0px 40px;
+  border-right: 3px solid #111;
+  float: left;
+  line-height: 40px;
+}
+
+header nav ul {
+  display: block;
+  width: fit-content;
+  flex: 1;
+  margin: 20px 0px 20px 0px;
+  float: left;
+}
+
+header nav ul li {
+  display: inline-block;
+  float: left;
+  list-style: none;
+  padding: 0 16px;
+
+}
+
+header nav ul li a {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #111;
+  text-decoration: none;
+  text-transform: uppercase;
+  line-height: 60px;
+
+
+}
+
+
+/* HEADER DESKTOP VERSION */
+
+/* @media only screen and (min-width: 1000px) { */
+nav {
+  width: calc(100% - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 
+  header .header-brand {
+    margin: 20px 0;
+    text-align: left;
+    padding: 0px 20px 0px 40px;
+    border-right: 3px solid #111;
+    float: left;
+    line-height: 40px;
+  }
+
+
+  header nav ul {
+    margin: 20px 0px 20px 0px;
+    float: left;
+  }
+
+  header nav ul li a {
+    line-height: 60px;
+  }
+
+
+} */
+
+/* BANNER */
+
+.index-banner {
+  margin-left: -20px;
+  margin-top: -13px;
+  width: 103%;
+  height: 450px;
+  margin-bottom: 20px;
+  background-image: url(img/developer.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: table;
+}
+
+.vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.index-banner h1 {
+  margin: 10px 10px 0px;
+  color: #fff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 21px;
+  font-weight: 100;
+  font-style: italic;
+  text-indent: 20px;
+  text-align: center;
+  text-shadow: 1px 1px 4px #111;
+  line-height: 30px;
+}
+
+.index-banner h2 {
+  margin: 0px 10px 0px;
+  color: #fff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 60px;
+  font-weight: 550;
+  text-indent: 20px;
+  text-align: center;
+  text-shadow: 1px 1px 4px #111;
+  line-height: 70px;
 }

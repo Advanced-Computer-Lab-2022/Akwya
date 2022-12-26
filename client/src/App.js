@@ -34,6 +34,7 @@ import AdminPromotion from './pages/AdminPromotion';
 import Refund from './pages/Refund';
 import GrantAccess from './components/Admin/GrantAccess';
 import AdminViewTheProblems from './pages/AdminViewTheProblems';
+import ContactUs from './pages/ContactUs';
 
 
 // let GlobalCountry = 'United Kingdom';
@@ -61,9 +62,9 @@ function App() {
 
   return (
     <div className="App">
-
-      <CountryDropdown  id="UNIQUE_ID" className='YOUR_CSS_CLASS' preferredCountries={['gb', 'us','eg']}  value="" handleChange={e => {handleCountry(e)}}></CountryDropdown>   
-      
+      {/* <div class='countrydd'>
+      <CountryDropdown  preferredCountries={['gb', 'us','eg']}  value="" handleChange={e => {handleCountry(e)}}></CountryDropdown>   
+      </div> */}
 
       <BrowserRouter>
         <Navbar />
@@ -178,7 +179,10 @@ function App() {
               path="/GrantAccess"
               element={<GrantAccess/>}
             />
-            
+             <Route
+              path="/contact"
+              element={<ContactUs/>}
+            />
 
           </Routes>
 
@@ -186,7 +190,22 @@ function App() {
 
         </div>
       </BrowserRouter>
-      <Footer/>
+      
+      <footer>
+    <ul class="footer-links-main">
+    
+        <li>
+            <a href="/Policy">Policy</a>
+        </li>
+        <li>
+            <a href="/Contract" id='contract' hidden>Contract</a>
+        </li>
+      </ul>
+      
+</footer>
+<div class='countrydd'>
+      <CountryDropdown  preferredCountries={['gb', 'us','eg']}  value="" handleChange={e => {handleCountry(e)}}></CountryDropdown>   
+      </div>
     </div>
   );
 

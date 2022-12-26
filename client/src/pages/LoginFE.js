@@ -1,11 +1,11 @@
 import '../login.css'
 import axios from "axios";
-import useEffect from 'react';  
+// import useEffect from 'react';  
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Swal from "sweetalert2";
 
-const { useState } = require("react");
+const { useState,useEffect } = require("react");
 
 const Login = () => {
    
@@ -56,7 +56,14 @@ const Login = () => {
   fees that you may incur. Your revenue report will show the sales price (in local currency) and your converted revenue amount (in USD).
   <br/>
   </pre>`
-  
+    useEffect(()=>{
+      document.getElementById('logoutbutton').hidden = true
+      document.getElementById('loginbutton').hidden = true
+      document.getElementById('contract').hidden = true
+
+      document.getElementById('navPages').innerHTML = '<li> <a href="/guest/0"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
+
+      })
     const login = async () => {
       try {
       await axios

@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';  
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import Swal from "sweetalert2";
-import useEffect from 'react';  
+// import useEffect from 'react';  
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -19,12 +19,19 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-  const { useState } = require("react");
-
+  const { useState,useEffect } = require("react");
+  
   const ResetMail = () => { 
    
     const [mail,setMail] = useState('');
-    
+    useEffect(()=>{
+      document.getElementById('logoutbutton').hidden = true
+      document.getElementById('loginbutton').hidden = true
+      document.getElementById('contract').hidden = true
+  
+      document.getElementById('navPages').innerHTML = '<li> <a href="/guest/0"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
+  
+      })
     const reset =  async () => {
       await axios.get(`http://localhost:9000/trainee/resetPassword/?mail=`+mail).then(
           (res) => {
