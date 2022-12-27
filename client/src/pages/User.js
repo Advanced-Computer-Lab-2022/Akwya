@@ -115,12 +115,12 @@ const User = (props) => {
         <ChangePw  />
       </div>
       <div style={{ display: showCourses ? "block" : "none" }}>
-        <UserSearchCourse />
+        <UserSearchCourse country={props.country}/>
         <DataFetching country={props.country} />
       </div>
       <div style={{ display: showFilters ? "block" : "none" }}>
-        <FilterFetching country={props.country} />
-        <FilterByRatingAndSubject country={props.country} />
+        {/* <FilterFetching country={props.country} />
+        <FilterByRatingAndSubject country={props.country} /> */}
       </div>
       <div style={{display: showProblems ? 'block' : 'none' }}>
                 <ViewMyProblems country={props.country}/>

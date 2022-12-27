@@ -144,10 +144,10 @@ const Instructor = (props) => {
         <div style={{ display: showMyCourses ? "block" : "none" }}>
           
           <CreateACourse /> <br/>
-          <SearchACourse />
+          <SearchACourse country={props.country}/>
           <ViewMyCourses />
-          <FilterFetchingI country={props.country} />
-          <FilterFetchingISubject country={props.country} />
+          {/* <FilterFetchingI country={props.country} />
+          <FilterFetchingISubject country={props.country} /> */}
         </div>
 
         {/*       <div style={{display: showInfo ? 'block' : 'none' }}><Link to="/ViewProfileInstructor/6381101753d48ea316365f94">
@@ -167,8 +167,8 @@ const Instructor = (props) => {
         </div>
 
         <div style={{ display: showFilters ? "block" : "none" }}>
-          <FilterFetching country={props.country} />
-          <FilterByRatingAndSubject country={props.country} />
+          {/* <FilterFetching country={props.country} />
+          <FilterByRatingAndSubject country={props.country} /> */}
         </div>
 
         <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems  country={props.country}/>
