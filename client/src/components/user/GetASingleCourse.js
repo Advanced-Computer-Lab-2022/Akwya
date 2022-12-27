@@ -12,6 +12,8 @@ const [courses,setCourses] = useState([])
 const [error, setError] = useState(null)
 const [registered,setRegistered] = useState([])
 const [show,setShow] = useState(false)
+const [userProgress,setUserProgress] = useState(0)
+
 
 
 
@@ -96,6 +98,30 @@ switch(props.country) {
 
   const handleSubmit4 = async (e) => {
     e.preventDefault()
+
+       const respnsee= await fetch(`http://localhost:9000/trainee/getUserProgress/${TraineeID}/${CourseID}`, {
+        method: 'GET',
+    })  
+    const jsonn= await respnsee.json()
+    if(respnsee.ok){
+        if(jsonn>=50){
+            Swal.fire({
+                title: 'Refund Denied.',
+                text:'you passed more than 50% of the course. ',
+                icon: 'error',
+                confirmButtonColor: '#990000',
+                confirmButtonText: 'OK'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    // window.location.reload();
+                }
+              }) 
+              return; 
+        
+        }
+    }
+    
+
 
     const respnse= await fetch(`http://localhost:9000/trainee/requestRefund/${TraineeID}/${CourseID}`, {
         method: 'GET',

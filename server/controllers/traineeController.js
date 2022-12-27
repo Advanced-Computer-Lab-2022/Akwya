@@ -109,6 +109,7 @@ const requestRefund = async(req, res) => {
                 return;
             }
             const refund = await courseBought.findOneAndUpdate({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]},{$set:{refundRequested:true}});
+            const deleteprogress = await userWatchVideos.deleteMany({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]})
             res.status(200).json(refund)
         } catch (error) {
             res.status(400).json({ error: error.message })
