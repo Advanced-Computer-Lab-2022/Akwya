@@ -71,7 +71,6 @@ import react, {useState, useEffect} from 'react'
     console.log(JSON.stringify(registered).length+" hello")
 
     if(JSON.stringify(registered).length==2){
-        console.log(JSON.stringify(registered).length)
         return;
     }
 return(

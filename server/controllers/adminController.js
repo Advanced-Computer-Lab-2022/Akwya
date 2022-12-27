@@ -10,6 +10,7 @@ import courseRequest from "../models/courseRequest.js"
 
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import courseBought from "../models/courseBought.js";
 
 export const maxAge = 3 * 24 * 60 * 60;
 export const createToken = (name) => {
@@ -180,6 +181,13 @@ export const requestAccess= async(req,res) => {
 
 export const viewRequests= async(req,res) => {
     const allrequests = await courseRequest.find({}).select('username TraineeID CourseID courseName')
+    res.status(200).json(allrequests)
+
+
+}
+
+export const viewRefunds= async(req,res) => {
+    const allrequests = await courseBought.find({refundRequested:true})
     res.status(200).json(allrequests)
 
 

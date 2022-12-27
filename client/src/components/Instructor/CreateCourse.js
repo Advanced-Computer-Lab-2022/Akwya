@@ -83,7 +83,7 @@ const CreateACourse = () => {
     
         <div class="txt_field">
 
-      <input 
+      {/* <input 
         type="text" 
         onChange={(e) => setSubtitles(e.target.value)} 
         value={subtitles}
@@ -92,7 +92,7 @@ const CreateACourse = () => {
 
       </div>
 
-        <div class="txt_field">
+        <div class="txt_field"> */}
 
       
       <input 
