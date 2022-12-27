@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { useHistory, Redirect, Link } from "react-router-dom";
+import { useNavigate, Redirect, Link } from "react-router-dom";
 import {
     CardElement,
     useElements,
@@ -58,7 +58,7 @@ const SubmitButton = ({ processing, error, children, disabled }) => (
 //component declaration
 export default function CreditCardForm(props) {
 
-    let history = useHistory();
+    let history = useNavigate();
 
     const stripe = useStripe();
     const elements = useElements();
@@ -223,7 +223,7 @@ export default function CreditCardForm(props) {
     //render
     return (
         // the credit card form
-        <Form  onSubmit={handleSubmit}>
+        <Form className="Form" onSubmit={handleSubmit}>
 
             {/* Error modal */}
             <Modal show={error!=null}>
@@ -256,7 +256,7 @@ export default function CreditCardForm(props) {
 
             {/* Bet amount field */}
             <Field
-                label="Donation Amount"
+                label="Payment Amount"
                 id="bet"
                 type="number"
                 placeholder="0"
@@ -274,7 +274,7 @@ export default function CreditCardForm(props) {
             {/* Credit Card Payment Form */}
             <fieldset >
                 {/* name field */}
-                <Field
+                <Field className="FormGroup"
                     label="Name"
                     id="name"
                     type="text"
@@ -337,7 +337,7 @@ export default function CreditCardForm(props) {
             </fieldset>
 
             {/* credit card field and submit button */}
-            <fieldset >
+            <fieldset className="FormGroup">
                 {/* card */}
                 <CardField
                     onChange={(event) => {

@@ -38,7 +38,7 @@ import PaymentComponent from './components/Trainee/PaymentComponent';
 import { Container, Jumbotron, Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 // let GlobalCountry = 'United Kingdom';
 
@@ -77,6 +77,7 @@ function App() {
               path="/"
               element={<Home />}
             />
+
             <Route
               path="/admin"
               element={<Admin />}
@@ -182,22 +183,22 @@ function App() {
               path="/GrantAccess"
               element={<GrantAccess/>}
             />
-            <Switch>
               <Route path="/payments">
-
-{/* Payments renders a blank screen containing our payments component */}
-<Container>
-    <PaymentComponent
-        keys={{
-            stripe: "pk_test_51MIFP2HUXZhuMagYneFzG4qHkSG50EXSNItMTONiK5113unZ0HzFho1rwLowL312VWCsK1IToWcIUXT5N7VZZExJ008w6439EK",
-        }}
-    />
-</Container>
-</Route>
-</Switch>
+              {/* <Container>
+                  <PaymentComponent
+                      keys={{
+                          stripe: "pk_test_51MIFP2HUXZhuMagYneFzG4qHkSG50EXSNItMTONiK5113unZ0HzFho1rwLowL312VWCsK1IToWcIUXT5N7VZZExJ008w6439EK",
+                      }}
+                  />
+              </Container> */}
+              </Route>
           </Routes>
 
-
+          <PaymentComponent
+                      keys={{
+                          stripe: "pk_test_51MIFP2HUXZhuMagYneFzG4qHkSG50EXSNItMTONiK5113unZ0HzFho1rwLowL312VWCsK1IToWcIUXT5N7VZZExJ008w6439EK",
+                      }}
+                  />
 
         </div>
       </BrowserRouter>

@@ -3,12 +3,13 @@ import { Form } from "react-bootstrap";
 export default class Field extends React.Component {
     render() {
         return (
-            <div >
+            <div className="FormRow">
+                
                 <Form.Label htmlFor={this.props.id}>
                     {this.props.label}
                 </Form.Label>
                 <Form.Control
-                    
+                    className="FormRowInput"
                     id={this.props.id}
                     type={this.props.type}
                     min={this.props.min}

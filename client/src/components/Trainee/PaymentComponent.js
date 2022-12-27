@@ -5,7 +5,7 @@ import CreditCardForm from "./CreditCardForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./PaymentComponent.css";
 import "./elements.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 
 //config of fonts for the stripe prebuilt elements
@@ -20,7 +20,7 @@ const ELEMENTS_OPTIONS = {
 //component
 export default function PaymentComponent(props) {
     //history object for redirects
-    let history = useHistory();
+    let history = useNavigate();
 
     //render
     return (
