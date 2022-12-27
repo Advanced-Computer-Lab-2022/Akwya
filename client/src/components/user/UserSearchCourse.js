@@ -35,7 +35,7 @@ switch(props.country) {
     title: 'Filters',
     html:
     '<div>'+
-    '<h3> Filter My Courses By Rating and Subject </h3>'+
+    '<h3> Filter All Courses By Rating and Subject </h3>'+
 ''+
     '<form className="filter" '+
 ''+
