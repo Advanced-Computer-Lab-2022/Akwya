@@ -71,6 +71,8 @@ const courseID = req.params.courseID
         const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,progress:0}}});
         const traineeeee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$set:{wallet:payment}});
 
+        const courseee = await course.findOneAndUpdate({_id:req.params.courseID}, {$inc:{registeredTrainees: 1}});
+
 
         const addBought = await courseBought.create({username:traineee.username,CourseID:req.params.courseID,
             TraineeID:traineee._id,courseName:coursee.title,price:pricee,refundRequested:false});
@@ -127,6 +129,7 @@ const requestRefund = async(req, res) => {
             const refund = addcourse.wallet+removeCourse.price
 
             const addrefund = await trainee.updateOne({_id:req.params.TraineeID},{$set:{wallet:refund}});
+            const courseee = await course.findOneAndUpdate({_id:req.params.CourseID}, {$inc:{registeredTrainees: -1}});
             res.status(200).json(removeCourse)
         } catch (error) {
             res.status(400).json({ error: error.message })
