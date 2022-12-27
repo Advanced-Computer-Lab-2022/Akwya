@@ -385,11 +385,28 @@ const editBio = async (req, res) => {
      } 
      
      const moneyOwed = async (req , res) => {
-        try{  //course.find({instructor:{$eq:req.params.id}}).select('title')
-            // const moneyy= await trainee.count({courses:})
-            // console.log(moneyy);
-            // const money= await trainee.find({}).select('title')
-            // const money= await courses.find
+        // const viewCoursestitle = async (req, res) => {
+        //     const { instructorr } = req.params
+        //     const Coursestitles = await course.find({instructor:{$eq:instructorr}}).select('title')
+        try{   
+           
+           
+            const owed=await course.find(({instructor:req.params.id}))
+            let sum=0;
+            console.log(owed[1])
+            for(let i=0;i<owed.length;i++){
+                const moneyowed=parseInt(owed[i].registeredTrainees)*parseInt(owed[i].price)*parseInt(owed[i].promotion)/100*0.5
+                sum=sum+moneyowed
+                console.log(sum)
+                
+
+            }
+
+            
+            res.status(200).json(sum)
+            
+            
+
 
         }
     catch (error) {

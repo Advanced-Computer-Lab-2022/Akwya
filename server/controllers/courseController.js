@@ -124,9 +124,10 @@ const createCourse = async (req, res) => {
 
     const previewVideo = ""
     const noOfRatings=[]
-    const promotion=0;
+    const promotion=0; 
     const promotionExpiry="";
-    const registered=0;
+    const registeredTrainees=0; 
+    
     try {
         const newCourse = await course.create({
             title,
@@ -143,7 +144,7 @@ const createCourse = async (req, res) => {
             rating,
             noOfRatings,
             previewVideo,
-            registered
+            registeredTrainees
         });
         res.status(200).json(newCourse)
     } catch (error) {

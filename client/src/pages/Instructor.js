@@ -19,6 +19,8 @@ import  EditEmail from '../components/Instructor/EditEmail.js'
 import ViewRating from '../components/Instructor/ViewRating'
 import  EditBio from '../components/Instructor/EditBio.js'
 import ViewMyProblems from '../components/Problem/viewMyProblems'
+//profit
+ import Profit from '../components/Instructor/MoneyOwed'
 
 
 
@@ -172,6 +174,7 @@ const Instructor = (props) => {
       <Link to="/Policy">
         <h2>View Refund Policy</h2>
       </Link>
+      <Profit/>
     </div>
   );
 };

@@ -278,7 +278,7 @@ export default function CreditCardForm(props) {
                     label="Name"
                     id="name"
                     type="text"
-                    placeholder="Jane Doe"
+                    placeholder=""
                     required
                     autoComplete="name"
                     value={billingDetails.name}
@@ -291,7 +291,7 @@ export default function CreditCardForm(props) {
                     label="Email"
                     id="email"
                     type="email"
-                    placeholder="janedoe@gmail.com"
+                    placeholder=""
                     required
                     autoComplete="email"
                     value={billingDetails.email}

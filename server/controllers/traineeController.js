@@ -51,22 +51,39 @@ const getTrainee= async(req,res) => {
 
 const registerCourse = async(req, res) => {
     
-const  traineeID = req.body.traineeID
-const courseID = req.params.courseID
-
-    try {
-        const addcourse = await trainee.updateOne({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,progress:0}}});
-        const coursOld = await course.findOne({_id:req.params.courseID})
-        const reg= (parseInt(coursOld.registered) + 1);
-        const cours= await course.findOneAndUpdate({_id:req.params.courseID},{registered: reg},{
-            new: true}  )
-        res.status(200).json(addcourse)
-    } catch (error) {
-        res.status(400).json({ error: error.message })
+    const  traineeID = req.body.traineeID
+    const courseID = req.params.courseID
+    
+        try {
+            
+            
+            const traineeee = await trainee.findOne({_id:req.params.traineeID});
+            const coursee =  await course.findOne({_id:req.params.courseID});
+            const pricee = Math.round(coursee.price-(coursee.price*coursee.promotion/100));
+            const payment = traineeee.wallet-pricee;
+            
+            if(traineeee.wallet<pricee){
+                res.status(400).json({message:"You Dont Have Enough Funds in your Wallet"})
+                return;
+            }
+               
+            const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,progress:0}}});
+            const traineeeee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$set:{wallet:payment}});
+    
+            const courseee = await course.findOneAndUpdate({_id:req.params.courseID}, {$inc:{registeredTrainees: 1}});
+    
+    
+            const addBought = await courseBought.create({username:traineee.username,CourseID:req.params.courseID,
+                TraineeID:traineee._id,courseName:coursee.title,price:pricee,refundRequested:false});
+                addBought.save();
+            
+            res.status(200).json(addBought)
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    
+        console.log("tmm")
     }
-
-    console.log("tmm")
-}
 
 const dropCourse = async(req, res) => {
     
