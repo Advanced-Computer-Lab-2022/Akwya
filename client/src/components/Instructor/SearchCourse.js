@@ -91,7 +91,7 @@ switch(props.country) {
     title: "Filters Ranges",
     html:
 '    <div>'+
-'    <h3> Filter All Courses By Price </h3>'+
+'    <h3> Filter My Courses By Price </h3>'+
 ''+
 '    <form className="filter"  '+
 '      <h3>Filter Ranges</h3>'+
