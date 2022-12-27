@@ -35,8 +35,8 @@ const User = (props) => {
       <UserSearchCourse />
 
       <DataFetching country={props.country} />
-      <FilterFetching country={props.country} />
-      <FilterByRatingAndSubject country={props.country} />
+      {/* <FilterFetching country={props.country} />
+      <FilterByRatingAndSubject country={props.country} /> */}
       {/* <Link to="/Policy">
         <h2>View Refund Policy</h2>
       </Link> */}
