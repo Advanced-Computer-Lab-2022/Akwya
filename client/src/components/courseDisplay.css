@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+
+.courseDisplay * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.courseDisplay {
+    margin: -20px;
+    margin-top: -60px;
+    padding: 0;
+    background: linear-gradient(120deg, #2c7eb9, #73129d);
+    height: 120vh;
+    /* overflow: hidden; */
+}
+
+.courseDisplay .allganb {
+    margin: 40px;
+    margin-bottom: 30px;
+    display: flex;
+}
+
+.courseDisplay .ganb {
+    /* position: relative; */
+    /* top: 57%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    margin: 40px;
+    padding-bottom: 40px;
+    text-align: center;
+    width: 4000px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+    flex: 1;;
+   
+}
+
+
+
+.courseDisplay .ganb h1 {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid silver;
+}
+
+.courseDisplay .ganb h2 {
+    text-align: center;
+    padding: 12 px 0;
+}
+
+
+
+.courseDisplay .ganb form {
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+
+.courseDisplay form .txt_field {
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.courseDisplay .txt_field input {
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.courseDisplay .txt_field label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.courseDisplay .txt_field span::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #2691d9;
+    transition: .5s;
+}
+
+.courseDisplay .txt_field input:focus~label,
+.courseDisplay .txt_field input:valid~label {
+    top: -5px;
+    color: #2691d9;
+}
+
+.courseDisplay .txt_field input:focus~span::before,
+.courseDisplay .txt_field input:valid~span::before {
+    width: 100%;
+}
+
+.courseDisplay .pass a {
+    margin: -5px 0 20px 5px;
+    color: #a6a6a6;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.courseDisplay .pass:hover {
+    text-decoration: underline;
+}
+
+.courseDisplay button {
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: #2691d9;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+.courseDisplay button:hover {
+    border-color: #2691d9;
+    transition: .5s;
+}
+
+.courseDisplay .signup_link {
+    margin: 30px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #666666;
+}
+
+.courseDisplay .signup_link a {
+    color: #2691d9;
+    text-decoration: none;
+}
+
+.courseDisplay .signup_link a:hover {
+    text-decoration: underline;
+}
+
+.courseDisplay .container {
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.courseDisplay .prbutton {
+    width: 200px;
+    margin-top: 20px;
+}
+
+.courseDisplay .prbutton h5 {
+    font-size: 16px;
+
+}

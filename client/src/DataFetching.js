@@ -14,9 +14,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
-
+import '/Users/farah/Desktop/Akwya/client/src/components/courseDisplay.css'
 import GlobalCountry from './App.js'
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+
 //async
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -76,60 +78,62 @@ useEffect(()=>{
         currency = 'EGP';
         break;
       default:
-        // rate = 3;
+        // rate = 3; 
     }
+
+    const [RateAndReview,setRateAndReview] = useState([]);
+
+    const insertStars = (ratins)=>{
+      let htmlRating = '<div>'
+      for(let i = 0; i < ratins.length; i++)
+      {
+        htmlRating+='<div>'
+          for (let j = 0; j < ratins[i].rate; j++) {
+            htmlRating+=  '<span class="fa fa-star checked"></span>'
+          }
+          for (let k = ratins[i].rate; k < 5; k++) {
+            htmlRating+='<span class="fa fa-star-o"></span>'
+          }
+        htmlRating+=' '+ratins[i].review+'</div>'
+      }
+    htmlRating += '</div>'
+    document.getElementById('area').innerHTML = htmlRating
+  }
+
+  
   
 
 return(
-    <div>
-        <h1>Explore Popular Courses</h1>
-        
-        <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">Title</StyledTableCell>
-            <StyledTableCell align="center">Price</StyledTableCell>
-            <StyledTableCell align="center">Total hours</StyledTableCell>
-            <StyledTableCell align="center">Rating</StyledTableCell>
-            <StyledTableCell align="center">Registered Trainees</StyledTableCell>
+  <div class="courseDisplay">
 
+<br/>
+<br/>
+<br/>
 
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {courses.map((course) => (
-            <TableRow
-            hover
-            sx={{
-                "&:hover":{
-                cursor: "pointer",
-                backgroundColor: "#f5f5f5",
-                width: "100%"
-                }
-            }}
-           
-              >
-              <TableCell align="center"><Link to={{pathname:course._id}}><h2>{course.title}</h2></Link></TableCell>
-              <TableCell align="center">{(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)}</TableCell>
-              <TableCell align="center">{course.totalHours}</TableCell>
-              <TableCell align="center">{course.rating}</TableCell>
-              <TableCell align="center">{course.registeredTrainees}</TableCell>
+<h1>Explore Popular Courses</h1>
 
-            </TableRow>
+  <div style={{display: "flex","justify-content": "space-between", "overflow": "auto",
+}}>
+
+        {courses.map((course) => (
+               <div class="ganb" >
+              <h2 className="create" align="center"><Link to={{pathname:course._id}}><h2>{course.title}</h2></Link></h2>
+              <br/>
+              <h2 align="center">Price: {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)}</h2>
+              <br/>
+              <h2 align="center">Total Hours: {course.totalHours}</h2>
+              <br/>
+              <h2 align="center">Course Rating: {course.rating }</h2>
+              {/* <div id="area" style={{textAlign:'left', padding:'40px', lineHeight:'30px'}}>jj{insertStars(course.rating)}</div> */}
+              <h2 align="center">Registered Trainees: {course.registeredTrainees}</h2>
+              </div>
+
           ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-          
-        </div>
-                
-       // {courses.map(course => <li key={course._id}>Title: <Link to={{pathname:course._id}}><h2>{course.title}</h2></Link> Price: {(Math.round(course.price * rate) + ' ' + currency)}  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
 
-           
 
+</div>    
         
-        
+</div>    
 
    
 )

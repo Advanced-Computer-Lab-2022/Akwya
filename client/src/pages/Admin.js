@@ -14,7 +14,7 @@ const Admin = () => {
 
     document.getElementById('navPages').innerHTML = '<li> <a href="/admin"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
 
-    })
+    }) 
     return (
         <div class="admin">
         <div class="allganb">
