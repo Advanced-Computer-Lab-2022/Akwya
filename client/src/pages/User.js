@@ -23,6 +23,9 @@ const User = (props) => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = false
     document.getElementById('loginbutton').hidden = true
+    document.getElementById('contract').hidden = true
+    document.getElementById('navPages').innerHTML = '<li> <a href="/user/'+window.location.href.split('/').at(4)+'"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
+
     })
   const Tab = styled.button`
     padding: 10px 100px;
@@ -100,33 +103,33 @@ const User = (props) => {
 
   return (
     <div className="user" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
-      <h2>User Page</h2>
+      {/* <h2>User Page</h2> */}
       <GetWallet />
-      <Link to="/">
-      </Link>
+      {/* <Link to="/">
+      </Link> */}
 
       <TabGroup />
 
 
-      <div style={{ display: showPW ? "block" : "none" }}>
+      <div class='admin allganb' style={{ display: showPW ? "block" : "none" , marginTop:'10px',paddingTop:'10px',height:'70vh',background:'rgb(240,240,240)'}}>
         <ChangePw  />
       </div>
       <div style={{ display: showCourses ? "block" : "none" }}>
-        <UserSearchCourse />
+        <UserSearchCourse country={props.country}/>
         <DataFetching country={props.country} />
       </div>
       <div style={{ display: showFilters ? "block" : "none" }}>
-        <FilterFetching country={props.country} />
-        <FilterByRatingAndSubject country={props.country} />
+        {/* <FilterFetching country={props.country} />
+        <FilterByRatingAndSubject country={props.country} /> */}
       </div>
       <div style={{display: showProblems ? 'block' : 'none' }}>
                 <ViewMyProblems country={props.country}/>
       </div>
 
 
-      <Link to="/Policy">
+      {/* <Link to="/Policy">
         <h2>View Refund Policy</h2>
-      </Link>
+      </Link> */}
     </div>
   );
 };

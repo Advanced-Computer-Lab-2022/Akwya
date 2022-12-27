@@ -5,6 +5,8 @@ const Home = () => {
   useEffect(()=>{
   document.getElementById('logoutbutton').hidden = true
   document.getElementById('loginbutton').hidden = true
+  document.getElementById('contract').hidden = true
+
   })
   return (
     <div className="home" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
@@ -27,7 +29,7 @@ const Home = () => {
       <Link to="/instructor/6381101753d48ea316365f94">
         <h2>Go to Instructor Page</h2>
       </Link>
-      <Link to="/guest">
+      <Link to="/guest/0">
         <h2>Go to Guest Page</h2>
       </Link>
    

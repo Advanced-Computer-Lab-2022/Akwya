@@ -16,6 +16,7 @@ const courseSchema = mongoose.Schema({
     promotion: Number,
     promotionExpiry: Date,
     previewVideo: String,
+    registeredTrainees:Number,
     // certificate: String
 
 

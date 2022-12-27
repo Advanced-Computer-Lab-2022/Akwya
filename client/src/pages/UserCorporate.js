@@ -20,6 +20,9 @@ const User = (props) => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = false
     document.getElementById('loginbutton').hidden = true
+    document.getElementById('contract').hidden = true
+    document.getElementById('navPages').innerHTML = '<li> <a href="/userCorporate/'+window.location.href.split('/').at(4)+'"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
+
     })
   const Tab = styled.button`
   
@@ -114,8 +117,8 @@ const User = (props) => {
 
         <div style={{display: showPW ? 'block' : 'none' }}><ChangePw /></div>
 
-        <div style={{display: showCourses ? 'block' : 'none' }}><SearchCourseCorporate/><DisplayCourses/></div>
-       <div style={{display: showFilters ? 'block' : 'none' }}><FilterByRatingAndSubject/></div>         
+        <div style={{display: showCourses ? 'block' : 'none' }}><UserSearchCourse country={props.country}/><DisplayCourses/></div>
+       {/* <div style={{display: showFilters ? 'block' : 'none' }}><FilterByRatingAndSubject/></div>          */}
        <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems country={props.country}/></div>
 
       </div>

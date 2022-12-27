@@ -33,6 +33,9 @@ const Instructor = (props) => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = false
     document.getElementById('loginbutton').hidden = true
+    document.getElementById('contract').hidden = false
+
+    document.getElementById('navPages').innerHTML = '<li> <a href="/instructor/'+window.location.href.split('/').at(4)+'"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
     })
   const Tab = styled.button`
     padding: 10px 80px;
@@ -125,9 +128,12 @@ const Instructor = (props) => {
   return (
     <div style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
       <div className="instructor">
-        <h2>Instructor Page</h2>
-        <Link to="/">
-        </Link>
+
+        {/* <h2>Instructor Page</h2> */}
+        {/* <Link to="/">
+          <h2>Go to Home Page</h2>
+        </Link> */}
+
         <TabGroup />
 
         <div style={{ display: showCourses ? "block" : "none" }}>
@@ -136,41 +142,39 @@ const Instructor = (props) => {
         </div>
 
         <div style={{ display: showMyCourses ? "block" : "none" }}>
-          <SearchACourse />
-          <CreateACourse />
+          
+          <CreateACourse /> <br/>
+          <SearchACourse country={props.country}/>
           <ViewMyCourses />
-          <FilterFetchingI country={props.country} />
-          <FilterFetchingISubject country={props.country} />
+          {/* <FilterFetchingI country={props.country} />
+          <FilterFetchingISubject country={props.country} /> */}
         </div>
 
         {/*       <div style={{display: showInfo ? 'block' : 'none' }}><Link to="/ViewProfileInstructor/6381101753d48ea316365f94">
           <h3>View My Profile</h3>
        </Link> */}
-        <div style={{ display: showInfo ? "block" : "none" }}>
-          {/* <ViewEmail/> */}
+        <div class="admin" style={{ display: showInfo ? "block" : "none", height:'140vh', background:'rgb(240,240,240)'}}>
+        <div class="allganb">
+          <EditBio />        
           <EditEmail />
+          
           <ChangePassword />
-          <EditBio />
+          
+          </div>
+          
           <ViewRating />
+        
         </div>
 
-
         <div style={{ display: showFilters ? "block" : "none" }}>
-          <FilterFetching country={props.country} />
-          <FilterByRatingAndSubject country={props.country} />
+          {/* <FilterFetching country={props.country} />
+          <FilterByRatingAndSubject country={props.country} /> */}
         </div>
 
         <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems  country={props.country}/>
         </div>
 
       </div>
-      <br />
-      <Link to="/Contract">
-        <h2>View Contract</h2>
-      </Link>
-      <Link to="/Policy">
-        <h2>View Refund Policy</h2>
-      </Link>
     </div>
   );
 };

@@ -12,6 +12,8 @@ const [courses,setCourses] = useState([])
 const [error, setError] = useState(null)
 const [registered,setRegistered] = useState([])
 const [show,setShow] = useState(false)
+const [userProgress,setUserProgress] = useState(0)
+
 
 
 
@@ -94,10 +96,69 @@ switch(props.country) {
 }
 
 
+  const handleSubmit4 = async (e) => {
+    e.preventDefault()
+
+       const respnsee= await fetch(`http://localhost:9000/trainee/getUserProgress/${TraineeID}/${CourseID}`, {
+        method: 'GET',
+    })  
+    const jsonn= await respnsee.json()
+    if(respnsee.ok){
+        if(jsonn>=50){
+            Swal.fire({
+                title: 'Refund Denied.',
+                text:'you passed more than 50% of the course. ',
+                icon: 'error',
+                confirmButtonColor: '#990000',
+                confirmButtonText: 'OK'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    // window.location.reload();
+                }
+              }) 
+              return; 
+        
+        }
+    }
+    
+
+
+    const respnse= await fetch(`http://localhost:9000/trainee/requestRefund/${TraineeID}/${CourseID}`, {
+        method: 'GET',
+    })  
+    const json= await respnse.json()
+
+    if(!respnse.ok){
+        Swal.fire({
+            title: 'Refund Request Pending..',
+            icon: 'info',
+            confirmButtonColor: '#3fc3ee',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                // window.location.reload();
+            }
+          })  
+        setError(null)    }
+    if(respnse.ok){
+        Swal.fire({
+            title: 'Refund Request Sent!',
+            icon: 'success',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                // window.location.reload();
+            }
+          })  
+        setError(null)
+    } 
+}
+
   const handleSubmit2 = async (e) => {
     e.preventDefault()
 
-    const respnse= await fetch(`http://localhost:9000/trainee/drop/${CourseID}/${TraineeID}`, {
+    const respnse= await fetch(`http://localhost:9000/trainee/refund/${TraineeID}/${CourseID}`, {
         method: 'GET',
     })  
     const json= await respnse.json()
@@ -131,7 +192,16 @@ const handleSubmit = async (e) => {
     const json= await respnse.json()
 
     if(!respnse.ok){
-        setError(json.error)
+        Swal.fire({
+            title: json.message,
+            icon: 'error',
+            confirmButtonColor: '#990000',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                // window.location.reload();
+            }
+          })
     }
     if(respnse.ok){
         console.log("Course Successfully Registered!")
@@ -203,9 +273,24 @@ if(window.location.href.split('/').at(3)=='userCorporate'){
 }
 
 
+if(window.location.href.split('/').at(3)=='guest'){
+    return(
+        <div>
+            <h1>Course Details</h1>
+            <ul>
+    
+                {courses.map(course => <li key={course._id}>Title: {course.title} Price: {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
+               
+    
+            </ul>
+    
+        </div>
+    )
+    
+}
 
-
-return(
+if(JSON.stringify(registered).length==2){
+    return(
     <div>
         <h1>Course Details</h1>
         <ul>
@@ -220,8 +305,27 @@ return(
             <button>Add Course</button>
             {error && <div className="error">{error}</div>}
         </form>
-        <form className="create" onSubmit={handleSubmit2}> 
+
+
+    </div>
+)
+}
+return(
+    <div>
+        <h1>Course Details</h1>
+        <ul>
+
+            {courses.map(course => <li key={course._id}>Title: {course.title} Price: {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
+           
+
+        </ul>
+        
+        {/* <form className="create" onSubmit={handleSubmit2}> 
           <button>Drop Course</button>
+          {error && <div className="error">{error}</div>}
+        </form> */}
+        <form className="create" onSubmit={handleSubmit4}> 
+          <button>Request Refund</button>
           {error && <div className="error">{error}</div>}
         </form>
 
