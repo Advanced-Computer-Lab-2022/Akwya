@@ -4,7 +4,7 @@ const router =express.Router()
 
 
 
-import {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword, rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate,signUp,login,logout,generatePayment,confirmPayment} from "../controllers/traineeController.js"
+import {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword, rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate,signUp,login,logout,generatePayment,confirmPayment } from "../controllers/traineeController.js"
 
 router.patch('/:id/rateCourse',rateCourse)
 

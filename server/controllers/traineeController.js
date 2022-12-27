@@ -56,6 +56,10 @@ const courseID = req.params.courseID
 
     try {
         const addcourse = await trainee.updateOne({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,progress:0}}});
+        const coursOld = await course.findOne({_id:req.params.courseID})
+        const reg= (parseInt(coursOld.registered) + 1);
+        const cours= await course.findOneAndUpdate({_id:req.params.courseID},{registered: reg},{
+            new: true}  )
         res.status(200).json(addcourse)
     } catch (error) {
         res.status(400).json({ error: error.message })

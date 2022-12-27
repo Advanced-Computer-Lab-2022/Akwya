@@ -1,6 +1,8 @@
 //import instructor from '../models/instructor.js';
 import instructor from "../models/instructor.js"
 import course from "../models/course.js"
+import trainee from "../models/trainee.js"
+
 import e from "express"
 import video from "../models/videos.js"
 import nodemailer from 'nodemailer'
@@ -65,6 +67,7 @@ const createCourseI = async (req, res) => {
         summary,
       
     } = req.body
+    const registered=0;
 
 
     try {
@@ -73,6 +76,7 @@ const createCourseI = async (req, res) => {
             subtitles,
             price,
             summary,
+            registered
         });
         res.status(200).json(newCourse)
     } catch (error) {
@@ -379,7 +383,24 @@ const editBio = async (req, res) => {
             res.status(400).json({error: error.message})
         }
      } 
+     
+     const moneyOwed = async (req , res) => {
+        try{  //course.find({instructor:{$eq:req.params.id}}).select('title')
+            // const moneyy= await trainee.count({courses:})
+            // console.log(moneyy);
+            // const money= await trainee.find({}).select('title')
+            // const money= await courses.find
+
+        }
+    catch (error) {
+        res.status(400).json({error: error.message})
+    }
+
+
+     }
+  
+     
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
     filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
-    viewPreview, ViewRating, getRatings,changePassword, checkPassword,notFirst}
+    viewPreview, ViewRating, getRatings,changePassword, checkPassword,notFirst, moneyOwed}
