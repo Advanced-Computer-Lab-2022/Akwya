@@ -3,7 +3,8 @@ const router =express.Router()
 
 
 
-import {createInstructor, createAdmin, createTrainee,getAdmins,courseDiscountAdmin, promotionFound ,refundTrainee,grantAccess,requestAccess,viewRequests} from "../controllers/adminController.js"
+import {createInstructor, createAdmin, createTrainee,getAdmins,courseDiscountAdmin, promotionFound ,refundTrainee,grantAccess,
+    requestAccess,viewRequests,viewRefunds} from "../controllers/adminController.js"
 
 
 
@@ -23,5 +24,7 @@ router.get('/GrantAccess/:TraineeID/:CourseID', grantAccess)
 router.get('/RequestAccess/:TraineeID/:CourseID', requestAccess)
 
 router.get('/viewRequests/', viewRequests)
+
+router.get('/viewRefunds/', viewRefunds)
 
 export default router;

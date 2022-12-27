@@ -34,6 +34,8 @@ const Admin = () => {
         <button class="prbutton" onClick={()=>{window.location='/Refund'}}><h5>Refund Trainee $</h5></button>
         <br/>
         <button class="prbutton" onClick={()=>{window.location='/GrantAccess'}}><h5>Grant Access !</h5></button>
+        <br/>
+        <button class="prbutton" onClick={()=>{window.location='/RefundRequests'}}><h5>View Refund Requests</h5></button>
 
 
         </div> 
