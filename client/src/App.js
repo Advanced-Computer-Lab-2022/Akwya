@@ -35,6 +35,7 @@ import Refund from './pages/Refund';
 import GrantAccess from './components/Admin/GrantAccess';
 import AdminViewTheProblems from './pages/AdminViewTheProblems';
 import ContactUs from './pages/ContactUs';
+import RefundRequests from './components/Admin/RefundRequests';
 
 
 // let GlobalCountry = 'United Kingdom';
@@ -178,6 +179,10 @@ function App() {
             <Route
               path="/GrantAccess"
               element={<GrantAccess/>}
+            />
+            <Route
+              path="/RefundRequests"
+              element={<RefundRequests/>}
             />
              <Route
               path="/contact"

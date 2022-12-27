@@ -4,7 +4,7 @@ import problem from "../models/problem.js";
 //view all the titles of the courses available including the total hours of the course and course rating
 const viewCourses = async (req, res) => {
 
-    const allcourses = await course.find({}).select('title totalHours ratings')
+    const allcourses = await course.find({})
 
     res.status(200).json(allcourses)
 
@@ -124,9 +124,10 @@ const createCourse = async (req, res) => {
 
     const previewVideo = ""
     const noOfRatings=[]
-    const promotion=0;
+    const promotion=0; 
     const promotionExpiry="";
-
+    const registeredTrainees=0; 
+    
     try {
         const newCourse = await course.create({
             title,
@@ -142,7 +143,8 @@ const createCourse = async (req, res) => {
 
             rating,
             noOfRatings,
-            previewVideo
+            previewVideo,
+            registeredTrainees
         });
         res.status(200).json(newCourse)
     } catch (error) {
@@ -163,7 +165,7 @@ const createCourse = async (req, res) => {
 
 //get all courses
 const getCourses = async (req, res) => {
-    const allcourses = await course.find({}).sort({ createdAt: -1 })
+    const allcourses = await course.find({}).sort({ registeredTrainees: -1 })
 
     res.status(200).json(allcourses)
 }									

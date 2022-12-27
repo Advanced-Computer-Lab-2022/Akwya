@@ -6,6 +6,7 @@ import userWatchVideos from "../models/userWatchVideos.js";
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import courseBought from "../models/courseBought.js";
 
 const rateCourse = async (req, res) => {
  
@@ -55,8 +56,29 @@ const  traineeID = req.body.traineeID
 const courseID = req.params.courseID
 
     try {
-        const addcourse = await trainee.updateOne({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,progress:0}}});
-        res.status(200).json(addcourse)
+        
+        
+        const traineeee = await trainee.findOne({_id:req.params.traineeID});
+        const coursee =  await course.findOne({_id:req.params.courseID});
+        const pricee = Math.round(coursee.price-(coursee.price*coursee.promotion/100));
+        const payment = traineeee.wallet-pricee;
+        
+        if(traineeee.wallet<pricee){
+            res.status(400).json({message:"You Dont Have Enough Funds in your Wallet"})
+            return;
+        }
+           
+        const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,progress:0}}});
+        const traineeeee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$set:{wallet:payment}});
+
+        const courseee = await course.findOneAndUpdate({_id:req.params.courseID}, {$inc:{registeredTrainees: 1}});
+
+
+        const addBought = await courseBought.create({username:traineee.username,CourseID:req.params.courseID,
+            TraineeID:traineee._id,courseName:coursee.title,price:pricee,refundRequested:false});
+            addBought.save();
+        
+        res.status(200).json(addBought)
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -72,6 +94,43 @@ const dropCourse = async(req, res) => {
         try {
             const addcourse = await trainee.updateOne({_id:req.params.traineeID},{$pull:{courses:{courseid:req.params.courseID}}});
             res.status(200).json(addcourse)
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    
+        console.log("tmm")
+    }
+
+const requestRefund = async(req, res) => {
+
+    
+        try {
+            const alreadyRequested = await courseBought.findOne({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]});
+            if(alreadyRequested.refundRequested==true){
+                res.status(400).json({message:"Refund Request Pending..."})
+                return;
+            }
+            const refund = await courseBought.findOneAndUpdate({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]},{$set:{refundRequested:true}});
+            const deleteprogress = await userWatchVideos.deleteMany({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]})
+            res.status(200).json(refund)
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    
+        console.log("tmm")
+    }
+
+    const refundCourse = async(req, res) => {
+        
+        try {
+            const addcourse = await trainee.findOneAndUpdate({_id:req.params.TraineeID},{$pull:{courses:{courseid:req.params.CourseID}}});
+            const removeCourse = await courseBought.findOneAndDelete({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]});
+
+            const refund = addcourse.wallet+removeCourse.price
+
+            const addrefund = await trainee.updateOne({_id:req.params.TraineeID},{$set:{wallet:refund}});
+            const courseee = await course.findOneAndUpdate({_id:req.params.CourseID}, {$inc:{registeredTrainees: -1}});
+            res.status(200).json(removeCourse)
         } catch (error) {
             res.status(400).json({ error: error.message })
         }
@@ -215,19 +274,23 @@ const resetPassword = async (req,res)=>{
 
 
 const sendCertificate = async (req,res)=>{
-    const userEmail = req.query.mail;
-    const courseTitle = req.query.title;        
-        
+    const coursee = req.params.CourseID;
+    const traine = await trainee.findOne({_id:req.params.TraineeID}).select('email');
+    const cours = await course.findOne({_id:req.params.CourseID}).select('title');
+
+    console.log("Title: "+cours.title)
+    console.log("Email: "+traine.email)
+
             const mail = {
                 from: process.env.AUTH_EMAIL,
-                to: userEmail,
-                subject: courseTitle,
+                to: traine.email,
+                subject: cours.title,
                 html: `<p>Congratulations!</p>
                     <p>You have completed <strong> 100% </strong> of this course. Keep it up.</p>
                     <p>Your certificate is attached below</p>`,
                 attachments: [{
                     filename: 'Certificate.pdf',
-                    path: '/Users/yasmine/Documents/Certificate.pdf',
+                    path: '../server/Certificate.pdf',
                     contentType: 'application/pdf'
                 }],
             }
@@ -371,5 +434,5 @@ const sendCertificate = async (req,res)=>{
     }
 
 export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,
-    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress}
+    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress,refundCourse,requestRefund}
 

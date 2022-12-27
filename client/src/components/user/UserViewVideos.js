@@ -1,11 +1,12 @@
 // this data fetching is for the indiviudal trainee
 
-import react, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Swal from "sweetalert2";
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import certificate from '../../img/Certificate.pdf'
 
 function UserViewVideos() {
 const [videos,setVideos] = useState([])
@@ -13,12 +14,88 @@ const [userProgress,setUserProgress] = useState(0)
 const [videoCount,setVideoCount] = useState(0)
 const [preview,setPreview] = useState([])
 const [registered,setRegistered] = useState([])
-const [error, setError] = useState(null)
+const [show, setShow] = useState(false)
 const [showProgress, setShowProgress] = useState(false)
 
 
 const CourseID = window.location.href.split('/').at(5);
 const TraineeID = window.location.href.split('/').at(4);
+
+
+function downloadCertificate() {
+   
+    let alink = document.createElement('a');
+    alink.href = certificate;
+    alink.download = 'Certificate.pdf';
+    alink.click();
+
+}
+
+  
+const Progressbar = ({bgcolor,progress,height}) => {
+     
+    const Parentdiv = {
+        height: height,
+        width: '89%',
+        backgroundColor: 'whitesmoke',
+        borderRadius: 40,
+        margin: 50,
+        border: '3px solid black',
+
+      }
+      
+      const Childdiv = {
+        height: '100%',
+        width: `${progress}%`,
+        backgroundColor: bgcolor,
+       borderRadius:40,
+        textAlign: 'right',
+        borderBottom: '1px solid black',
+        borderLeft: '1px solid black',
+        borderRight: '1px solid black',
+        transition: 'ease-in width 8000ms',
+        marginLeft: '-1px'
+    }
+      const ChildEmpty = {
+        height: '100%',
+        width: `3%`,
+        backgroundColor: bgcolor,
+       borderRadius:40,
+        textAlign: 'right',
+        borderBottom: '1px solid black',
+        borderLeft: '1px solid black',
+        borderRight: '1px solid black',
+        transition: 'ease-in width 8000ms',
+        marginLeft: '-1px'
+
+    }
+      
+      const progresstext = {
+        padding: 10,
+        color: 'black',
+        fontWeight: 900
+      }
+
+      if(progress==0){
+        return(
+            <div style={Parentdiv}>
+              <div style={ChildEmpty}>
+                <span style={progresstext}>{`${progress}%`}</span>
+              </div>
+            </div>
+            )
+      }
+        
+    return (
+    <div style={Parentdiv}>
+      <div style={Childdiv}>
+        <span style={progresstext}>{`${progress}%`}</span>
+      </div>
+    </div>
+    )
+}
+
+
 
 useEffect(()=>{
     axios
@@ -27,6 +104,8 @@ useEffect(()=>{
         console.log(JSON.stringify(res)+" daaaaa")
         if(res.data!=null)
             setUserProgress(res.data)
+            if(res.data==100)
+                setShow(true);
     })
     .catch(err=>{console.log(err)})
 },[showProgress])
@@ -170,8 +249,19 @@ if(JSON.stringify(registered).length==2){
 return(
     <div style={{ "text-align" : 'left' }}>
 
+<Progressbar bgcolor="#1976d2" progress={userProgress}  height={20} />
+
     <div  style={{"text-align" : 'center' }}>
-       <h2>Your Progress is {userProgress}%</h2>
+       <h2>Your Progress is {userProgress}%</h2><div><div style={{display: show ? 'block' : 'none' }}><Box sx={{marginBottom: 2,marginLeft: 2 ,display:"inline"}}>
+                <Button variant="contained"
+                onClick={downloadCertificate}
+                margin="normal"
+                padding="normal"
+                >Download Certificate </Button> 
+                
+                </Box>
+                </div>
+</div>
         
     </div>
 
@@ -208,12 +298,57 @@ return(
             icon: 'success',
             confirmButtonColor: '#38a53e',
             confirmButtonText: 'OK'
-          }).then((result) => {
+          }).then( async (result)  =>  {
             if (result.isConfirmed) {
                 setShowProgress(!showProgress);
+                
+                const respnse= await fetch(`http://localhost:9000/trainee/getUserProgress/${TraineeID}/${CourseID}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    }
+                })
+                const json= await respnse.json()
+                setUserProgress(json)
+                
+                if(!respnse.ok){
+                    console.log(json.error)
+                }
+                if(respnse.ok){
+                    console.log("this should be 100: "+json)
+                    if(json==100){
+                        const respnsee= await fetch(`http://localhost:9000/trainee/sendCertificate/${TraineeID}/${CourseID}`, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type' : 'application/json'
+                            }
+                        })
+                        const jsonn= await respnsee.json()
+                    if(!respnsee.ok){
+                        console.log(jsonn.error)
+                    }
+                    if(respnsee.ok){
+                        Swal.fire({
+                            title: 'Congrats!',
+                            text:'You just completed 100% of this course, an email has been sent to you with the certificate ',
+                            icon: 'success',
+                            confirmButtonColor: '#1976d2',
+                            confirmButtonText: 'Download Certificate',
+                            showCancelButton: true,
+                            cancelButtonText: 'Close'
+                            }).then((result) => {
+                            if (result.isConfirmed) {
+                                console.log("downloading....")
+                                downloadCertificate();
+                            }
+                          })
+                    }
+
+                    }           
+                }    
+                
             }
           })  
-        setError(null)
     } 
 
         }}
