@@ -149,6 +149,7 @@ export const grantAccess= async(req,res) => {
     try {
         const oldrequest = await courseRequest.findOneAndDelete({$and:[{CourseID:courseID},{TraineeID:traineeID}]});
         const addcourse = await trainee.updateOne({_id:traineeID},{$push:{courses:{courseid:courseID,progress:0}}});
+        const courseee = await course.findOneAndUpdate({_id:req.params.CourseID}, {$inc:{registeredTrainees: 1}});
         res.status(200).json({addcourse,oldrequest})
     } catch (error) {
         res.status(400).json({ error: error.message })

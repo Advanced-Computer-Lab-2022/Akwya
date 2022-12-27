@@ -82,7 +82,7 @@ useEffect(()=>{
 
 return(
     <div>
-        <h1>Explore Courses</h1>
+        <h1>Explore Popular Courses</h1>
         
         <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -92,6 +92,7 @@ return(
             <StyledTableCell align="center">Price</StyledTableCell>
             <StyledTableCell align="center">Total hours</StyledTableCell>
             <StyledTableCell align="center">Rating</StyledTableCell>
+            <StyledTableCell align="center">Registered Trainees</StyledTableCell>
 
 
           </TableRow>
@@ -113,6 +114,7 @@ return(
               <TableCell align="center">{(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)}</TableCell>
               <TableCell align="center">{course.totalHours}</TableCell>
               <TableCell align="center">{course.rating}</TableCell>
+              <TableCell align="center">{course.registeredTrainees}</TableCell>
 
             </TableRow>
           ))}

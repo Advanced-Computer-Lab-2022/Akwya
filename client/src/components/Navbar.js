@@ -6,8 +6,8 @@ import logout from './Logout';
 const Navbar = () => {
 
   return (
-<div>
-    <header>
+<div >
+    <header style={{borderBottom:" 3px solid black"}}>
     <a href="/" class="header-brand">Akwya</a>
     <nav>
       <div>
