@@ -1,5 +1,6 @@
 import trainee from "../models/trainee.js";
 import course from "../models/course.js";
+import admin from "../models/admin.js";
 import videos from "../models/videos.js";
 import instructor from "../models/instructor.js";
 import userWatchVideos from "../models/userWatchVideos.js";
@@ -7,7 +8,6 @@ import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import courseBought from "../models/courseBought.js";
-
 const rateCourse = async (req, res) => {
  
    
@@ -342,8 +342,13 @@ const sendCertificate = async (req,res)=>{
             if(!user){
                 user = await trainee.findOne({ username: username});
                 if(!user) {
-                    res.status(400).json("Username doesn't match")
-                    return;
+                    user = await admin.findOne({ username: username});
+                    if(!user) {
+                        res.status(400).json("Username doesn't match")
+                        return;
+                    }else {
+                        type='admin'
+                    }
                 }
                 else {
                     //get type of trainee
