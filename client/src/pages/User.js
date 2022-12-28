@@ -11,12 +11,13 @@ import FilterByRatingAndSubject from "../components/Instructor/FilterByRatingAnd
 import React, { useState, useEffect } from 'react';  
 import styled from "styled-components";
 import GetWallet from "../components/Trainee/GetWallet";
+import MyCourses from "../components/user/MyCourses";
 
 const User = (props) => {
-  const types = ["Explore Courses", "Filter Courses", "Change Password","View Reported Problems"];
+  const types = ["Explore Courses", "My Courses", "Change Password","View Reported Problems"];
 
   const [active, setActive] = useState(types[0]);
-  const [showFilters, setshowFilters] = useState(false);
+  const [showMyCourses, setshowMyCourses] = useState(false);
   const [showCourses, setshowCourses] = useState(true);
   const [showPW, setshowPW] = useState(false);
   const [showProblems, setshowProblems] = useState(false);
@@ -58,15 +59,15 @@ const User = (props) => {
               onClick={() => {setActive(type);switch (type) {
                 case "Explore Courses":
                   setshowCourses(true);
-                  setshowFilters(false)
+                  setshowMyCourses(false)
                   setshowPW(false)
                   setshowProblems(false)
 
                   
                 break;
-                case "Filter Courses":
+                case "My Courses":
                   setshowCourses(false);
-                  setshowFilters(true)
+                  setshowMyCourses(true)
                   setshowPW(false)
                   setshowProblems(false)
 
@@ -74,7 +75,7 @@ const User = (props) => {
                 break;
                 case "Change Password":
                   setshowCourses(false);
-                  setshowFilters(false)
+                  setshowMyCourses(false)
                   setshowPW(true)
                   setshowProblems(false)
 
@@ -83,7 +84,7 @@ const User = (props) => {
 
                   case "View Reported Problems":
                   setshowCourses(false);
-                  setshowFilters(false)
+                  setshowMyCourses(false)
                   setshowPW(false)
                   setshowProblems(true)
                   
@@ -118,7 +119,8 @@ const User = (props) => {
         <UserSearchCourse country={props.country}/>
         <DataFetching country={props.country} />
       </div>
-      <div style={{ display: showFilters ? "block" : "none" }}>
+      <div style={{ display: showMyCourses ? "block" : "none" }}>
+        <MyCourses/>
         {/* <FilterFetching country={props.country} />
         <FilterByRatingAndSubject country={props.country} /> */}
       </div>

@@ -146,10 +146,18 @@ export const grantAccess= async(req,res) => {
     const traineeID =req.params.TraineeID
     const courseID =req.params.CourseID;
 
+    const traineee = await trainee.findOne({_id:req.params.TraineeID});
+    const coursee =  await course.findOne({_id:req.params.CourseID});
+
     try {
         const oldrequest = await courseRequest.findOneAndDelete({$and:[{CourseID:courseID},{TraineeID:traineeID}]});
         const addcourse = await trainee.updateOne({_id:traineeID},{$push:{courses:{courseid:courseID,progress:0}}});
         const courseee = await course.findOneAndUpdate({_id:req.params.CourseID}, {$inc:{registeredTrainees: 1}});
+
+        const addBought = await courseBought.create({username:traineee.username,CourseID:req.params.CourseID,
+            TraineeID:traineee._id,courseName:coursee.title,price:0,refundRequested:false});
+            addBought.save();
+
         res.status(200).json({addcourse,oldrequest})
     } catch (error) {
         res.status(400).json({ error: error.message })
