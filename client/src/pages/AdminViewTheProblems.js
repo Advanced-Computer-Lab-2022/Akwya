@@ -18,14 +18,14 @@ import styledd from "styled-components";
 
 const AdminViewProblems= () => {  
 
-  const types = ["UnResolved", "Pending", "Resolved"];
+  const types = ["UnSeen", "Pending", "Resolved"];
 
   const [problems,setproblems] = useState([])
   const temp =window.location.href.split('/').at(4)  
   
 
 const [active, setActive] = useState(types[1]);
-const [showUnResolved, setshowUnResolved] = useState(false);
+const [showUnSeen, setshowUnSeen] = useState(false);
 const [showPending, setshowPending] = useState(true);
 const [showResolved, setshowResolved] = useState(false);
 useEffect(()=>{
@@ -63,22 +63,22 @@ function TabGroup() {
             active={active === type}
 
             onClick={() => {setActive(type);switch (type) {
-              case "UnResolved":
-                setshowUnResolved(true);
+              case "UnSeen":
+                setshowUnSeen(true);
                 setshowPending(false)
                 setshowResolved(false)
 
                 
               break;
               case "Pending":
-                setshowUnResolved(false);
+                setshowUnSeen(false);
                 setshowPending(true)
                 setshowResolved(false)
 
                 
               break;
               case "Resolved":
-                setshowUnResolved(false);
+                setshowUnSeen(false);
                 setshowPending(false)
                 setshowResolved(true)
 
@@ -249,7 +249,7 @@ return(
           )}
 
 
-          if (problem.status==='unresolved' && showUnResolved){
+          if (problem.status==='unresolved' && showUnSeen){
 
             return(
 
