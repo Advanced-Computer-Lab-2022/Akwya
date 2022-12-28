@@ -105,6 +105,8 @@ const Login = () => {
           else {
             window.location = "/instructor/"+res.data.user._id;
           }
+        } else if(res.data.type =='admin'){
+          window.location = "/admin/"
         }
         });
       }catch(error){
