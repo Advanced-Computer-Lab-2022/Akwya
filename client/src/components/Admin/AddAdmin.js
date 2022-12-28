@@ -50,7 +50,7 @@ const AddAdmin = () => {
     <div class="ganb">
           <form className="create" onSubmit={handleSubmit}> 
       <h1>New Admin</h1>
-
+   
      
       <div class="txt_field">
       <input 
