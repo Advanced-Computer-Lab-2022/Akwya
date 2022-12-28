@@ -13,6 +13,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import '../../components/courseDisplay.css'
 
 
 //async
@@ -45,51 +46,64 @@ useEffect(()=>{
 },[])
 
   
+const insertStars = (ratin, idx)=>{
+  let htmlRating = '<div>'
+ 
+      for (let j = 0; j < ratin; j++) {
+        htmlRating+=  '<span class="fa fa-star checked"></span> '
+      }
+      for (let k = ratin; k < 5; k++) {
+        htmlRating+='<span class="fa fa-star-o"></span> '
+      }
+ 
+    
+  htmlRating += '</div>'
+  // console.log(ratin);
+  // console.log(idx);
+  if(!document.getElementById(idx)){return}
+  document.getElementById(idx).innerHTML = htmlRating
+}
 
-return(
-    <div >
-        <h1>My Courses</h1>
-        
-        <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">Title</StyledTableCell>
-            {/* <StyledTableCell align="center">Progress</StyledTableCell> */}
+const thumbnail=(link)=>{
+// console.log(link.split("=").at(1));
+return 'https://img.youtube.com/vi/'+link.split("=").at(1)+'/0.jpg'
+}
 
 
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            
+return(     
+  <div class="courseDisplay">
+
+  <br/>
+  <br/>
+  <br/>
+  
+  <h1 style={{textAlign:'center',color:'white'}}>My Courses</h1>
+    <div class="allganb" style={{display: "flex","justify-content": "space-between", "overflow": "auto"
+  }}>
+  
           {courses.map((course) => (
-            <TableRow
-            hover
-            sx={{
-                "&:hover":{
-                cursor: "pointer",
-                backgroundColor: "#f5f5f5",
-                width: "100%"
-                }
-            }}
-           
-              >
-              <TableCell align="center"><Link to={{pathname:course.CourseID}}><h2>{course.courseName}</h2></Link></TableCell>
-              {/* <TableCell  align="center">{progress}</TableCell> */}
-
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-          
-        </div>
+                 <div class="ganb" >
+                   
+                <h2 className="create" align="center"><Link to={{pathname:course._id}}><img style={{borderRadius:'10px', width:'400px'}} src={thumbnail(course.previewVideo)} alt="Course"></img><h1>{course.title}</h1></Link></h2>
+                <div id={courses.indexOf(course)+'c'} style={{fontSize:'20px'}}>
+                <h2 align="center" >Course Rating {insertStars(course.rating, courses.indexOf(course)+'c')}</h2>
+                </div>               
+                <h2 align="center">Total Hours: {course.totalHours}</h2>
                 
-       // {courses.map(course => <li key={course._id}>Title: <Link to={{pathname:course._id}}><h2>{course.title}</h2></Link> Price: {(Math.round(course.price * rate) + ' ' + currency)}  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
-
-           
-
-        
+                
+                {/* <div id="area" style={{textAlign:'left', padding:'40px', lineHeight:'30px'}}>jj{insertStars(course.rating)}</div> */}
+                <h2 align="center">Registered Trainees: {course.registeredTrainees}</h2>
+                
+                </div>
+  
+            ))}
+  
+  
+  </div>    
+          
+  </div>    
+  
+     
         
 
    

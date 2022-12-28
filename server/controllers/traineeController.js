@@ -443,12 +443,18 @@ const sendCertificate = async (req,res)=>{
         try{
 
             const courses= await courseBought.find({TraineeID:req.params.TraineeID})
-
-
-
-
-        
-            res.status(200).json(courses)
+            const courseDetails = await course.find({}) 
+            let common = [];                   // Array to contain common elements
+            for(let i=0 ; i<courses.length ; i++) {
+                for(let j=0 ; j<courseDetails.length ; j++) {
+                    
+                if(courses[i].CourseID == courseDetails[j]._id.toString()) {  
+                    console.log('dakhalt');     // If element is in both the arrays
+                    common.push(courseDetails[j]);        // Push to common array
+                }
+                }
+            }
+            res.status(200).json(common)
         }
     
         catch(error){
