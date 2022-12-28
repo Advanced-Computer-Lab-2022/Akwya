@@ -68,7 +68,8 @@ const courseID = req.params.courseID
             return;
         }
            
-        const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,progress:0}}});
+        const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,
+            progress:0,courseName:coursee.title}}});
         const traineeeee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$set:{wallet:payment}});
 
         const courseee = await course.findOneAndUpdate({_id:req.params.courseID}, {$inc:{registeredTrainees: 1}});
@@ -433,6 +434,24 @@ const sendCertificate = async (req,res)=>{
         }
     }
 
+    const myCourses= async(req,res) => {
+        try{
+
+            const courses= await courseBought.find({TraineeID:req.params.TraineeID})
+
+
+
+
+        
+            res.status(200).json(courses)
+        }
+    
+        catch(error){
+            res.status(400).json({message: error.message})
+        }
+    }
+
 export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,
-    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress,refundCourse,requestRefund}
+    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress,
+    refundCourse,requestRefund,myCourses}
 
