@@ -23,7 +23,7 @@ import ViewMyProblems from '../components/Problem/viewMyProblems'
 
 
 const Instructor = (props) => {
-  const types = ["My Courses","My Info","Explore Courses", "Filter Courses","View Reported Problems"];
+  const types = ["My Courses","My Info","Explore Courses","View Reported Problems"];
   const [active, setActive] = useState(types[0]);
   const [showFilters, setshowFilters] = useState(false);
   const [showCourses, setshowCourses] = useState(false);

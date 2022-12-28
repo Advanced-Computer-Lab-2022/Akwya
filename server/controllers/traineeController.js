@@ -1,5 +1,6 @@
 import trainee from "../models/trainee.js";
 import course from "../models/course.js";
+import admin from "../models/admin.js";
 import videos from "../models/videos.js";
 import instructor from "../models/instructor.js";
 import userWatchVideos from "../models/userWatchVideos.js";
@@ -7,7 +8,6 @@ import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import courseBought from "../models/courseBought.js";
-
 const rateCourse = async (req, res) => {
  
    
@@ -68,7 +68,8 @@ const courseID = req.params.courseID
             return;
         }
            
-        const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,progress:0}}});
+        const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,
+            progress:0,courseName:coursee.title}}});
         const traineeeee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$set:{wallet:payment}});
 
         const courseee = await course.findOneAndUpdate({_id:req.params.courseID}, {$inc:{registeredTrainees: 1}});
@@ -342,8 +343,13 @@ const sendCertificate = async (req,res)=>{
             if(!user){
                 user = await trainee.findOne({ username: username});
                 if(!user) {
-                    res.status(400).json("Username doesn't match")
-                    return;
+                    user = await admin.findOne({ username: username});
+                    if(!user) {
+                        res.status(400).json("Username doesn't match")
+                        return;
+                    }else {
+                        type='admin'
+                    }
                 }
                 else {
                     //get type of trainee
@@ -433,6 +439,30 @@ const sendCertificate = async (req,res)=>{
         }
     }
 
+    const myCourses= async(req,res) => {
+        try{
+
+            const courses= await courseBought.find({TraineeID:req.params.TraineeID})
+            const courseDetails = await course.find({}) 
+            let common = [];                   // Array to contain common elements
+            for(let i=0 ; i<courses.length ; i++) {
+                for(let j=0 ; j<courseDetails.length ; j++) {
+                    
+                if(courses[i].CourseID == courseDetails[j]._id.toString()) {  
+                    console.log('dakhalt');     // If element is in both the arrays
+                    common.push(courseDetails[j]);        // Push to common array
+                }
+                }
+            }
+            res.status(200).json(common)
+        }
+    
+        catch(error){
+            res.status(400).json({message: error.message})
+        }
+    }
+
 export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,
-    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress,refundCourse,requestRefund}
+    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress,
+    refundCourse,requestRefund,myCourses}
 

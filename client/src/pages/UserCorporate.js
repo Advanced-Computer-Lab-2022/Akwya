@@ -8,10 +8,12 @@ import ChangePw from '../components/Trainee/ChangePw'
 import React, { useState, useEffect } from 'react';  
 import styled from "styled-components";
 import ViewMyProblems from '../components/Problem/viewMyProblems'
+import MyCourses from "../components/user/MyCourses";
+
 
 
 const User = (props) => {
-  const types = ["Explore Courses", "Filter Courses", "Change Password","View Reported Problems"];
+  const types = ["Explore Courses", "My Courses", "Change Password","View Reported Problems"];
   const [active, setActive] = useState(types[0]);
   const [showFilters, setshowFilters] = useState(false);
   const [showCourses, setshowCourses] = useState(true);
@@ -68,7 +70,7 @@ const User = (props) => {
 
                   
                 break;
-                case "Filter Courses":
+                case "My Courses":
                   setshowCourses(false);
                   setshowFilters(true)
                   setshowPW(false)
@@ -115,10 +117,11 @@ const User = (props) => {
         
         <TabGroup/>
 
-        <div style={{display: showPW ? 'block' : 'none' }}><ChangePw /></div>
+        <div class='admin allganb' style={{ display: showPW ? "block" : "none" , marginTop:'10px',paddingTop:'10px',height:'70vh',background:'rgb(240,240,240)'}}>
+<ChangePw /></div>
 
         <div style={{display: showCourses ? 'block' : 'none' }}><UserSearchCourse country={props.country}/><DisplayCourses/></div>
-       {/* <div style={{display: showFilters ? 'block' : 'none' }}><FilterByRatingAndSubject/></div>          */}
+       <div style={{display: showFilters ? 'block' : 'none' }}><MyCourses/></div>         
        <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems country={props.country}/></div>
 
       </div>
