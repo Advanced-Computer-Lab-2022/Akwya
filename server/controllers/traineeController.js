@@ -51,7 +51,7 @@ const getTrainee= async(req,res) => {
 
 const registerCourse = async(req, res) => {
     
-    const  traineeID = req.body.traineeID
+    const  traineeID = req.params.traineeID
     const courseID = req.params.courseID
     
         try {

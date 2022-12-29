@@ -10,8 +10,14 @@ import {
 import { Form, Modal, Button } from "react-bootstrap";
 import Field from "./Field";
 //css provided by stripe to format elements
+import axios from "axios";
+import Swal from "sweetalert2";
 
-const axios = require("axios");
+// const axios = require("axios");
+
+
+const CourseID = window.location.href.split('/').at(5);
+const TraineeID = window.location.href.split('/').at(4);
 
 //credit card element specific styling
 const CARD_OPTIONS = {
@@ -105,6 +111,45 @@ export default function CreditCardForm(props) {
 		3. confirm the payment intent using the new payment method
 		4. send a confiemation to the server if the payment succeeded
 	*/
+    // const edit =  async () => {
+    //     await axios.get(`http://localhost:9000/instructor/editBio/`+instructorId +'?minibiography='+ minibiography ).then(
+    //    (res) => { 
+    //        const instructors = res.data
+    //        console.log(instructors)
+    //        setInstructors(instructors)
+           
+    //    }
+    //     );
+const reg = async () => {
+    
+    await axios.get(`http://localhost:9000/trainee/register/${CourseID}/${TraineeID}`).then(
+        (respnse) => {
+
+           
+
+            // if(!respnse.ok){
+            //     setError(json.error)
+            // }
+            if(respnse.ok){
+                console.log("Course Successfully Registered!")
+                Swal.fire({
+                    title: 'Course Successfully Registered!',
+                    icon: 'success',
+                    confirmButtonColor: '#38a53e',
+                    confirmButtonText: 'OK'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
+                  })  
+                setError(null)
+            } 
+        }
+    ) 
+   
+
+}
+
     const handleSubmit = async (event) => {
         //prevent default form values
         event.preventDefault();
@@ -213,7 +258,9 @@ export default function CreditCardForm(props) {
                  YOUR APPLICATION SPECIFIC CODE HERE:
                  for this example all we do is render a modal
                 */
+               
                 setSuccess(true);
+                reg();
             }
         }
     }
@@ -222,7 +269,7 @@ export default function CreditCardForm(props) {
 
     //render
     return (
-        // the credit card form
+        <div class="card">
         <Form className="Form" onSubmit={handleSubmit}>
 
             {/* Error modal */}
@@ -249,7 +296,7 @@ export default function CreditCardForm(props) {
                     Your card payment has been confirmed
                 </Modal.Body>
                 <Modal.Footer>
-                        <Button variant="success" onClick={ () =>{history.push("/")}}>Close</Button>
+                        <Button variant="success" onClick={reg}>Close</Button>
                     
                 </Modal.Footer>
             </Modal>
@@ -341,8 +388,15 @@ export default function CreditCardForm(props) {
                 {/* card */}
                 <CardField
                     onChange={(event) => {
-                        setError(event.error);
-                        setCardComplete(event.complete);
+                        console.log(event)
+                        if(!event.error){
+                            setCardComplete(event.complete);
+                        }
+                        else{
+                            setError(event.error.message);
+                        }
+                      
+                       
                     }}
                 />
                 
@@ -356,6 +410,7 @@ export default function CreditCardForm(props) {
                     Make Payment
             </SubmitButton>
         </Form>
+        </div>
     );
     
 }
