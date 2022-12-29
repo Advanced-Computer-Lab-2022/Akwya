@@ -5,7 +5,7 @@ import axios from 'axios'
 import Swal from "sweetalert2";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-
+import PaymentComponent from '../Trainee/PaymentComponent';
 
 function MyCourse(props) {
 const [courses,setCourses] = useState([])
@@ -186,7 +186,7 @@ switch(props.country) {
 const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const respnse= await fetch(`http://localhost:9000/trainee/register/${CourseID}/${TraineeID}`, {
+    const respnse= await fetch(`http://localhost:9000/trainee/register/${TraineeID}/?courseID=${CourseID}`, {
         method: 'GET',
     })  
     const json= await respnse.json()
@@ -328,7 +328,11 @@ return(
           <button>Request Refund</button>
           {error && <div className="error">{error}</div>}
         </form>
-
+        <PaymentComponent
+    keys={{
+        stripe: "pk_test_51MIFP2HUXZhuMagYneFzG4qHkSG50EXSNItMTONiK5113unZ0HzFho1rwLowL312VWCsK1IToWcIUXT5N7VZZExJ008w6439EK",
+    }}
+/>
     </div>
 )
 }

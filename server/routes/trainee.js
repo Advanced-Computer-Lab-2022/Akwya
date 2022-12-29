@@ -5,7 +5,8 @@ const router =express.Router()
 
 
 import {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword, rateInstructor,checkPassword,resetPassword
-,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress,refundCourse,requestRefund,myCourses} from "../controllers/traineeController.js"
+,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress,refundCourse,requestRefund,myCourses,generatePayment,confirmPayment} from "../controllers/traineeController.js"
+
 
 router.patch('/:id/rateCourse',rateCourse)
 
@@ -39,6 +40,11 @@ router.post('/login', login);
 
 router.get('/logout', logout);
 
+
+router.post('/stripe', generatePayment);
+
+router.post('/confirm-payment', confirmPayment);
+
 router.get('/userWatchVideo/:TraineeID/:VideoID', userWatchVideo);
 
 router.get('/getUserProgress/:TraineeID/:CourseID', getUserProgress);
@@ -48,5 +54,6 @@ router.get('/refund/:TraineeID/:CourseID', refundCourse);
 router.get('/requestRefund/:TraineeID/:CourseID', requestRefund);
 
 router.get('/myCourses/:TraineeID', myCourses);
+
 
 export default router;
