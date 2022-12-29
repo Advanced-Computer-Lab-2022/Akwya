@@ -59,7 +59,7 @@ const getTrainee= async(req,res) => {
 const registerCourse = async(req, res) => {
     
 
-    const  traineeID = req.params.traineeID
+    const  traineeID = req.body.traineeID
     const courseID = req.params.courseID
     
         try {
@@ -91,39 +91,8 @@ const registerCourse = async(req, res) => {
         }
     
         console.log("tmm")
-
-const  traineeID = req.body.traineeID
-const courseID = req.params.courseID
-
-    try {
-        
-        
-        const traineeee = await trainee.findOne({_id:req.params.traineeID});
-        const coursee =  await course.findOne({_id:req.params.courseID});
-        const pricee = Math.round(coursee.price-(coursee.price*coursee.promotion/100));
-        const payment = traineeee.wallet-pricee;
-        
-        if(traineeee.wallet<pricee){
-            res.status(400).json({message:"You Dont Have Enough Funds in your Wallet"})
-            return;
-        }
-           
-        const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,
-            progress:0,courseName:coursee.title}}});
-        const traineeeee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$set:{wallet:payment}});
-
-        const courseee = await course.findOneAndUpdate({_id:req.params.courseID}, {$inc:{registeredTrainees: 1}});
-
-
-        const addBought = await courseBought.create({username:traineee.username,CourseID:req.params.courseID,
-            TraineeID:traineee._id,courseName:coursee.title,price:pricee,refundRequested:false});
-            addBought.save();
-        
-        res.status(200).json(addBought)
-    } catch (error) {
-        res.status(400).json({ error: error.message })
-
     }
+
 
 const dropCourse = async(req, res) => {
     
@@ -562,4 +531,3 @@ async (req, res) => {
 export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,
     resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress,
     refundCourse,requestRefund,myCourses,generatePayment,confirmPayment}
-

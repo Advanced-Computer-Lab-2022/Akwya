@@ -401,7 +401,7 @@ const reg = async () => {
                 />
                 
             </fieldset>
-            {/* submit */}
+          
             <SubmitButton
                     processing={processing}
                     error={error}
@@ -410,7 +410,7 @@ const reg = async () => {
                     Make Payment
             </SubmitButton>
         </Form>
-        </div>
+       </div>
     );
     
 }

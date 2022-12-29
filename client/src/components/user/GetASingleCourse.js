@@ -186,7 +186,7 @@ switch(props.country) {
 const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const respnse= await fetch(`http://localhost:9000/trainee/register/${TraineeID}/?courseID=${CourseID}`, {
+    const respnse= await fetch(`http://localhost:9000/trainee/register/${CourseID}/${TraineeID}`, {
         method: 'GET',
     })  
     const json= await respnse.json()
@@ -305,7 +305,11 @@ if(JSON.stringify(registered).length==2){
             <button>Add Course</button>
             {error && <div className="error">{error}</div>}
         </form>
-
+        <PaymentComponent
+    keys={{
+        stripe: "pk_test_51MIFP2HUXZhuMagYneFzG4qHkSG50EXSNItMTONiK5113unZ0HzFho1rwLowL312VWCsK1IToWcIUXT5N7VZZExJ008w6439EK",
+    }}
+/>
 
     </div>
 )
@@ -328,11 +332,7 @@ return(
           <button>Request Refund</button>
           {error && <div className="error">{error}</div>}
         </form>
-        <PaymentComponent
-    keys={{
-        stripe: "pk_test_51MIFP2HUXZhuMagYneFzG4qHkSG50EXSNItMTONiK5113unZ0HzFho1rwLowL312VWCsK1IToWcIUXT5N7VZZExJ008w6439EK",
-    }}
-/>
+       
     </div>
 )
 }

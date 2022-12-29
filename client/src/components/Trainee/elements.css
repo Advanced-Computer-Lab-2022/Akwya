@@ -62,7 +62,7 @@
       width: 100%;
   }
   
-  input::placeholder {
+  .card input::placeholder {
       color: #cccccc;
   }
   
