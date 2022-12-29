@@ -260,7 +260,7 @@ const reg = async () => {
                 */
                
                 setSuccess(true);
-                reg();
+                
             }
         }
     }
@@ -273,7 +273,7 @@ const reg = async () => {
         <Form className="Form" onSubmit={handleSubmit}>
 
             {/* Error modal */}
-            <Modal show={error!=null}>
+            {/* <Modal show={error!=null}>
                 <Modal.Header>
                     <Modal.Title>Error</Modal.Title>
                 </Modal.Header>
@@ -284,11 +284,11 @@ const reg = async () => {
                 <Modal.Footer>
                     <Button variant="danger" onClick={(event)=>{setError(null)}}>Close</Button>    
                 </Modal.Footer>
-            </Modal>
+            </Modal> */}
 
 
             {/* success banner, only shows after confirmation */}
-            <Modal show={success}>
+            {/* <Modal show={success}>
                 <Modal.Header>
                     <Modal.Title>Payment Succeeded</Modal.Title>
                 </Modal.Header>
@@ -299,7 +299,7 @@ const reg = async () => {
                         <Button variant="success" onClick={reg}>Close</Button>
                     
                 </Modal.Footer>
-            </Modal>
+            </Modal> */}
 
             {/* Bet amount field */}
             <Field
@@ -390,10 +390,12 @@ const reg = async () => {
                     onChange={(event) => {
                         console.log(event)
                         if(!event.error){
-                            setCardComplete(event.complete);
+                            reg();
+                            // setCardComplete(event.complete);
+
                         }
                         else{
-                            setError(event.error.message);
+                            // setError(event.error.message);
                         }
                       
                        

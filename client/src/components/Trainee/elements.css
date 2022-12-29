@@ -2,6 +2,7 @@
       margin: auto;
       font-size: 18px;
       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      width:100%
   }
   
   .card label {
@@ -62,7 +63,7 @@
       width: 100%;
   }
   
-  .card input::placeholder {
+  input::placeholder {
       color: #cccccc;
   }
   
