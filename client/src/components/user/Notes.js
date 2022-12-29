@@ -73,6 +73,9 @@ const Notes = () => {
         element.click();
       }
 
+      if(window.location.href.split('/').at(3)=='guest'){
+      return;
+      }
 
     return(
         <div>

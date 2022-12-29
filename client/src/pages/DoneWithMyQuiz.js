@@ -22,7 +22,6 @@ const DoneWithMyQuiz = (props) => {
     <div className="takeQuiz">
         <h2>Quiz Time</h2>
           <Link to="/">
-              <h2>Go to Home Page</h2>
             </Link>
     
             <ViewAnswer/>

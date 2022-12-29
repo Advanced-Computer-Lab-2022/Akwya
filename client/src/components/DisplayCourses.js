@@ -43,53 +43,35 @@ useEffect(()=>{
 
   
 
-return(
-    <div>
-        <h1>Explore Courses</h1>
-        
-        <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">Title</StyledTableCell>
-            <StyledTableCell align="center">Total hours</StyledTableCell>
-            <StyledTableCell align="center">Rating</StyledTableCell>
-
-
-          </TableRow>
-        </TableHead>
-        <TableBody>
+return(   
+    <div class="courseDisplay">
+  
+  <br/>
+  <br/>
+  <br/>
+  
+  <h1>Explore Courses</h1>
+  
+    <div style={{display: "flex","justify-content": "space-between", "overflow": "auto",
+  }}>
+  
           {courses.map((course) => (
-            <TableRow
-            hover
-            sx={{
-                "&:hover":{
-                cursor: "pointer",
-                backgroundColor: "#f5f5f5",
-                width: "100%"
-                }
-            }}
-           
-              >
-              <TableCell align="center"><Link to={{pathname:course._id}}><h2>{course.title}</h2></Link></TableCell>
-              <TableCell align="center">{course.totalHours}</TableCell>
-              <TableCell align="center">{course.rating}</TableCell>
-
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-          
-        </div>
-                
-       // {courses.map(course => <li key={course._id}>Title: <Link to={{pathname:course._id}}><h2>{course.title}</h2></Link> Price: {(Math.round(course.price * rate) + ' ' + currency)}  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
-
-           
-
-        
-        
-
+                 <div class="ganb" >
+                <h2 className="create" align="center"><Link to={{pathname:course._id}}><h2>Title {course.title}</h2></Link></h2>
+                <br/>
+                <br/>
+                <h2 align="center">Total Hours: {course.totalHours}</h2>
+                <br/>
+                <h2 align="center">Course Rating: {course.rating }</h2>
+                {/* <div id="area" style={{textAlign:'left', padding:'40px', lineHeight:'30px'}}>jj{insertStars(course.rating)}</div> */}
+                </div>
+  
+            ))}
+  
+  
+  </div>           
+  </div>     
+  
    
 )
 }

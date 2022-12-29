@@ -1,11 +1,18 @@
 import trainee from "../models/trainee.js";
 import course from "../models/course.js";
+import admin from "../models/admin.js";
+import videos from "../models/videos.js";
 import instructor from "../models/instructor.js";
+import userWatchVideos from "../models/userWatchVideos.js";
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+
 import stripe from 'stripe';
 stripe('sk_test_51MIFP2HUXZhuMagYEdCYj0wsG45Ya6iUZ0heOaJjNw7s99MsoWZ7KRRkjPZH2PdyB7JP5sjx2cEKHhZvSXKktkps00cHANVVBh');
+
+
+import courseBought from "../models/courseBought.js";
 
 const rateCourse = async (req, res) => {
  
@@ -51,6 +58,7 @@ const getTrainee= async(req,res) => {
 
 const registerCourse = async(req, res) => {
     
+
     const  traineeID = req.params.traineeID
     const courseID = req.params.courseID
     
@@ -83,6 +91,38 @@ const registerCourse = async(req, res) => {
         }
     
         console.log("tmm")
+
+const  traineeID = req.body.traineeID
+const courseID = req.params.courseID
+
+    try {
+        
+        
+        const traineeee = await trainee.findOne({_id:req.params.traineeID});
+        const coursee =  await course.findOne({_id:req.params.courseID});
+        const pricee = Math.round(coursee.price-(coursee.price*coursee.promotion/100));
+        const payment = traineeee.wallet-pricee;
+        
+        if(traineeee.wallet<pricee){
+            res.status(400).json({message:"You Dont Have Enough Funds in your Wallet"})
+            return;
+        }
+           
+        const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,
+            progress:0,courseName:coursee.title}}});
+        const traineeeee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$set:{wallet:payment}});
+
+        const courseee = await course.findOneAndUpdate({_id:req.params.courseID}, {$inc:{registeredTrainees: 1}});
+
+
+        const addBought = await courseBought.create({username:traineee.username,CourseID:req.params.courseID,
+            TraineeID:traineee._id,courseName:coursee.title,price:pricee,refundRequested:false});
+            addBought.save();
+        
+        res.status(200).json(addBought)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+
     }
 
 const dropCourse = async(req, res) => {
@@ -93,6 +133,43 @@ const dropCourse = async(req, res) => {
         try {
             const addcourse = await trainee.updateOne({_id:req.params.traineeID},{$pull:{courses:{courseid:req.params.courseID}}});
             res.status(200).json(addcourse)
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    
+        console.log("tmm")
+    }
+
+const requestRefund = async(req, res) => {
+
+    
+        try {
+            const alreadyRequested = await courseBought.findOne({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]});
+            if(alreadyRequested.refundRequested==true){
+                res.status(400).json({message:"Refund Request Pending..."})
+                return;
+            }
+            const refund = await courseBought.findOneAndUpdate({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]},{$set:{refundRequested:true}});
+            const deleteprogress = await userWatchVideos.deleteMany({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]})
+            res.status(200).json(refund)
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    
+        console.log("tmm")
+    }
+
+    const refundCourse = async(req, res) => {
+        
+        try {
+            const addcourse = await trainee.findOneAndUpdate({_id:req.params.TraineeID},{$pull:{courses:{courseid:req.params.CourseID}}});
+            const removeCourse = await courseBought.findOneAndDelete({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]});
+
+            const refund = addcourse.wallet+removeCourse.price
+
+            const addrefund = await trainee.updateOne({_id:req.params.TraineeID},{$set:{wallet:refund}});
+            const courseee = await course.findOneAndUpdate({_id:req.params.CourseID}, {$inc:{registeredTrainees: -1}});
+            res.status(200).json(removeCourse)
         } catch (error) {
             res.status(400).json({ error: error.message })
         }
@@ -236,19 +313,23 @@ const resetPassword = async (req,res)=>{
 
 
 const sendCertificate = async (req,res)=>{
-    const userEmail = req.query.mail;
-    const courseTitle = req.query.title;        
-        
+    const coursee = req.params.CourseID;
+    const traine = await trainee.findOne({_id:req.params.TraineeID}).select('email');
+    const cours = await course.findOne({_id:req.params.CourseID}).select('title');
+
+    console.log("Title: "+cours.title)
+    console.log("Email: "+traine.email)
+
             const mail = {
                 from: process.env.AUTH_EMAIL,
-                to: userEmail,
-                subject: courseTitle,
+                to: traine.email,
+                subject: cours.title,
                 html: `<p>Congratulations!</p>
                     <p>You have completed <strong> 100% </strong> of this course. Keep it up.</p>
                     <p>Your certificate is attached below</p>`,
                 attachments: [{
                     filename: 'Certificate.pdf',
-                    path: '/Users/yasmine/Documents/Certificate.pdf',
+                    path: '../server/Certificate.pdf',
                     contentType: 'application/pdf'
                 }],
             }
@@ -300,8 +381,13 @@ const sendCertificate = async (req,res)=>{
             if(!user){
                 user = await trainee.findOne({ username: username});
                 if(!user) {
-                    res.status(400).json("Username doesn't match")
-                    return;
+                    user = await admin.findOne({ username: username});
+                    if(!user) {
+                        res.status(400).json("Username doesn't match")
+                        return;
+                    }else {
+                        type='admin'
+                    }
                 }
                 else {
                     //get type of trainee
@@ -335,6 +421,7 @@ const sendCertificate = async (req,res)=>{
         res.end();
     
     }
+
 
     //generate payment request for a card payer
     const generatePayment =
@@ -393,5 +480,86 @@ async (req, res) => {
     
   }
 
-export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,resetPassword,getWallet,sendCertificate,signUp,login,logout,generatePayment,confirmPayment}
+
+    const videoCount= async(req,res) => {
+        try{
+            const videoos= await videos.find({courseID:req.params.CourseID}).count();
+            res.status(200).json(videoos)
+        }
+    
+        catch(error){
+            res.status(400).json({message: error.message})
+        }
+    }
+
+    const getUserProgress= async(req,res) => {
+        try{
+
+
+            const videoos= await userWatchVideos.find({$and:[{CourseID:req.params.CourseID},{TraineeID:req.params.TraineeID}]}).count();
+
+            const vidcount= await videos.find({courseID:req.params.CourseID}).count();
+
+        
+            res.status(200).json(Math.round((videoos/vidcount)*100))
+        }
+    
+        catch(error){
+            res.status(400).json({message: error.message})
+        }
+    }
+
+    const userWatchVideo= async(req,res) => {
+        try{
+            const videoos= await videos.findOne({_id:req.params.VideoID});
+
+            const oldWatchedVideo = await userWatchVideos.findOne({$and:[{VideoID:videoos._id},{TraineeID:req.params.TraineeID}]});
+        if(oldWatchedVideo!=null){
+            res.status(400).json({message:"Video Already Watched"})
+            return;
+        }
+            
+            const newWatchedVideo = await userWatchVideos.create({VideoID:videoos._id,CourseID:videoos.courseID,
+                TraineeID:req.params.TraineeID});
+                newWatchedVideo.save();
+            
+            const traineee = await trainee.findOneAndUpdate({_id:{$eq:req.params.TraineeID}},
+                {$inc:{"courses.$[course].progress": 1}},{ arrayFilters: [  { "course.courseid":  videoos.courseID } ] });
+
+
+
+            res.status(200).json(traineee)
+        }
+    
+        catch(error){
+            res.status(400).json({message: error.message})
+        }
+    }
+
+    const myCourses= async(req,res) => {
+        try{
+
+            const courses= await courseBought.find({TraineeID:req.params.TraineeID})
+            const courseDetails = await course.find({}) 
+            let common = [];                   // Array to contain common elements
+            for(let i=0 ; i<courses.length ; i++) {
+                for(let j=0 ; j<courseDetails.length ; j++) {
+                    
+                if(courses[i].CourseID == courseDetails[j]._id.toString()) {  
+                    console.log('dakhalt');     // If element is in both the arrays
+                    common.push(courseDetails[j]);        // Push to common array
+                }
+                }
+            }
+            res.status(200).json(common)
+        }
+    
+        catch(error){
+            res.status(400).json({message: error.message})
+        }
+    }
+
+export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,
+    resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress,
+    refundCourse,requestRefund,myCourses,generatePayment,confirmPayment}
 

@@ -8,10 +8,12 @@ import ChangePw from '../components/Trainee/ChangePw'
 import React, { useState, useEffect } from 'react';  
 import styled from "styled-components";
 import ViewMyProblems from '../components/Problem/viewMyProblems'
+import MyCourses from "../components/user/MyCourses";
+
 
 
 const User = (props) => {
-  const types = ["Explore Courses", "Filter Courses", "Change Password","View Reported Problems"];
+  const types = ["Explore Courses", "My Courses", "Change Password","View Reported Problems"];
   const [active, setActive] = useState(types[0]);
   const [showFilters, setshowFilters] = useState(false);
   const [showCourses, setshowCourses] = useState(true);
@@ -20,6 +22,9 @@ const User = (props) => {
   useEffect(()=>{
     document.getElementById('logoutbutton').hidden = false
     document.getElementById('loginbutton').hidden = true
+    document.getElementById('contract').hidden = true
+    document.getElementById('navPages').innerHTML = '<li> <a href="/userCorporate/'+window.location.href.split('/').at(4)+'"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
+
     })
   const Tab = styled.button`
   
@@ -65,7 +70,7 @@ const User = (props) => {
 
                   
                 break;
-                case "Filter Courses":
+                case "My Courses":
                   setshowCourses(false);
                   setshowFilters(true)
                   setshowPW(false)
@@ -108,15 +113,15 @@ const User = (props) => {
       <div className="user" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
         <h2>User Page</h2>
         <Link to="/">
-          <h2>Go to Home Page</h2>
         </Link>
         
         <TabGroup/>
 
-        <div style={{display: showPW ? 'block' : 'none' }}><ChangePw /></div>
+        <div class='admin allganb' style={{ display: showPW ? "block" : "none" , marginTop:'10px',paddingTop:'10px',height:'70vh',background:'rgb(240,240,240)'}}>
+<ChangePw /></div>
 
-        <div style={{display: showCourses ? 'block' : 'none' }}><SearchCourseCorporate/><DisplayCourses/></div>
-       <div style={{display: showFilters ? 'block' : 'none' }}><FilterByRatingAndSubject/></div>         
+        <div style={{display: showCourses ? 'block' : 'none' }}><UserSearchCourse country={props.country}/><DisplayCourses/></div>
+       <div style={{display: showFilters ? 'block' : 'none' }}><MyCourses/></div>         
        <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems country={props.country}/></div>
 
       </div>
