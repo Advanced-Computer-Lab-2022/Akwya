@@ -72,6 +72,8 @@ const registerCourse = async(req, res) => {
             
             if(traineeee.wallet<pricee){
                 res.status(400).json({message:"You Dont Have Enough Funds in your Wallet"})
+                
+
                 return;
             }
                
@@ -86,8 +88,10 @@ const registerCourse = async(req, res) => {
                 addBought.save();
             
             res.status(200).json(addBought)
+            console.log("sah")
         } catch (error) {
             res.status(400).json({ error: error.message })
+            console.log("ghalat")
         }
     
         console.log("tmm")

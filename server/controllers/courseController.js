@@ -211,11 +211,11 @@ const deleteAllCourses = async (req, res) => {
 
 const courseDiscount = async (req, res) => {
     try{
-
+//promotionStart
       
-        const discount=await course.findOneAndUpdate({_id:req.params.id},{promotion:req.query.promotion},{new: true}  )
+    const discount=await course.findOneAndUpdate({_id:req.params.id},{promotion:req.query.promotion},{new: true}  )
 
-      const date=await course.findOneAndUpdate({_id:req.params.id},{promotionExpiry:req.query.promotionExpiry},{new: true}  )
+      const date=await course.findOneAndUpdate({_id:req.params.id},{promotionStart:eq.query.promotionStart},{promotionExpiry:req.query.promotionExpiry},{new: true}  )
        
         res.status(200).json({discount, date})
        

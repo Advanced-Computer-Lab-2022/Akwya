@@ -273,7 +273,7 @@ const reg = async () => {
         <Form className="Form" onSubmit={handleSubmit}>
 
             {/* Error modal */}
-            {/* <Modal show={error!=null}>
+            <Modal show={error!=null}>
                 <Modal.Header>
                     <Modal.Title>Error</Modal.Title>
                 </Modal.Header>
@@ -282,24 +282,28 @@ const reg = async () => {
                     <p>{error}</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger" onClick={(event)=>{setError(null)}}>Close</Button>    
+                    <Button variant="danger" onClick={(event)=>{setError(null)} }>Close</Button>    
                 </Modal.Footer>
-            </Modal> */}
+            </Modal>
+
 
 
             {/* success banner, only shows after confirmation */}
-            {/* <Modal show={success}>
+            <Modal show={success}>
                 <Modal.Header>
                     <Modal.Title>Payment Succeeded</Modal.Title>
                 </Modal.Header>
+                
                 <Modal.Body>
-                    Your card payment has been confirmed
+                   Payed successfully
                 </Modal.Body>
                 <Modal.Footer>
-                        <Button variant="success" onClick={reg}>Close</Button>
+                {/* //  window.location.reload(); */}
+               
+                        <Button variant="success" onClick={reg} >OK</Button>
                     
                 </Modal.Footer>
-            </Modal> */}
+            </Modal>
 
             {/* Bet amount field */}
             <Field
@@ -391,11 +395,11 @@ const reg = async () => {
                         console.log(event)
                         if(!event.error){
                             reg();
-                            // setCardComplete(event.complete);
+                            setCardComplete(event.complete);
 
                         }
                         else{
-                            // setError(event.error.message);
+                            setError(event.error.message);
                         }
                       
                        

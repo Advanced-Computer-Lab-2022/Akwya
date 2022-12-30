@@ -20,7 +20,7 @@ import ViewRating from '../components/Instructor/ViewRating'
 import  EditBio from '../components/Instructor/EditBio.js'
 import ViewMyProblems from '../components/Problem/viewMyProblems'
 //profit
- import Profit from '../components/Instructor/MoneyOwed'
+ import Profit from '../components/Instructor/MoneyOwed';
 
 
 
@@ -165,6 +165,7 @@ const Instructor = (props) => {
           </div>
           
           <ViewRating />
+          <Profit/>
         
         </div>
 

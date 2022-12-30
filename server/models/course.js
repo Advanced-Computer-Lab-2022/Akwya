@@ -14,6 +14,7 @@ const courseSchema = mongoose.Schema({
     noOfRatings: [{rate:Number,review:String}],// [{ actualRating: Number, ratings: [{ rate: Number, ownerName: String, ownerID: Number }] }],
     // reviews: [{ review: { comment: String, ownerName: String, ownerID: Number } }],
     promotion: Number,
+    promotionStart: Date,
     promotionExpiry: Date,
     previewVideo: String,
     registeredTrainees:Number,

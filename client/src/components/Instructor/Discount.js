@@ -60,8 +60,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     const [instructors,setInstructors] = useState([]);
     const [ promotion,setPromotion] = useState(0);
     const [price ,setPrice]=useState(0);
-   
+
+    const [promotionStart,setPromotionStart]=useState('');
     const [promotionExpiry,setPromotionExpiry] = useState('');
+
     //promotionExpiry
     //+'?promotionExpiry=' +promotionExpiry 
     
@@ -134,10 +136,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
     }
 
+//promotionStart
     const date =  async () => {
-      await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotionExpiry='+ promotionExpiry ).then(
+      await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotionStart='+promotionStart+'?promotionExpiry='+ promotionExpiry ).then(
      (res) => { 
-
+      
+      setPromotionStart(res.data['promotionStart'])
       setPromotionExpiry(res.data['promotionExpiry'])
       // const promotionExpiry = res.data['promotionExpiry']
       console.log(promotionExpiry)
@@ -179,6 +183,19 @@ return(
         onChange={(e) => setPromotion(e.target.value)} 
         value={promotion}
         required
+      />
+
+
+
+       <label> Discount starting from: </label>    
+
+                <input 
+        type="date"
+        required 
+        id="xx"
+        placeholder='01/01/2023'
+        onChange={(e) =>setPromotionStart(e.target.value)} 
+        value={promotionStart}
       />
         
         
