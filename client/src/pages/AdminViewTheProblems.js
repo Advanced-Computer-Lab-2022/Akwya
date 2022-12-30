@@ -21,6 +21,9 @@ const AdminViewProblems= () => {
   const types = ["UnSeen", "Pending", "Resolved"];
   const [course,setCourse] = useState('');
 
+
+  // const [refresh,setRefresh] = useState(1);
+
   const [problems,setproblems] = useState([])
   const temp =window.location.href.split('/').at(4)  
   
@@ -292,8 +295,11 @@ return(
                           confirmButtonColor: '#38a53e',
                           confirmButtonText: 'OK'
                         }).then((result) => {
+                          // setRefresh(refresh+1)
+
                           if (result.isConfirmed) {
                             window.location.reload();
+
                           }
                         })
                   }).catch(er=>{
@@ -339,7 +345,7 @@ return(
               }}
              
                 >
-                                  <TableCell align="center">{problem.coursename}</TableCell>          
+                 <TableCell align="center">{problem.coursename}</TableCell>          
 
                  <TableCell>
                   
@@ -361,8 +367,11 @@ return(
                       confirmButtonColor: '#38a53e',
                       confirmButtonText: 'OK'
                     }).then((result) => {
+                      // setRefresh(refresh+1)
+
                       if (result.isConfirmed) {
                         window.location.reload();
+
                       }
                     })
               }).catch(er=>{
@@ -386,6 +395,7 @@ return(
                         confirmButtonText: 'OK'
                       })
                 }).catch(er=>{
+                  // setRefresh(refresh+1)
                     console.error(er);
                 })
                 ;

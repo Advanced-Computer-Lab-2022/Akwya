@@ -109,6 +109,7 @@ return(
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
+          <StyledTableCell align="center">Course Name</StyledTableCell>
            <StyledTableCell align="center">Problem</StyledTableCell>
             <StyledTableCell align="center">Category</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
@@ -129,7 +130,8 @@ return(
                 width: "100%"
                 }
             }}
-              >
+              >           
+               <TableCell align="center">{problem.coursename}</TableCell>          
               <TableCell align="center">{problem.theProblem}</TableCell>
               <TableCell align="center">{problem.category}</TableCell>
               <TableCell align="center">{problem.status}</TableCell>
