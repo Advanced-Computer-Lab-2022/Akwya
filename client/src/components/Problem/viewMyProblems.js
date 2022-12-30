@@ -113,6 +113,7 @@ return(
             <StyledTableCell align="center">Category</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
             <StyledTableCell align="center">Action</StyledTableCell>
+            <StyledTableCell align="center">Admin Messages</StyledTableCell>
 
 
           </TableRow>
@@ -128,14 +129,20 @@ return(
                 width: "100%"
                 }
             }}
-           
               >
               <TableCell align="center">{problem.theProblem}</TableCell>
               <TableCell align="center">{problem.category}</TableCell>
               <TableCell align="center">{problem.status}</TableCell>
+                <div> {problem.status==="resolved" ? <p></p>:
               <TableCell align="center" >
-              <Button variant="contained" style={{padding:5 ,cursor: "pointer", backgroundColor:'purple'}} onClick={() => followup(problem._id)}>follow up</Button>
+
+ <Button variant="contained" style={{padding:5 ,cursor: "pointer", backgroundColor:'purple'}} onClick={() => followup(problem._id)}>follow up</Button>
               </TableCell>
+              
+}
+                </div>
+                <TableCell align="center">{problem.messages}</TableCell>
+           
 
             </TableRow>
           ))}

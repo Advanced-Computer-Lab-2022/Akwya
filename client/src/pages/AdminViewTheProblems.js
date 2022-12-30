@@ -18,14 +18,15 @@ import styledd from "styled-components";
 
 const AdminViewProblems= () => {  
 
-  const types = ["UnResolved", "Pending", "Resolved"];
+  const types = ["UnSeen", "Pending", "Resolved"];
+  const [course,setCourse] = useState('');
 
   const [problems,setproblems] = useState([])
   const temp =window.location.href.split('/').at(4)  
   
 
 const [active, setActive] = useState(types[1]);
-const [showUnResolved, setshowUnResolved] = useState(false);
+const [showUnSeen, setshowUnSeen] = useState(false);
 const [showPending, setshowPending] = useState(true);
 const [showResolved, setshowResolved] = useState(false);
 useEffect(()=>{
@@ -63,22 +64,22 @@ function TabGroup() {
             active={active === type}
 
             onClick={() => {setActive(type);switch (type) {
-              case "UnResolved":
-                setshowUnResolved(true);
+              case "UnSeen":
+                setshowUnSeen(true);
                 setshowPending(false)
                 setshowResolved(false)
 
                 
               break;
               case "Pending":
-                setshowUnResolved(false);
+                setshowUnSeen(false);
                 setshowPending(true)
                 setshowResolved(false)
 
                 
               break;
               case "Resolved":
-                setshowUnResolved(false);
+                setshowUnSeen(false);
                 setshowPending(false)
                 setshowResolved(true)
 
@@ -122,8 +123,65 @@ useEffect(()=>{
     .catch(err=>{console.log(err)})
 },[])
 
+useEffect(()=>{
+  axios
+  .get('http://localhost:9000/course/getMyCourseName/'+course)
+  .then( res => {
+     console.log('hereeeeeee'+res.data)
+     setCourse(res.data)
+  })
+  .catch(err=>{console.log(err)})
+},[])
 
 
+const followup= (props) => { 
+
+  Swal.fire({
+    title: "Send A Message!",
+    input: 'text',
+    showCancelButton: true,
+    closeOnConfirm: true,
+    animation: "slide-from-top",
+    inputPlaceholder: "Please include as much details as possible..."
+  }).then(async(result) =>{
+    if (result.isConfirmed) {
+
+if (result.value=='') {
+  // Swal.showValidationMessage('First input missing')
+
+  Swal.fire({
+    title: 'Missing input!',
+    confirmButtonText: 'OK'
+  })
+} 
+      else {
+          
+
+    const prob = {
+
+      id:props,
+      input:result.value+'   ',
+    };
+
+    await axios.post('/course/followUp2', {prob}).then(res=>{
+      Swal.fire({
+          title: 'Message Sent!',
+          icon: 'success',
+          confirmButtonColor: '#38a53e',
+          confirmButtonText: 'OK'
+        })
+  }).catch(er=>{
+      console.error(er);
+  })
+      }
+
+
+  
+    }
+});
+      
+
+}
 
 
 
@@ -140,10 +198,13 @@ return(
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
+
+          <StyledTableCell align="center">Course name</StyledTableCell>            
           <StyledTableCell align="center">Status</StyledTableCell>
            <StyledTableCell align="center">Problem</StyledTableCell>
             <StyledTableCell align="center">Category</StyledTableCell>
             <StyledTableCell align="center">Follow Ups</StyledTableCell>
+            {showPending&&<StyledTableCell align="center">Messages</StyledTableCell>}
 
 
           </TableRow>
@@ -169,26 +230,32 @@ return(
             }}
            
               >
-            
+            <TableCell align="center">{problem.coursename}</TableCell>          
             <TableCell align="center">{problem.status}</TableCell>
               <TableCell align="center">{problem.theProblem}</TableCell>
               <TableCell align="center">{problem.category}</TableCell>
-              {/* <TableCell align="center" >{problem.followUps.map(followUp =><ul>{followUp}</ul>)}</TableCell> */}
               <TableCell align="center" style={{overflow:'auto'}}>{problem.followUps}</TableCell>
+
+              {/* <TableCell align="center" >{problem.followUps.map(followUp =><ul>{followUp}</ul>)}</TableCell> */}
 
                {/* <TableCell align="center" >{problem.followUps.map(followUp =><ul>{followUp}</ul>)}</TableCell> */}
                {/* <TableCell align="center" style={{overflow:'scroll'}}>{problem.followUs}</TableCell> */}
 
+              
 
             </TableRow>
             
            ) }
 
            if (problem.status==='pending' && showPending){
-
+            
+            setCourse(problem.courseid);
 
 
               return(
+
+            
+                
             
                 <TableRow id = {problem._id}
     
@@ -204,6 +271,8 @@ return(
                 }}
                
                   >
+                                      <TableCell align="center">{problem.coursename}</TableCell>          
+
                    <TableCell>
                     
     
@@ -238,18 +307,21 @@ return(
                   
 
                   
-          
                   <TableCell align="center">{problem.theProblem}</TableCell>
                   <TableCell align="center">{problem.category}</TableCell>
                   <TableCell align="center">{problem.followUps}</TableCell>
-    
+                  <TableCell align="center" >
+
+<Button variant="contained" style={{padding:5 ,cursor: "pointer", backgroundColor:'purple'}} onClick={() => followup(problem._id)}> Message</Button>
+             </TableCell>
+             
                 </TableRow>
             
               
           )}
 
 
-          if (problem.status==='unresolved' && showUnResolved){
+          if (problem.status==='unseen' && showUnSeen){
 
             return(
 
@@ -267,6 +339,8 @@ return(
               }}
              
                 >
+                                  <TableCell align="center">{problem.coursename}</TableCell>          
+
                  <TableCell>
                   
   
