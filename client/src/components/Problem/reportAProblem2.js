@@ -7,23 +7,18 @@
  import Swal from "sweetalert2";
 import { getValue } from '@mui/system';
  
-const courseid=window.location.href.split('/').at(5)
 
  const reportAProblem2= (props) => {
+
+
+  const courseid=window.location.href.split('/').at(5)
 
 // const [name,setName] = useState([])
 
 let x=""
   // useEffect(()=>{
 
-    axios
-    .get('http://localhost:9000/course/getMyCourseName/'+courseid)
-    .then( res => {
-
-        console.log(res)
-        x=res.data
-    })
-    .catch(err=>{console.log(err)})
+    
 // },[])
 
 
@@ -74,6 +69,15 @@ let x=""
             // console.log(theProblem);
             // console.log(categoryVal);
 
+
+           await axios
+    .get('http://localhost:9000/course/getMyCourseName/'+courseid)
+    .then( res => {
+
+        console.log(res)
+        x=res.data
+    })
+    .catch(err=>{console.log(err)})
 
             let prob = {
 

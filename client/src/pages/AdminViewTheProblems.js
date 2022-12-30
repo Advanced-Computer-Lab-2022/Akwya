@@ -19,7 +19,9 @@ import styledd from "styled-components";
 const AdminViewProblems= () => {  
 
   const types = ["UnSeen", "Pending", "Resolved"];
-  const [course,setCourse] = useState('');
+
+
+  // const [refresh,setRefresh] = useState(1);
 
   const [problems,setproblems] = useState([])
   const temp =window.location.href.split('/').at(4)  
@@ -113,7 +115,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 useEffect(()=>{
 
-    axios
+     axios
     .get('http://localhost:9000/course/getAllProblems')
     .then( res => {
 
@@ -123,26 +125,17 @@ useEffect(()=>{
     .catch(err=>{console.log(err)})
 },[])
 
-useEffect(()=>{
-  axios
-  .get('http://localhost:9000/course/getMyCourseName/'+course)
-  .then( res => {
-     console.log('hereeeeeee'+res.data)
-     setCourse(res.data)
-  })
-  .catch(err=>{console.log(err)})
-},[])
 
 
 const followup= (props) => { 
 
   Swal.fire({
-    title: "Send A Message!",
+    title: "Send A Message to the User!",
     input: 'text',
     showCancelButton: true,
     closeOnConfirm: true,
     animation: "slide-from-top",
-    inputPlaceholder: "Please include as much details as possible..."
+    inputPlaceholder: "Please be as helpful as possible..."
   }).then(async(result) =>{
     if (result.isConfirmed) {
 
@@ -203,7 +196,7 @@ return(
           <StyledTableCell align="center">Status</StyledTableCell>
            <StyledTableCell align="center">Problem</StyledTableCell>
             <StyledTableCell align="center">Category</StyledTableCell>
-            <StyledTableCell align="center">Follow Ups</StyledTableCell>
+            <StyledTableCell align="center">User Follow Ups</StyledTableCell>
             {showPending&&<StyledTableCell align="center">Messages</StyledTableCell>}
 
 
@@ -249,7 +242,6 @@ return(
 
            if (problem.status==='pending' && showPending){
             
-            setCourse(problem.courseid);
 
 
               return(
@@ -292,8 +284,11 @@ return(
                           confirmButtonColor: '#38a53e',
                           confirmButtonText: 'OK'
                         }).then((result) => {
+                          // setRefresh(refresh+1)
+
                           if (result.isConfirmed) {
                             window.location.reload();
+
                           }
                         })
                   }).catch(er=>{
@@ -339,7 +334,7 @@ return(
               }}
              
                 >
-                                  <TableCell align="center">{problem.coursename}</TableCell>          
+                 <TableCell align="center">{problem.coursename}</TableCell>          
 
                  <TableCell>
                   
@@ -361,8 +356,11 @@ return(
                       confirmButtonColor: '#38a53e',
                       confirmButtonText: 'OK'
                     }).then((result) => {
+                      // setRefresh(refresh+1)
+
                       if (result.isConfirmed) {
                         window.location.reload();
+
                       }
                     })
               }).catch(er=>{
@@ -386,6 +384,7 @@ return(
                         confirmButtonText: 'OK'
                       })
                 }).catch(er=>{
+                  // setRefresh(refresh+1)
                     console.error(er);
                 })
                 ;
