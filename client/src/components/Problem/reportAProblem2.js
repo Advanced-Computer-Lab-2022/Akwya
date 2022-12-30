@@ -67,7 +67,7 @@ import { getValue } from '@mui/system';
 
             let prob = {
 
-              status:'unresolved',
+              status:'unseen',
               category:document.getElementById('swal-input1').value,
               theProblem:document.getElementById('swal-input2').value,
               ownerID: window.location.href.split('/').at(4),

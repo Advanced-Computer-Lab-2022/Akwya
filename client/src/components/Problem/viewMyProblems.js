@@ -113,6 +113,7 @@ return(
             <StyledTableCell align="center">Category</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
             <StyledTableCell align="center">Action</StyledTableCell>
+            <StyledTableCell align="center">Admin Messages</StyledTableCell>
 
 
           </TableRow>
@@ -137,9 +138,11 @@ return(
 
  <Button variant="contained" style={{padding:5 ,cursor: "pointer", backgroundColor:'purple'}} onClick={() => followup(problem._id)}>follow up</Button>
               </TableCell>
+              
 }
                 </div>
-             
+                <TableCell align="center">{problem.messages}</TableCell>
+           
 
             </TableRow>
           ))}

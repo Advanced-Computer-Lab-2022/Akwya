@@ -19,6 +19,7 @@ import styledd from "styled-components";
 const AdminViewProblems= () => {  
 
   const types = ["UnSeen", "Pending", "Resolved"];
+  const [course,setCourse] = useState('');
 
   const [problems,setproblems] = useState([])
   const temp =window.location.href.split('/').at(4)  
@@ -125,6 +126,55 @@ useEffect(()=>{
 
 
 
+const followup= (props) => { 
+
+  Swal.fire({
+    title: "Send A Message!",
+    input: 'text',
+    showCancelButton: true,
+    closeOnConfirm: true,
+    animation: "slide-from-top",
+    inputPlaceholder: "Please include as much details as possible..."
+  }).then(async(result) =>{
+    if (result.isConfirmed) {
+
+if (result.value=='') {
+  // Swal.showValidationMessage('First input missing')
+
+  Swal.fire({
+    title: 'Missing input!',
+    confirmButtonText: 'OK'
+  })
+} 
+      else {
+          
+
+    const prob = {
+
+      id:props,
+      input:result.value+'   ',
+    };
+
+    await axios.post('/course/followUp2', {prob}).then(res=>{
+      Swal.fire({
+          title: 'Message Sent!',
+          icon: 'success',
+          confirmButtonColor: '#38a53e',
+          confirmButtonText: 'OK'
+        })
+  }).catch(er=>{
+      console.error(er);
+  })
+      }
+
+
+  
+    }
+});
+      
+
+}
+
 
 
 return( 
@@ -140,10 +190,12 @@ return(
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
+            
           <StyledTableCell align="center">Status</StyledTableCell>
            <StyledTableCell align="center">Problem</StyledTableCell>
             <StyledTableCell align="center">Category</StyledTableCell>
             <StyledTableCell align="center">Follow Ups</StyledTableCell>
+            {showPending&&<StyledTableCell align="center">Messages</StyledTableCell>}
 
 
           </TableRow>
@@ -154,6 +206,7 @@ return(
             if (problem.status==='resolved' && showResolved){
               
             return(
+              
             
             <TableRow id = {problem._id}
 
@@ -169,26 +222,47 @@ return(
             }}
            
               >
+
+{/* <div>
+                  {
+                    axios
+                    .get('http://localhost:9000/course/getMyCourseName/'+problem.courseid)
+                    .then( res => {
+                       console.log('hereeeeeee'+res.data)
+                       setCourse(res.data)
+                    })
+                    .catch(err=>{console.log(err)})
+                  }
+
+<TableCell align="center">{course}</TableCell>
+
+                </div> */}
             
             <TableCell align="center">{problem.status}</TableCell>
               <TableCell align="center">{problem.theProblem}</TableCell>
               <TableCell align="center">{problem.category}</TableCell>
-              {/* <TableCell align="center" >{problem.followUps.map(followUp =><ul>{followUp}</ul>)}</TableCell> */}
               <TableCell align="center" style={{overflow:'auto'}}>{problem.followUps}</TableCell>
+
+              {/* <TableCell align="center" >{problem.followUps.map(followUp =><ul>{followUp}</ul>)}</TableCell> */}
 
                {/* <TableCell align="center" >{problem.followUps.map(followUp =><ul>{followUp}</ul>)}</TableCell> */}
                {/* <TableCell align="center" style={{overflow:'scroll'}}>{problem.followUs}</TableCell> */}
 
+              
 
             </TableRow>
             
            ) }
 
            if (problem.status==='pending' && showPending){
-
+            
+            setCourse(problem.courseid);
 
 
               return(
+
+            
+                
             
                 <TableRow id = {problem._id}
     
@@ -242,14 +316,18 @@ return(
                   <TableCell align="center">{problem.theProblem}</TableCell>
                   <TableCell align="center">{problem.category}</TableCell>
                   <TableCell align="center">{problem.followUps}</TableCell>
-    
+                  <TableCell align="center" >
+
+<Button variant="contained" style={{padding:5 ,cursor: "pointer", backgroundColor:'purple'}} onClick={() => followup(problem._id)}> Message</Button>
+             </TableCell>
+             
                 </TableRow>
             
               
           )}
 
 
-          if (problem.status==='unresolved' && showUnSeen){
+          if (problem.status==='unseen' && showUnSeen){
 
             return(
 

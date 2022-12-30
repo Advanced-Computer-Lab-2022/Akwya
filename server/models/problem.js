@@ -31,7 +31,8 @@ const problemSchema = mongoose.Schema({
         // required: true
         }, 
         
-    followUps:[],  
+    followUps:[], 
+    messages:[] 
 
 }, { timestamps: true }
 );
