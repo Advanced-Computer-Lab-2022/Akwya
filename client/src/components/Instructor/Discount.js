@@ -12,10 +12,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import react, {useEffect} from 'react'
 import Swal from "sweetalert2";
+import isMatch from 'date-fns/isMatch'
 
 
-
-
+isMatch('02/11/2014', 'MM/dd/yyyy') // true
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -63,6 +63,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
     const [promotionStart,setPromotionStart]=useState('');
     const [promotionExpiry,setPromotionExpiry] = useState('');
+    const [valid, setValid] = useState(false);
 
     //promotionExpiry
     //+'?promotionExpiry=' +promotionExpiry 
@@ -96,6 +97,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         }else{
           await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotion='+ promotion ).then(
           (res) => { 
+            
               
                console.log(courseId)
                
@@ -135,19 +137,26 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
      
 
     }
-
+//'?promotionStart='+promotionStart+
 //promotionStart
     const date =  async () => {
-      await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotionStart='+promotionStart+'?promotionExpiry='+ promotionExpiry ).then(
+      await axios.get(`http://localhost:9000/course/courseDiscount/`+ courseId +'?promotionExpiry='+ promotionExpiry ).then(
      (res) => { 
-      
-      setPromotionStart(res.data['promotionStart'])
+
+      // const regexddmmyyyy = "/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/";
+
+      //  if (regexddmmyyyy.test(date)) {
+      //   setValid(true);
+      //  } else {
+      //   setValid(false);
+      //   console.log("invalid date")
+      //  }
+
+      // setPromotionStart(res.data['promotionStart'])
       setPromotionExpiry(res.data['promotionExpiry'])
       // const promotionExpiry = res.data['promotionExpiry']
       console.log(promotionExpiry)
       
-       
-          
 
      }
       );
@@ -187,7 +196,7 @@ return(
 
 
 
-       <label> Discount starting from: </label>    
+       {/* <label> Discount starting from: </label>    
 
                 <input 
         type="date"
@@ -197,7 +206,7 @@ return(
         onChange={(e) =>setPromotionStart(e.target.value)} 
         value={promotionStart}
       />
-        
+         */}
         
 
        <label> Discount valid till: </label>    
