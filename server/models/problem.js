@@ -21,6 +21,8 @@ const problemSchema = mongoose.Schema({
 
     }, 
 
+    coursename: String,
+
     category: {
         type: String, 
         required: true

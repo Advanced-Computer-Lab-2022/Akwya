@@ -123,7 +123,15 @@ useEffect(()=>{
     .catch(err=>{console.log(err)})
 },[])
 
-
+useEffect(()=>{
+  axios
+  .get('http://localhost:9000/course/getMyCourseName/'+course)
+  .then( res => {
+     console.log('hereeeeeee'+res.data)
+     setCourse(res.data)
+  })
+  .catch(err=>{console.log(err)})
+},[])
 
 
 const followup= (props) => { 
@@ -190,7 +198,8 @@ return(
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            
+
+          <StyledTableCell align="center">Course name</StyledTableCell>            
           <StyledTableCell align="center">Status</StyledTableCell>
            <StyledTableCell align="center">Problem</StyledTableCell>
             <StyledTableCell align="center">Category</StyledTableCell>
@@ -206,7 +215,6 @@ return(
             if (problem.status==='resolved' && showResolved){
               
             return(
-              
             
             <TableRow id = {problem._id}
 
@@ -222,22 +230,7 @@ return(
             }}
            
               >
-
-{/* <div>
-                  {
-                    axios
-                    .get('http://localhost:9000/course/getMyCourseName/'+problem.courseid)
-                    .then( res => {
-                       console.log('hereeeeeee'+res.data)
-                       setCourse(res.data)
-                    })
-                    .catch(err=>{console.log(err)})
-                  }
-
-<TableCell align="center">{course}</TableCell>
-
-                </div> */}
-            
+            <TableCell align="center">{problem.coursename}</TableCell>          
             <TableCell align="center">{problem.status}</TableCell>
               <TableCell align="center">{problem.theProblem}</TableCell>
               <TableCell align="center">{problem.category}</TableCell>
@@ -278,6 +271,8 @@ return(
                 }}
                
                   >
+                                      <TableCell align="center">{problem.coursename}</TableCell>          
+
                    <TableCell>
                     
     
@@ -312,7 +307,6 @@ return(
                   
 
                   
-          
                   <TableCell align="center">{problem.theProblem}</TableCell>
                   <TableCell align="center">{problem.category}</TableCell>
                   <TableCell align="center">{problem.followUps}</TableCell>
@@ -345,6 +339,8 @@ return(
               }}
              
                 >
+                                  <TableCell align="center">{problem.coursename}</TableCell>          
+
                  <TableCell>
                   
   

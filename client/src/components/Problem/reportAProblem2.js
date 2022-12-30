@@ -7,14 +7,24 @@
  import Swal from "sweetalert2";
 import { getValue } from '@mui/system';
  
+const courseid=window.location.href.split('/').at(5)
 
- const reportAProblem2= (props) => { 
+ const reportAProblem2= (props) => {
 
-  const func =  async (e) => {
+// const [name,setName] = useState([])
 
+let x=""
+  // useEffect(()=>{
 
-    
-  }
+    axios
+    .get('http://localhost:9000/course/getMyCourseName/'+courseid)
+    .then( res => {
+
+        console.log(res)
+        x=res.data
+    })
+    .catch(err=>{console.log(err)})
+// },[])
 
 
  
@@ -71,7 +81,8 @@ import { getValue } from '@mui/system';
               category:document.getElementById('swal-input1').value,
               theProblem:document.getElementById('swal-input2').value,
               ownerID: window.location.href.split('/').at(4),
-              courseid:window.location.href.split('/').at(5)
+              courseid:window.location.href.split('/').at(5),
+              coursename:x
 
 
 
