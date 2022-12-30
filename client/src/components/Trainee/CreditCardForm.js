@@ -16,8 +16,8 @@ import Swal from "sweetalert2";
 // const axios = require("axios");
 
 
-const CourseID = window.location.href.split('/').at(5);
-const TraineeID = window.location.href.split('/').at(4);
+// const CourseID = window.location.href.split('/').at(5);
+// const TraineeID = window.location.href.split('/').at(4);
 
 //credit card element specific styling
 const CARD_OPTIONS = {
@@ -63,6 +63,7 @@ const SubmitButton = ({ processing, error, children, disabled }) => (
 
 //component declaration
 export default function CreditCardForm(props) {
+ 
 
     let history = useNavigate();
 
@@ -122,15 +123,16 @@ export default function CreditCardForm(props) {
     //     );
 const reg = async () => {
     
-    await axios.get(`http://localhost:9000/trainee/register/${CourseID}/${TraineeID}`).then(
+    await axios.get(`http://localhost:9000/trainee/register/${props.c}/${props.t}`).then(
         (respnse) => {
+            // console.log(CourseID)
 
            
 
             // if(!respnse.ok){
             //     setError(json.error)
             // }
-            if(respnse.ok){
+            // if(respnse.ok){
                 console.log("Course Successfully Registered!")
                 Swal.fire({
                     title: 'Course Successfully Registered!',
@@ -144,7 +146,7 @@ const reg = async () => {
                   })  
                 setError(null)
             } 
-        }
+        // }
     ) 
    
 
@@ -300,7 +302,7 @@ const reg = async () => {
                 <Modal.Footer>
                 {/* //  window.location.reload(); */}
                
-                        <Button variant="success" onClick={reg} >OK</Button>
+                        <Button  data-bs-dismiss="modal" variant="success" onClick={reg} >OK</Button>
                     
                 </Modal.Footer>
             </Modal>
@@ -394,11 +396,12 @@ const reg = async () => {
                     onChange={(event) => {
                         console.log(event)
                         if(!event.error){
-                            reg();
+                            // reg();
                             setCardComplete(event.complete);
 
                         }
                         else{
+
                             setError(event.error.message);
                         }
                       

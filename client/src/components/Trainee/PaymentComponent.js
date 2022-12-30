@@ -53,7 +53,7 @@ export default function PaymentComponent(props) {
                     stripe={loadStripe(props.keys.stripe)}
                     options={ELEMENTS_OPTIONS}
                 >
-                    <CreditCardForm />
+                    <CreditCardForm t={props.t} c={props.c} p={props.p} />
                 </Elements>
             </Card.Body>
         </Card>

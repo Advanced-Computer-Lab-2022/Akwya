@@ -305,7 +305,7 @@ if(JSON.stringify(registered).length==2){
             <button>Add Course</button>
             {error && <div className="error">{error}</div>}
         </form>
-        <PaymentComponent
+        <PaymentComponent t={TraineeID} c={CourseID}
     keys={{
         stripe: "pk_test_51MIFP2HUXZhuMagYneFzG4qHkSG50EXSNItMTONiK5113unZ0HzFho1rwLowL312VWCsK1IToWcIUXT5N7VZZExJ008w6439EK",
     }}

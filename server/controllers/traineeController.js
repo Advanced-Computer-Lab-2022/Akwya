@@ -68,17 +68,17 @@ const registerCourse = async(req, res) => {
             const traineeee = await trainee.findOne({_id:req.params.traineeID});
             const coursee =  await course.findOne({_id:req.params.courseID});
             const pricee = Math.round(coursee.price-(coursee.price*coursee.promotion/100));
-            const payment = traineeee.wallet-pricee;
+            // const payment = traineeee.wallet-pricee;
             
-            if(traineeee.wallet<pricee){
-                res.status(400).json({message:"You Dont Have Enough Funds in your Wallet"})
+            // if(traineeee.wallet<pricee){
+            //     res.status(400).json({message:"You Dont Have Enough Funds in your Wallet"})
                 
 
-                return;
-            }
+            //     return;
+            // }
                
             const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,progress:0}}});
-            const traineeeee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$set:{wallet:payment}});
+            // const traineeeee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$set:{wallet:payment}});
     
             const courseee = await course.findOneAndUpdate({_id:req.params.courseID}, {$inc:{registeredTrainees: 1}});
     
