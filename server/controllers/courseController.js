@@ -297,6 +297,32 @@ const followUpOnAProblem  = async (req, res) => {
             console.log('hena3    '+theProblem.followUps)
     
     }
+    const adminFollowUpOnAProblem  = async (req, res) => {
+        const {
+            id,
+            input
+        } = req.body.prob
+        console.log('4sjhshxshxshhxshhxshxgsxghsgx' )
+
+        const theProblem = await problem.findById(id)
+
+        console.log('4' + theProblem)
+
+            theProblem.messages.push(input)
+
+        try{
+            const p=await problem.findOneAndUpdate({_id:id},{messages:theProblem.messages},{new: true})
+            res.status(200).json({p})
+        }
+            catch (error) {
+                console.log('dakhlyyy')
+
+                res.status(400).json({error: error.message})
+            }
+
+            console.log('hena3    '+theProblem.messages)
+    
+    }
 
 
     const problemState  = async (req, res) => {
@@ -320,6 +346,27 @@ const followUpOnAProblem  = async (req, res) => {
     
     }
 
+    const getMyCourseName = async (req, res) => {
+
+        console.log('wes')
+        let myCourse = await course.find({_id:{$eq:req.params.id}}).select('title')
+        let title=JSON.stringify(myCourse[0].title)
+
+        console.log(title)
+        // const { id } = req.params
+    
+        // const ACourse = await course.findById(id).select('title')
+    
+        if (!myCourse) {
+            return res.status(404).json({ error: " No such Course" })
+    
+        }
+
+        // const x=res.body.title
+        // console.log(x)
+        res.send(title)
+    }
+
    
 
    
@@ -329,4 +376,4 @@ const followUpOnAProblem  = async (req, res) => {
 
 
 //export
-export {problemState, getAllProblems, followUpOnAProblem, getProblems, reportAProblem, createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }
+export {getMyCourseName, adminFollowUpOnAProblem, problemState, getAllProblems, followUpOnAProblem, getProblems, reportAProblem, createCourse, getCourses, viewACourse, deleteCourse,filterCoursesByPrice, viewCourses,searchCourse, viewCoursesPrices, filterCoursesOnSubjAndRating, deleteAllCourses ,courseDiscount }
