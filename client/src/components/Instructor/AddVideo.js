@@ -134,8 +134,83 @@ if(JSON.stringify(instructor).length==2){
 }
 
   return (
-    <div>
-       <Link to={{pathname:"/instructor/"+_idInstructor+"/"+_idCourse+"/Quiz"}}>
+
+
+    <div class='admin allganb' style={{height:'500px',marginTop:'0px',padding:'5px',background:'rgb(240,240,240)', display: "flex","justify-content": "space-between"
+  }}>
+       
+            
+   
+    <div class="ganb"> 
+    <form className="create" onSubmit={handleSubmit2}> 
+      <div class="txt_field">
+        <h3>Add a New Preview Video</h3> 
+        <div class="txt_field">
+        <input 
+          type="text" 
+          onChange={(e) => setPreview(e.target.value)} 
+          value={previewVideo}
+        required/>
+          <br/>
+          <label>URL: </label>
+          </div>
+          </div>
+        <button>Add</button>
+        {error && <div className="error">{error}</div>}
+      </form>
+      </div>
+
+ 
+
+        <div class="ganb"> 
+<form className="create" onSubmit={handleSubmit}> 
+      <h3>Add a New Video</h3>
+
+      <div class="txt_field">
+      <input 
+        type="text" 
+        onChange={(e) => setTitle(e.target.value)} 
+        value={title}
+        required
+      />      <label>Video Subtitle: </label>
+
+      </div>
+
+
+        <div class="txt_field">
+      <input 
+        type="text" 
+        onChange={(e) => setURL(e.target.value)} 
+        value={url}
+      required/>      <label>URL: </label>
+
+      </div>
+      
+
+        <div class="txt_field">
+      <input 
+        type="text" 
+        onChange={(e) => setSummary(e.target.value)} 
+        value={summary}
+      required/>        <label>Short Summary: </label>
+
+      </div>
+
+        <div class="txt_field">       
+      <input 
+        type="number" 
+        onChange={(e) => setTotalHours(e.target.value)} 
+        value={totalHours}
+      required/>        <label>Total Hours: </label>
+
+      </div>
+      <button>Add</button>
+      {error && <div className="error">{error}</div>}
+    </form>
+</div>
+
+
+<Link to={{pathname:"/instructor/"+_idInstructor+"/"+_idCourse+"/Quiz"}}>
         <Box sx={{marginBottom: 5}}>
                 <Button variant="contained"
                 margin="normal"
@@ -144,62 +219,6 @@ if(JSON.stringify(instructor).length==2){
                 
                 </Box>
           </Link>
-          
-          
-    <form className="create" onSubmit={handleSubmit2}> 
-      <h3>Add a New Preview Video</h3>
-
-      <label>URL: </label>
-      <input 
-        type="text" 
-        onChange={(e) => setPreview(e.target.value)} 
-        value={previewVideo}
-      required/>
-        <br/>
-
-      <button>Add New Preview Video</button>
-      {error && <div className="error">{error}</div>}
-    </form>
-    
-<form className="create" onSubmit={handleSubmit}> 
-      <h3>Add a New Video</h3>
-
-      <label>Video Subtitle: </label>
-      <input 
-        type="text" 
-        onChange={(e) => setTitle(e.target.value)} 
-        value={title}
-        required
-      />
-        <br/>
-      <label>URL: </label>
-      <input 
-        type="text" 
-        onChange={(e) => setURL(e.target.value)} 
-        value={url}
-      required/>
-        <br/>
-
-        <label>Short Summary: </label>
-      <input 
-        type="text" 
-        onChange={(e) => setSummary(e.target.value)} 
-        value={summary}
-      required/>
-        <br/>
-        
-        <label>Total Hours: </label>
-      <input 
-        type="number" 
-        onChange={(e) => setTotalHours(e.target.value)} 
-        value={totalHours}
-      required/>
-        <br/>
-
-      <button>Add New Video</button>
-      {error && <div className="error">{error}</div>}
-    </form>
-
    
 
     </div>
