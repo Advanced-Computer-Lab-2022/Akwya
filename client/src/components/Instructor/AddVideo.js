@@ -209,16 +209,6 @@ if(JSON.stringify(instructor).length==2){
     </form>
 </div>
 
-
-<Link to={{pathname:"/instructor/"+_idInstructor+"/"+_idCourse+"/Quiz"}}>
-        <Box sx={{marginBottom: 5}}>
-                <Button variant="contained"
-                margin="normal"
-                padding="normal"
-                >Create A Quiz</Button> 
-                
-                </Box>
-          </Link>
    
 
     </div>
