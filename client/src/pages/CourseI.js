@@ -8,6 +8,8 @@ import ViewCourseRating from '../components/Instructor/ViewCourseRating'
 import Discount from '../components/Instructor/Discount'
 import styled from "styled-components";
 import React, { useState, useEffect } from 'react';  
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 
 import reportAProblem2 from '../components/Problem/reportAProblem2'
@@ -18,7 +20,8 @@ const Course = (props) => {
   const [showControls, setshowControls] = useState(false);
   const [showCourse, setshowCourse] = useState(true);
 
-
+  const _idInstructor = window.location.href.split('/').at(4);
+  const _idCourse = window.location.href.split('/').at(5);
 
   const Tab = styled.button`
   
@@ -79,24 +82,34 @@ const Course = (props) => {
     return (
       <div className="guest" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
         <h2>Course Page</h2>
-        <Link to="/">
-
-        </Link>
+        
 
         
         <TabGroup/>
 
         <div style={{display: showCourse ? 'block' : 'none' }}><MyCourseI country={props.country}/><ViewVideos/></div>
-        <div style={{display: showControls ? 'block' : 'none' }}><AddVideo/><Discount/><ViewCourseRating/></div>
-
-
-
+        <div style={{display: showControls ? 'block' : 'none'}}>
+          <div style={{display:'flex'}}>
+          <AddVideo/><Discount/>
+          </div>
         
+        <div>
+        <ViewCourseRating/>
 
+        <Box sx={{marginBottom: 2}}>
+        <Link to={{pathname:"/instructor/"+_idInstructor+"/"+_idCourse+"/Quiz"}}>
+                <Button variant="contained"
+                margin="normal"
+                padding="normal"
+                >Create A Quiz</Button> 
+                
 
-        
-        
+          </Link>
+          </Box>
 
+        </div>
+
+          </div>
         
 
         <button onClick={() => reportAProblem2(props.tempid)}>    

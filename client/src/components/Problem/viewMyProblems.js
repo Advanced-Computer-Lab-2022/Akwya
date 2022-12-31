@@ -117,7 +117,7 @@ return(
             <StyledTableCell align="center">Admin Messages</StyledTableCell>
 
 
-          </TableRow>
+          </TableRow> 
         </TableHead>
         <TableBody>
           {problems.map((problem) => (

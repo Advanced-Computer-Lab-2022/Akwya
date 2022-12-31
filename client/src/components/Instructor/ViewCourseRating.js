@@ -90,7 +90,6 @@ return(
 
 
     <div className="View Ratings">
-        <h3>viewProfile</h3>
         
                 <Box sx={{marginBottom: 2}}>
                 <Button variant="contained"

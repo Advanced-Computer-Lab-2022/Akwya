@@ -162,15 +162,15 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 
 return(
+  <div class='admin allganb' style={{height:'500px',width:"80px",marginTop:'0px',padding:'5px',background:'rgb(240,240,240)', display: "flex","justify-content": "space-between"}}>
 
+<div class="ganb"> 
 
-    <div className="Dicount">
-
-      <form onSubmit={edit}>
-
+      <form className="create" onSubmit={edit}>
       <h3>Add a New Discount</h3>
+<br/>
+      <div class="txt_field">
 
-<label>Enter Discount Percentage: </label>
       <input 
         type="number" 
         id="bio"
@@ -179,8 +179,8 @@ return(
         onChange={(e) => setPromotion(e.target.value)} 
         value={promotion}
         required
-      />
-        
+      /><label>Enter Discount Percentage: </label>
+      </div>
         
 
        <label> Discount valid till: </label>    
@@ -193,16 +193,12 @@ return(
         onChange={(e) =>setPromotionExpiry(e.target.value)} 
         value={promotionExpiry}
       />
-        
-        
-                <Box sx={{marginBottom: 2,marginLeft: 2 ,display:"inline"}}>
-                <Button variant="contained"
-                onClick={edit}
-                margin="normal"
-                padding="normal"
-                >confirm </Button> 
+             <br/>
+             <br/>
+
+               <button>Confirm</button>
+
                 
-                </Box>       
 
 
     
@@ -216,6 +212,7 @@ return(
        {/* {promotionExpiry} */}
        </form>
 
+       </div>
        </div>
 
 )

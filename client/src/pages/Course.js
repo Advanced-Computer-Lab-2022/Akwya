@@ -93,6 +93,7 @@ const Course = (props) => {
         <Link to="/">
         </Link>
         <TabGroup/>
+        
 
         <div style={{display: showContent ? 'block' : 'none' , "text-align" : 'center' }}><UserViewVideos/><Notes/></div>
         <div style={{display: showDetails ? 'block' : 'none' }}><MyCourse country={props.country}/>
