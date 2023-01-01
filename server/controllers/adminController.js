@@ -104,8 +104,8 @@ export const courseDiscountAdmin = async (req, res) => {
       //promotionStart
     const discount=await course.findOneAndUpdate({_id:req.params.id},{promotion:req.query.promotion},{new: true}  )
 
-    const date=await course.findOneAndUpdate({_id:req.params.id},{promotionStart:req.query.promotionStart},{promotionExpiry:req.query.promotionExpiry},{new: true}  )
-       
+    const date=await course.findOneAndUpdate({_id:req.params.id},{promotionExpiry:req.query.promotionExpiry},{new: true}  )
+    //    {promotionStart:req.query.promotionStart}
         res.status(200).json({discount, date})
     
 

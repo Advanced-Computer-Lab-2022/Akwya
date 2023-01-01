@@ -156,14 +156,14 @@ const id=window.location.href.split('/').at(4);
             );
             
         }
-    
+    //'?promotionStart='+promotionStart+
    
         const date =  async (courseId) => {
             //promotionStart
-            await axios.get(`http://localhost:9000/admin/courseDiscountAdmin/`+courseId +'?promotionStart='+promotionStart+'?promotionExpiry='+ promotionExpiry ).then(
+            await axios.get(`http://localhost:9000/admin/courseDiscountAdmin/`+courseId +'?promotionExpiry='+ promotionExpiry ).then(
            (res) => { 
 
-            setPromotionStart(res.data['promotionStart'])
+            // setPromotionStart(res.data['promotionStart'])
             setPromotionExpiry(res.data['promotionExpiry'])
             // const promotionExpiry = res.data['promotionExpiry']
             console.log(promotionExpiry)
@@ -199,7 +199,7 @@ const id=window.location.href.split('/').at(4);
 
 
 
-           <label> Discount starting from: </label>    
+           {/* <label> Discount starting from: </label>    
     
                     <input 
             type="date"
@@ -208,7 +208,7 @@ const id=window.location.href.split('/').at(4);
             placeholder='01/01/2023'
             onChange={(e) =>setPromotionStart(e.target.value)} 
             value={promotionStart}
-          />
+          /> */}
             
             
     
