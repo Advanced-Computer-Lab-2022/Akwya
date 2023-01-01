@@ -1,7 +1,7 @@
 import react, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import '/Users/farah/Desktop/Akwya/client/src/components/courseDisplay.css'
+import './courseDisplay.css'
 
 function ViewMyCourses() {
 const [courses,setCourses] = useState([])
@@ -49,7 +49,7 @@ const insertStars = (ratin, idx)=>{
 return(
 
     <div class="courseDisplay">
-        <h1>View My courses</h1>
+        <h1 style={{"text-align": "center","color": "white", "margin":"50px"}}>View My courses</h1>
     <div class="allganb" style={{display: "flex","justify-content": "space-between", "overflow": "auto"
   }}>        
         {courses.map((course) => (

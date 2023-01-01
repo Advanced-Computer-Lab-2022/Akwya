@@ -98,7 +98,16 @@ return(
         value={review}
       required/>
         <br/>
-      <button>Submit</button>
+      <button style={{"height": "50px",
+    "border": "1px solid",
+    "background": "#2691d9",
+    "border-radius": "25px",
+    "font-size": "18px",
+    "color": "#e9f4fb",
+    "font-weight": "700",
+    "cursor": "pointer",
+    "outline": "none","width":"150px",
+    "marginTop":"20px"}}>Submit</button>
       {error && <div className="error">{error}</div>}
     </form>
     </div>
