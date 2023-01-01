@@ -7,7 +7,13 @@ import userWatchVideos from "../models/userWatchVideos.js";
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+
+import stripe from 'stripe';
+stripe('sk_test_51MIFP2HUXZhuMagYEdCYj0wsG45Ya6iUZ0heOaJjNw7s99MsoWZ7KRRkjPZH2PdyB7JP5sjx2cEKHhZvSXKktkps00cHANVVBh');
+
+
 import courseBought from "../models/courseBought.js";
+
 const rateCourse = async (req, res) => {
  
    
@@ -52,40 +58,88 @@ const getTrainee= async(req,res) => {
 
 const registerCourse = async(req, res) => {
     
-const  traineeID = req.body.traineeID
-const courseID = req.params.courseID
 
-    try {
-        
-        
-        const traineeee = await trainee.findOne({_id:req.params.traineeID});
-        const coursee =  await course.findOne({_id:req.params.courseID});
-        const pricee = Math.round(coursee.price-(coursee.price*coursee.promotion/100));
-        const payment = traineeee.wallet-pricee;
-        
-        if(traineeee.wallet<pricee){
-            res.status(400).json({message:"You Dont Have Enough Funds in your Wallet"})
-            return;
+    const  traineeID = req.body.traineeID
+    const courseID = req.params.courseID
+    
+        try {
+            
+            
+            const traineeee = await trainee.findOne({_id:req.params.traineeID});
+            const coursee =  await course.findOne({_id:req.params.courseID});
+            const pricee = Math.round(coursee.price-(coursee.price*coursee.promotion/100));
+            // const payment = traineeee.wallet-pricee;
+            
+            // if(traineeee.wallet<pricee){
+            //     res.status(400).json({message:"You Dont Have Enough Funds in your Wallet"})
+                
+
+            //     return;
+            // }
+               
+            const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,progress:0}}});
+            // const traineeeee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$set:{wallet:payment}});
+    
+            const courseee = await course.findOneAndUpdate({_id:req.params.courseID}, {$inc:{registeredTrainees: 1}});
+    
+    
+            const addBought = await courseBought.create({username:traineee.username,CourseID:req.params.courseID,
+                TraineeID:traineee._id,courseName:coursee.title,price:pricee,refundRequested:false});
+                addBought.save();
+            
+            res.status(200).json(addBought)
+            console.log("sah")
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+            console.log("ghalat")
         }
-           
-        const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,
-            progress:0,courseName:coursee.title}}});
-        const traineeeee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$set:{wallet:payment}});
-
-        const courseee = await course.findOneAndUpdate({_id:req.params.courseID}, {$inc:{registeredTrainees: 1}});
-
-
-        const addBought = await courseBought.create({username:traineee.username,CourseID:req.params.courseID,
-            TraineeID:traineee._id,courseName:coursee.title,price:pricee,refundRequested:false});
-            addBought.save();
-        
-        res.status(200).json(addBought)
-    } catch (error) {
-        res.status(400).json({ error: error.message })
+    
+        console.log("tmm")
     }
 
-    console.log("tmm")
-}
+    const registerCourseWallet = async(req, res) => {
+    
+
+        const  traineeID = req.body.traineeID
+        const courseID = req.params.courseID
+        
+            try {
+                
+                
+                const traineeee = await trainee.findOne({_id:req.params.traineeID});
+                const coursee =  await course.findOne({_id:req.params.courseID});
+                const pricee = Math.round(coursee.price-(coursee.price*coursee.promotion/100));
+                const payment = traineeee.wallet-pricee;
+                
+                if(traineeee.wallet<pricee){
+                    res.status(400).json({message:"You Dont Have Enough Funds in your Wallet"})
+                    
+    
+                    return;
+                }
+                   
+                const traineee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$push:{courses:{courseid:req.params.courseID,progress:0}}});
+                const traineeeee = await trainee.findOneAndUpdate({_id:req.params.traineeID},{$set:{wallet:payment}});
+        
+                const courseee = await course.findOneAndUpdate({_id:req.params.courseID}, {$inc:{registeredTrainees: 1}});
+        
+        
+                const addBought = await courseBought.create({username:traineee.username,CourseID:req.params.courseID,
+                    TraineeID:traineee._id,courseName:coursee.title,price:pricee,refundRequested:false});
+                    addBought.save();
+                
+                res.status(200).json(addBought)
+                console.log("sah")
+            } catch (error) {
+                res.status(400).json({ error: error.message })
+                console.log("ghalat")
+            }
+        
+            console.log("tmm")
+        }
+    
+    
+
 
 const dropCourse = async(req, res) => {
     
@@ -384,6 +438,65 @@ const sendCertificate = async (req,res)=>{
     
     }
 
+
+    //generate payment request for a card payer
+    const generatePayment =
+async (req, res) => {
+
+    //user sends price along with request
+    const userPrice = parseInt(req.body.price)*100;
+
+    //create a payment intent
+    const intent = await stripe.paymentIntents.create({
+  
+      //use the specified price
+      amount: userPrice,
+      currency: 'usd'
+  
+    });
+  
+    //respond with the client secret and id of the new paymentintent
+    res.json({client_secret: intent.client_secret, intent_id:intent.id});
+  
+  }
+  const confirmPayment =async (req, res) => {
+
+    //extract payment type from the client request
+    const paymentType = String(req.body.payment_type);
+  
+    //handle confirmed stripe transaction
+    if (paymentType == "stripe") {
+  
+      //get payment id for stripe
+      const clientid = String(req.body.payment_id);
+  
+      //get the transaction based on the provided id
+      stripe.paymentIntents.retrieve(
+        clientid,
+        function(err, paymentIntent) {
+  
+          //handle errors
+          if (err){
+            console.log(err);
+          }
+          
+          //respond to the client that the server confirmed the transaction
+          if (paymentIntent.status === 'succeeded') {
+  
+            /*YOUR CODE HERE*/  
+            
+            console.log("confirmed stripe payment: " + clientid);
+            res.json({success: true});
+          } else {
+            res.json({success: false});
+          }
+        }
+      );
+    } 
+    
+  }
+
+
     const videoCount= async(req,res) => {
         try{
             const videoos= await videos.find({courseID:req.params.CourseID}).count();
@@ -464,5 +577,4 @@ const sendCertificate = async (req,res)=>{
 
 export {getTrainee,registerCourse,isRegistered,dropCourse,rateCourse,changePassword,rateInstructor,checkPassword,
     resetPassword,getWallet,videoCount,sendCertificate,signUp,login,logout,userWatchVideo,getUserProgress,
-    refundCourse,requestRefund,myCourses}
-
+    refundCourse,requestRefund,myCourses,generatePayment,confirmPayment,registerCourseWallet}
