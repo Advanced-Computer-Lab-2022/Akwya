@@ -33,14 +33,15 @@ export default function PaymentComponent(props) {
                 <Row>
                     <Col md="auto">
                         <div class="payment">
-                        <Button
+                        {/* <Button
                             variant="danger"
                             onClick={() => {
                                 history.push("/");
                             }}
-                        >
-                            Back
-                        </Button></div>
+                        > */}
+                            {/* Back
+                        </Button> */}
+                        </div>
                     </Col>
                 </Row>
             </Card.Header>
