@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import Swal from "sweetalert2";
 import { Link } from 'react-router-dom'
+import '../../components/search.css'
 
 
 
 //create a new course and fill in all its details inclding title, subtitles, price and short summary about the entire course
 const UserSearchCourse = (props) => {
-  const [search, setSearch] = useState(``);
-  const [error, setError] = useState(null)
-  const [courses,setCourses] = useState([])
+const [search, setSearch] = useState(``);
+const [error, setError] = useState(null)
+const [courses,setCourses] = useState([])
 const [subject,setSubject] = useState('')
 const [rating,setRating] = useState(0)
+const [searchBox,setSearchBox] = useState(true)
+
 
 let rate = 1;
 let currency = 'GBP'
@@ -88,6 +91,8 @@ switch(props.country) {
         }
         setSubject('')
         setRating(0)
+        setSearchBox(false)
+
     }
     
   })
@@ -137,7 +142,7 @@ switch(props.country) {
         document.getElementById('swal-input3').value,
         document.getElementById('swal-input4').value
       ]
-    },
+    },   
     showCancelButton:true,
   }).then(async(result) => {
     if (result.isConfirmed) {
@@ -161,6 +166,8 @@ switch(props.country) {
         }
         setSubject('')
         setRating(0)
+        setSearchBox(false)
+
     }
     
   })
@@ -205,6 +212,7 @@ switch(props.country) {
         //   })
         setError(null)
         setSearch('')
+        setSearchBox(false)
         
 
     } 
@@ -236,11 +244,14 @@ if(window.location.href.split('/').at(3)=='userCorporate'){
     </form>
       <div style={{ "text-align" : 'left' }}>
 
-      <ul>
-      {courses.map(course => <li key={course._id}><Link to={{pathname:course._id}}><h3 style={{display:"inline",margin:"10px"}}>{course.title}</h3></Link> Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
-      </ul>
-      </div>
+      <div hidden={searchBox} style={{margin:0,padding:0,fontFamily:"Poppins", boxSizing:"content-box",backgroundColor:"white",width:'185px',
+          "border": "none", "color": "black", "padding": "12px", "cursor": "pointer", "font-size": "17px",  "border-radius":"5px", "marginTop":"13px","background-color": "white","marginLeft":"400px", textAlign:"left"
+    }}>
 
+      {courses.map(course => <label key={course._id}><Link to={{pathname:course._id}}><h3 style={{display:"inline",margin:"10px"}}>{course.title}</h3> </Link> <br/></label>)}
+      </div>
+      </div>
+ 
     </div>
   )
 }
@@ -261,21 +272,24 @@ if(window.location.href.split('/').at(3)=='userCorporate'){
       placeholder='Search...'
       value={search}
       required
-
+ 
     />
   <button type="submit" style={{"marginTop":"13px","marginRight":"13px","marginLeft":"13px","background-color": "#1976d2","paddingBottom":"8px","paddingTop":"8px",
                "border": "none", "color": "white",  "cursor": "pointer", "font-size": "20px",  "border-radius":"5px"}}><i class="fa fa-search"></i></button>
   <button style={{"marginTop":"13px","marginRight":"13px","background-color": "#1976d2","paddingBottom":"8px","paddingTop":"8px",
                "border": "none", "color": "white",  "cursor": "pointer", "font-size": "20px",  "border-radius":"5px"}} onClick={handleSubmit2} type="submit"><i class="fa fa-filter"></i></button>
+
+
+
   <button style={{"marginTop":"13px","background-color": "#1976d2","paddingBottom":"8px","paddingTop":"8px","paddingLeft":"10px","paddingRight":"10px",
                "border": "none", "color": "white",  "cursor": "pointer", "font-size": "20px",  "border-radius":"5px"}} onClick={handleSubmit3} type="submit"> $ </button>
       {error && <div className="error">{error}</div>}
     </form>
-      <div style={{ "text-align" : 'left' }}>
+      <div hidden={searchBox} style={{margin:0,padding:0,fontFamily:"Poppins", boxSizing:"content-box",backgroundColor:"white",width:'180px',
+          "border": "none", "color": "black", "padding": "12px", "cursor": "pointer", "font-size": "17px",  "border-radius":"5px", "marginTop":"13px","background-color": "white","marginLeft":"385px", textAlign:"left"
+    }}>
 
-      <ul>
-      {courses.map(course => <li key={course._id}><Link to={{pathname:course._id}}><h3 style={{display:"inline",margin:"10px"}}>{course.title}</h3></Link> Price: {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
-      </ul>
+      {courses.map(course => <label key={course._id}><Link to={{pathname:course._id}}><h3 style={{display:"inline",margin:"10px"}}>{course.title}</h3> </Link> <br/></label>)}
       </div>
 
     </div>

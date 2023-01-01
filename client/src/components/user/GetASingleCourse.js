@@ -279,7 +279,7 @@ if(window.location.href.split('/').at(3)=='guest'){
             <h1>Course Details</h1>
             <ul>
     
-                {courses.map(course => <li key={course._id}>Title: {course.title} Price: {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
+            {courses.map(course => <li style={{"display": "inline-flex"}} key={course._id}>Title: {course.title} Price: <s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price} </s>  {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
                
     
             </ul>
@@ -295,14 +295,20 @@ if(JSON.stringify(registered).length==2){
         <h1>Course Details</h1>
         <ul>
 
-            {courses.map(course => <li key={course._id}>Title: {course.title} Price: {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
+            {courses.map(course => <li style={{"display": "inline-flex"}} key={course._id}>Title: {course.title} Price: <s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price} </s>  {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
            
 
         </ul>
         
         <form className="create" onSubmit={handleSubmit}> 
-            <h3>Add/Drop The Course</h3>
-            <button>Add Course</button>
+            <Box sx={{marginBottom: 5}}>
+                        <Button variant="contained"
+                        margin="normal"
+                        padding="normal"
+                        onClick={handleSubmit}
+                        >Buy Course</Button> 
+                        
+                        </Box>
             {error && <div className="error">{error}</div>}
         </form>
 
@@ -315,7 +321,7 @@ return(
         <h1>Course Details</h1>
         <ul>
 
-            {courses.map(course => <li key={course._id}>Title: {course.title} Price: {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
+        {courses.map(course => <li style={{"display": "inline-flex"}} key={course._id}>Title: {course.title} Price: <s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price} </s>  {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
            
 
         </ul>
@@ -325,7 +331,14 @@ return(
           {error && <div className="error">{error}</div>}
         </form> */}
         <form className="create" onSubmit={handleSubmit4}> 
-          <button>Request Refund</button>
+        <Box sx={{marginBottom: 5}}>
+                        <Button variant="contained"
+                        margin="normal"
+                        padding="normal"
+                        onClick={handleSubmit4}
+                        >Request Refund $</Button> 
+                        
+                        </Box>
           {error && <div className="error">{error}</div>}
         </form>
 

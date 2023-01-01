@@ -60,7 +60,7 @@ const CreateACourse = () => {
         
 
     } 
-}
+} 
 
 
   return (
