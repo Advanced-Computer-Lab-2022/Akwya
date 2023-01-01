@@ -17,7 +17,7 @@ import '../../components/courseDisplay.css'
 
 
 //async
-let progress;
+let progress; 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
