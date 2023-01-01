@@ -32,7 +32,7 @@ export default function PaymentComponent(props) {
             <Card.Header>
                 <Row>
                     <Col md="auto">
-                        <div class="payment">
+                        {/* <div class="payment">
                         <Button
                             variant="danger"
                             onClick={() => {
@@ -40,7 +40,7 @@ export default function PaymentComponent(props) {
                             }}
                         >
                             Back
-                        </Button></div>
+                        </Button></div> */}
                     </Col>
                 </Row>
             </Card.Header>
