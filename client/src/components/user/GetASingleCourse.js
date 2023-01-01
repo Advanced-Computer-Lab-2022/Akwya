@@ -351,6 +351,7 @@ if(window.location.href.split('/').at(3)=='guest'){
 
 if(JSON.stringify(registered).length==2){
     return(
+      <div>
      <div class="courseDisplay2">
         <h1>Course Details</h1>
         <ul>
@@ -366,8 +367,9 @@ if(JSON.stringify(registered).length==2){
         </ul>
         
 
-
+       </div>
         <form className='wallet ' onSubmit={payWallet}>
+          
   <h2>Add Course</h2>
   <h4>Choose Payment Method</h4>
   <br/>
@@ -384,7 +386,7 @@ if(JSON.stringify(registered).length==2){
 
 <br/>
 
-    </div>
+</div>
 )
 } 
 return(
