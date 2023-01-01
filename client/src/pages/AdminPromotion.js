@@ -305,18 +305,28 @@ else {
         
           <form >
     
-          <h3>Add a New Discount</h3>
     
-    <label>Enter Discount Percentage: </label>
+          <h1 align="center">Add Discount</h1>
+            
+
+    
+            <div class="admin2">
+          <form className="create" >
+          <div class="txt_field">    
+
           <input 
             type="number" 
-            id="bio"
             min = "0"
             max = "100"
             onChange={(e) => setPromotion(e.target.value)} 
             value={promotion}
             required
-          />
+
+          /><label>Enter Discount Percentage: </label>
+            </div>
+            
+
+          
 
 
 
@@ -330,9 +340,12 @@ else {
             onChange={(e) =>setPromotionStart(e.target.value)} 
             value={promotionStart}
           />
-            
+
+            <br>
+            </br>
        
       
+
     
            <label> Discount valid till: </label>    
     
@@ -344,17 +357,20 @@ else {
             onChange={(e) =>setPromotionExpiry(e.target.value)} 
             value={promotionExpiry}
           />
+
+         
+        
+           </form>
+    
+           </div>
+        
+        
+
             
 
+
                 
-             <div> 
            
-    
-                      
-           </div>
-           <div>
-           
-        </div>
            </form>
     
            </div>
@@ -363,7 +379,6 @@ else {
             <div>
 
 
-            <h1>Courses</h1>
         
         <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -371,7 +386,7 @@ else {
           <TableRow>
             <StyledTableCell align="center">Title</StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
-            <StyledTableCell align="center">Action</StyledTableCell>
+            <StyledTableCell align="center">Send Promotion</StyledTableCell>
           
 
 
@@ -379,7 +394,7 @@ else {
         </TableHead>
         <TableBody>
           {courses.map((course) => (
-            <TableRow
+            <TableRow style={{boxShadow:"100px 20px 1000px purple" ,backgroundColor:'white',borderWidth:'10px',borderColor:'white' , '':'white', borderRadius: '20px', padding: '20px'}}
             hover
             sx={{
                 "&:hover":{
@@ -390,7 +405,7 @@ else {
             }}
            
               >
-              <TableCell align="center"><Link to={{pathname:course._id}}><h2>{course.title}</h2></Link></TableCell>
+              <TableCell align="center"><h2>{course.title}</h2></TableCell>
               <TableCell align="center">{(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)}</TableCell>
               <TableCell align="center"><Box sx={{marginBottom: 2,marginLeft: 2 ,display:"inline"}}>
                         <Button variant="contained"

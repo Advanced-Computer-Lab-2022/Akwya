@@ -1,6 +1,6 @@
 import express from "express";
 const router =express.Router()
-import {problemState, getAllProblems, followUpOnAProblem, getProblems, reportAProblem, createCourse, getCourses ,viewACourse ,filterCoursesByPrice, viewCourses, searchCourse, viewCoursesPrices,filterCoursesOnSubjAndRating,deleteCourse, deleteAllCourses , courseDiscount}from '../controllers/courseController.js'
+import {getMyCourseName, adminFollowUpOnAProblem, problemState, getAllProblems, followUpOnAProblem, getProblems, reportAProblem, createCourse, getCourses ,viewACourse ,filterCoursesByPrice, viewCourses, searchCourse, viewCoursesPrices,filterCoursesOnSubjAndRating,deleteCourse, deleteAllCourses , courseDiscount}from '../controllers/courseController.js'
 
 router.get('/viewCourseDeets',viewCourses)
 
@@ -19,6 +19,7 @@ router.get('/viewACourse/:titlee',viewACourse)
 router.post('/report',reportAProblem)
 
 router.post('/followUp',followUpOnAProblem)
+router.post('/followUp2',adminFollowUpOnAProblem)
 
 router.post('/problemState',problemState)
 
@@ -29,22 +30,12 @@ router.get('/getProblems/:id',getProblems)
 
 router.get('/getAllProblems',getAllProblems)
 
-
-
-// router.get('/',viewCourses)
-
-
+router.get('/getMyCourseName/:id',getMyCourseName)
 router.delete('/:id',deleteCourse)
-
 router.delete('/',deleteAllCourses)
 
 router.patch('/:id',(req,res)=>{
     res.json({mssg:'update a guest'})
-
-
-
-    
-
 })
 
 

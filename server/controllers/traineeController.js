@@ -562,7 +562,7 @@ async (req, res) => {
                 for(let j=0 ; j<courseDetails.length ; j++) {
                     
                 if(courses[i].CourseID == courseDetails[j]._id.toString()) {  
-                    console.log('dakhalt');     // If element is in both the arrays
+                    // console.log('dakhalt');     // If element is in both the arrays
                     common.push(courseDetails[j]);        // Push to common array
                 }
                 }

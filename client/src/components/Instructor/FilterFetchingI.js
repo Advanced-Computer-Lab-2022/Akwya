@@ -56,6 +56,8 @@ return(
     <form className="filter" onSubmit={handleSubmit}> 
       <h3>Filter Ranges</h3>
 
+      
+
       <label>Lower bound</label>
       <input 
         type="number" 

@@ -134,71 +134,80 @@ if(JSON.stringify(instructor).length==2){
 }
 
   return (
-    <div>
-       <Link to={{pathname:"/instructor/"+_idInstructor+"/"+_idCourse+"/Quiz"}}>
-        <Box sx={{marginBottom: 5}}>
-                <Button variant="contained"
-                margin="normal"
-                padding="normal"
-                >Create A Quiz</Button> 
-                
-                </Box>
-          </Link>
-          
-          
+
+
+    <div class='admin allganb' style={{height:'500px',marginTop:'0px',padding:'5px',background:'rgb(240,240,240)', display: "flex","justify-content": "space-between"
+  }}>
+       
+            
+   
+    <div class="ganb"> 
     <form className="create" onSubmit={handleSubmit2}> 
-      <h3>Add a New Preview Video</h3>
+      <div class="txt_field">
+        <h3>Add a New Preview Video</h3> 
+        <div class="txt_field">
+        <input 
+          type="text" 
+          onChange={(e) => setPreview(e.target.value)} 
+          value={previewVideo}
+        required/>
+          <br/>
+          <label>URL: </label>
+          </div>
+          </div>
+        <button>Add</button>
+        {error && <div className="error">{error}</div>}
+      </form>
+      </div>
 
-      <label>URL: </label>
-      <input 
-        type="text" 
-        onChange={(e) => setPreview(e.target.value)} 
-        value={previewVideo}
-      required/>
-        <br/>
+ 
 
-      <button>Add New Preview Video</button>
-      {error && <div className="error">{error}</div>}
-    </form>
-    
+        <div class="ganb"> 
 <form className="create" onSubmit={handleSubmit}> 
       <h3>Add a New Video</h3>
 
-      <label>Video Subtitle: </label>
+      <div class="txt_field">
       <input 
         type="text" 
         onChange={(e) => setTitle(e.target.value)} 
         value={title}
         required
-      />
-        <br/>
-      <label>URL: </label>
+      />      <label>Video Subtitle: </label>
+
+      </div>
+
+
+        <div class="txt_field">
       <input 
         type="text" 
         onChange={(e) => setURL(e.target.value)} 
         value={url}
-      required/>
-        <br/>
+      required/>      <label>URL: </label>
 
-        <label>Short Summary: </label>
+      </div>
+      
+
+        <div class="txt_field">
       <input 
         type="text" 
         onChange={(e) => setSummary(e.target.value)} 
         value={summary}
-      required/>
-        <br/>
-        
-        <label>Total Hours: </label>
+      required/>        <label>Short Summary: </label>
+
+      </div>
+
+        <div class="txt_field">       
       <input 
         type="number" 
         onChange={(e) => setTotalHours(e.target.value)} 
         value={totalHours}
-      required/>
-        <br/>
+      required/>        <label>Total Hours: </label>
 
-      <button>Add New Video</button>
+      </div>
+      <button>Add</button>
       {error && <div className="error">{error}</div>}
     </form>
+</div>
 
    
 

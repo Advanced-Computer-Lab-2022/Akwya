@@ -120,7 +120,7 @@ const User = (props) => {
         <div class='admin allganb' style={{ display: showPW ? "block" : "none" , marginTop:'10px',paddingTop:'10px',height:'70vh',background:'rgb(240,240,240)'}}>
 <ChangePw /></div>
 
-        <div style={{display: showCourses ? 'block' : 'none' }}><UserSearchCourse country={props.country}/><DisplayCourses/></div>
+        <div style={{display: showCourses ? 'block' : 'none' }}><UserSearchCourse country={props.country}/><DataFetching/></div>
        <div style={{display: showFilters ? 'block' : 'none' }}><MyCourses/></div>         
        <div style={{display: showProblems ? 'block' : 'none' }}><ViewMyProblems country={props.country}/></div>
 
