@@ -41,7 +41,7 @@ const AddAdmin = () => {
         setUsername('')
         setPassword('')
         
-
+ 
     } 
 }
 

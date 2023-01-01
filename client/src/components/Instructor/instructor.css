@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
 
-.admin * {
+.instructor * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
 
-.admin {
+.instructor {
     margin: -20px;
     margin-top: -60px;
     padding: 0;
@@ -16,13 +16,13 @@
     /* overflow: hidden; */
 }
 
-.admin .allganb {
+.instructor .allganb {
     margin: 40px;
     margin-bottom: 30px;
     display: flex;
 }
 
-.admin .ganb {
+.instructor .ganb {
     /* position: relative; */
     /* top: 57%; */
     /* left: 50%; */
@@ -37,45 +37,27 @@
     flex: 1;
 }
 
-.admin .ganbo {
-    /* position: relative; */
-    /* top: 57%; */
-    /* left: 50%; */
-    /* transform: translate(-50%, -50%); */
-    margin: 40px;
-    display: flex;
-
-    height: 40px;
-    padding-bottom: 40px;
-    text-align: center;
-    width: 400px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
-    flex: 1;
-}
 
 
-
-.admin .ganb h1 {
+.instructor .ganb h1 {
     text-align: center;
     padding: 20px 0;
     border-bottom: 1px solid silver;
 }
 
-.admin .ganb form {
+.instructor .ganb form {
     padding: 0 40px;
     box-sizing: border-box;
 }
 
 
-.admin form .txt_field {
+.instructor form .txt_field {
     position: relative;
     border-bottom: 2px solid #adadad;
     margin: 30px 0;
 }
 
-.admin .txt_field input {
+.instructor .txt_field input {
     width: 100%;
     padding: 0 5px;
     height: 40px;
@@ -85,7 +67,7 @@
     outline: none;
 }
 
-.admin .txt_field label {
+.instructor .txt_field label {
     position: absolute;
     top: 50%;
     left: 5px;
@@ -96,7 +78,7 @@
     transition: .5s;
 }
 
-.admin .txt_field span::before {
+.instructor .txt_field span::before {
     content: '';
     position: absolute;
     top: 40px;
@@ -107,29 +89,29 @@
     transition: .5s;
 }
 
-.admin .txt_field input:focus~label,
-.admin .txt_field input:valid~label {
+.instructor .txt_field input:focus~label,
+.instructor .txt_field input:valid~label {
     top: -5px;
     color: #2691d9;
 }
 
-.admin .txt_field input:focus~span::before,
-.admin .txt_field input:valid~span::before {
+.instructor .txt_field input:focus~span::before,
+.instructor .txt_field input:valid~span::before {
     width: 100%;
 }
 
-.admin .pass a {
+.instructor .pass a {
     margin: -5px 0 20px 5px;
     color: #a6a6a6;
     cursor: pointer;
     text-decoration: none;
 }
 
-.admin .pass:hover {
+.instructor .pass:hover {
     text-decoration: underline;
 }
 
-.admin button {
+.instructor button {
     width: 100%;
     height: 50px;
     border: 1px solid;
@@ -142,117 +124,38 @@
     outline: none;
 }
 
-.admin button:hover {
+.instructor button:hover {
     border-color: #2691d9;
     transition: .5s;
 }
 
-.admin .signup_link {
+.instructor .signup_link {
     margin: 30px 0;
     text-align: center;
     font-size: 16px;
     color: #666666;
 }
 
-.admin .signup_link a {
+.instructor .signup_link a {
     color: #2691d9;
     text-decoration: none;
 }
 
-.admin .signup_link a:hover {
+.instructor .signup_link a:hover {
     text-decoration: underline;
 }
 
-.admin .container {
+.instructor .container {
     margin-left: 80px;
     margin-right: 80px;
 }
 
-.admin .prbutton {
+.instructor .prbutton {
     width: 200px;
     margin-top: 20px;
 }
 
-.admin .prbutton h5 {
+.instructor .prbutton h5 {
     font-size: 16px;
 
-}
-
-
-
-
-
-
-
-
-
-.admin2 {
-    margin: 0px;
-    margin-top: 50px;
-    margin-left: 400px;
-    margin-bottom: 50px;
-
-    padding: 0;
-    background: linear-gradient(120deg, #2c7eb9, #73129d);
-    height: 120px;
-    width: 500px;
-    /* overflow: hidden; */
-}
-
-.admin2 .h1 {
-    text-align: center;
-    padding: 20px 0;
-    border-bottom: 1px solid silver;
-}
-
-.admin2 form .txt_field {
-    position: relative;
-    border-bottom: 2px solid #adadad;
-    margin: 20px 0;
-
-}
-
-.admin2 .txt_field input {
-    width: 80%;
-    padding: 0 5px;
-    height: 40px;
-    font-size: 16px;
-    border: none;
-    background: white;
-    outline: none;
-    margin-top: 35px;
-
-}
-
-.admin2 .txt_field label {
-    position: absolute;
-    top: 60%;
-    left: 5px;
-    color: #adadad;
-    transform: translateY(0%);
-    font-size: 14px;
-    pointer-events: none;
-    transition: .5s;
-}
-
-.admin2 .txt_field span::before {
-    content: '';
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: #6159c7;
-    transition: .5s;
-}
-
-.admin2 .txt_field input:focus~label,
-.admin2 .txt_field input:valid~label {
-    top: -5px;
-    color: #d5dee4;
-}
-
-.admin2 .txt_field input:focus~span::before,
-.admin2 .txt_field input:valid~span::before {
-    width: 100%;
 }

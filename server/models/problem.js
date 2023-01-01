@@ -21,6 +21,8 @@ const problemSchema = mongoose.Schema({
 
     }, 
 
+    coursename: String,
+
     category: {
         type: String, 
         required: true
@@ -31,7 +33,8 @@ const problemSchema = mongoose.Schema({
         // required: true
         }, 
         
-    followUps:[],  
+    followUps:[], 
+    messages:[] 
 
 }, { timestamps: true }
 );
