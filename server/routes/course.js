@@ -31,24 +31,11 @@ router.get('/getProblems/:id',getProblems)
 router.get('/getAllProblems',getAllProblems)
 
 router.get('/getMyCourseName/:id',getMyCourseName)
-
-
-
-
-// router.get('/',viewCourses)
-
-
 router.delete('/:id',deleteCourse)
-
 router.delete('/',deleteAllCourses)
 
 router.patch('/:id',(req,res)=>{
     res.json({mssg:'update a guest'})
-
-
-
-    
-
 })
 
 

@@ -12,6 +12,7 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
+ 
 
 import reportAProblem2 from '../components/Problem/reportAProblem2'
 
@@ -167,14 +168,12 @@ function TabGroup() {
 
           </div>
         
-          <Box sx={{marginBottom: 5}}>
-                        <Button variant="contained"
-                        margin="normal"
-                        padding="normal"
-                        onClick={() => reportAProblem2(props.tempid)}
-                        >Report a problem !</Button> 
-                        
-                        </Box>
+
+          <button style={{ width:'150px', fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9' }} onClick={() => reportAProblem2(props.tempid)}>    
+        Report a problem
+          </button>
+
+
 
          
       </div>

@@ -12,6 +12,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Notes from '../components/user/Notes.js'
+
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import axios from 'axios';
@@ -145,8 +146,8 @@ active &&
   return (
     <div className="guest" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
         <h2>Course Page</h2>
-        <Link to="/">
-        </Link>
+       
+       
         <TabGroup/>
         
 
@@ -162,19 +163,15 @@ active &&
         
         {/* onClick={() => begin(props)}
         <div style={{display: showPW ? 'block' : 'none' }}><ChangePw tid={props.tid}/></div> */}
-<Box sx={{marginBottom: 5}}>
-                        <Button variant="contained"
-                        margin="normal"
-                        padding="normal"
-                        onClick={() => reportAProblem2(props.tempid)}
-                        >Report a problem !</Button> 
-                        
-                        </Box>
-        {/* <button onClick={() => reportAProblem2(props.tempid)}>    
+<br/>
+        <button style={{ width:'150px', fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9' }} onClick={() => reportAProblem2(props.tempid)}>    
+
 
         Report a problem
         
           </button> */}
+
+ 
 
         
 

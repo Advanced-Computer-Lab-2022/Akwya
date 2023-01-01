@@ -5,6 +5,7 @@ import axios from 'axios'
 import Swal from "sweetalert2";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import '../../components/courseDisplay.css'
 
 
 function MyCourse(props) {
@@ -225,29 +226,37 @@ if(window.location.href.split('/').at(3)=='userCorporate'){
     if(JSON.stringify(registered).length==2){
 
         return(
+
             <div>
+            <div class="courseDisplay2">
                 
-                <h1>Course Details</h1>
                 <ul>
         
-                    {courses.map(course => <li key={course._id}>Title: {course.title} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
-                   
+                    {courses.map(course => <p key={course._id}><h3>Title: {course.title} </h3>  
+                                                        <h3>Total Hours: {course.totalHours}</h3> 
+                                                        <h3>Rating: {course.rating}</h3> 
+                                                        <h3>Summary: {course.summary}</h3></p>)}
         
                 </ul>
-                <form className="create" onSubmit={handleSubmit}> 
-                    <h3>Request Access to This Course</h3>
+                
+        
+            </div>
+            <br/>
+            
+            <div class="courseDisplay3">
+            <form className="create" onSubmit={handleSubmit}> 
                     <Box sx={{marginBottom: 5}}>
                         <Button variant="contained"
                         margin="normal"
                         padding="normal"
                         onClick={handleSubmit3}
-                        >Request Access</Button> 
+                        >Request Access to This Course</Button> 
                         
                         </Box>
                    {error && <div className="error">{error}</div>}
                 </form>
-        
-            </div>
+                </div>
+                </div>
         )
         }
 
@@ -257,7 +266,7 @@ if(window.location.href.split('/').at(3)=='userCorporate'){
 
 
   return(
-    <div>
+    <div class="courseDisplay2">
         
         <h1>Course Details</h1>
         <ul>
@@ -275,12 +284,18 @@ if(window.location.href.split('/').at(3)=='userCorporate'){
 
 if(window.location.href.split('/').at(3)=='guest'){
     return(
-        <div>
-            <h1>Course Details</h1>
+        <div class="courseDisplay2">
+        <h1>Course Details</h1>
             <ul>
     
+
             {courses.map(course => <li style={{"display": "inline-flex"}} key={course._id}>Title: {course.title} Price: <s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price} </s>  {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
                
+                {courses.map(course => <p key={course._id}><h3>Title: {course.title} </h3>  
+                                                        <h3>Price: {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} </h3> 
+                                                        <h3>Total Hours: {course.totalHours}</h3> 
+                                                        <h3>Rating: {course.rating}</h3> 
+                                                        <h3>Summary: {course.summary}</h3></p>)}
     
             </ul>
     
@@ -291,11 +306,16 @@ if(window.location.href.split('/').at(3)=='guest'){
 
 if(JSON.stringify(registered).length==2){
     return(
-    <div>
+     <div class="courseDisplay2">
         <h1>Course Details</h1>
         <ul>
 
-            {courses.map(course => <li style={{"display": "inline-flex"}} key={course._id}>Title: {course.title} Price: <s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price} </s>  {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
+            {courses.map(course => <p key={course._id}><h3>Title: {course.title} </h3>  
+                                                        <h3>Price: <s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price} </s>  {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} </h3> 
+                                                        <h3>Total Hours: {course.totalHours}</h3> 
+                                                        <h3>Rating: {course.rating}</h3> 
+                                                        <h3>Summary: {course.summary}</h3></p>)}
+
            
 
         </ul>
@@ -315,34 +335,32 @@ if(JSON.stringify(registered).length==2){
 
     </div>
 )
-}
+} 
 return(
+
     <div>
-        <h1>Course Details</h1>
-        <ul>
+    <div class="courseDisplay3">
 
-        {courses.map(course => <li style={{"display": "inline-flex"}} key={course._id}>Title: {course.title} Price: <s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price} </s>  {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating} Summary: {course.summary}</li>)}
-           
+    <form className="create" onSubmit={handleSubmit4}> 
+          <button>Request Refund</button>
 
-        </ul>
-        
-        {/* <form className="create" onSubmit={handleSubmit2}> 
-          <button>Drop Course</button>
-          {error && <div className="error">{error}</div>}
-        </form> */}
-        <form className="create" onSubmit={handleSubmit4}> 
-        <Box sx={{marginBottom: 5}}>
-                        <Button variant="contained"
-                        margin="normal"
-                        padding="normal"
-                        onClick={handleSubmit4}
-                        >Request Refund $</Button> 
-                        
-                        </Box>
           {error && <div className="error">{error}</div>}
         </form>
+ </div>
+    <div class="courseDisplay2">
 
-    </div>
+            {courses.map(course => <p key={course._id}><h3>Title: {course.title} </h3>  
+                                                        <h3>Price: {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} </h3> 
+                                                        <h3>Total Hours: {course.totalHours}</h3> 
+                                                        <h3>Rating: {course.rating}</h3> 
+                                                        <h3>Summary: {course.summary}</h3></p>)}
+
+        
+        </div>
+
+            </div>
+
+
 )
 }
 
