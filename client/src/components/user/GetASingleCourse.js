@@ -5,7 +5,11 @@ import axios from 'axios'
 import Swal from "sweetalert2";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+
 import '../../components/courseDisplay.css'
+
+
+import PaymentComponent from '../Trainee/PaymentComponent';
 
 
 function MyCourse(props) {
@@ -219,6 +223,47 @@ const handleSubmit = async (e) => {
         setError(null)
     } 
 }
+const payWallet = async (e) => {
+    e.preventDefault()
+
+    const respnse= await fetch(`http://localhost:9000/trainee/registerCourseWallet/${CourseID}/${TraineeID}`, {
+        method: 'GET',
+    })  
+    const json= await respnse.json()
+
+    if(!respnse.ok){
+        console.log("not enoguh")
+        Swal.fire({
+            
+            title: "not enough money in the wallet",
+            icon: 'error',
+            confirmButtonColor: '#990000',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                // window.location.reload();
+            }
+          })
+    }
+    if(respnse.ok){
+        console.log("paid")
+        Swal.fire({
+            title: 'Amount paid Successfully ',
+            icon: 'success',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.reload();
+            }
+          })  
+        setError(null)
+    } 
+}
+      
+   
+   
+
 
 
 
@@ -259,8 +304,8 @@ if(window.location.href.split('/').at(3)=='userCorporate'){
                 </div>
         )
         }
-
-    
+        //registerCourseWallet
+     
     
 
 
@@ -306,6 +351,7 @@ if(window.location.href.split('/').at(3)=='guest'){
 
 if(JSON.stringify(registered).length==2){
     return(
+      <div>
      <div class="courseDisplay2">
         <h1>Course Details</h1>
         <ul>
@@ -320,20 +366,27 @@ if(JSON.stringify(registered).length==2){
 
         </ul>
         
-        <form className="create" onSubmit={handleSubmit}> 
-            <Box sx={{marginBottom: 5}}>
-                        <Button variant="contained"
-                        margin="normal"
-                        padding="normal"
-                        onClick={handleSubmit}
-                        >Buy Course</Button> 
-                        
-                        </Box>
-            {error && <div className="error">{error}</div>}
-        </form>
+
+       </div>
+        <form className='wallet ' onSubmit={payWallet}>
+          
+  <h2>Add Course</h2>
+  <h4>Choose Payment Method</h4>
+  <br/>
+  <button>Pay with Wallet</button>
+</form>
+<h7>OR</h7><br/>
+<h3>Credit Card</h3>
+        <PaymentComponent t={TraineeID} c={CourseID}
+    keys={{
+        stripe: "pk_test_51MIFP2HUXZhuMagYneFzG4qHkSG50EXSNItMTONiK5113unZ0HzFho1rwLowL312VWCsK1IToWcIUXT5N7VZZExJ008w6439EK",
+    }}
+/>
 
 
-    </div>
+<br/>
+
+</div>
 )
 } 
 return(
@@ -341,11 +394,19 @@ return(
     <div>
     <div class="courseDisplay3">
 
-    <form className="create" onSubmit={handleSubmit4}> 
+
+        
+        { <form className="create" onSubmit={handleSubmit2}> 
+          <button>Drop Course</button>
+          {error && <div className="error">{error}</div>}
+        </form> }
+        <form className="create" onSubmit={handleSubmit4}> 
+
           <button>Request Refund</button>
 
           {error && <div className="error">{error}</div>}
         </form>
+
  </div>
     <div class="courseDisplay2">
 
@@ -360,6 +421,9 @@ return(
 
             </div>
 
+
+
+       
 
 )
 }

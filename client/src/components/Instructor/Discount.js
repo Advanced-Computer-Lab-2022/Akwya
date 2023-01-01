@@ -15,9 +15,6 @@ import Swal from "sweetalert2";
 
 
 
-
-
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -60,10 +57,95 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     const [instructors,setInstructors] = useState([]);
     const [ promotion,setPromotion] = useState(0);
     const [price ,setPrice]=useState(0);
-   
+
+    const [promotionStart,setPromotionStart]=useState('');
     const [promotionExpiry,setPromotionExpiry] = useState('');
-    //promotionExpiry
-    //+'?promotionExpiry=' +promotionExpiry 
+    const [valid, setValid] = useState(false);
+
+    
+    const checkDates = (courseId) => {
+
+
+      const month=promotionExpiry.split('-').at(1)
+      const year=promotionExpiry.split('-').at(0)
+      const day =promotionExpiry.split('-').at(2)
+      const today=new Date()
+    
+     
+    
+        if((new Date(promotionExpiry))<(new Date(promotionStart))){
+          Swal.fire({
+            title: 'Invalid date!',
+            icon: 'error',
+            confirmButtonColor: '#990000',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          })
+          return;
+        }
+      if(parseInt(year)==today.getFullYear() ){
+        if(parseInt(month) <(today.getMonth() + 1)){
+          Swal.fire({
+            title: 'Invalid date!',
+            icon: 'error',
+            confirmButtonColor: '#990000',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          })
+          return
+        }
+        else if(parseInt(month) ==(today.getMonth() + 1)){
+            if(parseInt(day)<(today.getDay())){
+              Swal.fire({
+                title: 'Invalid date!',
+                icon: 'error',
+                confirmButtonColor: '#990000',
+                confirmButtonText: 'OK'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.reload();
+                }
+              })
+              return;
+          
+          } else {
+            //day = or >
+            edit(courseId);
+          }
+        } else {
+          //month akbr
+          edit(courseId);
+        }
+       
+        }
+        else if(parseInt(year)<today.getFullYear()) {
+          Swal.fire({
+            title: 'Invalid date!',
+            icon: 'error',
+            confirmButtonColor: '#990000',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          })
+          return;
+          
+        }
+    else {
+      //year akbr
+      edit(courseId);
+    }
+        
+    
+    
+    }
     
 
 
@@ -94,6 +176,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         }else{
           await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotion='+ promotion ).then(
           (res) => { 
+            
               
                console.log(courseId)
                
@@ -121,7 +204,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                
                // if(promotion!=0){
                  console.log("calling date")
-                 date()
+                 date2(courseId)
+                 date(courseId)
                // }
             
           }
@@ -134,16 +218,35 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
     }
 
+
+const date2 =  async () => {
+  await axios.get(`http://localhost:9000/course/courseDiscount/`+ courseId +'?promotionStart='+promotionStart ).then(
+ (res) => { 
+
+  
+
+  setPromotionStart(res.data['promotionStart'])
+
+  const promotionStart = res.data['promotionStart']
+  console.log(promotionStart)
+  
+
+ }
+  );
+
+
+}
     const date =  async () => {
-      await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotionExpiry='+ promotionExpiry ).then(
+      await axios.get(`http://localhost:9000/course/courseDiscount/`+ courseId +'?promotionExpiry='+ promotionExpiry ).then(
      (res) => { 
 
+      
+
+      // setPromotionStart(res.data['promotionStart'])
       setPromotionExpiry(res.data['promotionExpiry'])
       // const promotionExpiry = res.data['promotionExpiry']
       console.log(promotionExpiry)
       
-       
-          
 
      }
       );
@@ -179,8 +282,26 @@ return(
         onChange={(e) => setPromotion(e.target.value)} 
         value={promotion}
         required
-      /><label>Enter Discount Percentage: </label>
-      </div>
+/><label>Enter Discount Percentage: </label>
+            </div>
+            
+
+      
+
+
+
+       <label> Discount starting from: </label>    
+
+                <input 
+        type="date"
+        required 
+        id="xx"
+        placeholder='01/01/2023'
+        onChange={(e) =>setPromotionStart(e.target.value)} 
+        value={promotionStart}
+      />
+        
+
         
 
        <label> Discount valid till: </label>    
@@ -209,7 +330,7 @@ return(
 
                   
        </div>
-       {/* {promotionExpiry} */}
+    
        </form>
 
        </div>

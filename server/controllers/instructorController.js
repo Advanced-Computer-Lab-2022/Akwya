@@ -1,6 +1,8 @@
 //import instructor from '../models/instructor.js';
 import instructor from "../models/instructor.js"
 import course from "../models/course.js"
+import trainee from "../models/trainee.js"
+
 import e from "express"
 import video from "../models/videos.js"
 import nodemailer from 'nodemailer'
@@ -65,6 +67,7 @@ const createCourseI = async (req, res) => {
         summary,
       
     } = req.body
+    const registered=0;
 
 
     try {
@@ -73,6 +76,7 @@ const createCourseI = async (req, res) => {
             subtitles,
             price,
             summary,
+            registered
         });
         res.status(200).json(newCourse)
     } catch (error) {
@@ -394,7 +398,45 @@ const editBio = async (req, res) => {
             res.status(400).json({error: error.message})
         }
      } 
+     
+     const moneyOwed = async (req , res) => {
+        // const viewCoursestitle = async (req, res) => {
+        //     const { instructorr } = req.params
+        //     const Coursestitles = await course.find({instructor:{$eq:instructorr}}).select('title')
+        try{   
+           
+           
+            const owed=await course.find(({instructor:req.params.id}))
+            let sum=0;
+            console.log(owed[1])
+            for(let i=0;i<owed.length;i++){
+                const moneyowed=parseInt(owed[i].registeredTrainees)*parseInt(owed[i].price)*parseInt(owed[i].promotion)/100*0.5
+                sum=sum+moneyowed
+                console.log(sum)
+                
+
+            }
+
+            
+            res.status(200).json(sum)
+            
+            
+
+
+        }
+    catch (error) {
+        res.status(400).json({error: error.message})
+    }
+
+
+     }
+  
+     
 
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
     filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
-    viewPreview, ViewRating, getRatings,changePassword, checkPassword,notFirst,viewBio}
+
+    viewPreview, ViewRating, getRatings,changePassword, checkPassword,notFirst, moneyOwed,viewBio}
+
+  
+
