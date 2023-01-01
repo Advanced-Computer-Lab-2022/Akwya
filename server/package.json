@@ -15,7 +15,7 @@
     "@stripe/stripe-js": "^1.46.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "github:testing-library/user-event",
-    "axios": "^1.2.1",
+    "axios": "^1.2.2",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "bootstrap": "^5.2.3",

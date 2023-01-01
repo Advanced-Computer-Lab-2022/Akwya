@@ -341,11 +341,20 @@ if(JSON.stringify(registered).length==2){
 
         </ul>
         
-        <form className="create" onSubmit={handleSubmit}> 
+        {/* <form className="create" onSubmit={handleSubmit}> 
             <h3>Add/Drop The Course</h3>
             <button>Add Course</button>
             {error && <div className="error">{error}</div>}
-        </form>
+        </form> */}
+
+        <form className='wallet ' onSubmit={payWallet}>
+  <h2>Add Course</h2>
+  <h4>Choose Payment Method</h4>
+  <br/>
+  <button>Pay with Wallet</button>
+</form>
+<h7>OR</h7><br/>
+<h3>Credit Card</h3>
         <PaymentComponent t={TraineeID} c={CourseID}
     keys={{
         stripe: "pk_test_51MIFP2HUXZhuMagYneFzG4qHkSG50EXSNItMTONiK5113unZ0HzFho1rwLowL312VWCsK1IToWcIUXT5N7VZZExJ008w6439EK",
@@ -353,10 +362,7 @@ if(JSON.stringify(registered).length==2){
 />
 
 
-<form className='wallet ' onSubmit={payWallet}>
-  <h2> Pay using wallet</h2>
-  <button> Pay with your wallet</button>
-</form>
+<br/>
 
     </div>
 )
