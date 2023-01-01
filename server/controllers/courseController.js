@@ -126,6 +126,7 @@ const createCourse = async (req, res) => {
     const noOfRatings=[]
     const promotion=0; 
     const promotionExpiry="";
+    const promotionStart="";
     const registeredTrainees=0; 
     
     try {
@@ -138,6 +139,7 @@ const createCourse = async (req, res) => {
             instructor,
             totalHours,
             promotion,
+            promotionStart,
             promotionExpiry,
 
 
@@ -215,9 +217,11 @@ const courseDiscount = async (req, res) => {
       
     const discount=await course.findOneAndUpdate({_id:req.params.id},{promotion:req.query.promotion},{new: true}  )
 
-      const date=await course.findOneAndUpdate({_id:req.params.id},{promotionStart:eq.query.promotionStart},{promotionExpiry:req.query.promotionExpiry},{new: true}  )
+      const date=await course.findOneAndUpdate({_id:req.params.id},{promotionExpiry:req.query.promotionExpiry},{new: true}  )
+
+      const dateStart=await course.findOneAndUpdate({_id:req.params.id},{promotionStart:req.query.promotionStart},{new: true}  )
        
-        res.status(200).json({discount, date})
+    res.status(200).json({discount, date,dateStart})
        
 
 
