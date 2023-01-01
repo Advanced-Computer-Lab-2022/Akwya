@@ -436,7 +436,7 @@ const editBio = async (req, res) => {
 export {  filterCoursesByPriceI  , viewCoursestitleI  , createCourseI, deleteAllInstructors,filterCoursesBySubjectI,
     filterCoursesByRatingAndSubject, searchCourseI ,addVideo ,viewVideos , viewEmail ,editEmail,editBio, CanViewVideos, addPreview,
 
-    viewPreview, ViewRating, getRatings,changePassword, checkPassword,notFirst, moneyOwed}
+    viewPreview, ViewRating, getRatings,changePassword, checkPassword,notFirst, moneyOwed,viewBio}
 
   
 

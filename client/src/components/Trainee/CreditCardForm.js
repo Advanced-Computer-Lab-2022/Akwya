@@ -16,8 +16,8 @@ import Swal from "sweetalert2";
 // const axios = require("axios");
 
 
-const CourseID = window.location.href.split('/').at(5);
-const TraineeID = window.location.href.split('/').at(4);
+// const CourseID = window.location.href.split('/').at(5);
+// const TraineeID = window.location.href.split('/').at(4);
 
 //credit card element specific styling
 const CARD_OPTIONS = {
@@ -63,6 +63,7 @@ const SubmitButton = ({ processing, error, children, disabled }) => (
 
 //component declaration
 export default function CreditCardForm(props) {
+ 
 
     let history = useNavigate();
 
@@ -122,15 +123,16 @@ export default function CreditCardForm(props) {
     //     );
 const reg = async () => {
     
-    await axios.get(`http://localhost:9000/trainee/register/${CourseID}/${TraineeID}`).then(
+    await axios.get(`http://localhost:9000/trainee/register/${props.c}/${props.t}`).then(
         (respnse) => {
+            // console.log(CourseID)
 
            
 
             // if(!respnse.ok){
             //     setError(json.error)
             // }
-            if(respnse.ok){
+            // if(respnse.ok){
                 console.log("Course Successfully Registered!")
                 Swal.fire({
                     title: 'Course Successfully Registered!',
@@ -144,7 +146,7 @@ const reg = async () => {
                   })  
                 setError(null)
             } 
-        }
+        // }
     ) 
    
 
@@ -260,7 +262,7 @@ const reg = async () => {
                 */
                
                 setSuccess(true);
-                reg();
+                
             }
         }
     }
@@ -282,9 +284,10 @@ const reg = async () => {
                     <p>{error}</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger" onClick={(event)=>{setError(null)}}>Close</Button>    
+                    <Button variant="danger" onClick={(event)=>{setError(null)} }>Close</Button>    
                 </Modal.Footer>
             </Modal>
+
 
 
             {/* success banner, only shows after confirmation */}
@@ -292,11 +295,14 @@ const reg = async () => {
                 <Modal.Header>
                     <Modal.Title>Payment Succeeded</Modal.Title>
                 </Modal.Header>
+                
                 <Modal.Body>
-                    Your card payment has been confirmed
+                   Payed successfully
                 </Modal.Body>
                 <Modal.Footer>
-                        <Button variant="success" onClick={reg}>Close</Button>
+                {/* //  window.location.reload(); */}
+               
+                        <Button  data-bs-dismiss="modal" variant="success" onClick={reg} >OK</Button>
                     
                 </Modal.Footer>
             </Modal>
@@ -390,9 +396,12 @@ const reg = async () => {
                     onChange={(event) => {
                         console.log(event)
                         if(!event.error){
+                            // reg();
                             setCardComplete(event.complete);
+
                         }
                         else{
+
                             setError(event.error.message);
                         }
                       
@@ -401,7 +410,7 @@ const reg = async () => {
                 />
                 
             </fieldset>
-            {/* submit */}
+          
             <SubmitButton
                     processing={processing}
                     error={error}
@@ -410,7 +419,7 @@ const reg = async () => {
                     Make Payment
             </SubmitButton>
         </Form>
-        </div>
+       </div>
     );
     
 }

@@ -77,6 +77,8 @@ const Discount = (props) => {
     const [price,setPrice]=useState(0);
     const [promotion, setPromotion]=useState(0);
 
+    const[promotionStart,setPromotionStart]=useState('');
+
     const [promotionExpiry, setPromotionExpiry]=useState('');
     
 //    const courseId="6383d865be115422d0801584";
@@ -154,13 +156,14 @@ const id=window.location.href.split('/').at(4);
             );
             
         }
-    
+    //'?promotionStart='+promotionStart+
    
         const date =  async (courseId) => {
-            
+            //promotionStart
             await axios.get(`http://localhost:9000/admin/courseDiscountAdmin/`+courseId +'?promotionExpiry='+ promotionExpiry ).then(
            (res) => { 
-      
+
+            // setPromotionStart(res.data['promotionStart'])
             setPromotionExpiry(res.data['promotionExpiry'])
             // const promotionExpiry = res.data['promotionExpiry']
             console.log(promotionExpiry)
@@ -193,8 +196,26 @@ const id=window.location.href.split('/').at(4);
             value={promotion}
             required
           />
+
+
+
+           {/* <label> Discount starting from: </label>    
+    
+                    <input 
+            type="date"
+            required 
+            id="xx"
+            placeholder='01/01/2023'
+            onChange={(e) =>setPromotionStart(e.target.value)} 
+            value={promotionStart}
+          /> */}
             
             
+    
+
+
+
+
     
            <label> Discount valid till: </label>    
     

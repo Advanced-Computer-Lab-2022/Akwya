@@ -32,6 +32,7 @@ export default function PaymentComponent(props) {
             <Card.Header>
                 <Row>
                     <Col md="auto">
+                        <div class="payment">
                         <Button
                             variant="danger"
                             onClick={() => {
@@ -39,7 +40,7 @@ export default function PaymentComponent(props) {
                             }}
                         >
                             Back
-                        </Button>
+                        </Button></div>
                     </Col>
                 </Row>
             </Card.Header>
@@ -52,7 +53,7 @@ export default function PaymentComponent(props) {
                     stripe={loadStripe(props.keys.stripe)}
                     options={ELEMENTS_OPTIONS}
                 >
-                    <CreditCardForm />
+                    <CreditCardForm t={props.t} c={props.c} p={props.p} />
                 </Elements>
             </Card.Body>
         </Card>

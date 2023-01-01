@@ -186,7 +186,7 @@ switch(props.country) {
 const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const respnse= await fetch(`http://localhost:9000/trainee/register/${TraineeID}/?courseID=${CourseID}`, {
+    const respnse= await fetch(`http://localhost:9000/trainee/register/${CourseID}/${TraineeID}`, {
         method: 'GET',
     })  
     const json= await respnse.json()
@@ -218,6 +218,47 @@ const handleSubmit = async (e) => {
         setError(null)
     } 
 }
+const payWallet = async (e) => {
+    e.preventDefault()
+
+    const respnse= await fetch(`http://localhost:9000/trainee/registerCourseWallet/${CourseID}/${TraineeID}`, {
+        method: 'GET',
+    })  
+    const json= await respnse.json()
+
+    if(!respnse.ok){
+        console.log("not enoguh")
+        Swal.fire({
+            
+            title: "not enough money in the wallet",
+            icon: 'error',
+            confirmButtonColor: '#990000',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                // window.location.reload();
+            }
+          })
+    }
+    if(respnse.ok){
+        console.log("paid")
+        Swal.fire({
+            title: 'Amount paid Successfully ',
+            icon: 'success',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.reload();
+            }
+          })  
+        setError(null)
+    } 
+}
+      
+   
+   
+
 
 
 
@@ -250,8 +291,8 @@ if(window.location.href.split('/').at(3)=='userCorporate'){
             </div>
         )
         }
-
-    
+        //registerCourseWallet
+     
     
 
 
@@ -305,7 +346,17 @@ if(JSON.stringify(registered).length==2){
             <button>Add Course</button>
             {error && <div className="error">{error}</div>}
         </form>
+        <PaymentComponent t={TraineeID} c={CourseID}
+    keys={{
+        stripe: "pk_test_51MIFP2HUXZhuMagYneFzG4qHkSG50EXSNItMTONiK5113unZ0HzFho1rwLowL312VWCsK1IToWcIUXT5N7VZZExJ008w6439EK",
+    }}
+/>
 
+
+<form className='wallet ' onSubmit={payWallet}>
+  <h2> Pay using wallet</h2>
+  <button> Pay with your wallet</button>
+</form>
 
     </div>
 )
@@ -320,19 +371,15 @@ return(
 
         </ul>
         
-        {/* <form className="create" onSubmit={handleSubmit2}> 
+        { <form className="create" onSubmit={handleSubmit2}> 
           <button>Drop Course</button>
           {error && <div className="error">{error}</div>}
-        </form> */}
+        </form> }
         <form className="create" onSubmit={handleSubmit4}> 
           <button>Request Refund</button>
           {error && <div className="error">{error}</div>}
         </form>
-        <PaymentComponent
-    keys={{
-        stripe: "pk_test_51MIFP2HUXZhuMagYneFzG4qHkSG50EXSNItMTONiK5113unZ0HzFho1rwLowL312VWCsK1IToWcIUXT5N7VZZExJ008w6439EK",
-    }}
-/>
+       
     </div>
 )
 }
