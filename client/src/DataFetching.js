@@ -1,7 +1,7 @@
 // this data fetching is for the indiviudal trainee
 
 import React, { useState, useEffect } from 'react';  
-import axios from 'axios'
+import axios from 'axios'   
 import FilterFetching from './components/user/FilterFetching'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button';
