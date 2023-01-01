@@ -209,11 +209,11 @@ switch(props.country) {
 
 
   return (
-    <form className="search" onSubmit={handleSubmit}> 
+    <form className="search" onSubmit={handleSubmit} style={{"text-align": "center"}}> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
 
-    <label     style={{"marginTop":"13px","background-color": "white","marginLeft":"200px",}} >Search in my Courses:</label>
+    <label     style={{"marginTop":"13px","text-align": "center"}} >Search in my Courses:</label>
     <input
     style={{"marginTop":"13px","background-color": "white","marginLeft":"10px",
                "border": "none", "color": "black", "padding": "12px", "cursor": "pointer", "font-size": "17px",  "border-radius":"5px"}}
