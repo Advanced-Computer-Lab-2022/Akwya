@@ -213,7 +213,7 @@ return(
             <TableRow id = {problem._id}
 
 
-            style={{boxShadow:"10px 10px 1000px green" ,backgroundColor:'white',borderWidth:'20px',borderColor:'green' , '':'white', borderRadius: '20px', padding: '20px'}}
+            style={{boxShadow:"10px 10px 1000px green" ,backgroundColor:'white',borderWidth:'10px',borderColor:'white' , '':'white', borderRadius: '20px', padding: '20px'}}
             hover
             sx={{
                 "&:hover":{
@@ -253,7 +253,7 @@ return(
                 <TableRow id = {problem._id}
     
     
-                style={{boxShadow:"100px 20px 1000px yellow" ,backgroundColor:'white',borderWidth:'20px',borderColor:'green' , '':'white', borderRadius: '20px', padding: '20px'}}
+                style={{boxShadow:"100px 20px 1000px yellow" ,backgroundColor:'white',borderWidth:'10px',borderColor:'white' , '':'white', borderRadius: '20px', padding: '20px'}}
                 hover
                 sx={{
                     "&:hover":{
@@ -324,7 +324,7 @@ return(
               <TableRow id = {problem._id}
   
   
-              style={{boxShadow:"100px 20px 1000px red" ,backgroundColor:'white',borderWidth:'20px',borderColor:'green' , '':'white', borderRadius: '20px', padding: '20px'}}
+              style={{boxShadow:"100px 20px 1000px red" ,backgroundColor:'white',borderWidth:'10px',borderColor:'white' , '':'white', borderRadius: '20px', padding: '20px'}}
               hover
               sx={{
                   "&:hover":{

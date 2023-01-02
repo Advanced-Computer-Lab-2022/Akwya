@@ -76,11 +76,12 @@ import react, {useState, useEffect} from 'react'
 return(
 
 
-   <div> 
-<form className="test" onSubmit={PostRating}> 
-      <h3>Rate this course's Instructor: </h3>
+  <div class="courseDisplay2">
+  <form className="test" onSubmit={PostRating}> 
+      <h1>Rate this course's Instructor: </h1>
+ 
 
-      <label>Rating: </label>
+      <h3>Rating: </h3>
       <input 
         type="number" 
         onChange={(e) => setRating(e.target.value)} 
@@ -90,14 +91,23 @@ return(
         required
       />
         <br/>
-      <label>Review: </label>
+      <h3>Review: </h3>
       <input 
         type="text" 
         onChange={(e) => setReview(e.target.value)} 
         value={review}
       required/>
         <br/>
-      <button>Submit</button>
+      <button style={{"height": "50px",
+    "border": "1px solid",
+    "background": "#2691d9",
+    "border-radius": "25px",
+    "font-size": "18px",
+    "color": "#e9f4fb",
+    "font-weight": "700",
+    "cursor": "pointer",
+    "outline": "none","width":"150px",
+    "marginTop":"20px"}}>Submit</button>
       {error && <div className="error">{error}</div>}
     </form>
     </div>

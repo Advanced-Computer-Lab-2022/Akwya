@@ -117,11 +117,11 @@ return(
             <StyledTableCell align="center">Admin Messages</StyledTableCell>
 
 
-          </TableRow>
+          </TableRow> 
         </TableHead>
         <TableBody>
           {problems.map((problem) => (
-            <TableRow style={{boxShadow:"100px 20px 1000px purple" ,backgroundColor:'white',borderWidth:'20px',borderColor:'green' , '':'white', borderRadius: '20px', padding: '20px'}}
+            <TableRow style={{boxShadow:"100px 20px 1000px purple" ,backgroundColor:'white',borderWidth:'10px',borderColor:'white' , '':'white', borderRadius: '20px', padding: '20px'}}
             hover
             sx={{
                 "&:hover":{

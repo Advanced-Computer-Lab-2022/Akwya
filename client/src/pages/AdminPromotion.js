@@ -77,10 +77,11 @@ const Discount = (props) => {
     const [price,setPrice]=useState(0);
     const [promotion, setPromotion]=useState(0);
 
+    const[promotionStart,setPromotionStart]=useState('');
+
     const [promotionExpiry, setPromotionExpiry]=useState('');
     
-//    const courseId="6383d865be115422d0801584";
-//    const courseId="6383df27b650efbcb7dc74a1"; //promotion 0
+
 
 const id=window.location.href.split('/').at(4);
    
@@ -108,24 +109,105 @@ const id=window.location.href.split('/').at(4);
 
                 }
                 else {
-                    adminDiscount(courseId);
+                  checkDates(courseId);
 
-               Swal.fire({
-                title: 'New Promotion added!',
-                icon: 'success',
-                confirmButtonColor: '#38a53e',
-                confirmButtonText: 'OK'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  window.location.reload();
-                }
-              }) 
+              
                 }
    })
 
    }
 
 
+
+const checkDates = (courseId) => {
+
+
+  const month=promotionExpiry.split('-').at(1)
+  const year=promotionExpiry.split('-').at(0)
+  const day =promotionExpiry.split('-').at(2)
+  const today=new Date()
+
+  // console.log(year)
+  // console.log(parseInt(year))
+  // console.log(month)
+  // console.log(today.getFullYear());
+  //|| parseInt(month) <(today.getMonth() + 1)){
+
+    if((new Date(promotionExpiry))<(new Date(promotionStart))){
+      Swal.fire({
+        title: 'Invalid date!',
+        icon: 'error',
+        confirmButtonColor: '#990000',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      })
+      return;
+    }
+  if(parseInt(year)==today.getFullYear() ){
+    if(parseInt(month) <(today.getMonth() + 1)){
+      Swal.fire({
+        title: 'Invalid date!',
+        icon: 'error',
+        confirmButtonColor: '#990000',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      })
+      return
+    }
+    else if(parseInt(month) ==(today.getMonth() + 1)){
+        if(parseInt(day)<(today.getDay())){
+          Swal.fire({
+            title: 'Invalid date!',
+            icon: 'error',
+            confirmButtonColor: '#990000',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          })
+          return;
+      
+      } else {
+        //day = or >
+        adminDiscount(courseId);
+      }
+    } else {
+      //month akbr
+      adminDiscount(courseId);
+    }
+   
+    }
+    else if(parseInt(year)<today.getFullYear()) {
+      Swal.fire({
+        title: 'Invalid date!',
+        icon: 'error',
+        confirmButtonColor: '#990000',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      })
+      return;
+      
+    }
+else {
+  //year akbr
+  adminDiscount(courseId);
+}
+    
+
+
+
+
+}
 
 
     const adminDiscount =  async (courseId) => {
@@ -138,7 +220,9 @@ const id=window.location.href.split('/').at(4);
                 console.log("AAA")
                 //
                 console.log(res.data['price'])
-                date();
+                date(courseId);
+                date2(courseId)
+
 
                
        
@@ -154,23 +238,63 @@ const id=window.location.href.split('/').at(4);
             );
             
         }
-    
+
+
+    //'?promotionStart='+promotionStart+
+
+    const date2 =  async (courseId) => {
+      //promotionStart
+      await axios.get(`http://localhost:9000/admin/courseDiscountAdmin/`+courseId +'?promotionStart='+promotionStart).then(
+     (res) => { 
+
+
+      setPromotionStart(res.data['promotionStart'])
+      
+      const promotionStart = res.data['promotionStart']
+      console.log(promotionStart)
+      
+       
+          
+
+     }
+      );
+  }
+
    
+
+
+
         const date =  async (courseId) => {
-            
+            //promotionStart
             await axios.get(`http://localhost:9000/admin/courseDiscountAdmin/`+courseId +'?promotionExpiry='+ promotionExpiry ).then(
            (res) => { 
-      
-            setPromotionExpiry(res.data['promotionExpiry'])
-            // const promotionExpiry = res.data['promotionExpiry']
+
+        
+          
+            console.log("EXPIRYYY")
+          
             console.log(promotionExpiry)
-            
-             
+            setPromotionExpiry(res.data['promotionExpiry'])
+
+            Swal.fire({
+              title: 'New Promotion added!',
+              icon: 'success',
+              confirmButtonColor: '#38a53e',
+              confirmButtonText: 'OK'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload();
+              }
+            }) 
+  
                 
       
            }
             );
         }
+
+
+
 
     
         return(
@@ -181,20 +305,47 @@ const id=window.location.href.split('/').at(4);
         
           <form >
     
-          <h3>Add a New Discount</h3>
     
-    <label>Enter Discount Percentage: </label>
+          <h1 align="center">Add Discount</h1>
+            
+
+    
+            <div class="admin2">
+          <form className="create" >
+          <div class="txt_field">    
+
           <input 
             type="number" 
-            id="bio"
             min = "0"
             max = "100"
             onChange={(e) => setPromotion(e.target.value)} 
             value={promotion}
             required
+
+          /><label>Enter Discount Percentage: </label>
+            </div>
+            
+
+          
+
+
+
+           <label> Discount starting from: </label>    
+    
+                    <input 
+            type="date"
+            required 
+            id="xx"
+            placeholder='01/01/2023'
+            onChange={(e) =>setPromotionStart(e.target.value)} 
+            value={promotionStart}
           />
-            
-            
+
+            <br>
+            </br>
+       
+      
+
     
            <label> Discount valid till: </label>    
     
@@ -206,21 +357,20 @@ const id=window.location.href.split('/').at(4);
             onChange={(e) =>setPromotionExpiry(e.target.value)} 
             value={promotionExpiry}
           />
+
+         
+        
+           </form>
+    
+           </div>
+        
+        
+
             
 
-    
-    
-        
-        
+
                 
-             <div> 
            
-    
-                      
-           </div>
-           <div>
-           
-        </div>
            </form>
     
            </div>
@@ -229,7 +379,6 @@ const id=window.location.href.split('/').at(4);
             <div>
 
 
-            <h1>Courses</h1>
         
         <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -237,7 +386,7 @@ const id=window.location.href.split('/').at(4);
           <TableRow>
             <StyledTableCell align="center">Title</StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
-            <StyledTableCell align="center">Action</StyledTableCell>
+            <StyledTableCell align="center">Send Promotion</StyledTableCell>
           
 
 
@@ -245,7 +394,7 @@ const id=window.location.href.split('/').at(4);
         </TableHead>
         <TableBody>
           {courses.map((course) => (
-            <TableRow
+            <TableRow style={{boxShadow:"100px 20px 1000px purple" ,backgroundColor:'white',borderWidth:'10px',borderColor:'white' , '':'white', borderRadius: '20px', padding: '20px'}}
             hover
             sx={{
                 "&:hover":{
@@ -256,7 +405,7 @@ const id=window.location.href.split('/').at(4);
             }}
            
               >
-              <TableCell align="center"><Link to={{pathname:course._id}}><h2>{course.title}</h2></Link></TableCell>
+              <TableCell align="center"><h2>{course.title}</h2></TableCell>
               <TableCell align="center">{(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)}</TableCell>
               <TableCell align="center"><Box sx={{marginBottom: 2,marginLeft: 2 ,display:"inline"}}>
                         <Button variant="contained"

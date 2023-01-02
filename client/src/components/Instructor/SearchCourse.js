@@ -9,6 +9,8 @@ const SearchACourse = (props) => {
   const [error, setError] = useState(null)
   const [courses,setCourses] = useState([])
 
+  const [searchBox,setSearchBox] = useState(true)
+
   const id = window.location.href.split('/').at(4);
 
 
@@ -76,6 +78,8 @@ switch(props.country) {
     if(respnse.ok){
        console.log(json)
         setCourses(json)
+        setSearchBox(false)
+
          
         }
 
@@ -148,6 +152,8 @@ switch(props.country) {
     if(respnse.ok){
        console.log(json)
         setCourses(json)
+        setSearchBox(false)
+
          
         }
 
@@ -194,6 +200,8 @@ switch(props.country) {
         //   })
         setError(null)
         setSearch('')
+        setSearchBox(false)
+
         
 
     } 
@@ -201,14 +209,14 @@ switch(props.country) {
 
 
   return (
-    <form className="search" onSubmit={handleSubmit}> 
+    <form className="search" onSubmit={handleSubmit} style={{"text-align": "center"}}> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
 
-    <label>Search in my Courses:</label>
+    <label     style={{"marginTop":"13px","text-align": "center"}} >Search in my Courses:</label>
     <input
-        style={{"marginTop":"13px","background-color": "white","marginLeft":"13px",
-        "border": "none", "color": "black", "padding": "12px", "cursor": "pointer", "font-size": "17px",  "border-radius":"5px"}}
+    style={{"marginTop":"13px","background-color": "white","marginLeft":"10px",
+               "border": "none", "color": "black", "padding": "12px", "cursor": "pointer", "font-size": "17px",  "border-radius":"5px"}}
       type='text'
       onChange={e => setSearch(e.target.value)}
       placeholder='Search...'
@@ -226,9 +234,12 @@ switch(props.country) {
       {error && <div className="error">{error}</div>}
 
 
-      <ul>
-      {courses.map(course => <li key={course._id}><Link to={{pathname:course._id}}><h3 style={{display:"inline",margin:"10px"}}>{course.title}</h3></Link> Price: {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
-      </ul>
+      <div hidden={searchBox} style={{margin:0,padding:0,fontFamily:"Poppins", boxSizing:"content-box",backgroundColor:"white",width:'180px',
+          "border": "none", "color": "black", "padding": "12px", "cursor": "pointer", "font-size": "17px",  "border-radius":"5px", "marginTop":"13px","background-color": "white","marginLeft":"385px", textAlign:"left"
+    }}>
+
+      {courses.map(course => <label key={course._id}><Link to={{pathname:course._id}}><h3 style={{display:"inline",margin:"10px"}}>{course.title}</h3> </Link> <br/></label>)}
+      </div>
     </form>
 
   )}

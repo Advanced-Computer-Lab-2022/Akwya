@@ -15,9 +15,6 @@ import Swal from "sweetalert2";
 
 
 
-
-
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -31,6 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   const { useState } = require("react");
 
   const Discount = () => { 
+  
 
     const [instructor,setInstructor] = useState([])
 
@@ -60,41 +58,128 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     const [instructors,setInstructors] = useState([]);
     const [ promotion,setPromotion] = useState(0);
     const [price ,setPrice]=useState(0);
-   
+
+    const [promotionStart,setPromotionStart]=useState('');
     const [promotionExpiry,setPromotionExpiry] = useState('');
-    //promotionExpiry
-    //+'?promotionExpiry=' +promotionExpiry 
+    const [valid, setValid] = useState(false);
+
+    
+    const checkDates = (e) => {  
+      e.preventDefault()
+
+
+      const month=promotionExpiry.split('-').at(1)
+      const year=promotionExpiry.split('-').at(0)
+      const day =promotionExpiry.split('-').at(2)
+      const today=new Date()
+    
+     
+    
+        if((new Date(promotionExpiry))<(new Date(promotionStart))){
+          Swal.fire({
+            title: 'Invalid date!',
+            icon: 'error',
+            confirmButtonColor: '#990000',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+             
+            }
+          })
+          return;
+        }
+      if(parseInt(year)==today.getFullYear() ){
+        if(parseInt(month) <(today.getMonth() + 1)){
+          Swal.fire({
+            title: 'Invalid date!',
+            icon: 'error',
+            confirmButtonColor: '#990000',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              
+            }
+          })
+          return
+        }
+        else if(parseInt(month) ==(today.getMonth() + 1)){
+            if(parseInt(day)<(today.getDay())){
+              Swal.fire({
+                title: 'Invalid date!',
+                icon: 'error',
+                confirmButtonColor: '#990000',
+                confirmButtonText: 'OK'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                
+                }
+              })
+              return;
+          
+          } else {
+            //day = or >
+            edit();
+          }
+        } else {
+          //month akbr
+          edit();
+        }
+       
+        }
+        else if(parseInt(year)<today.getFullYear()) {
+          Swal.fire({
+            title: 'Invalid date!',
+            icon: 'error',
+            confirmButtonColor: '#990000',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+             
+            }
+          })
+          return;
+          
+        }
+    else {
+      //year akbr
+      edit();
+    }
+        
+    
+    
+    }
     
 
 
     const edit =  async () => {
-      if(promotionExpiry==""){
-        Swal.fire({
-          title: 'Error Please Enter a Valid Date!',
-          icon: 'error',
-          confirmButtonColor: '#38a53e',
-          confirmButtonText: 'OK'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // window.location.reload();
-          }
-        })  
-      }else{
-        if(promotion==0){
-          Swal.fire({
-            title: 'Discount Value Cant be Zero!',
-            icon: 'error',
-            confirmButtonColor: '#38a53e',
-            confirmButtonText: 'OK'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              // window.location.reload();
-            }
-          })  
-        }else{
+      // if(promotionExpiry==""){
+      //   Swal.fire({
+      //     title: 'Error Please Enter a Valid Date!',
+      //     icon: 'error',
+      //     confirmButtonColor: '#38a53e',
+      //     confirmButtonText: 'OK'
+      //   }).then((result) => {
+      //     if (result.isConfirmed) {
+      //       // window.location.reload();
+      //     }
+      //   })  
+      // }else{
+      //   if(promotion==0){
+      //     Swal.fire({
+      //       title: 'Discount Value Cant be Zero!',
+      //       icon: 'error',
+      //       confirmButtonColor: '#38a53e',
+      //       confirmButtonText: 'OK'
+      //     }).then((result) => {
+      //       if (result.isConfirmed) {
+      //         // window.location.reload();
+      //       }
+      //     })  
+      //   }else{
           await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotion='+ promotion ).then(
           (res) => { 
-              
+            
+           
                console.log(courseId)
                
                console.log(res.data['price'])
@@ -115,35 +200,54 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                  confirmButtonText: 'OK'
                }).then((result) => {
                  if (result.isConfirmed) {
-                   window.location.reload();
+                 
                  }
                })  
                
                // if(promotion!=0){
                  console.log("calling date")
+                 date2()
                  date()
                // }
             
           }
            );
-      }
-        }
+      // }
+        // }
         
        
      
 
     }
 
+
+const date2 =  async () => {
+  await axios.get(`http://localhost:9000/course/courseDiscount/`+ courseId +'?promotionStart='+promotionStart ).then(
+ (res) => { 
+
+  
+
+  setPromotionStart(res.data['promotionStart'])
+
+  const promotionStart = res.data['promotionStart']
+  console.log(promotionStart)
+  
+
+ }
+  );
+
+
+}
     const date =  async () => {
-      await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotionExpiry='+ promotionExpiry ).then(
+      await axios.get(`http://localhost:9000/course/courseDiscount/`+ courseId +'?promotionExpiry='+ promotionExpiry ).then(
      (res) => { 
 
+      
+
+     
       setPromotionExpiry(res.data['promotionExpiry'])
-      // const promotionExpiry = res.data['promotionExpiry']
       console.log(promotionExpiry)
       
-       
-          
 
      }
       );
@@ -162,15 +266,15 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 
 return(
+  <div class='admin allganb' style={{height:'500px',width:"80px",marginTop:'0px',padding:'5px',background:'rgb(240,240,240)', display: "flex","justify-content": "space-between"}}>
 
+<div class="ganb"> 
 
-    <div className="Dicount">
-
-      <form onSubmit={edit}>
-
+      <form className="create" onSubmit={checkDates}>
       <h3>Add a New Discount</h3>
+<br/>
+      <div class="txt_field">
 
-<label>Enter Discount Percentage: </label>
       <input 
         type="number" 
         id="bio"
@@ -179,8 +283,26 @@ return(
         onChange={(e) => setPromotion(e.target.value)} 
         value={promotion}
         required
+/><label>Enter Discount Percentage: </label>
+            </div>
+            
+
+      
+
+
+
+       <label> Discount starting from: </label>    
+
+                <input 
+        type="date"
+        required 
+        id="xx"
+        placeholder='01/01/2023'
+        onChange={(e) =>setPromotionStart(e.target.value)} 
+        value={promotionStart}
       />
         
+
         
 
        <label> Discount valid till: </label>    
@@ -193,16 +315,12 @@ return(
         onChange={(e) =>setPromotionExpiry(e.target.value)} 
         value={promotionExpiry}
       />
-        
-        
-                <Box sx={{marginBottom: 2,marginLeft: 2 ,display:"inline"}}>
-                <Button variant="contained"
-                onClick={edit}
-                margin="normal"
-                padding="normal"
-                >confirm </Button> 
+             <br/>
+             <br/>
+
+               <button>Confirm</button>
+
                 
-                </Box>       
 
 
     
@@ -213,9 +331,10 @@ return(
 
                   
        </div>
-       {/* {promotionExpiry} */}
+    
        </form>
 
+       </div>
        </div>
 
 )
