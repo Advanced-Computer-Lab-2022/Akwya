@@ -213,12 +213,54 @@ else {
     const adminDiscount =  async (courseId) => {
         await axios.get(`http://localhost:9000/admin/courseDiscountAdmin/`+ courseId+'?promotion='+promotion).then(
             (res) => {   
+
+
+
+              // if(promotion==""){
+              //   Swal.fire({
+              //     title: 'Error Please Enter a Valid Promtoion!',
+              //     icon: 'error',
+              //     confirmButtonColor: '#38a53e',
+              //     confirmButtonText: 'OK'
+              //   }).then((result) => {
+              //     if (result.isConfirmed) {
+              //       // window.location.reload();
+              //     }
+              //   })  
+              // }  
+              if(promotionExpiry==""){
+                Swal.fire({
+                  title: 'Error Please Enter a Valid Date!',
+                  icon: 'error',
+                  confirmButtonColor: '#38a53e',
+                  confirmButtonText: 'OK'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    // window.location.reload();
+                  }
+                })  
+              }else{
+                if(promotion==0){
+                  Swal.fire({
+                    title: 'Discount Value Cant be Zero!',
+                    icon: 'error',
+                    confirmButtonColor: '#38a53e',
+                    confirmButtonText: 'OK'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      // window.location.reload();
+                    }
+                  })  
+                }
+              
+              
+              else{
                 console.log(res)
-                // setPromotion(res.data['promotion'])
+                
                 console.log(promotion);
 
                 console.log("AAA")
-                //
+                
                 console.log(res.data['price'])
                 date(courseId);
                 date2(courseId)
@@ -230,11 +272,15 @@ else {
    
                const newPrice=res.data['price']-(res.data['price']*(promotion/100))
                console.log(newPrice)
-               
-            //    setPrice(newPrice)
-            //    console.log(newPrice)
 
-            }
+
+
+              }
+              
+               
+          
+
+            }}
             );
             
         }
