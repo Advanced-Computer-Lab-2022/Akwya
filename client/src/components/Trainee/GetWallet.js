@@ -1,23 +1,6 @@
 import axios from 'axios';
-// import react, {useState, useEffect} from 'react'
-import { styled } from '@mui/material/styles';  
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import Button from '@mui/material/Button';
 import React, { useState, useEffect } from 'react';  
 
-
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-
-  // const { useState } = require("react");
 
   const GetWallet = () => { 
 
@@ -35,17 +18,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
           },[])
     return(
         <div align="right">
-           <h4>Wallet $ {wallet}</h4>
-        {/* <Button variant="contained"
-                onClick={getWallet}
-                margin="normal"
-                padding="normal"
-                align="right"
-                >View Wallet</Button> 
-                <div>
-               
-                </div> */}
-                </div>
+         <h4>£ {wallet}</h4>
+       </div>
     )
     }
       export default GetWallet;

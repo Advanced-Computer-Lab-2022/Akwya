@@ -224,7 +224,7 @@ function App() {
     <ul class="footer-links-main">
     
         <li>
-            <a href="/Policy">Policy</a>
+            <a href="/Policy" id='policy'>Policy</a>
         </li>
         <li>
             <a href="/Contract" id='contract' hidden>Contract</a>

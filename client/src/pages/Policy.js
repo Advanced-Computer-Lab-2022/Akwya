@@ -22,9 +22,8 @@ const Policy = () => {
 
   return (
     <div className="policy" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
-      <Link to="/">
-      </Link>
-      {/* <form> */}
+          <div class="bb"><a href={document.referrer} class="previous round">&#8249;</a></div>
+
         <h6>
           <h2>Our Policies</h2>
           Payments and Refunds

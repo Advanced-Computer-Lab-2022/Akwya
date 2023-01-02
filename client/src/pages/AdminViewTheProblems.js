@@ -183,7 +183,9 @@ return(
 
 
     <div style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
-        <h1>View Problems</h1>
+      <div class="bb"><a href='/admin' class="previous round">&#8249;</a></div>
+
+        <h1>Problems</h1>
 
         <TabGroup />
 

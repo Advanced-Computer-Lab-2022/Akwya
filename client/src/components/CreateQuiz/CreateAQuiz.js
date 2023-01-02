@@ -166,12 +166,16 @@ saveQuiz = () => {
 }
 
 render(){
+   const instructorID=window.location.href.split('/').at(4);
+      const  courseid=window.location.href.split('/').at(5);
+      const backLink="http://localhost:3000/instructor/"+instructorID+'/'+courseid;
 return (
    
     <div className="create-quiz-wrapper">
-        
+         <div class="bb"><a href={backLink} class="previous round">&#8249;</a></div>
 <div className='main'>
-    <div className='header'><h2>Create a Quiz</h2></div>
+    <div className='header'>          
+<h2>Create a Quiz</h2></div>
 <div className='form card'>
 <div> <input className='input' onChange={e=>this.setState({name:e.target.value})} value={this.state.name} placeholder="Quiz Name" required /> </div>
 {/* <div>    <input className='input' onChange={e=>this.setState({instructorID:e.target.value})} value={this.state.instructorID} placeholder="Instructor ID" required/> </div>

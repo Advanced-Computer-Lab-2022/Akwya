@@ -254,7 +254,7 @@ if(JSON.stringify(registered).length==2){
 return(
     <div style={{ "text-align" : 'left' }}>
 
-<Progressbar bgcolor="#1976d2" progress={userProgress}  height={20} />
+<Progressbar bgcolor="#1976d2" progress={userProgress}  height={30} />
 
     <div  style={{"text-align" : 'center' }}>
        <h2>Your Progress is {userProgress}%</h2><div><div style={{display: show ? 'block' : 'none' }}><Box sx={{marginBottom: 2,marginLeft: 2 ,display:"inline"}}>

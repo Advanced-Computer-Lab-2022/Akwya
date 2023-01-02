@@ -29,6 +29,7 @@ const Course = (props) => {
     
   const ID = window.location.href.split('/').at(5);
   const instructorID = window.location.href.split('/').at(4);
+  const backLink = "http://localhost:3000/instructor/"+instructorID;
 
   useEffect(()=>{
     axios
@@ -102,7 +103,8 @@ function TabGroup() {
     
     return(
       <div className="guest" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
-        <h2>Course Page</h2>
+            <div class="bb"><a href={backLink} class="previous round">&#8249;</a></div>
+
         
 
         
@@ -138,7 +140,8 @@ function TabGroup() {
   
   return (
     <div className="guest" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
-        <h2>Course Page</h2>
+           <div class="bb"><a href={backLink} class="previous round">&#8249;</a></div>
+
         
 
         

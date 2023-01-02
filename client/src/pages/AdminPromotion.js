@@ -302,7 +302,8 @@ else {
 <div style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
 
           <div className="Dicount">
-        
+          <div class="bb"><a href='/admin' class="previous round">&#8249;</a></div>
+
           <form >
     
     
@@ -413,7 +414,7 @@ else {
                     onClick={()=>ifPromotionFound(course._id)}
                         margin="normal"
                         padding="normal"
-                        >confirm </Button> 
+                        >Apply </Button> 
                         
                         </Box>     </TableCell>
               {/* <TableCell align="center">{course.totalHours}</TableCell>

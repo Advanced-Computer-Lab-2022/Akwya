@@ -116,9 +116,7 @@ const RefundRequests = (props) => {
         <div style={{"background":"white","padding":"10px","borderRadius":"10px",marginTop:"30px"}}>
             <div style={{marginLeft:"20px",marginRight:"20px"}}>
         <h2>There are currently no Refund Requests.</h2>
-        <Link to="/admin">
-        <h2>Back</h2>
-      </Link>
+        <div class="bb"><a href='/admin' class="previous round">&#8249;</a></div>
       </div>
         </div>
     )
@@ -129,9 +127,7 @@ return(
 
 <div style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px",marginTop:"30px"}}>
 
-<Link to="/admin">
-        <h2>Back</h2>
-      </Link>
+<div class="bb"><a href='/admin' class="previous round">&#8249;</a></div>
 
           
 
