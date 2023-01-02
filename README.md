@@ -138,7 +138,7 @@ Start the client for the front end
 
 ## Screenshots
 
-![Website Screenshot](https://drive.google.com/file/d/1XAsBdJoeXtJ_CzTI_imf0k1JGmXiuO_E/view?usp=sharing)
+(https://drive.google.com/file/d/1XAsBdJoeXtJ_CzTI_imf0k1JGmXiuO_E/view?usp=sharing)
 ## Usage/Examples
 Find below code snippets for how an admin can add a trainee to the system 
 
