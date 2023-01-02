@@ -41,7 +41,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import ContactUs from './pages/ContactUs';
 import RefundRequests from './components/Admin/RefundRequests';
-
+import CourseG from './pages/GuestCourse'
 
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
@@ -80,7 +80,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<Guest />}
+              element={<Guest  country={country}/>}
             />
 
             <Route
@@ -101,13 +101,13 @@ function App() {
               path="/instructor/:id"
               element={<Instructor country={country} tempid='6381101753d48ea316365f94'/>}
             />
-            <Route
+            {/* <Route
               path="/guest/0"
               element={<Guest country={country}/>}
-            />
+            /> */}
             <Route
-              path="/guest/0/:id"
-              element={<Course country={country}/>}
+              path="/:id"
+              element={<CourseG country={country}/>}
             />
             <Route
               path="/user/:id/:id"

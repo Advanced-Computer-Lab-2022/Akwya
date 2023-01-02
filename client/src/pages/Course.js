@@ -25,6 +25,7 @@ import reportAProblem2 from '../components/Problem/reportAProblem2'
  
 
 const Course = (props) => {
+  
   const types = ["Course Details","Course Content"];
   const [active, setActive] = useState(types[0]);
   const [showContent, setshowContent] = useState(false);
@@ -33,7 +34,13 @@ const Course = (props) => {
 
   const CourseID  = window.location.href.split('/').at(5);
   const TraineeID = window.location.href.split('/').at(4);
+  useEffect(()=>{
+    document.getElementById('logoutbutton').hidden = false
+    document.getElementById('loginbutton').hidden = true
+    document.getElementById('contract').hidden = true
+    document.getElementById('navPages').innerHTML = '<li> <a href=/user/'+TraineeID+'> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
 
+    })
   useEffect(()=>{
     axios
     .get(`http://localhost:9000/trainee/isRegistered/${CourseID}/${TraineeID}`)

@@ -13,7 +13,7 @@ const User = (props) => {
     document.getElementById('loginbutton').hidden = false
     document.getElementById('contract').hidden = true
 
-    document.getElementById('navPages').innerHTML = '<li> <a href="/guest/0"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
+    document.getElementById('navPages').innerHTML = '<li> <a href="/"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
 
     })
   return (
