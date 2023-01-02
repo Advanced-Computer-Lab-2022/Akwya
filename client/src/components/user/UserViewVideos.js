@@ -270,13 +270,15 @@ return(
         
     </div>
 
-
+    <div class="courseDisplay4" >
         <h1>Course Content</h1>
         <ul>
         {preview.map(video => <div><h1>Preview: </h1><iframe width="700" height="350" src={'https://www.youtube.com/embed/'+video.previewVideo.split('=').at(1)} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             <br/></div>)}
 
-            {/* {videos.map(video => <li key={video._id}>Title: {video.title} Price: {(Math.round(video.price * rate) + ' ' + currency)} Total Hours: {video.totalHours} Rating: {video.rating} Summary: {video.summary}</li>)} */}
+
+            <div class="allganb" style={{display: "flex","justify-content": "space-between", "overflow": "auto"
+}}>
             {videos.map(video => <div style={{"background": "white",
     "padding": "20px",
     "padding-left": "100px",
@@ -369,12 +371,10 @@ return(
         </Button>
       </Box></div>
             <br/><small>summary: {video.summary}</small></div>)}
-           
 
-            
-
+            </div>
         </ul>
-
+</div>
         
         
 <div style={{ "text-align" : 'center' }}>
@@ -393,5 +393,4 @@ return(
 )
 }
 
-export default UserViewVideos 
-
+export default UserViewVideos
