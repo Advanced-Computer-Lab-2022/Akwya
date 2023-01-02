@@ -72,16 +72,16 @@ import react, {useState, useEffect} from 'react'
 
     if(JSON.stringify(registered).length==2){
         console.log(JSON.stringify(registered).length)
-        return;
+        return; 
     }
 return(
 
 
-   <div> 
+  <div class="courseDisplay2">
 <form className="test" onSubmit={PostRating}> 
-      <h3>Rate this course: </h3>
+      <h1>Rate Course: </h1>
 
-      <label>Rating: </label>
+      <h3>Rating: </h3>
       <input 
         type="number" 
         onChange={(e) => setRating(e.target.value)} 
@@ -91,7 +91,7 @@ return(
         required
       />
         <br/>
-      <label>Review: </label>
+      <h3>Review: </h3>
       <input 
         type="text" 
         onChange={(e) => setReview(e.target.value)} 

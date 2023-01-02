@@ -17,7 +17,7 @@ import '../../components/courseDisplay.css'
 
 
 //async
-let progress;
+let progress; 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -86,7 +86,7 @@ return(
                    
                 <h2 className="create" align="center"><Link to={{pathname:course._id}}><img style={{borderRadius:'10px', width:'400px'}} src={thumbnail(course.previewVideo)} alt="Course"></img><h1>{course.title}</h1></Link></h2>
                 <div id={courses.indexOf(course)+'c'} style={{fontSize:'20px'}}>
-                <h2 align="center" >Course Rating {insertStars(course.rating, courses.indexOf(course)+'c')}</h2>
+                <h2 align="center" >{insertStars(course.rating, courses.indexOf(course)+'c')}</h2>
                 </div>               
                 <h2 align="center">Total Hours: {course.totalHours}</h2>
                 

@@ -64,17 +64,15 @@ return(
     <div>
 
         {courses.map((course) => (
-                 <div class="ganb" >
-                   
-                <h2 className="create" align="center">{course.title}</h2>
-                <div id={courses.indexOf(course)+'c'} style={{fontSize:'20px'}}>
-                <h2 align="center" >Course Rating {insertStars(course.rating, courses.indexOf(course)+'c')}</h2>
-                </div>               
-                <h2 align="center">Total Hours: {course.totalHours}</h2>
+                 <div class="courseDisplay2" >
+                    
+                <h1>Course Details</h1>  
+                <h3 className="create" >Title: {course.title}</h3>
+                <h3  >Course Rating: {course.rating}</h3>
+                <h3 >Total Hours: {course.totalHours}</h3>
                 
                 
-                {/* <div id="area" style={{textAlign:'left', padding:'40px', lineHeight:'30px'}}>jj{insertStars(course.rating)}</div> */}
-                <h2 align="center">Registered Trainees: {course.registeredTrainees}</h2>
+                <h3>Registered Trainees: {course.registeredTrainees}</h3>
                 
                 </div>
   
