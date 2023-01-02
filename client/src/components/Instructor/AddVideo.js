@@ -135,7 +135,7 @@ if(JSON.stringify(instructor).length==2){
 
   return (
 
-
+  
     <div class='admin allganb' style={{height:'500px',marginTop:'0px',padding:'5px',background:'rgb(240,240,240)', display: "flex","justify-content": "space-between"
   }}>
        

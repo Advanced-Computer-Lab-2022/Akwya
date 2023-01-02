@@ -152,32 +152,45 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 
     const edit =  async () => {
-      // if(promotionExpiry==""){
-      //   Swal.fire({
-      //     title: 'Error Please Enter a Valid Date!',
-      //     icon: 'error',
-      //     confirmButtonColor: '#38a53e',
-      //     confirmButtonText: 'OK'
-      //   }).then((result) => {
-      //     if (result.isConfirmed) {
-      //       // window.location.reload();
-      //     }
-      //   })  
-      // }else{
-      //   if(promotion==0){
-      //     Swal.fire({
-      //       title: 'Discount Value Cant be Zero!',
-      //       icon: 'error',
-      //       confirmButtonColor: '#38a53e',
-      //       confirmButtonText: 'OK'
-      //     }).then((result) => {
-      //       if (result.isConfirmed) {
-      //         // window.location.reload();
-      //       }
-      //     })  
-      //   }else{
+      if(promotionExpiry==""){
+        Swal.fire({
+          title: 'Error Please Enter a Valid Date!',
+          icon: 'error',
+          confirmButtonColor: '#38a53e',
+          confirmButtonText: 'OK'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // window.location.reload();
+          }
+        })  
+      }else{
+        if(promotion==0){
+          Swal.fire({
+            title: 'Discount Value Cant be Zero!',
+            icon: 'error',
+            confirmButtonColor: '#38a53e',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // window.location.reload();
+            }
+          })  
+        }else{
           await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotion='+ promotion ).then(
           (res) => { 
+            if(promotion==""){
+              Swal.fire({
+                title: 'Error Please Enter a Valid Promtoion!',
+                icon: 'error',
+                confirmButtonColor: '#38a53e',
+                confirmButtonText: 'OK'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // window.location.reload();
+                }
+              })  
+            }
+            
             
            
                console.log(courseId)
@@ -212,8 +225,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
             
           }
            );
-      // }
-        // }
+      }
+        }
         
        
      
