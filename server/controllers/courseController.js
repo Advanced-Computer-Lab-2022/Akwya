@@ -373,7 +373,25 @@ const followUpOnAProblem  = async (req, res) => {
 
    
 
-   
+    // const getReviews= async(req,res) => {
+    
+    //     let myCourse = await course.find({_id:{$eq:req.params.id}}).select('noOfRatings')
+    //     let title=JSON.stringify(myCourse[0].title)
+
+    //     console.log(title)
+    //     // const { id } = req.params
+    
+    //     // const ACourse = await course.findById(id).select('title')
+    
+    //     if (!myCourse) {
+    //         return res.status(404).json({ error: " No such Course" })
+    
+    //     }
+
+    //     // const x=res.body.title
+    //     // console.log(x)
+    //     res.send(title)
+    // }
 
 
 

@@ -14,6 +14,7 @@ useEffect(()=>{
     .get('http://localhost:9000/instructor/viewCoursestitleI/'+id)
     .then( res => {
         console.log(res)
+        console.log('pp');
         setCourses(res.data)
     })
     .catch(err=>{console.log(err)})
@@ -57,7 +58,7 @@ return(
                    
                 <h2 className="create" align="center"><Link to={{pathname:course._id}}><img style={{borderRadius:'10px', width:'400px'}} src={thumbnail(course.previewVideo)} alt="Course"></img><h1>{course.title}</h1></Link></h2>
                 <div id={courses.indexOf(course)+'c'} style={{fontSize:'20px'}}>
-                <h2 align="center" >Course Rating {insertStars(course.rating, courses.indexOf(course)+'c')}</h2>
+                <h2 align="center" >{insertStars(course.rating, courses.indexOf(course)+'c')}</h2>
                 </div>               
                 <h2 align="center">Total Hours: {course.totalHours}</h2>
                 
