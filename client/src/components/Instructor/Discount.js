@@ -28,6 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   const { useState } = require("react");
 
   const Discount = () => { 
+  
 
     const [instructor,setInstructor] = useState([])
 
@@ -63,7 +64,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     const [valid, setValid] = useState(false);
 
     
-    const checkDates = (courseId) => {
+    const checkDates = (e) => {  
+      e.preventDefault()
 
 
       const month=promotionExpiry.split('-').at(1)
@@ -81,7 +83,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.reload();
+             
             }
           })
           return;
@@ -95,7 +97,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.reload();
+              
             }
           })
           return
@@ -109,18 +111,18 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 confirmButtonText: 'OK'
               }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.reload();
+                
                 }
               })
               return;
           
           } else {
             //day = or >
-            edit(courseId);
+            edit();
           }
         } else {
           //month akbr
-          edit(courseId);
+          edit();
         }
        
         }
@@ -132,7 +134,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.reload();
+             
             }
           })
           return;
@@ -140,7 +142,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         }
     else {
       //year akbr
-      edit(courseId);
+      edit();
     }
         
     
@@ -150,34 +152,34 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 
     const edit =  async () => {
-      if(promotionExpiry==""){
-        Swal.fire({
-          title: 'Error Please Enter a Valid Date!',
-          icon: 'error',
-          confirmButtonColor: '#38a53e',
-          confirmButtonText: 'OK'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // window.location.reload();
-          }
-        })  
-      }else{
-        if(promotion==0){
-          Swal.fire({
-            title: 'Discount Value Cant be Zero!',
-            icon: 'error',
-            confirmButtonColor: '#38a53e',
-            confirmButtonText: 'OK'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              // window.location.reload();
-            }
-          })  
-        }else{
+      // if(promotionExpiry==""){
+      //   Swal.fire({
+      //     title: 'Error Please Enter a Valid Date!',
+      //     icon: 'error',
+      //     confirmButtonColor: '#38a53e',
+      //     confirmButtonText: 'OK'
+      //   }).then((result) => {
+      //     if (result.isConfirmed) {
+      //       // window.location.reload();
+      //     }
+      //   })  
+      // }else{
+      //   if(promotion==0){
+      //     Swal.fire({
+      //       title: 'Discount Value Cant be Zero!',
+      //       icon: 'error',
+      //       confirmButtonColor: '#38a53e',
+      //       confirmButtonText: 'OK'
+      //     }).then((result) => {
+      //       if (result.isConfirmed) {
+      //         // window.location.reload();
+      //       }
+      //     })  
+      //   }else{
           await axios.get(`http://localhost:9000/course/courseDiscount/`+courseId +'?promotion='+ promotion ).then(
           (res) => { 
             
-              
+           
                console.log(courseId)
                
                console.log(res.data['price'])
@@ -198,20 +200,20 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                  confirmButtonText: 'OK'
                }).then((result) => {
                  if (result.isConfirmed) {
-                   window.location.reload();
+                 
                  }
                })  
                
                // if(promotion!=0){
                  console.log("calling date")
-                 date2(courseId)
-                 date(courseId)
+                 date2()
+                 date()
                // }
             
           }
            );
-      }
-        }
+      // }
+        // }
         
        
      
@@ -242,9 +244,8 @@ const date2 =  async () => {
 
       
 
-      // setPromotionStart(res.data['promotionStart'])
+     
       setPromotionExpiry(res.data['promotionExpiry'])
-      // const promotionExpiry = res.data['promotionExpiry']
       console.log(promotionExpiry)
       
 
@@ -269,7 +270,7 @@ return(
 
 <div class="ganb"> 
 
-      <form className="create" onSubmit={edit}>
+      <form className="create" onSubmit={checkDates}>
       <h3>Add a New Discount</h3>
 <br/>
       <div class="txt_field">
