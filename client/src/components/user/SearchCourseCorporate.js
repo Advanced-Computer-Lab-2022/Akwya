@@ -76,8 +76,8 @@ const SearchCourseCorporate = () => {
   <button type="submit"><i class="fa fa-search"></i></button>
       {error && <div className="error">{error}</div>}
 
-    <div hidden={searchBox}  style={{margin:0,padding:0,fontFamily:"Poppins", boxSizing:"content-box",backgroundColor:"white",width:'180px',
-          "border": "none", "color": "black", "padding": "12px", "cursor": "pointer", "font-size": "17px",  "border-radius":"5px", "marginTop":"13px","background-color": "white","marginLeft":"385px", textAlign:"left"
+    <div hidden={searchBox}  style={{margin:0, padding:0,fontFamily:"Poppins", boxSizing:"content-box",backgroundColor:"white",width:'180px',
+          "border": "none", "color": "black", "padding": "12px", "cursor": "pointer", "font-size": "17px",  "border-radius":"5px", "marginTop":"13px","background-color": "white","marginLeft":"555px", textAlign:"left"
     }}>
 
       {courses.map(course => <label key={course._id}><Link to={{pathname:course._id}}><h3 style={{display:"inline",margin:"10px"}}>{course.title}</h3> </Link> <br/></label>)}

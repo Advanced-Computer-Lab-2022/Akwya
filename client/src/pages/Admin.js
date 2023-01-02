@@ -24,21 +24,25 @@ const Admin = () => {
         <AddTrainee />
         </div>
         <div class="container">       
-         <h5>Feeling generous?  </h5>
-         <div style={{display: "flex","justify-content": "space-between","max-width": "420px"}}>
-        <button class="prbutton" onClick={()=>{window.location='/AdminPromotion'}}><h5>Set Promotions %</h5></button>
+         <h5>Feeling generous?  </h5><br/>
+          <div style={{display:'flex', marginRight:'50px'}}>
+          
+        <button style={{flex:'1',margin: '10px'}} class="prbutton" onClick={()=>{window.location='/AdminPromotion'}}><h5>Set Promotions %</h5></button>
+      
+        <button style={{flex:'1',margin: '10px'}} class="prbutton" onClick={()=>{window.location='/AdminViewTheProblems'}}><h5>View Problems</h5></button>
+        <br/>
+        
+        
+        <button style={{flex:'1',margin: '10px'}} class="prbutton" onClick={()=>{window.location='/Refund'}}><h5>Refund Trainee $</h5></button>
+        <br/>
         </div>
-        <button class="prbutton" onClick={()=>{window.location='/AdminViewTheProblems'}}><h5>View Problems</h5></button>
+        <div style={{display:'flex', marginRight:'50px'}}>
+        <button style={{flex:'1',margin: '10px'}} class="prbutton" onClick={()=>{window.location='/GrantAccess'}}><h5>Grant Access !</h5></button>
         <br/>
+        <button style={{flex:'1',margin: '10px'}} class="prbutton" onClick={()=>{window.location='/RefundRequests'}}><h5>View Refund Requests</h5></button>
+      </div>  </div>
 
-        <button class="prbutton" onClick={()=>{window.location='/Refund'}}><h5>Refund Trainee $</h5></button>
-        <br/>
-        <button class="prbutton" onClick={()=>{window.location='/GrantAccess'}}><h5>Grant Access !</h5></button>
-        <br/>
-        <button class="prbutton" onClick={()=>{window.location='/RefundRequests'}}><h5>View Refund Requests</h5></button>
-
-
-        </div> 
+      
       
 
        

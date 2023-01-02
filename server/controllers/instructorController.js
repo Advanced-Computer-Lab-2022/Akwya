@@ -12,8 +12,9 @@ import jwt from 'jsonwebtoken';
 
 //view all the titles of the courses given by him/her
 const viewCoursestitleI = async (req, res) => {
-    const Coursestitles = await course.find({instructor:{$eq:req.params.id}}).select('title')
-
+    const Coursestitles = await course.find({instructor:{$eq:req.params.id}})
+//.select('title')
+//removed to display more info
     res.status(200).json(Coursestitles)
 
 }
