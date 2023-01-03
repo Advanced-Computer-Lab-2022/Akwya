@@ -164,7 +164,7 @@ return(
               <div id={courses.indexOf(course)+'c'} style={{fontSize:'20px'}}>
               <h2 align="center" >Course Rating {insertStars(course.rating, courses.indexOf(course)+'c')}</h2>
               </div>
-              <h2 style={{display: "flex","justify-content": "center"}} align="center">Price: <s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price} </s>  {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)}</h2>
+              <h2 style={{display: "flex","justify-content": "center"}} align="center">Price: <s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price*rate} </s>  {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)}</h2>
              
               <h2 align="center">Total Hours: {course.totalHours}</h2>
               

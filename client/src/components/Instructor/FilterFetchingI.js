@@ -81,7 +81,9 @@ return(
 
 
 
-{courses.map(course => <li key={course._id}><Link to={{pathname:course._id}}><h3 style={{display:"inline",margin:"10px"}}>{course.title}</h3></Link> Price: {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
+{courses.map(course => <li key={course._id}><Link to={{pathname:course._id}}><h3 style={{display:"inline",margin:"10px"}}>{course.title}</h3></Link>
+<h3 style={{"display": "inline-flex"}}>Price:<s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price*rate} </s>   {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} </h3> 
+  Total Hours: {course.totalHours} Rating: {course.rating}</li>)}
 
         
     </div>

@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
 <div >
     <header style={{borderBottom:" 3px solid black"}}>
-    <a href="/" class="header-brand">Akwya</a>
+    <div class="header-brand">Akwya</div>
     <nav>
       <div>
         <ul id="navPages">

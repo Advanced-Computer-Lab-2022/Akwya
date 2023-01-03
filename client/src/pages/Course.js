@@ -12,7 +12,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Notes from '../components/user/Notes.js'
-
+import '../backButton.css'
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import axios from 'axios';
@@ -25,15 +25,23 @@ import reportAProblem2 from '../components/Problem/reportAProblem2'
  
 
 const Course = (props) => {
+  
   const types = ["Course Details","Course Content"];
   const [active, setActive] = useState(types[0]);
   const [showContent, setshowContent] = useState(false);
   const [showDetails, setshowDetails] = useState(true);
   const [registered,setRegistered] = useState([])
-
   const CourseID  = window.location.href.split('/').at(5);
   const TraineeID = window.location.href.split('/').at(4);
+  const type=window.location.href.split('/').at(3)+'/';
+  const backLink = "http://localhost:3000/"+type+TraineeID;
+  useEffect(()=>{
+    document.getElementById('logoutbutton').hidden = false
+    document.getElementById('loginbutton').hidden = true
+    document.getElementById('contract').hidden = true
+    document.getElementById('navPages').innerHTML = '<li> <a href=/user/'+TraineeID+'> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
 
+    })
   useEffect(()=>{
     axios
     .get(`http://localhost:9000/trainee/isRegistered/${CourseID}/${TraineeID}`)
@@ -109,9 +117,8 @@ active &&
   if(JSON.stringify(registered).length==2){
     return(
       <div className="guest" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
-      <h2>Course Page</h2>
-      <Link to="/">
-      </Link>
+          <div class="bb"><a href={backLink} class="previous round">&#8249;</a></div>
+
       <TabGroup/>
       
 
@@ -144,9 +151,8 @@ active &&
   }
   
   return (
-    <div className="guest" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
-        <h2>Course Page</h2>
-       
+    <div className="guest" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>       
+    <div class="bb"><a href={backLink} class="previous round">&#8249;</a></div>
        
         <TabGroup/>
         

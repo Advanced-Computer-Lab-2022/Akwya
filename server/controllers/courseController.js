@@ -66,7 +66,9 @@ const searchCourse = async (req, res) => {
 //"choose a course from the results and view (but not open) its details including course subtitles, excercises , total hours of each subtitle, total hours of the course and price (including % discount if applicable) according to the country selected"
 
 const viewACourse = async (req, res) => {
-
+    console.log(req.params);
+    console.log(req.params._id);
+    console.log('bossyy');
     const { titlee } = req.params
     const objs = await course.find({_id:{$eq:titlee} });
 
