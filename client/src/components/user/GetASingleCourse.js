@@ -19,8 +19,7 @@ const [registered,setRegistered] = useState([])
 const [show,setShow] = useState(false)
 const [userProgress,setUserProgress] = useState(0)
 
-
-
+const[tobepaid, setTobepaid] = useState(100)
 
 
 const CourseID = window.location.href.split('/').at(5);
@@ -29,11 +28,15 @@ const TraineeID = window.location.href.split('/').at(4);
 const ID = window.location.href.split('/').at(5);
 console.log(ID)
 useEffect(()=>{
+
     axios
     .get('http://localhost:9000/course/viewACourse/'+ID)
     .then( res => {
         console.log(res)
+        console.log('popp');
         setCourses(res.data)
+       
+        setTobepaid(Math.round((res.data[0].price-(res.data[0].price*res.data[0].promotion/100)) * rate))
     })
     .catch(err=>{console.log(err)})
 },[])
@@ -357,8 +360,7 @@ if(JSON.stringify(registered).length==2){
         <ul>
 
             {courses.map(course => <p key={course._id}><h3>Title: {course.title} </h3>  
-                                                        <h3>Price: <s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price} </s>  {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} </h3> 
-                                                        <h3>Total Hours: {course.totalHours}</h3> 
+                                                        <h3>Price: <s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price} </s> <div id="tobepaid"> {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} </div></h3>                                                         <h3>Total Hours: {course.totalHours}</h3> 
                                                         <h3>Rating: {course.rating}</h3> 
                                                         <h3>Summary: {course.summary}</h3></p>)}
 
@@ -377,7 +379,7 @@ if(JSON.stringify(registered).length==2){
 </form>
 <h7>OR</h7><br/>
 <h3>Credit Card</h3>
-        <PaymentComponent t={TraineeID} c={CourseID}
+        <PaymentComponent t={TraineeID} c={CourseID} p={tobepaid}
     keys={{
         stripe: "pk_test_51MIFP2HUXZhuMagYneFzG4qHkSG50EXSNItMTONiK5113unZ0HzFho1rwLowL312VWCsK1IToWcIUXT5N7VZZExJ008w6439EK",
     }}
@@ -397,12 +399,12 @@ return(
 
         
         { <form className="create" onSubmit={handleSubmit2}> 
-          <button>Drop Course</button>
+          <button style={{ width:'200px', fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9' }} >Drop Course</button>
           {error && <div className="error">{error}</div>}
         </form> }
         <form className="create" onSubmit={handleSubmit4}> 
 
-          <button>Request Refund</button>
+          <button style={{ width:'200px', fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9' }} >Request Refund</button>
 
           {error && <div className="error">{error}</div>}
         </form>

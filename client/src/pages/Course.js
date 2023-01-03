@@ -170,7 +170,7 @@ active &&
         {/* onClick={() => begin(props)}
         <div style={{display: showPW ? 'block' : 'none' }}><ChangePw tid={props.tid}/></div> */}
 <br/>
-        <button style={{ width:'150px', fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9' }} onClick={() => reportAProblem2(props.tempid)}>    
+        <button style={{ width:'200px', height:'50px',fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9' }} onClick={() => reportAProblem2(props.tempid)}>    
 
 
         Report a problem
