@@ -30,7 +30,13 @@ const Course = (props) => {
   const ID = window.location.href.split('/').at(5);
   const instructorID = window.location.href.split('/').at(4);
   const backLink = "http://localhost:3000/instructor/"+instructorID;
-
+  useEffect(()=>{
+    document.getElementById('logoutbutton').hidden = false
+    document.getElementById('loginbutton').hidden = true
+    document.getElementById('contract').hidden = false
+    document.getElementById('navPages').innerHTML = '<li> <a href='+backLink+'> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
+  
+    })
   useEffect(()=>{
     axios
     .get(`http://localhost:9000/instructor/CanViewVideos/${ID}/${instructorID}`)
@@ -155,13 +161,14 @@ function TabGroup() {
         
         <div>
         <ViewCourseRating/>
-
+<br/>
         <Box sx={{marginBottom: 2}}>
         <Link to={{pathname:"/instructor/"+_idInstructor+"/"+_idCourse+"/Quiz"}}>
-                <Button variant="contained"
+                <button variant="contained"
+                style={{ width:'350px', height:'60px', fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9' }}
                 margin="normal"
                 padding="normal"
-                >Create A Quiz</Button> 
+                >Create A Quiz</button> 
                 
 
           </Link>
@@ -172,7 +179,8 @@ function TabGroup() {
           </div>
         
 
-          <button style={{ width:'150px', fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9' }} onClick={() => reportAProblem2(props.tempid)}>    
+          <button                style={{ width:'350px', height:'60px', fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9' }}
+onClick={() => reportAProblem2(props.tempid)}>    
         Report a problem
           </button>
 

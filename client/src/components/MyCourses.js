@@ -50,7 +50,7 @@ const insertStars = (ratin, idx)=>{
 return(
 
     <div class="courseDisplay">
-        <h1 style={{"text-align": "center","color": "white", "margin":"50px"}}>View My courses</h1>
+        <h1 style={{"text-align": "center","color": "white", "margin":"50px"}}>My Courses</h1>
     <div class="allganb" style={{display: "flex","justify-content": "space-between", "overflow": "auto"
   }}>        
         {courses.map((course) => (
