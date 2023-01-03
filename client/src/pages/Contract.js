@@ -2,7 +2,15 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';  
 
 const Contract = () => {
+  useEffect(()=>{
+    document.getElementById('logoutbutton').hidden = true
+    document.getElementById('loginbutton').hidden = false
+    document.getElementById('contract').hidden = true
+    document.getElementById('policy').hidden = true
+    document.getElementById('navPages').innerHTML = '<li> <a href='+document.referrer+'> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
   
+    })
+   
   function checkChange() {
     const checkbox = document.getElementById("agreed");
     if(checkbox.checked == true){
@@ -14,8 +22,7 @@ const Contract = () => {
 
   return (
     <div className="contract" style={{background:"#f1f1f1",padding:"40px",borderRadius:"10px"}}>
-      <Link to="/">
-      </Link>
+       <div class="bb"><a href={document.referrer} class="previous round">&#8249;</a></div>
       <form>
         <h6>
         <h2>Contract</h2>
@@ -102,13 +109,7 @@ const Contract = () => {
           amount (in USD).
           <br/>
           <h4>You have already agreed to the terms mentioned above.</h4>
-          {/* <input id="agreed" type="checkbox" onClick={checkChange}/>I agree to the terms of this contract
-          <br/>
-          <a href='http://localhost:3000/'>
-          <button id="submitButton" class="btn btn-default" type="button" disabled="disabled">    
-          Submit
-          </button>
-          </a> */}
+         
         </h6>
       </form>
     </div>

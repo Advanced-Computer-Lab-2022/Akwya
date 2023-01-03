@@ -66,7 +66,7 @@ useEffect(()=>{
   document.getElementById('loginbutton').hidden = true
   document.getElementById('contract').hidden = true
 
-  document.getElementById('navPages').innerHTML = '<li> <a href="/guest/0"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
+  document.getElementById('navPages').innerHTML = '<li> <a href="/"> Home </a> </li><li> <a href="/contact"> Contact Us </a> </li>'
 
   })
   const register = () => {

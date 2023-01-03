@@ -68,6 +68,7 @@ return(
                     
                 <h1>Course Details</h1>  
                 <h3 className="create" >Title: {course.title}</h3>
+                <h3 style={{"display": "inline-flex"}}>Price:<s style={{display: course.promotion==0 ? 'none' : 'block',"margin-inline":"5px"}}>{course.price*rate} </s>   {(Math.round((course.price-(course.price*course.promotion/100)) * rate) + ' ' + currency)} </h3> 
                 <h3  >Course Rating: {course.rating}</h3>
                 <h3 >Total Hours: {course.totalHours}</h3>
                 
