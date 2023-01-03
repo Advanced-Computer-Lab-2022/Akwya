@@ -375,7 +375,7 @@ if(JSON.stringify(registered).length==2){
   <h2>Add Course</h2>
   <h4>Choose Payment Method</h4>
   <br/>
-  <button>Pay with Wallet</button>
+  <button  style={{ width:'200px', height:'50px',fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9',"marginBottom":"30px" }}>Pay with Wallet</button>
 </form>
 <h7>OR</h7><br/>
 <h3>Credit Card</h3>
