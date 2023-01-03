@@ -398,10 +398,10 @@ return(
 
 
         
-        { <form className="create" onSubmit={handleSubmit2}> 
+        {/* { <form className="create" onSubmit={handleSubmit2}> 
           <button style={{ width:'200px', fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9' }} >Drop Course</button>
           {error && <div className="error">{error}</div>}
-        </form> }
+        </form> } */}
         <form className="create" onSubmit={handleSubmit4}> 
 
           <button style={{ width:'200px', fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9' }} >Request Refund</button>
