@@ -296,7 +296,7 @@ return(
         onChange={(e) => setPromotion(e.target.value)} 
         value={promotion}
         required
-/><label>Enter Discount Percentage: </label>
+/><label>Discount Percentage</label>
             </div>
             
 
@@ -304,7 +304,7 @@ return(
 
 
 
-       <label> Discount starting from: </label>    
+       <label> Starting from: </label>    
 
                 <input 
         type="date"
@@ -318,7 +318,7 @@ return(
 
         
 
-       <label> Discount valid till: </label>    
+       <label> Valid till: </label>    
 
                 <input 
         type="date"

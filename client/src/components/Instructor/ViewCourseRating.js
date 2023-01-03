@@ -90,13 +90,14 @@ return(
 
 
     <div className="View Ratings">
-        
+        <br/>
                 <Box sx={{marginBottom: 2}}>
-                <Button variant="contained"
+                <button variant="contained"
                 onClick={getRatings}
+                style={{ width:'350px', height:'60px', fontSize:'18px', fontWeight:'700', color:'white',  borderRadius: '25px',   background: '#2691d9' }}
                 margin="normal"
                 padding="normal"
-                >View Course Ratings & Reviews</Button> 
+                >View Course Ratings & Reviews</button> 
                 
                 </Box>
             
@@ -109,7 +110,7 @@ return(
                   
        </div>
        <div style={{display: empty ? 'block' : 'none' }}>
-        <h2>There are no Ratings And Reviews yet</h2>
+        <h3>There are no ratings nor reviews yet</h3>
        </div>
 
                   

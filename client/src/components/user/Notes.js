@@ -23,7 +23,7 @@ const Notes = () => {
             <form onSubmit={(e)=>{
               e.preventDefault();downloadTxtFile()}}>
               <textarea rows="26" cols="32" onChange={(e) => {textarea = e.target.value}} style={{"font-size":"12pt",
-              "border-radius":"20px 0px 0px 0px","padding": "10px"}}></textarea>
+              "border-radius":"20px 0px 0px 0px","padding": "10px",height:"460px"}}></textarea>
               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
               <button class="btn" id="downloadbtn"  style={{"marginTop":"13px","background-color": "#1976d2",
                "border": "none", "color": "white", "padding": "12px", "cursor": "pointer", "font-size": "20px",  "border-radius":"5px"}}>

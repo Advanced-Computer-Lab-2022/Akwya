@@ -49,6 +49,7 @@ const CardField = ({onChange}) => (
       <CardElement options={CARD_OPTIONS} onChange={onChange} />
     </div>
   );
+  
 
 //submit button sub component
 const SubmitButton = ({ processing, error, children, disabled }) => (
@@ -63,7 +64,8 @@ const SubmitButton = ({ processing, error, children, disabled }) => (
 
 //component declaration
 export default function CreditCardForm(props) {
- 
+    console.log(props.p);
+    console.log('passd');
 
     let history = useNavigate();
 
@@ -74,7 +76,7 @@ export default function CreditCardForm(props) {
     const [cardComplete, setCardComplete] = useState(false);
     const [processing, setProcessing] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState('');
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState(props.p);
     const [billingDetails, setBillingDetails] = useState({
         email: '',
         name: '',
@@ -83,7 +85,6 @@ export default function CreditCardForm(props) {
             line2: '',
         }
     });
-
     //resets state on completion
     const reset = () => {
         setError(null);
@@ -312,16 +313,12 @@ const reg = async () => {
                 label="Payment Amount"
                 id="bet"
                 type="number"
-                placeholder="0"
+                
                 required
                 autoComplete="tel"
                 min="1"
-                value={price}
-                onChange={(event) => {
-                    if (event.target.value >= 0){
-                        setPrice(event.target.value);
-                    }
-                }}
+                value={props.p}
+                
             />
 
             {/* Credit Card Payment Form */}
