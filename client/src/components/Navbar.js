@@ -22,7 +22,9 @@ const Navbar = () => {
         <Button variant="contained" onClick={logout} margin="normal" padding="normal">Log Out</Button>
       </Box>
       <Box id="loginbutton" align="right" sx={{marginRight:4 }} hidden="true">
-        <Button variant="contained" onClick={()=>{window.location = '/login'}} margin="normal" padding="normal">Log In</Button>
+      <Button variant="contained" onClick={()=>{window.location = '/signup'}} margin="normal" padding="normal">Sign Up</Button> <></>
+        <Button variant="contained" onClick={()=>{window.location = '/login'}} margin="normal" padding="normal" >Log In</Button>
+       
       </Box>
       
     </nav>

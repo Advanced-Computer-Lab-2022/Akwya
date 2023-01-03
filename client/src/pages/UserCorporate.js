@@ -56,7 +56,7 @@ const User = (props) => {
 
     return (
       <>
-        <div style={{ "text-align" : 'center' }} >
+        <div style={{ "text-align" : 'center' ,"width": "max-content"}} >
           {types.map((type) => (
             <Tab 
               key={type}
