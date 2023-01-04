@@ -9,6 +9,12 @@ courses online. These courses provide quizzes for the user to test his/her under
 **Server:** NodeJS, Express, MongoDB
 
 
+## Motivation
+
+- This Website was created as a group project for the `CSEN704 Course` (Advanced Computer Lab).
+- The purpose of creating such project is to learn and practice the MERN (MongoDB , ExpressJS , ReactJS, NodeJS) Technology Stack.
+
+
 ## Used By
 
 This system is used by the following:
