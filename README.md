@@ -3,148 +3,125 @@
 Akwya is an Online Learning System that works with professional instructors to offer online courses, through which individuals can attend pre-recorded
 courses online. These courses provide quizzes for the user to test his/her understanding of the course; and upon completion, certifications shall be acquired.
 
-## Tech Stack
-
-**Client:** React, HTML, CSS, JavaScript
-**Server:** NodeJS, Express, MongoDB
-
-
 ## Motivation
 
 - This Website was created as a group project for the `CSEN704 Course` (Advanced Computer Lab).
 - The purpose of creating such project is to learn and practice the MERN (MongoDB , ExpressJS , ReactJS, NodeJS) Technology Stack.
 
 
+## Build Status
+
+The Current Build Of the project is finalized and contains no bugs, errors or malfunctions,
+ however future releases may contain additional features.
+ 
+ 
+## Code Style
+
+Standard coding style is used.
+
 ## Used By
 
 This system is used by the following:
 - Admins:
-    administrators who run the website and are in control of everything
+    Administrators who run the website and are in control of everything.
 - Instructors:
-     highly 
-qualified instructors bring a wealth of knowledge and experience 
-to our courses and provide students with exceptional material
+     Highly qualified instructors bring a wealth of knowledge and experience to our courses and provide students with exceptional material.
 - Individual Trainees:
-    a regular user 
+    Regular registered user.
 - Corporate Trainees: 
-    user who is part of partnered company 
-
+    User who is part of partnered company.
 - Guests:
-    Unregistered user who can only preview features without using them
-
-## Installation
-
-```bash
-  cd server
-  npm Install
-  npm install @stripe/react-stripe-js 
-  npm install @stripe/stripe-jest 
-  npm install @testing-library/jest-dom 
-  npm install @testing-library/react 
-  npm install @testing-library/user-event axios bootstrap express react react-bootstrap react-dom react-paypal-button-v2 react-router-dom react-scripts react-smart-payment-buttons stripe
-  npm install jsonwebtoken
-  npm install bcrypt
-  npm install cookie-parser
-  npm install dotenv
-  npm install sweetalert
-  npm install sweetalert2 
-
-  cd client
-  npm Install
-  npm install @stripe/react-stripe-js 
-  npm install @stripe/stripe-jest 
-  npm install @testing-library/jest-dom 
-  npm install @testing-library/react 
-  npm install @testing-library/user-event axios bootstrap express react react-bootstrap react-dom react-paypal-button-v2 react-router-dom react-scripts react-smart-payment-buttons stripe
-  npm install styled-components
-
-```
+    Unregistered user who can only preview features without using them.
     
-## Environment Variables
+## Screenshots
+<img width="1440" alt="Screenshot 2023-01-02 at 4 07 31 AM" src="https://user-images.githubusercontent.com/83324698/210611678-24b0809e-e023-4437-907d-587fcbfe9a4f.png">
 
-To run this project, you will need to add the following environment variables to your .env file
+<img width="1440" alt="Screenshot 2023-01-02 at 4 10 13 AM" src="https://user-images.githubusercontent.com/83324698/210611984-449610a3-73e0-480e-8a8c-d568116c70b1.png">
+<img width="1440" alt="Screenshot 2023-01-02 at 4 11 14 AM" src="https://user-images.githubusercontent.com/83324698/210612007-c1220888-f760-44af-a603-d13cf24d92ae.png">
+<img width="1440" alt="Screenshot 2023-01-02 at 4 11 36 AM" src="https://user-images.githubusercontent.com/83324698/210612013-e90f219d-45ca-42c0-883b-f18af82a0ef0.png">
 
 
-PORT=`Port number to be used`
-MONG_URI= `MONG_URI`
-AUTH_EMAIL= `Mongo DB Cluster email`
-AUTH_PASS= `Mongo DB Cluster password`
-## Functionalities
-Admin
-    Add new users(Other admins, corporate trainees, instructors) to the System
-    Responsible for promotions
-    Grant access to courses
-    Resolve Problems
-    Responsible for financial issues
+<img width="1440" alt="Screenshot 2023-01-02 at 4 11 58 AM" src="https://user-images.githubusercontent.com/83324698/210612024-10cbc4db-da62-4f97-8cf7-a2dc6829b1dc.png">
 
-Instructors
-    Manage his course content 
-    Create Quizzes for his Course
-    Add promotions to his courses
+<img width="1440" alt="Screenshot 2023-01-02 at 4 11 06 AM" src="https://user-images.githubusercontent.com/83324698/210612006-26be7198-49f4-461c-91be-0cc46169716c.png">
 
-Trainees
-    Corporate trainees and individual trainees have;
-    Similarities in the following features:
-        Register for courses
-        Take Quiz for the Course
-        View his/her progress in the course
-        Rate the courses and the Instructors
-        Take notes while attending the online lecture
-    Differences in the following features:
-        Individual trainees are responsible for their payments using the website's wallet System or credit card
-        Individual trainees can request refunds and drop the course
+<img width="1440" alt="Screenshot 2023-01-02 at 4 07 53 AM" src="https://user-images.githubusercontent.com/83324698/210611917-538f3a8b-c542-415f-a0f4-c17f2348e6a0.png">
 
-Guest 
-    Users with limited functionalities where they can view features but not fully make use of them
+<img width="1440" alt="Screenshot 2023-01-02 at 4 10 51 AM" src="https://user-images.githubusercontent.com/83324698/210612001-d982810b-1b3e-4535-b5cb-d92502178bf2.png">
 
-Users
-    All users have the following features available: 
-        Report Problems
-        Search for courses
-        Filter out courses
+<img width="1440" alt="Screenshot 2023-01-02 at 4 10 27 AM" src="https://user-images.githubusercontent.com/83324698/210611996-2afec128-13af-46ea-9bff-4f572a786b0e.png">
+
+<img width="1440" alt="Screenshot 2023-01-02 at 4 10 23 AM" src="https://user-images.githubusercontent.com/83324698/210611990-34d031e6-536f-4b26-9d49-319c70e0a6d1.png">
+<img width="1440" alt="Screenshot 2023-01-02 at 4 07 57 AM" src="https://user-images.githubusercontent.com/83324698/210611927-45d59f12-643a-4f7a-917f-ac0a1fdc77b8.png">
+<img width="1440" alt="Screenshot 2023-01-02 at 4 09 28 AM" src="https://user-images.githubusercontent.com/83324698/210611974-3998bda4-3a2d-47ac-a773-afb1b04043d5.png">
+<img width="1440" alt="Screenshot 2023-01-02 at 4 09 53 AM" src="https://user-images.githubusercontent.com/83324698/210611980-60df9cf7-a304-4694-a5ef-8ff3a53b8dc4.png">
+
+<img width="1440" alt="Screenshot 2023-01-02 at 4 09 19 AM" src="https://user-images.githubusercontent.com/83324698/210611969-206ed993-80c2-4aca-a72b-be26ba2c2655.png">
+
+<img width="1440" alt="Screenshot 2023-01-02 at 4 09 09 AM" src="https://user-images.githubusercontent.com/83324698/210611960-b3a422b0-dc59-4aa2-8548-b7f693b7559b.png">
+
+<img width="1440" alt="Screenshot 2023-01-02 at 4 08 29 AM" src="https://user-images.githubusercontent.com/83324698/210611954-7978ca86-92bf-43a7-a1ea-ca90d103e025.png">
+<img width="1440" alt="Screenshot 2023-01-02 at 4 12 04 AM" src="https://user-images.githubusercontent.com/83324698/210612052-a4ea030d-e9a9-4cb7-a16a-ced3653d97a5.png">
+<img width="1440" alt="Screenshot 2023-01-02 at 4 12 22 AM" src="https://user-images.githubusercontent.com/83324698/210612064-a289026b-bcbe-4f2c-a937-bfbe5c2c2d38.png">
+<img width="1440" alt="Screenshot 2023-01-02 at 4 12 47 AM" src="https://user-images.githubusercontent.com/83324698/210612077-1240421e-eb3e-4f5c-ae41-dbb57803e88f.png">
+
+
+<img width="1440" alt="Screenshot 2023-01-02 at 4 08 16 AM" src="https://user-images.githubusercontent.com/83324698/210611944-87755837-7a59-46bd-8c19-e08c08b9c8ea.png">
+<img width="1440" alt="Screenshot 2023-01-02 at 4 12 34 AM" src="https://user-images.githubusercontent.com/83324698/210612071-213dc978-7d10-4360-9410-7fbd5fec2980.png">
+
+
+## Tech Stack
+
+**Client:** React, HTML, CSS, JavaScript
+**Server:** NodeJS, ExpressJS, MongoDB
 
 
 ## Features
+- Different Access levels:
+    - Admin:
+        - Add new users (other Admins, Corporate Trainees, Instructors) to the System
+        - Responsible for promotions
+        - Grant access to courses
+        - Resolve Problems
+        - Responsible for financial issues
 
+    - Instructors: 
+        - Manage his course content 
+        - Create Quizzes for his Course
+        - Add promotions to his courses
+
+    - Trainees: 
+        - Corporate trainees and individual trainees have similarities in the following features:
+            - Register for courses
+            - Take Quiz for the Course
+            - View his/her progress in the course
+            - Rate the courses and the Instructors
+            - Take notes while attending the online lecture
+        - Differences in the following features:
+            - Individual trainees are responsible for their payments using the website's wallet System or credit card
+            - Individual trainees can request refunds and drop the course
+
+    - Guest:  
+        Users with limited functionalities where they can view features but not fully make use of them
+
+    - Users:
+        - All users have the following features available: 
+            - Report Problems
+            - Search for courses
+            - Filter out courses
+    
 - Fullscreen mode
-- Accessible to All Users
 - Well Planned Information Architecture
 - Well-Formatted Content That Is Easy to Scan
+    - Visibility
+    - Consistent Layout and Formatting
 - Fast Load Times
+    - Instant Feedback
+    - Fast & Responsive
 - Browser Consistency
 - Effective Navigation
 - Good Error Handling
-## Run Locally
 
-Clone the project
-
-```bash
-  git clone https://github.com/Advanced-Computer-Lab-2022/Akwya.git
-```
-
-Go to the project directory
-
-```bash
-  cd Akwya
-  
-Install dependencies
-```refer to installation section
-
-```Split Terminal
-
-Start the server for the back end
-        cd server
-        npm start
-Start the client for the front end
-        cd client
-        npm start
-
-
-```
-
-## Screenshots
-
-(https://drive.google.com/file/d/1XAsBdJoeXtJ_CzTI_imf0k1JGmXiuO_E/view?usp=sharing)
 ## Usage/Examples
 Find below code snippets for how an admin can add a trainee to the system 
 
@@ -324,6 +301,75 @@ const AddTrainee = () => {
 export default AddTrainee
 
 ```
+
+
+
+## Installation
+
+```bash
+  cd server
+  npm Install
+  npm install @stripe/react-stripe-js 
+  npm install @stripe/stripe-jest 
+  npm install @testing-library/jest-dom 
+  npm install @testing-library/react 
+  npm install @testing-library/user-event axios bootstrap express react react-bootstrap react-dom react-paypal-button-v2 react-router-dom react-scripts react-smart-payment-buttons stripe
+  npm install jsonwebtoken
+  npm install bcrypt
+  npm install cookie-parser
+  npm install dotenv
+  npm install sweetalert
+  npm install sweetalert2 
+
+  cd client
+  npm Install
+  npm install @stripe/react-stripe-js 
+  npm install @stripe/stripe-jest 
+  npm install @testing-library/jest-dom 
+  npm install @testing-library/react 
+  npm install @testing-library/user-event axios bootstrap express react react-bootstrap react-dom react-paypal-button-v2 react-router-dom react-scripts react-smart-payment-buttons stripe
+  npm install styled-components
+
+```
+    
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+
+PORT=`Port number to be used`
+MONG_URI= `MONG_URI`
+AUTH_EMAIL= `Mongo DB Cluster email`
+AUTH_PASS= `Mongo DB Cluster password`
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Advanced-Computer-Lab-2022/Akwya.git
+```
+
+Go to the project directory
+
+```bash
+  cd Akwya
+  
+Install dependencies
+```refer to installation section
+
+```Split Terminal
+
+Start the server for the back end
+        cd server
+        npm start
+Start the client for the front end
+        cd client
+        npm start
+
+
+```
+
+
 ## API Reference
 
 #### Get all items
