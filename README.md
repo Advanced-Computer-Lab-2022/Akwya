@@ -12,18 +12,18 @@ courses online. These courses provide quizzes for the user to test his/her under
 ## Used By
 
 This system is used by the following:
-- Admins
+- Admins:
     administrators who run the website and are in control of everything
-- Instructors
+- Instructors:
      highly 
 qualified instructors bring a wealth of knowledge and experience 
 to our courses and provide students with exceptional material
-- Individual Trainees
+- Individual Trainees:
     a regular user 
-- Corporate Trainees 
+- Corporate Trainees: 
     user who is part of partnered company 
 
-- Guests
+- Guests:
     Unregistered user who can only preview features without using them
 
 ## Installation
