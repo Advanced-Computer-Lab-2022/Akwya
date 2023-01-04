@@ -111,6 +111,9 @@ This system is used by the following:
             - Filter out courses
     
 - Fullscreen mode
+- Email Handler
+     - Sends Certificate upon Course Completion
+     - Used in Recovery of Forgotten Password 
 - Well Planned Information Architecture
 - Well-Formatted Content That Is Easy to Scan
     - Visibility
@@ -495,22 +498,24 @@ https://www.youtube.com/watch?v=-RCnNyD0L-s
 https://dev.to/salarc123/mern-stack-authentication-tutorial-part-1-the-backend-1c57
 ## Contributing
 
+
 Contributions are always welcome!
 
 See `contributing.md` for ways to get started.
 
 Please adhere to this project's `code of conduct`.
 
--Contributor Name: Farah Wanas
--Contributor Name: Yasmine Ashraf
--Contributor Name: Ayten Mazen 
--Contributor Name: Omar Kamal
--Contributor Name: Youssef Amer
+- Contributors:
+     - Farah Wanas (@farahwanas)
+     - Yasmine Ashraf (@yasmine-ashraf)
+     - Youssef Amer (@youssefamer)
+     - Ayten Mazen (@aytenmazen)
+     - Omar Walid (@omarkamal280)
 
 Special thanks to 
-Noha Hamid
-Hadwa Pasha
-Nada Ibrahim 
+- Noha Hamid
+- Hadwa Pasha
+- Nada Ibrahim 
 ## Support
 
 For support, email akwyaawy@hotmail.com 
