@@ -406,18 +406,60 @@ Request body
 | `password`| `string` | trainee's initially assigned password |
 | `email`   | `string` | trainee's email |
 
+Example
+http://localhost:PORT/admin/newTrainee/
+<details>
+<summary>
+Request
+</summary>
+     {
+    "username":"Farah",
+    "password":"Password123",
+    "email":"farah@hotmail.com"
+}
+</details>
+<details>
+<summary>
+Response
+</summary>
+```json
+{
+    "username": "Farah",
+    "password": "$2b$10$wBkOfHhfB/bzaCWSZekwo.bfSvy5AtR5kM3AcVZvnMZLV6jj9CdfK",
+    "email": "farah@hotmail.com",
+    "traineetype": "corporate",
+    "wallet": 0,
+    "_id": "63b86ec2d563ccbfe98c485d",
+    "courses": [],
+    "createdAt": "2023-01-06T18:56:02.476Z",
+    "updatedAt": "2023-01-06T18:56:02.476Z",
+    "__v": 0
+}
+```
+</details>
 
-#### Add a new Trainee to the System
+#### Viewing the problems of a course
 
 ```http
-  POST /newTrainee/
+  GET /course/getProblems/:id
 ```
+Example
+http://localhost:PORT/instructor/viewEmail/6380fb3a0e91fe67a1baf48c
+<details>
+<summary>
+Response
+</summary>
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `name` | `string` | trainee's username |
-| `password`| `string` | trainee's initially assigned password|
-etc...
+```json
+[
+    {
+        "_id": "6380fb3a0e91fe67a1baf48c",
+        "email": "ayten@hotmail.com"
+    }
+]
+```
+</details>
+
 
 ### Index APIs
 app.use('/user', userRoutes); 
@@ -426,7 +468,6 @@ app.use('/admin',adminRoutes);
 app.use('/instructor', instructorRoutes);
 app.use('/trainee', traineeRoutes);
 app.use('/Quiz', quizRoutes);
-
 
 
 #### Admin APIs
@@ -442,7 +483,6 @@ router.get('/GrantAccess/:TraineeID/:CourseID', grantAccess)
 router.get('/RequestAccess/:TraineeID/:CourseID', requestAccess)
 router.get('/viewRequests/', viewRequests)
 router.get('/viewRefunds/', viewRefunds)
-
 
 
 #### Course APIs
@@ -497,6 +537,7 @@ router.get('/notFirst/:id', notFirst)
 router.get('/moneyOwed/:id', moneyOwed)
 
 ### Quiz APIs
+
 router.post('/create',createQuiz);
 router.get('/TakeQuiz/:id',getQuiz)
 router.post('/TakeQuiz/submitQuiz',submitQuiz)
@@ -506,6 +547,7 @@ router.get('/TakeQuiz/viewGrade/:id/:level',viewGrade)
 router.get('/TakeQuiz/viewQuestionGrade/:id/:quiz',viewQuestionGrade)
 
 ### Trainee API
+
 router.patch('/:id/rateCourse',rateCourse)
 router.patch('/:id/rateInstructor',rateInstructor)
 router.get('/',getTrainee)
@@ -531,6 +573,7 @@ router.get('/myCourses/:TraineeID', myCourses);
 router.get('/registerCourseWallet/:courseID/:traineeID',registerCourseWallet);
 
 ### User API
+
 router.get('/',getAllUser)
 router.get('/:id',getUser)
 router.post('/',createUser)
@@ -538,8 +581,11 @@ router.delete('/:id',deleteUser)
 router.patch('/:id',updateUser)
 
 ### Stripe APIs
+
 app.post('/confirm-payment')
 app.post('/stripe')
+
+
 ## Helpful Resources
 Useful Resources that were used in the development of this project:
 
