@@ -171,20 +171,15 @@ const traineeSchema = mongoose.Schema({
     country: String,
     wallet: Number
 }, { timestamps: true }
-
-)
- 
-    ;
+);
 
 const trainee = mongoose.model('trainee', traineeSchema);
 
 export default trainee;
 ```
 
-
 ```BackEnd
 import trainee from "../models/trainee.js"
-
 
 export const createTrainee= async(req,res) => {
     const {username,password,email}=req.body
@@ -203,10 +198,7 @@ export const createTrainee= async(req,res) => {
     } catch (error) {
         res.status(400).json({error: error.message})
     }
-
-
 }
-
 
 ```
 
@@ -214,9 +206,8 @@ export const createTrainee= async(req,res) => {
 import express from "express";
 const router =express.Router()
 import {createTrainee} from "../controllers/adminController.js"
+
 router.post('/newTrainee',createTrainee)
-
-
 app.use('/admin',adminRoutes);
 
 ```
@@ -231,14 +222,6 @@ mongoose.connect(process.env.MONG_URI, { useNewURLParser: true, useUnifiedTopolo
     .catch((error) => console.log(error.message));
 ```
 
-
-
-
-
-
-
-
-
 ```For the Front End
 import { useState } from 'react'
 import Swal from "sweetalert2";
@@ -252,7 +235,7 @@ const AddTrainee = () => {
 
     const [error, setError] = useState(null)
 
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault()
 
     const trainee = {username, password,email}
@@ -284,8 +267,6 @@ const AddTrainee = () => {
         setUsername('')
         setPassword('')
         setEmail('')
-
-
     } 
 }
 
@@ -332,7 +313,6 @@ export default AddTrainee
 ```
 
 
-
 ## Installation
 
 ```bash
@@ -366,10 +346,12 @@ export default AddTrainee
 To run this project, you will need to add the following environment variables to your .env file
 
 
-PORT=`Port number to be used`
-MONG_URI= `MONG_URI`
-AUTH_EMAIL= `Mongo DB Cluster email`
-AUTH_PASS= `Mongo DB Cluster password`
+- PORT=`Port number to be used`
+- MONG_URI= `MONG_URI`
+- AUTH_EMAIL= `Mongo DB Cluster email`
+- AUTH_PASS= `Mongo DB Cluster password`
+- token= `Authentication token`
+
 ## Run Locally
 
 Clone the project
@@ -395,13 +377,12 @@ Start the client for the front end
         cd client
         npm start
 
-
 ```
 
 
 ## API Reference
 
-#### Admin adding a new Trainee to the System
+#### Admin adding a new Trainee to the system
 
 ```http
   POST admin/newTrainee/
@@ -448,7 +429,7 @@ Response
 </details>
 
 
-#### Viewing the wallet of a trainee
+#### Viewing a trainee's wallet
 
 ```http
   GET /trainee/getWallet/:id
@@ -469,8 +450,26 @@ Response
      
 </details>
 
+#### Adding a rating & review to a course
+```http
+  PATCH /trainee/:id/rateCourse
+```
+Example
+http://localhost:PORT/trainee/63822dd272c5cd10a8568cfb/rateCourse?rating=4&review="My favorite!"
+<details>
+<summary>
+Response
+</summary>
+{
+    "acknowledged": true,
+    "modifiedCount": 1,
+    "upsertedId": null,
+    "upsertedCount": 0,
+    "matchedCount": 1
+}
+</details>
 
-#### Viewing the problems of a course
+#### Viewing an instructor's email
 
 ```http
   GET /instructor/viewEmail/:id
@@ -491,6 +490,7 @@ Response
 ]
 ```
 </details>
+
 
 
 #### Index APIs
@@ -626,8 +626,20 @@ app.post('/stripe')
 You will see 200 OK Message
 The response will be shown below according to your requested link
 
-<img width="1440" alt="Screen Shot 2023-01-06 at 9 13 52 PM" src="https://user-images.githubusercontent.com/106534619/211083313-d7ed8378-ce56-48c0-bf32-b2ccdcff4105.png">
+<details>
+<summary>
+Examples
+</summary>
 
+<img width="1440" alt="Screen Shot 2023-01-06 at 9 13 52 PM" src="https://user-images.githubusercontent.com/106534619/211083313-d7ed8378-ce56-48c0-bf32-b2ccdcff4105.png">
+     
+<img width="1440" alt="Screen Shot 2023-01-06 at 9 28 39 PM" src="https://user-images.githubusercontent.com/106534619/211085424-62a6c07a-d33c-4ab4-9313-8d05cf8373fb.png">
+
+<img width="1440" alt="Screen Shot 2023-01-06 at 9 29 39 PM" src="https://user-images.githubusercontent.com/106534619/211085542-28f1d7c2-7f51-4543-9c48-f5a62679cfd6.png">
+     
+<img width="1440" alt="Screen Shot 2023-01-06 at 9 35 05 PM" src="https://user-images.githubusercontent.com/106534619/211086320-4088e1f9-6dc9-4118-ba5b-13b39e145b0e.png">
+
+</details>
 
 ## Helpful Resources
 Useful Resources that were used in the development of this project:
