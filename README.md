@@ -688,7 +688,7 @@ https://www.youtube.com/watch?v=-RCnNyD0L-s
 
 https://dev.to/salarc123/mern-stack-authentication-tutorial-part-1-the-backend-1c57
 
-## License
+[## License](https://github.com/stripe/stripe-js/blob/master/LICENSE)
 Copyright (c) 2023 Advanced-Computer-Lab-2022/Akwya
 
 Licensed under the Apache License, Version 2.0 (the "License");
