@@ -422,6 +422,7 @@ Request
 <summary>
 Response
 </summary>
+     
 ```json
 {
     "username": "Farah",
@@ -436,12 +437,36 @@ Response
     "__v": 0
 }
 ```
+     
 </details>
+
+
+#### Viewing the wallet of a trainee
+
+```http
+  GET /trainee/getWallet/:id
+```
+Example
+http://localhost:PORT/trainee/getWallet/6396424da56263086dde2489
+<details>
+<summary>
+Response
+</summary>
+
+```json
+{
+    "_id": "6396424da56263086dde2489",
+    "wallet": 24377
+}
+```
+     
+</details>
+
 
 #### Viewing the problems of a course
 
 ```http
-  GET /course/getProblems/:id
+  GET /instructor/viewEmail/:id
 ```
 Example
 http://localhost:PORT/instructor/viewEmail/6380fb3a0e91fe67a1baf48c
