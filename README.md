@@ -93,13 +93,13 @@ More Screenshots
 ![ alt text ](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white)
 ![ alt text ](https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=MUI&logoColor=white)
 
-**Server:**
+**Server:** 
 ![ alt text ](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![ alt text ](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=Express)
 ![ alt text ](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![JSON Web Tokens Badge](https://img.shields.io/badge/JWT-000?logo=jsonwebtokens&logoColor=fff&style=for-the-badge)
 
-**Version Control:**
+**Version Control:** 
 ![ alt text ](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
 ![ alt text ](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 
@@ -114,27 +114,35 @@ More Screenshots
         - Responsible for financial issues
 
     - Instructors: 
-        - Manage his course content 
-        - Create Quizzes for his Course
-        - Add promotions to his courses
+        - Manage their course content 
+        - Edit their profile
+        - Create Quizzes for their courses
+        - Add promotions to their courses
+        - View their own and their courses' ratings and reviews
+        - View their monthly profit
+        - Report Problems
+
 
     - Trainees: 
         - Corporate trainees and individual trainees have similarities in the following features:
+            - Explore popular courses
             - Register for courses
             - Take Quiz for the Course
             - View his/her progress in the course
-            - Rate the courses and the Instructors
+            - Rate the courses and the instructors
             - Take notes while attending the online lecture
+            - Report Problems
         - Differences in the following features:
-            - Individual trainees are responsible for their payments using the website's wallet System or credit card
+            - Individual trainees are responsible for their payments using the website's wallet system or credit card
             - Individual trainees can request refunds and drop the course
+            - Corporate trainees can request access to courses
 
     - Guest:  
         Users with limited functionalities where they can view features but not fully make use of them
+          - Explore popular courses
 
     - Users:
         - All users have the following features available: 
-            - Report Problems
             - Search for courses
             - Filter out courses
     
@@ -695,11 +703,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-## Contributing
+## Contributing🤝
 
 Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
 
 Please adhere to this project's `code of conduct`.
 
@@ -710,10 +716,10 @@ Please adhere to this project's `code of conduct`.
      - Ayten Mazen (@aytenmazen)
      - Omar Walid (@omarkamal280)
 
-Special thanks to 
-- Noha Hamid
-- Hadwa Pasha
-- Nada Ibrahim 
+- Special thanks to 
+     - Noha Hamid
+     - Hadwa Pasha
+     - Nada Ibrahim 
 
 ## Support
 
