@@ -42,6 +42,8 @@ This system is used by the following:
     
 ## Screenshots
 <img width="1440" alt="Screenshot 2023-01-02 at 4 07 31 AM" src="https://user-images.githubusercontent.com/83324698/210611678-24b0809e-e023-4437-907d-587fcbfe9a4f.png">
+<img width="1440" alt="Screenshot 2023-01-02 at 4 12 04 AM" src="https://user-images.githubusercontent.com/83324698/210612052-a4ea030d-e9a9-4cb7-a16a-ced3653d97a5.png">
+<img width="1440" alt="Screenshot 2023-01-02 at 4 12 22 AM" src="https://user-images.githubusercontent.com/83324698/210612064-a289026b-bcbe-4f2c-a937-bfbe5c2c2d38.png">
 <details>
 <summary>
 More Screenshots
@@ -74,8 +76,7 @@ More Screenshots
 <img width="1440" alt="Screenshot 2023-01-02 at 4 09 09 AM" src="https://user-images.githubusercontent.com/83324698/210611960-b3a422b0-dc59-4aa2-8548-b7f693b7559b.png">
 
 <img width="1440" alt="Screenshot 2023-01-02 at 4 08 29 AM" src="https://user-images.githubusercontent.com/83324698/210611954-7978ca86-92bf-43a7-a1ea-ca90d103e025.png">
-<img width="1440" alt="Screenshot 2023-01-02 at 4 12 04 AM" src="https://user-images.githubusercontent.com/83324698/210612052-a4ea030d-e9a9-4cb7-a16a-ced3653d97a5.png">
-<img width="1440" alt="Screenshot 2023-01-02 at 4 12 22 AM" src="https://user-images.githubusercontent.com/83324698/210612064-a289026b-bcbe-4f2c-a937-bfbe5c2c2d38.png">
+
 <img width="1440" alt="Screenshot 2023-01-02 at 4 12 47 AM" src="https://user-images.githubusercontent.com/83324698/210612077-1240421e-eb3e-4f5c-ae41-dbb57803e88f.png">
 
 
