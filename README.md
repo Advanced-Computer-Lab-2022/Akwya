@@ -3,7 +3,7 @@
 Akwya is an Online Learning System that works with professional instructors to offer online courses, through which individuals can attend pre-recorded
 courses online. These courses provide quizzes for the user to test his/her understanding of the course; and upon completion, certifications shall be acquired.
 
-## Motivation
+## Motivation💪
 
 - This Website was created as a group project for the `CSEN704 Course` (Advanced Computer Lab).
 - After the COVID-19 pandemic that started in late 2019, learning methods have been shifted worldwide to online methodologies. Since then, online courses have been more convenient to most students so the demand for websites like Akwya has been on the rise. 
@@ -13,20 +13,20 @@ courses online. These courses provide quizzes for the user to test his/her under
      - Agile software development
      - Up-to-date backend and frontend development techniques
 
-## Build Status
+## Build Status🛠
 
 The Current Build Of the project is finalized and contains no bugs, errors or malfunctions,
 however future releases will contain additional features and unit tests.
  
  
-## Code Style
+## Code Style✍🏻
 
 - We used MVC (Model View Controller). For more info visit https://en.wikipedia.org/wiki/Model–view–controller
 - Standard coding style is used to ensure our project's readability and maintainability to developers at any level. 
 - Local variables were declared using the standard naming convention, camel case.
 - Prettier extension in Visual Studio Code was used in important files to organize spacing and readability.
 
-## Used By
+## Used By👥
 
 This system is used by the following:
 - Admins:
@@ -41,13 +41,13 @@ This system is used by the following:
     Unregistered user who can only preview features without using them.
     
 ## Screenshots
-
+<img width="1440" alt="Screenshot 2023-01-02 at 4 07 31 AM" src="https://user-images.githubusercontent.com/83324698/210611678-24b0809e-e023-4437-907d-587fcbfe9a4f.png">
 <details>
 <summary>
-Screenshots
+More Screenshots
 </summary>
 
-<img width="1440" alt="Screenshot 2023-01-02 at 4 07 31 AM" src="https://user-images.githubusercontent.com/83324698/210611678-24b0809e-e023-4437-907d-587fcbfe9a4f.png">
+
 
 <img width="1440" alt="Screenshot 2023-01-02 at 4 10 13 AM" src="https://user-images.githubusercontent.com/83324698/210611984-449610a3-73e0-480e-8a8c-d568116c70b1.png">
 <img width="1440" alt="Screenshot 2023-01-02 at 4 11 14 AM" src="https://user-images.githubusercontent.com/83324698/210612007-c1220888-f760-44af-a603-d13cf24d92ae.png">
