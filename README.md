@@ -41,6 +41,12 @@ This system is used by the following:
     Unregistered user who can only preview features without using them.
     
 ## Screenshots
+
+<details>
+<summary>
+Screenshots
+</summary>
+
 <img width="1440" alt="Screenshot 2023-01-02 at 4 07 31 AM" src="https://user-images.githubusercontent.com/83324698/210611678-24b0809e-e023-4437-907d-587fcbfe9a4f.png">
 
 <img width="1440" alt="Screenshot 2023-01-02 at 4 10 13 AM" src="https://user-images.githubusercontent.com/83324698/210611984-449610a3-73e0-480e-8a8c-d568116c70b1.png">
@@ -76,6 +82,7 @@ This system is used by the following:
 <img width="1440" alt="Screenshot 2023-01-02 at 4 08 16 AM" src="https://user-images.githubusercontent.com/83324698/210611944-87755837-7a59-46bd-8c19-e08c08b9c8ea.png">
 <img width="1440" alt="Screenshot 2023-01-02 at 4 12 34 AM" src="https://user-images.githubusercontent.com/83324698/210612071-213dc978-7d10-4360-9410-7fbd5fec2980.png">
 
+</details>
 
 ## Tech Stack
 
