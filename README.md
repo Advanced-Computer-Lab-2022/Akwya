@@ -486,7 +486,7 @@ Response
 </details>
 
 
-### Index APIs
+#### Index APIs
 app.use('/user', userRoutes); 
 app.use('/course', courseRoutes);
 app.use('/admin',adminRoutes);
@@ -535,7 +535,7 @@ router.patch('/:id',(req,res)=>{
 router.get('/courseDiscount/:id',courseDiscount)
 
 
-### Instructor APIs
+#### Instructor APIs
 
 router.get('/viewCoursestitleI/:id', viewCoursestitleI )
 router.get('/filterMyCoursesByPrice/:id',filterCoursesByPriceI)
@@ -561,7 +561,7 @@ router.get('/:id/myRating', ViewRating)
 router.get('/notFirst/:id', notFirst)
 router.get('/moneyOwed/:id', moneyOwed)
 
-### Quiz APIs
+#### Quiz APIs
 
 router.post('/create',createQuiz);
 router.get('/TakeQuiz/:id',getQuiz)
@@ -571,7 +571,7 @@ router.get('/TakeQuiz/getMyCourseName/:id',getMyCourseName)
 router.get('/TakeQuiz/viewGrade/:id/:level',viewGrade)
 router.get('/TakeQuiz/viewQuestionGrade/:id/:quiz',viewQuestionGrade)
 
-### Trainee API
+#### Trainee API
 
 router.patch('/:id/rateCourse',rateCourse)
 router.patch('/:id/rateInstructor',rateInstructor)
@@ -597,7 +597,7 @@ router.get('/requestRefund/:TraineeID/:CourseID', requestRefund);
 router.get('/myCourses/:TraineeID', myCourses);
 router.get('/registerCourseWallet/:courseID/:traineeID',registerCourseWallet);
 
-### User API
+#### User API
 
 router.get('/',getAllUser)
 router.get('/:id',getUser)
@@ -605,10 +605,21 @@ router.post('/',createUser)
 router.delete('/:id',deleteUser)
 router.patch('/:id',updateUser)
 
-### Stripe APIs
+#### Stripe APIs
 
 app.post('/confirm-payment')
 app.post('/stripe')
+
+## Testing with Postman
+
+1- Open Postman and create a new workspace
+2- Set your HTTP request (GET/POST/..)
+3- In the request URL field, input link
+4- Click Send
+You will see 200 OK Message
+The response will be shown below according to your requested link
+
+<img width="1440" alt="Screen Shot 2023-01-06 at 9 13 52 PM" src="https://user-images.githubusercontent.com/106534619/211083313-d7ed8378-ce56-48c0-bf32-b2ccdcff4105.png">
 
 
 ## Helpful Resources
@@ -648,7 +659,7 @@ https://www.youtube.com/watch?v=-RCnNyD0L-s
 
 https://dev.to/salarc123/mern-stack-authentication-tutorial-part-1-the-backend-1c57
 
-##License
+## License
 Copyright (c) 2023 Advanced-Computer-Lab-2022/Akwya
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -682,6 +693,7 @@ Special thanks to
 - Noha Hamid
 - Hadwa Pasha
 - Nada Ibrahim 
+
 ## Support
 
 For support, email akwyaawy@hotmail.com 
