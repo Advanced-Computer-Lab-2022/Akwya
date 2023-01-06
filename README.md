@@ -6,8 +6,12 @@ courses online. These courses provide quizzes for the user to test his/her under
 ## Motivation
 
 - This Website was created as a group project for the `CSEN704 Course` (Advanced Computer Lab).
-- The purpose of creating such project is to learn and practice the MERN (MongoDB , ExpressJS , ReactJS, NodeJS) Technology Stack.
-
+- After the COVID-19 pandemic that started in late 2019, learning methods have been shifted worldwide to online methodologies. Since then, online courses have been more convenient to most students so the demand for websites like Akwya has been on the rise. 
+- Shaping the ultimate online learning experience was a very fruitful challenge for us. 
+- The purpose of creating such project was to practice
+     - The MERN (MongoDB , ExpressJS , ReactJS, NodeJS) Technology Stack.
+     - Agile software development
+     - Up-to-date backend and frontend development techniques
 
 ## Build Status
 
@@ -390,7 +394,20 @@ Start the client for the front end
 
 ## API Reference
 
-#### Get all items
+#### Admin adding a new Trainee to the System
+
+```http
+  POST admin/newTrainee/
+```
+Request body
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username`| `string` | trainee's username |
+| `password`| `string` | trainee's initially assigned password |
+| `email`   | `string` | trainee's email |
+
+
+#### Add a new Trainee to the System
 
 ```http
   POST /newTrainee/
@@ -402,9 +419,15 @@ Start the client for the front end
 | `password`| `string` | trainee's initially assigned password|
 etc...
 
+### Index APIs
+app.use('/user', userRoutes); 
+app.use('/course', courseRoutes);
+app.use('/admin',adminRoutes);
+app.use('/instructor', instructorRoutes);
+app.use('/trainee', traineeRoutes);
+app.use('/Quiz', quizRoutes);
 
 
-Add a new Trainee to the System
 
 #### Admin APIs
 
@@ -444,9 +467,10 @@ router.delete('/',deleteAllCourses)
 router.patch('/:id',(req,res)=>{
     res.json({mssg:'update a guest'})
 })
+router.get('/courseDiscount/:id',courseDiscount)
 
 
-####Instructor APIs
+### Instructor APIs
 
 router.get('/viewCoursestitleI/:id', viewCoursestitleI )
 router.get('/filterMyCoursesByPrice/:id',filterCoursesByPriceI)
@@ -470,7 +494,48 @@ router.get('/editBio/:id', editBio )
 router.get('/getRatings/:id', getRatings )
 router.get('/:id/myRating', ViewRating)
 router.get('/notFirst/:id', notFirst)
+router.get('/moneyOwed/:id', moneyOwed)
 
+### Quiz APIs
+router.post('/create',createQuiz);
+router.get('/TakeQuiz/:id',getQuiz)
+router.post('/TakeQuiz/submitQuiz',submitQuiz)
+router.post('/TakeQuiz/resetQuiz/:id',resetQuiz)
+router.get('/TakeQuiz/getMyCourseName/:id',getMyCourseName)
+router.get('/TakeQuiz/viewGrade/:id/:level',viewGrade)
+router.get('/TakeQuiz/viewQuestionGrade/:id/:quiz',viewQuestionGrade)
+
+### Trainee API
+router.patch('/:id/rateCourse',rateCourse)
+router.patch('/:id/rateInstructor',rateInstructor)
+router.get('/',getTrainee)
+router.get('/register/:courseID/:traineeID',registerCourse)
+router.get('/drop/:courseID/:traineeID',dropCourse)
+router.get('/isRegistered/:courseID/:traineeID',isRegistered)
+router.get('/changePassword/:id',changePassword)
+router.get('/checkPassword/:id',checkPassword)
+router.get('/resetPassword/', resetPassword)
+router.get('/getWallet/:id', getWallet) 
+router.get('/videoCount/:CourseID', videoCount)
+router.get('/sendCertificate/:TraineeID/:CourseID', sendCertificate)
+router.post('/signup', signUp);
+router.post('/login', login);
+router.get('/logout', logout);
+router.post('/stripe', generatePayment);
+router.post('/confirm-payment', confirmPayment);
+router.get('/userWatchVideo/:TraineeID/:VideoID', userWatchVideo);
+router.get('/getUserProgress/:TraineeID/:CourseID', getUserProgress);
+router.get('/refund/:TraineeID/:CourseID', refundCourse);
+router.get('/requestRefund/:TraineeID/:CourseID', requestRefund);
+router.get('/myCourses/:TraineeID', myCourses);
+router.get('/registerCourseWallet/:courseID/:traineeID',registerCourseWallet);
+
+### User API
+router.get('/',getAllUser)
+router.get('/:id',getUser)
+router.post('/',createUser)
+router.delete('/:id',deleteUser)
+router.patch('/:id',updateUser)
 
 ### Stripe APIs
 app.post('/confirm-payment')
@@ -511,8 +576,23 @@ https://www.youtube.com/watch?v=mbsmsi7l3r4
 https://www.youtube.com/watch?v=-RCnNyD0L-s
 
 https://dev.to/salarc123/mern-stack-authentication-tutorial-part-1-the-backend-1c57
-## Contributing
 
+##License
+Copyright (c) 2023 Advanced-Computer-Lab-2022/Akwya
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+## Contributing
 
 Contributions are always welcome!
 
