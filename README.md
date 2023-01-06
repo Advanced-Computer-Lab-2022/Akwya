@@ -12,12 +12,15 @@ courses online. These courses provide quizzes for the user to test his/her under
 ## Build Status
 
 The Current Build Of the project is finalized and contains no bugs, errors or malfunctions,
- however future releases may contain additional features.
+however future releases will contain additional features and unit tests.
  
  
 ## Code Style
 
-Standard coding style is used.
+- We used MVC (Model View Controller). For more info visit https://en.wikipedia.org/wiki/Model–view–controller
+- Standard coding style is used to ensure our project's readability and maintainability to developers at any level. 
+- Local variables were declared using the standard naming convention, camel case.
+- Prettier extension in Visual Studio Code was used in important files to organize spacing and readability.
 
 ## Used By
 
@@ -71,21 +74,21 @@ This system is used by the following:
 
 
 ## Tech Stack
-Badges
-![ alt text ](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+
+**Client:** 
 ![ alt text ](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![JSON Web Tokens Badge](https://img.shields.io/badge/JWT-000?logo=jsonwebtokens&logoColor=fff&style=for-the-badge)
-![ alt text ](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![ alt text ](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=Express)
+![ alt text ](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white)
 ![ alt text ](https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=MUI&logoColor=white)
+
+**Server:**
+![ alt text ](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![ alt text ](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=Express)
+![ alt text ](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![JSON Web Tokens Badge](https://img.shields.io/badge/JWT-000?logo=jsonwebtokens&logoColor=fff&style=for-the-badge)
+
+**Version Control:**
 ![ alt text ](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
 ![ alt text ](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
-![ alt text ](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
-![ alt text ](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white)
-![ alt text ](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=Jest&logoColor=white)
-**Client:** ![ alt text ](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-, HTML, CSS, JavaScript
-**Server:** NodeJS, ExpressJS, MongoDB
 
 
 ## Features
