@@ -41,13 +41,15 @@ This system is used by the following:
     Unregistered user who can only preview features without using them.
     
 ## Screenshots
+
+<img width="1440" alt="Screenshot 2023-01-02 at 4 12 22 AM" src="https://user-images.githubusercontent.com/83324698/210612064-a289026b-bcbe-4f2c-a937-bfbe5c2c2d38.png">
 <img width="1440" alt="Screenshot 2023-01-02 at 4 12 04 AM" src="https://user-images.githubusercontent.com/83324698/210612052-a4ea030d-e9a9-4cb7-a16a-ced3653d97a5.png">
 <img width="1440" alt="Screenshot 2023-01-02 at 4 07 31 AM" src="https://user-images.githubusercontent.com/83324698/210611678-24b0809e-e023-4437-907d-587fcbfe9a4f.png">
 <img width="1440" alt="Screen Shot 2023-01-06 at 9 51 27 PM" src="https://user-images.githubusercontent.com/106534619/211089200-de991340-45c7-4ccc-a876-efca979b4a3a.png">
-<img width="1440" alt="Screenshot 2023-01-02 at 4 12 22 AM" src="https://user-images.githubusercontent.com/83324698/210612064-a289026b-bcbe-4f2c-a937-bfbe5c2c2d38.png">
+
 <details>
 <summary>
-More Screenshots
+## More Screenshots
 </summary>
 
 
