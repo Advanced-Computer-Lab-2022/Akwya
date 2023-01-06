@@ -612,10 +612,10 @@ app.post('/stripe')
 
 ## Testing with Postman
 
-1- Open Postman and create a new workspace
-2- Set your HTTP request (GET/POST/..)
-3- In the request URL field, input link
-4- Click Send
+- Open Postman and create a new workspace
+- Set your HTTP request (GET/POST/..)
+- In the request URL field, input link
+- Click Send
 You will see 200 OK Message
 The response will be shown below according to your requested link
 
