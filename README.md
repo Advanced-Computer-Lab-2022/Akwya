@@ -712,7 +712,7 @@ Contributions are always welcome!
 Please adhere to this project's `code of conduct`.
 
 - Contributors:
-     - Farah Wanas (@farahwanas)
+     - [Farah Wanas](https://github.com/farahwanas)
      - Yasmine Ashraf (@yasmine-ashraf)
      - Youssef Amer (@youssefamer)
      - Ayten Mazen (@aytenmazen)
