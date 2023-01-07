@@ -13,10 +13,12 @@ courses online. These courses provide quizzes for the user to test his/her under
      - Agile software development
      - Up-to-date backend and frontend development techniques
 
-## Build Status🛠
+## Build Status🛠  
 
-The Current Build Of the project is finalized and contains no bugs, errors or malfunctions,
-however future releases will contain additional features and unit tests.
+The current build of the project contains no bugs, errors or malfunctions, except for the following:
+- Logging in after resetting password requires hashing the password
+- Some UI elements need to look more consistent
+Future releases will contain additional features and unit tests.
  
  
 ## Code Style✍🏻
