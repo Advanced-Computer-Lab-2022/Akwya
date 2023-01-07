@@ -713,10 +713,10 @@ Please adhere to this project's `code of conduct`.
 
 - Contributors:
      - [Farah Wanas](https://github.com/farahwanas)
-     - Yasmine Ashraf (@yasmine-ashraf)
-     - Youssef Amer (@youssefamer)
-     - Ayten Mazen (@aytenmazen)
-     - Omar Walid (@omarkamal280)
+     - [Yasmine Ashraf](https://github.com/yasmine-ashraf)
+     - [Youssef Amer](https://github.com/youssefamer)
+     - [Ayten Mazen](https://github.com/aytenmazen)
+     - [Omar Walid](https://github.com/omarkamal280)
 
 - Special thanks to 
      - Noha Hamid
