@@ -18,6 +18,7 @@ courses online. These courses provide quizzes for the user to test his/her under
 The current build of the project contains no bugs, errors or malfunctions, except for the following:
 - Logging in after resetting password requires hashing the password
 - Some UI elements need to look more consistent
+
 Future releases will contain additional features and unit tests.
  
  
