@@ -636,10 +636,8 @@ app.post('/stripe')
 You will see 200 OK Message
 The response will be shown below according to your requested link
 
-<details>
-<summary>
+
 Examples
-</summary>
 
 <img width="1440" alt="Screen Shot 2023-01-06 at 9 13 52 PM" src="https://user-images.githubusercontent.com/106534619/211083313-d7ed8378-ce56-48c0-bf32-b2ccdcff4105.png">
      
@@ -649,7 +647,6 @@ Examples
      
 <img width="1440" alt="Screen Shot 2023-01-06 at 9 35 05 PM" src="https://user-images.githubusercontent.com/106534619/211086320-4088e1f9-6dc9-4118-ba5b-13b39e145b0e.png">
 
-</details>
 
 ## Helpful Resources
 Useful Resources that were used in the development of this project:
@@ -689,6 +686,21 @@ https://www.youtube.com/watch?v=-RCnNyD0L-s
 https://dev.to/salarc123/mern-stack-authentication-tutorial-part-1-the-backend-1c57
 
 ## License
+
+Copyright (c) 2023 Advanced-Computer-Lab-2022/Akwya
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
 MIT License
 
 Copyright (c) 2017 Stripe
