@@ -362,7 +362,7 @@ To run this project, you will need to add the following environment variables to
 - AUTH_PASS= `Mongo DB Cluster password`
 - token= `Authentication token`
 
-## How To Use
+## How to Use
 
 Clone the project
 
